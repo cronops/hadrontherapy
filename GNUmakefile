@@ -14,6 +14,11 @@ endif
 .PHONY: all
 all: lib bin
 
+include $(G4INSTALL)/config/architecture.gmk
+
+CPPFLAGS += $(shell root-config --cflags)
+LDFLAGS  += $(shell root-config --glibs)
+
 include $(G4INSTALL)/config/binmake.gmk
 
 ifdef G4ANALYSIS_USE 
