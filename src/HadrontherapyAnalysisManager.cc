@@ -40,21 +40,31 @@
 // * cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
 
-#ifdef  G4ANALYSIS_USE
 #include "HadrontherapyAnalysisManager.hh"
 
 HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 
 /////////////////////////////////////////////////////////////////////////////
+#ifdef G4ANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() : 
   aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
   h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
   ionTuple(0)
 {  
 }
+#endif
+#ifdef G4ROOTANALYSIS_USE
+HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() : 
+  theTFile(0), th1(0), th2(0), th3(0),
+  th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), theROOTNtuple(0),
+  theROOTIonTuple(0)
+{  
+}
+#endif
 /////////////////////////////////////////////////////////////////////////////
 HadrontherapyAnalysisManager::~HadrontherapyAnalysisManager() 
 { 
+#ifdef G4ANALYSIS_USE
   delete ionTuple;
   ionTuple = 0;
   
@@ -114,6 +124,56 @@ HadrontherapyAnalysisManager::~HadrontherapyAnalysisManager()
 
   delete aFact;
   aFact = 0;
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  delete theROOTIonTuple;
+  theROOTIonTuple = 0;
+  
+  delete theROOTNtuple;
+  theROOTNtuple = 0;
+
+  delete th14;
+  th14 = 0;
+
+  delete th13;
+  th13 = 0;
+
+  delete th12;
+  th12 = 0;
+
+  delete th11;
+  th11 = 0;
+
+  delete th10;
+  th10 = 0;
+
+  delete th9;
+  th9 = 0;
+
+  delete th8;
+  th8 = 0;
+
+  delete th7;
+  th7 = 0;
+
+  delete th6;
+  th6 = 0;
+
+  delete th5;
+  th5 = 0;
+
+  delete th4;
+  th4 = 0;
+
+  delete th3;
+  th3 = 0;
+
+  delete th2;
+  th2 = 0;
+
+  delete th1;
+  th1 = 0;
+#endif
 }
 /////////////////////////////////////////////////////////////////////////////
 HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::getInstance()
@@ -125,6 +185,7 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::getInstance()
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::book() 
 {
+#ifdef G4ANALYSIS_USE
   // Build up  the  analysis factory
   aFact = AIDA_createAnalysisFactory();
   AIDA::ITreeFactory* treeFact = aFact -> createTreeFactory();
@@ -184,6 +245,29 @@ void HadrontherapyAnalysisManager::book()
   G4String columnNames2 = "int a; double z;  int occupancy; double energy;";
   G4String options2 = "";
   if (tupFact) ionTuple = tupFact -> create("2","2", columnNames2, options2);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  // Use ROOT
+  theTFile = new TFile("DoseDistributionROOTANALYSIS.root", "RECREATE");
+
+  // Create the histograms with the enrgy deposit along the X axis
+  th1 = createHistogram1D("10","slice, energy", 400, 0., 400.);
+  th2 = createHistogram1D("20","Secondary protons - slice, energy", 400, 0., 400.);
+  th3 = createHistogram1D("30","Secondary neutrons - slice, energy", 400, 0., 400.);
+  th4 = createHistogram1D("40","Secondary alpha - slice, energy", 400, 0., 400.);
+  th5 = createHistogram1D("50","Secondary gamma - slice, energy", 400, 0., 400.);
+  th6 = createHistogram1D("60","Secondary electron - slice, energy", 400, 0., 400.);
+  th7 = createHistogram1D("70","Secondary triton - slice, energy", 400, 0., 400.);
+  th8 = createHistogram1D("80","Secondary deuteron - slice, energy", 400, 0., 400.);
+  th9 = createHistogram1D("90","Secondary pion - slice, energy", 400, 0., 400.);
+  th10 = createHistogram1D("100","Energy distribution of secondary electrons", 70, 0., 70.);
+  th11 = createHistogram1D("110","Energy distribution of secondary photons", 70, 0., 70.);
+  th12 = createHistogram1D("120","Energy distribution of secondary deuterons", 70, 0., 70.);
+  th13 = createHistogram1D("130","Energy distribution of secondary tritons", 70, 0., 70.);
+  th14 = createHistogram1D("140","Energy distribution of secondary alpha particles", 70, 0., 70.);
+
+  theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -192,6 +276,7 @@ void HadrontherapyAnalysisManager::FillEnergyDeposit(G4int i,
 						     G4int k,
 						     G4double energy)
 {
+#ifdef G4ANALYSIS_USE
  if (ntuple)     {
        G4int iSlice = ntuple -> findColumn("i");
        G4int jSlice = ntuple -> findColumn("j");
@@ -204,90 +289,166 @@ void HadrontherapyAnalysisManager::FillEnergyDeposit(G4int i,
        ntuple -> fill(iEnergy, energy);     }
 
   ntuple -> addRow(); 
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  if (theROOTNtuple) {
+    theROOTNtuple->Fill(i, j, k, energy);
+  }
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::BraggPeak(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h1 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th1->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryProtonEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h2 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th2->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryNeutronEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h3 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th3->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryAlphaEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h4 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th4->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryGammaEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h5 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th5->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryElectronEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h6 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th6->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryTritonEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h7 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th7->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryDeuteronEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h8 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th8->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::SecondaryPionEnergyDeposit(G4int slice, G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h9 -> fill(slice,energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th9->Fill(slice, energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::electronEnergyDistribution(G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h10 -> fill(energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th10->Fill(energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::gammaEnergyDistribution(G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h11 -> fill(energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th11->Fill(energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::deuteronEnergyDistribution(G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h12 -> fill(energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th12->Fill(energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::tritonEnergyDistribution(G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h13 -> fill(energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th13->Fill(energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::alphaEnergyDistribution(G4double energy)
 {
+#ifdef G4ANALYSIS_USE
   h14 -> fill(energy);
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  th14->Fill(energy);
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -296,6 +457,7 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
 							 G4int electronOccupancy,
 							 G4double energy) 
 {
+#ifdef G4ANALYSIS_USE
   if (ionTuple)    {
        G4int aIndex = ionTuple -> findColumn("a");
        G4int zIndex = ionTuple -> findColumn("z");
@@ -308,18 +470,27 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
        ionTuple -> fill(energyIndex, energy);
      }
    ionTuple -> addRow(); 
+#endif
+#ifdef G4ROOTANALYSIS_USE
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::finish() 
 {  
+#ifdef G4ANALYSIS_USE
   // Write all histograms to file
   theTree -> commit();
  
   // Close (will again commit)
   theTree ->close();
-}
 #endif
+#ifdef G4ROOTANALYSIS_USE
+  theROOTNtuple->Write();
+  theTFile->Write();
+  theTFile->Close();
+#endif
+}
 
 
 

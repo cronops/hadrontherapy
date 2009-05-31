@@ -16,7 +16,7 @@ all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
 
-CPPFLAGS += $(shell root-config --cflags)
+CPPFLAGS += $(shell root-config --cflags) -DG4ROOTANALYSIS_USE
 LDFLAGS  += $(shell root-config --glibs)
 
 include $(G4INSTALL)/config/binmake.gmk

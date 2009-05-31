@@ -39,11 +39,12 @@
 // * cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
 
-#ifdef G4ANALYSIS_USE
 #ifndef HADRONTHERAPYANALYSISMANAGER_HH
 #define HADRONTHERAPYANALYSISMANAGER_HH 1
 
 #include "globals.hh"
+
+#ifdef G4ANALYSIS_USE
 # include <AIDA/AIDA.h>
 
 namespace AIDA{
@@ -51,6 +52,14 @@ namespace AIDA{
   class IAnalysisFactory;
   class ITreeFactory;
 }
+#endif
+
+#ifdef G4ROOTANALYSIS_USE
+#include "TROOT.h"
+#include "TFile.h"
+#include "TNtuple.h"
+#include "TH1F.h"
+#endif
 
 class HadrontherapyAnalysisManager
 {
@@ -116,8 +125,18 @@ public:
   void finish();
   // Close the .hbk file with the histograms and the ntuples
 
+#ifdef G4ROOTANALYSIS_USE
+private:
+  TH1F *createHistogram1D(const TString name, const TString title, int bins, double xmin, double xmax) {
+    TH1F *histo = new TH1F(name, title, bins, xmin, xmax);
+    histo->SetLineWidth(2);
+    return histo;
+  }
+#endif
+
 private:
   static HadrontherapyAnalysisManager* instance;
+#ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
   AIDA::ITree* theTree; 
   AIDA::IHistogramFactory *histFact;
@@ -138,7 +157,26 @@ private:
   AIDA::IHistogram1D *h14;
   AIDA::ITuple *ntuple;
   AIDA::ITuple *ionTuple;
-};
 #endif
+#ifdef G4ROOTANALYSIS_USE
+  TFile *theTFile;
+  TH1F *th1;
+  TH1F *th2;
+  TH1F *th3;
+  TH1F *th4;
+  TH1F *th5;
+  TH1F *th6;
+  TH1F *th7; 
+  TH1F *th8; 
+  TH1F *th9;
+  TH1F *th10;
+  TH1F *th11;
+  TH1F *th12; 
+  TH1F *th13; 
+  TH1F *th14;
+  TNtuple *theROOTNtuple;
+  TNtuple *theROOTIonTuple;
+#endif
+};
 #endif
 
