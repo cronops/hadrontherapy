@@ -13,6 +13,9 @@
 # git diff
 # git status
 # git commit -a -m '[your comment]'  (add all changes)
+# An alternatime method is to use a graphical commit tool:
+# git gui (and then select the files to be committed using mouse,
+# write a commit message, and press the "Commit" -button.
 # git push (pushes the current branch to the default remote repository, the one you cloned from)
 # If you need to push to an alternative user account, you can use:
 # git push git@github.com:[username]/hadrontherapy.git
