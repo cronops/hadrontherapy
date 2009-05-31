@@ -29,4 +29,5 @@ getPK:
 	git fetch pekka
 	git merge pekka/master
 
-
+run:
+	$(G4INSTALL)/bin/$(G4SYSTEM)/Hadrontherapy
