@@ -136,6 +136,16 @@ simulations.
 Also the QGSP_BIC package can be used if the *Approach 3* is preferred.
 
 
+-------> INCL/ABLA physics lists
+
+The application includes INCL/ABLA inelastic process setup for
+deuteron, triton and alpha particles.
+
+In order to start using generic ion support (up to Carbon) you must
+first install an INCL/ABLA development version into your Geant4
+setup. The code for this version can be found on GitHub
+(github.com/kaitanie/incl).
+
 ------->2. EXPERIMENTAL SET-UP.      
                                       
 The application simulates the proton therapy beam line
