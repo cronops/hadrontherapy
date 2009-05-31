@@ -100,6 +100,7 @@
 #include "LocalPenelopeEmPhysic.hh"                  // Electromagnetic "Penelope"  models (from the Lowenergy physic)
 #include "LocalStandardICRU73EmPhysic.hh"            // This permits the use of the ICRU73 tables for stopping powers of ions
 #include "LocalIonIonInelasticPhysic.hh"             // Physic dedicated to the ion-ion inelastic processes
+#include "LocalINCLIonIonInelasticPhysic.hh"             // Physic dedicated to the ion-ion inelastic processes using INCL/ABLA
 
 // Physic lists (contained inside the Geant4 distribution)
 #include "G4EmStandardPhysics_option3.hh"
@@ -271,6 +272,10 @@ void HadrontherapyPhysicsList::AddPhysicsList(const G4String& name)
   } else if (name == "local_ion_ion_inelastic" && !locIonIonInelasticIsRegistered) {
     hadronPhys.push_back(new LocalIonIonInelasticPhysic());
     locIonIonInelasticIsRegistered = true;
+
+  } else if (name == "local_incl_ion_ion_inelastic" && !locINCLIonIonInelasticIsRegistered) {
+    hadronPhys.push_back(new LocalINCLIonIonInelasticPhysic());
+    locINCLIonIonInelasticIsRegistered = true;
     
   } else {
     
