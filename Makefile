@@ -51,4 +51,4 @@ getPK:
 	git merge pekka/master
 
 run:
-	$(G4INSTALL)/bin/$(G4SYSTEM)/Hadrontherapy
+	$(G4WORKDIR)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
