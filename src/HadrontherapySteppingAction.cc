@@ -54,9 +54,7 @@
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTypes.hh"
 
-#ifdef G4ANALYSIS_USE 	
 #include "HadrontherapyAnalysisManager.hh"
-#endif
 
 #include "HadrontherapyRunAction.hh"
 
@@ -101,7 +99,6 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 
  // Retrieve information about the secondaries originated in the phantom
 
-#ifdef G4ANALYSIS_USE 	
  G4SteppingManager*  steppingManager = fpSteppingManager;
   
   // check if it is alive
@@ -148,7 +145,6 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	    }
 	}
     }
-#endif
 }
 
 

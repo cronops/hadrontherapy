@@ -60,9 +60,7 @@
 #include "globals.hh"
 #include "HadrontherapySteppingAction.hh"
 
-#ifdef  G4ANALYSIS_USE
 #include "HadrontherapyAnalysisManager.hh"
-#endif
 
 #ifdef G4UI_USE_XM
 #include "G4UIXm.hh"
@@ -104,11 +102,9 @@ int main(int argc ,char ** argv)
   HadrontherapySteppingAction* steppingAction = new HadrontherapySteppingAction(pRunAction); 
   runManager -> SetUserAction(steppingAction);    
 
-#ifdef G4ANALYSIS_USE
   HadrontherapyAnalysisManager* analysis = 
     HadrontherapyAnalysisManager::getInstance();
   analysis -> book();
-#endif
 
 #ifdef G4VIS_USE
   // Visualization manager
@@ -141,9 +137,7 @@ int main(int argc ,char ** argv)
 
   matrix -> TotalEnergyDeposit();
 
-#ifdef G4ANALYSIS_USE
   analysis -> finish();
-#endif
 
   // Job termination
 #ifdef G4VIS_USE
