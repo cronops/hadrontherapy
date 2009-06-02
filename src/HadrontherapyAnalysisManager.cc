@@ -251,20 +251,20 @@ void HadrontherapyAnalysisManager::book()
   theTFile = new TFile("DoseDistributionROOTANALYSIS.root", "RECREATE");
 
   // Create the histograms with the enrgy deposit along the X axis
-  th1 = createHistogram1D("10","slice, energy", 400, 0., 400.);
-  th2 = createHistogram1D("20","Secondary protons - slice, energy", 400, 0., 400.);
-  th3 = createHistogram1D("30","Secondary neutrons - slice, energy", 400, 0., 400.);
-  th4 = createHistogram1D("40","Secondary alpha - slice, energy", 400, 0., 400.);
-  th5 = createHistogram1D("50","Secondary gamma - slice, energy", 400, 0., 400.);
-  th6 = createHistogram1D("60","Secondary electron - slice, energy", 400, 0., 400.);
-  th7 = createHistogram1D("70","Secondary triton - slice, energy", 400, 0., 400.);
-  th8 = createHistogram1D("80","Secondary deuteron - slice, energy", 400, 0., 400.);
-  th9 = createHistogram1D("90","Secondary pion - slice, energy", 400, 0., 400.);
-  th10 = createHistogram1D("100","Energy distribution of secondary electrons", 70, 0., 70.);
-  th11 = createHistogram1D("110","Energy distribution of secondary photons", 70, 0., 70.);
-  th12 = createHistogram1D("120","Energy distribution of secondary deuterons", 70, 0., 70.);
-  th13 = createHistogram1D("130","Energy distribution of secondary tritons", 70, 0., 70.);
-  th14 = createHistogram1D("140","Energy distribution of secondary alpha particles", 70, 0., 70.);
+  th1 = createHistogram1D("braggPeak","slice, energy", 400, 0., 400.);
+  th2 = createHistogram1D("h20","Secondary protons - slice, energy", 400, 0., 400.);
+  th3 = createHistogram1D("h30","Secondary neutrons - slice, energy", 400, 0., 400.);
+  th4 = createHistogram1D("h40","Secondary alpha - slice, energy", 400, 0., 400.);
+  th5 = createHistogram1D("h50","Secondary gamma - slice, energy", 400, 0., 400.);
+  th6 = createHistogram1D("h60","Secondary electron - slice, energy", 400, 0., 400.);
+  th7 = createHistogram1D("h70","Secondary triton - slice, energy", 400, 0., 400.);
+  th8 = createHistogram1D("h80","Secondary deuteron - slice, energy", 400, 0., 400.);
+  th9 = createHistogram1D("h90","Secondary pion - slice, energy", 400, 0., 400.);
+  th10 = createHistogram1D("h100","Energy distribution of secondary electrons", 70, 0., 70.);
+  th11 = createHistogram1D("h110","Energy distribution of secondary photons", 70, 0., 70.);
+  th12 = createHistogram1D("h120","Energy distribution of secondary deuterons", 70, 0., 70.);
+  th13 = createHistogram1D("h130","Energy distribution of secondary tritons", 70, 0., 70.);
+  th14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
 
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
 #endif
