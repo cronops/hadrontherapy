@@ -1,0 +1,44 @@
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/outer/beamerouterthemeinfolines.sty,v 1.8 2004/10/14 09:48:48 tantau Exp $
+
+\mode<presentation>
+
+\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.50\paperwidth,ht=4.00ex,dp=1ex,right]{author in head/foot}%
+    \usebeamerfont{author in head/foot}A.~Heikkinen: Simulating carbon beam fragmentation on water phantom \hspace{2cm}
+with the Geant4 INCL/ABLA models
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.50\paperwidth,ht=4.00ex,dp=1ex,right]{title in head/foot}%
+    \usebeamerfont{title in head/foot}
+%                 \includegraphics[width=0.12\textwidth]{images/kobeUniversityCentennialHall}, 
+                 2nd IAEA RCM on Heavy charged-particle interaction data for radiotherapy,\hspace{0.1cm} \hspace{1cm}
+                 8-12 June 2009 INFN-LNS Catania, Italy\hspace{0.1cm} 
+                 \insertframenumber/\inserttotalframenumber\hspace{0.1cm}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{headline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\mode
+<all>
