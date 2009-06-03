@@ -1,0 +1,394 @@
+\newif\ifPAPER  
+%\PAPERtrue % select either slide or note
+\PAPERfalse  
+
+\def\t{\title{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}}
+
+\def\a{
+\author{A.~Heikkinen} 
+\affiliation{Helsinki Institute of Physics, P.O. Box 64, FIN-00014 University of Helsinki (Finland)}
+}
+
+\newcommand{\codeAlgorithm}[1]{
+\addcontentsline{toc}{section}{Résumé}
+\begin{center}\fbox{\parbox{12cm}{\bf #1}}\end{center}}
+
+\newcommand{\cppintro}[1]{
+\lstset{language=C,
+caption= #1 ,
+label=listing:boundary}}
+
+\def\cppstart{\begin{lstlisting}}
+\def\cppend{\end{lstlisting}}
+
+\newif\ifCITENOTE 
+\CITENOTEtrue
+
+\ifPAPER
+
+\else   % Slides ---------------------------------------------------------------
+
+\documentclass[slidestop,compress,xdvips,10pt]{beamer} 
+\usetheme{Antibes}
+\usecolortheme{lily}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{verbatim} % for comment
+\transglitter[direction=315]
+\xdefinecolor{ahcol}{rgb}{0.2, 0.4, 0.1}
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\colorlet{structure}{green!60!black} % for color substitution
+\usepackage{color} % for definecolor
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{dark-gray}{gray}{0.30}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{dark-blue}{cmyk}{1,0.5,0.5,0}
+
+\hypersetup{
+    a4paper, % page format
+    pdftitle={My Title},                  % Title
+    pdfsubject={Subject of the document}, % Subject 
+    pdfauthor={Author name},              % Author
+    pdfkeywords={list of keywords},       % Keywords
+    plainpages=true, %
+    colorlinks,       % links are colored
+    urlcolor=dark-blue,    % color of external links
+    linkcolor=dark-blue,    % color of internal links
+    citecolor=black,  % color of links to bibliography
+    bookmarksnumbered
+}
+
+\usecolortheme[named=ahcol]{structure}
+\useoutertheme{myinfolines}
+\useinnertheme{rounded}
+\setbeamercolor{alerted_text}{fg=blue}
+\makeatother
+\beamertemplatetransparentcoveredhigh
+\t
+\author{\underline{A.~Heikkinen}
+\footnote{Helsinki Institute of Physics, P.O. Box 64, FIN-00014 University of Helsinki, Finland.
+aatos.heikkinen@cern.ch}}
+
+%\author{Aatos Heikkinen 
+%\footnote{Helsinki Institute of Physics, Helsinki, Finland.
+%%{\tt aatos.heikkinen@cern.ch}} and Ivica Puljak 
+%\footnote{University of Split - FESB, Split, Croatia}
+%}
+\graphicspath{{.}{figures/}}
+\graphicspath{{images/}}
+\begin{document}
+
+%\begin{comment}
+\frame{\titlepage}
+%\end{comment}
+
+\section{}
+
+\subsection{}
+\frame{
+\frametitle{Outline}
+\begin{itemize}
+\item INCL cascade and ABLA evaporation/fission models in Geant4 9.2
+
+\item New Geant4 physics list for spallation studies
+\item Examples of INCL/ABLA physics performance.
+
+\item Validation of Geant4 against data from GSI $^{12}$C beam fragmentation in water target:
+\begin{itemize}
+\item This will evolve as Geant4 benchmarking platform for 
+\href{http://www-nds.iaea.org/charpar/charpar.htmlx}{Heavy Charged-Particle Interaction 
+Data for Radiotherapy}
+\end{itemize}
+\end{itemize}
+\vspace{0.4cm}
+This work is done in collaboration with
+Alain Boudarad\footnote{CEN-Saclay, CEA-IRFU/SPhN, 91 191 Gif sur Yvette, France}, 
+Pekka Kaitaniemi\footnote{CEN-Saclay and Helsinki Institue of Physics}, 
+and Gillis Andersson\footnote{Helsinki University of Technology}.
+}
+
+\subsection{}
+\frame{
+\frametitle{}
+\includegraphics[width=1.0\textwidth]{inclScematic}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL4.3}
+INCL\footnote{A. Boudard, C. Volant, S. Leray, J.C. David (CEA/SPhN),
+J. Cugnon, T. Aoust, P. Henrotte (Univ. Li\'{e}ge - Belgium)} provides spallation model
+coupled with evaporation and fission models.
+\vspace{0.4cm}
+
+\begin{itemize}
+\item Possibility to use Geant4 fragmantation or
+ABLA\footnote{K-H Schmidt, A. Kelic, J. Benlliure GSI and Univ Santiago de C.} 
+(new version coming 2009?) evaporation of light clusters and fission dynamics.
+
+\item Based on physics (phenomenology reduced)
+to be predictive.
+
+\item $\sigma(E)$ and $d\sigma/d\Sigma(\theta)$ from experiments,
+no ad hoc parameters in the model.
+
+\item Series of elementary scattering explicitely followed in time.
+
+\item Trajectories are straight lines.
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{interactions}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL4.3 (cont.)}
+\begin{itemize}
+\item Pauli blocking on nucleons after each events + long range correlation (CDPP)
+
+\item No collision between spectators, only reflections (cannot escape).
+
+\item Stopping time of the cascade:   $t_{max}= 70 fm/c. (A/208)^{0.16}$
+
+\item Current version INCL4.3. supports
+light cluster production (d,t,3He,4He)\footnote{First version 
+       of light cluster production Nucl. Phys. A740 (2004) 195}.
+
+\item All outgoing particles (remnat nucleus, nucleons, pions, no gammas) 
+characterised by (A, Z, E$^{*}$, J, P, $\theta$, $\phi$).
+
+\item INCL5 expected year 2010.
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{inclPotential}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{}
+\includegraphics[width=1.0\textwidth]{inclSummary}
+}
+
+\subsection{}
+\frame{
+\frametitle{{\tt QGSP\_INCL\_ABLA} physics list}
+A unique feature of Geant4 is to decouple physics models, cross sections, and processes using
+abstract interfaces, and manage the usage of different options with so-called the physics lists.
+
+\vspace{0.4cm}
+We have prepared a new physics list {\tt QGSP\_INCL\_ABLA} suitable 
+for $^{12}$C ion beam fragmentation studies.
+
+\vspace{0.4cm}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{inclList}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{{\tt QGSP\_INCL\_ABLA} physics list (cont.)}
+First version of the physics list is now available for
+users \footnote{Submitted to JPCS May, 2009}.
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{inclAbstract}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{Neutron production from proton beam}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{ddxsec}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{Example of fragment production}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{inverseCbeam}
+\end{center}
+Comparison of
+mass number distributions from
+p(1.0 GeV) + C reaction, given by
+INCL4.2 cascade with ABLA v3
+evaporation and with standard
+Geant4 Fermi break up model
+against data from~\cite{olson83a}. 
+Also, results from Geant4 Bertini cascade with
+internal fragmentation model are shown.
+}
+
+\subsection{}
+\frame{
+\frametitle{Excitation functions}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{inclExcitation}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{Recoil velocity}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{inclRecoilVelocity}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{Recoil energy}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{inclRecoilEnergy}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: light ions\footnote{From \cite{boudard09a}}}
+
+\begin{center}
+\includegraphics[width=0.9\textwidth]{inclAbstractC}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: $^4$He 135~MeV/A + C \footnote{From \cite{boudard09a}}}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{he135_c}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: $^{12}$He 135~MeV/A + C \footnote{From \cite{boudard09a}}}
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{c135_c}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: $^{12}$C 290~MeV/A + C \footnote{From \cite{boudard09a}}}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{c290_c}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: $^{12}$C 290-400~MeV/A + Cu \footnote{From \cite{boudard09a}}}
+\begin{minipage}{5.5cm}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{c290_cu}
+\end{center}
+\end{minipage}
+\begin{minipage}{5.5cm}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{c400_cu}
+\end{center}
+\end{minipage}
+}
+
+\subsection{}
+\frame{
+\frametitle{INCL: $^{12}$C 500~MeV/A + Fe \footnote{From \cite{boudard09a}}}
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{chargeChanging}
+\end{center}
+}
+
+\frame{
+\frametitle{Examples of physics performance: neutron production from ion projectiles}
+\begin{minipage}{5.5cm}
+\includegraphics[height=0.77\textheight]{inclDeuterium} % height
+\end{minipage}
+\begin{minipage}{6cm}
+\includegraphics[width=0.96\textwidth]{inclC} % NOTE \textheight 
+\end{minipage}
+}
+
+
+\subsection{}
+\frame{
+\frametitle{Geant4 validation: $^{12}$C beam fragmentation in water target}
+%GSI Setup for Angular measurement
+
+We are currently preparing a Geant4 simulation to validate INCL/ABLA models
+against data from GSI $^{12}$C beam fragmentation in water target\footnote{Images from 
+E. Haettner, {\em Experimental study on carbon ion fragmentation in water using GSI therapy beams},
+Master of Science Thesis, Kungliga tekniska h\"{o}gskolan, Stockholm\cite{haettner06a}.}.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{gsiSetupAngular}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{GSI exeriment: Angular distribution\footnote{Image from~\cite{haettner06a}.}}
+First we will compare Geant4 simulation using INCL/ABLA to GSI data and try to reproduce
+key plots as published by E.~Haettner 2006~\cite{haettner06a}. 
+\begin{center}
+\includegraphics[width=0.7\textwidth]{gsiAngular}
+\vspace{0.1cm}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{GSI exeriment: Fragment build-up\footnote{Image from~\cite{haettner06a}.}}
+Then, by extending the software tools,  we will prepare IAEA benchmarks for proton and ions as agreed in
+research coordination meetings on Heavy Charged-Particle Interaction Data For Radiotherapy.
+\begin{center}
+\includegraphics[width=0.54\textwidth]{gsiFragmentBuildup}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{GSI exeriment:  Fragment energy\footnote{Image from~\cite{haettner06a}.}}
+EXFOR data format will be used. 
+\begin{center}
+\includegraphics[width=0.75\textwidth]{gsiFragmentEnergy}
+\end{center}
+}
+
+\subsection{}
+\frame{
+\frametitle{GSI exeriment: Attenuation and Bragg peak\footnote{Image from~\cite{haettner06a}.}}
+\begin{minipage}{6.5cm}
+\begin{center}
+\includegraphics[height=0.80\textheight]{gsiAttenuationBragg}
+\end{center}
+\end{minipage}
+\begin{minipage}{5.0cm}
+\begin{itemize}
+\item We are also preparing benchmarks for Geant4 Bertini cascade (proton beam)
+
+\item We expect to prepare most of the IAEA Geant4 INCL/ABLA benchmarks before October 2009.
+\begin{itemize}
+\item Benchmarks will be repeated when INCL5 is available 2010
+\end{itemize}
+
+\item Other IAEA Geant4 benchmarks will continue until spring 2010.
+\end{itemize}
+\end{minipage}
+}
+
+\bibliographystyle{plain}  % Options plain, unsrt, alpha, abbrv
+\bibliography{refs} %10 p
+\end{document}
+
+\fi %slides
+
+
+
