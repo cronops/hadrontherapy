@@ -90,16 +90,16 @@ aatos.heikkinen@cern.ch}}
 \frame{
 \frametitle{Outline}
 \begin{itemize}
-\item INCL cascade and ABLA evaporation/fission models in Geant4 9.2
+\item INCL cascade and ABLA evaporation/fission models in Geant4 9.2.
 
-\item New Geant4 physics list for spallation studies
+\item New Geant4 physics list for spallation studies.
 \item Examples of INCL/ABLA physics performance.
 
 \item Validation of Geant4 against data from GSI $^{12}$C beam fragmentation in water target:
 \begin{itemize}
 \item This will evolve as Geant4 benchmarking platform for 
 \href{http://www-nds.iaea.org/charpar/charpar.htmlx}{Heavy Charged-Particle Interaction 
-Data for Radiotherapy}
+Data for Radiotherapy}.
 \end{itemize}
 \end{itemize}
 \vspace{0.4cm}
@@ -148,20 +148,23 @@ into account through $\Delta$ formation and decay.}
 \begin{center}
 \includegraphics[width=0.6\textwidth]{interactions}
 \end{center}
+% No piN->piN  but piN<->Delta  
+% NOTE: Say that there is no explicit piN scattering but through a 
+%       \Delta formation and decay it is partly taken into account.
 }
 
 \subsection{}
 \frame{
 \frametitle{INCL4.3 (cont.)}
 \begin{itemize}
-\item Pauli blocking on nucleons after each events + long range correlation (CDPP)
+\item Pauli blocking on nucleons after each events + long range correlation (CDPP).
 
 \item No collision between spectators, only reflections (cannot escape).
 
-\item Stopping time of the cascade:   $t_{max}= 70 fm/c. (A/208)^{0.16}$
+\item Stopping time of the cascade:   $t_{max}= 70.0~\mathrm{fm/c}~(A/208)^{0.16}$.
 
 \item Current version INCL4.3. supports
-light cluster production (d,t,3He,4He)\footnote{First version 
+light cluster production (d, t, $^3$He, $^4$He)\footnote{First version 
        of light cluster production Nucl. Phys. A740 (2004) 195}.
 
 \item All outgoing particles (remnant nucleus, nucleons, pions)
@@ -186,11 +189,11 @@ characterised by (A, Z, E$^{*}$, J, P, $\theta$, $\phi$).
 A unique feature of Geant4 is to decouple physics models, cross sections, and processes using
 abstract interfaces, and manage the usage of different options with so-called the physics lists.
 
-\vspace{0.4cm}
+\vspace{0.3cm}
 We have prepared a new physics list {\tt QGSP\_INCL\_ABLA} suitable 
 for $^{12}$C ion beam fragmentation studies.
 
-\vspace{0.4cm}
+\vspace{0.3cm}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{inclList}
 \end{center}
@@ -200,7 +203,7 @@ for $^{12}$C ion beam fragmentation studies.
 \frame{
 \frametitle{{\tt QGSP\_INCL\_ABLA} physics list (cont.)}
 First version of the physics list is now available for
-users \footnote{Submitted to JPCS May, 2009}.
+IAEA benchmarking~\footnote{Submitted to JPCS May, 2009.}.
 \vspace{0.1cm}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{inclAbstract}
@@ -234,15 +237,17 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{Excitation functions}
+\frametitle{INCL: Excitation functions}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{inclExcitation}
 \end{center}
 }
 
+
+%SATO H. et al., Phys. Rev. C 64 (2001) 34607.
 \subsection{}
 \frame{
-\frametitle{Recoil velocity}
+\frametitle{INCL + ABLA: Recoil velocity}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{inclRecoilVelocity}
 \end{center}
@@ -250,8 +255,7 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{Recoil energy}
-\todo{Correct the spelling: T. Enqvist}
+\frametitle{INCL + ABLA : Recoil energy}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{inclRecoilEnergy}
 \end{center}
@@ -259,7 +263,7 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{INCL: light ions\footnote{From \cite{boudard09a}}}
+\frametitle{INCL: Light ions\footnote{From \cite{boudard09a}}}
 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{inclAbstractC}
@@ -268,7 +272,8 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{INCL: $^4$He 135~MeV/A + C \footnote{From \cite{boudard09a}}}
+\frametitle{INCL: $^4$He 135~MeV/A + C \footnote{Image from~\cite{boudard09a}. 
+                      Data points are from \cite{sato01a}. }}
 
 \begin{center}
 \includegraphics[width=0.75\textwidth]{he135_c}
@@ -277,7 +282,8 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{INCL: $^{12}$C 135~MeV/A + C \footnote{From \cite{boudard09a}}}
+\frametitle{INCL: $^{12}$C 135~MeV/A + C \footnote{Image from~\cite{boudard09a}. 
+                      Data points are from \cite{sato01a}.}}
 
 \begin{center}
 \includegraphics[width=0.75\textwidth]{c135_c}
@@ -286,7 +292,8 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{INCL: $^{12}$C 290~MeV/A + C \footnote{From \cite{boudard09a}}}
+\frametitle{INCL: $^{12}$C 290~MeV/A + C \footnote{Image from~\cite{boudard09a}. 
+                      Data points are from \cite{iwata01a}.}}
 \begin{center}
 \includegraphics[width=0.75\textwidth]{c290_c}
 \end{center}
@@ -294,7 +301,8 @@ internal fragmentation model are shown.
 
 \subsection{}
 \frame{
-\frametitle{INCL: $^{12}$C 290-400~MeV/A + Cu \footnote{From \cite{boudard09a}}}
+\frametitle{INCL: $^{12}$C 290-400~MeV/A + Cu \footnote{Image from~\cite{boudard09a}. 
+                      Data points are from \cite{iwata01a}.}}
 \begin{minipage}{5.5cm}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{c290_cu}
@@ -368,7 +376,7 @@ research coordination meetings on Heavy Charged-Particle Interaction Data For Ra
 \subsection{}
 \frame{
 \frametitle{GSI experiment:  Fragment energy\footnote{Image from~\cite{haettner06a}.}}
-EXFOR data format will be used. 
+EXFOR data format will be supported. 
 \begin{center}
 \includegraphics[width=0.75\textwidth]{gsiFragmentEnergy}
 \end{center}
@@ -377,23 +385,41 @@ EXFOR data format will be used.
 \subsection{}
 \frame{
 \frametitle{GSI experiment: Attenuation and Bragg peak\footnote{Image from~\cite{haettner06a}.}}
-\begin{minipage}{6.5cm}
+\begin{minipage}{6.0cm}
 \begin{center}
 \includegraphics[height=0.80\textheight]{gsiAttenuationBragg}
 \end{center}
 \end{minipage}
-\begin{minipage}{5.0cm}
+\begin{minipage}{5.5cm}
 \begin{itemize}
-\item We are also preparing benchmarks for Geant4 Bertini cascade (proton beam)
-
-\item We expect to prepare most of the IAEA Geant4 INCL/ABLA benchmarks before October 2009.
-\begin{itemize}
-\item Benchmarks will be repeated when INCL5 is available 2010
-\end{itemize}
-
-\item Other IAEA Geant4 benchmarks will continue until spring 2010.
+\item  \href{http://github.com/kaitanie/hadrontherapy/}{Our software} 
+is based on exisiting {\bf Hadrontherapy} example and hadron physics {\bf test30} and 
+will evolve as Geant4 benchmarking platform for {\em Heavy Charged-Particle
+Interaction Data for Radiotherapy.}
 \end{itemize}
 \end{minipage}
+}
+
+\subsection{}
+\frame{
+\frametitle{Plans}
+\begin{itemize}
+\item Geant4 collaboration members from CEA-Sacley, INFN-Catania, J.~M.~Quesada (Universidad de Sevilla), 
+and others, will participate to compilation and evaluation of 
+charged-particle nuclear data for therapeutic applications.
+
+\item We expect to prepare most of the IAEA Geant4 INCL4.3/ABLA benchmarks 
+described above before 2010. (6 months)
+\begin{itemize}
+\item Benchmarks will be repeated when INCL5 is available 2010. (18 months)
+\end{itemize}
+\item When the platform for agreed IAEA benchmark will have a production quality (6  months)
+\begin{itemize}
+\item We are prepared to make agreed proton and ions 
+benchmarks for relevant Geant4 models. (12 months)
+\end{itemize}
+%\item Other IAEA Geant4 benchmarks will continue until spring 2010.
+\end{itemize}
 }
 
 \bibliographystyle{plain}  % Options plain, unsrt, alpha, abbrv
