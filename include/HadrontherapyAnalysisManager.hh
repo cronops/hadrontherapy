@@ -31,11 +31,11 @@
 // Code developed by:
 //
 // G.A.P. Cirrone(a)*, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
-// 
-// (a) Laboratori Nazionali del Sud 
+//
+// (a) Laboratori Nazionali del Sud
 //     of the INFN, Catania, Italy
 // (b) INFN Section of Genova, Genova, Italy
-// 
+//
 // * cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@
 # include <AIDA/AIDA.h>
 
 namespace AIDA{
-  class ITree; 
+  class ITree;
   class IAnalysisFactory;
   class ITreeFactory;
 }
@@ -61,22 +61,38 @@ namespace AIDA{
 #include "TH1F.h"
 #endif
 
+/**
+ * A class for connecting the simulation to an analysis package.
+ */
 class HadrontherapyAnalysisManager
 {
 private:
+	/**
+	 * Analysis manager is a singleton object (there is only one instance).
+	 * The pointer to this object is available through the use of the method getInstance();
+	 *
+	 * @see getInstance
+	 */
   HadrontherapyAnalysisManager();
 
 public:
   ~HadrontherapyAnalysisManager();
-  
+
+  /**
+   * Get the pointer to the analysis manager.
+   */
   static HadrontherapyAnalysisManager* getInstance();
-  
+
+  /**
+  * Book the histograms and ntuples in an AIDA or ROOT file.
+  */
   void book();
-  // Book the histograms and ntuples in a .hbk file
-  
-  void FillEnergyDeposit(G4int voxelXId, G4int voxelYId, G4int voxelZId, 
+
+  /**
+  * Fill the ntuple with the energy deposit in the phantom
+  */
+  void FillEnergyDeposit(G4int voxelXId, G4int voxelYId, G4int voxelZId,
                          G4double energyDeposit);
-  // Fill the ntuple with the energy deposit in the phantom 
 
   void BraggPeak(G4int, G4double);
   // Fill 1D histogram with the Bragg peak in the phantom
@@ -121,7 +137,7 @@ public:
   // Energy distribution of secondary alpha originated in the phantom
 
   void genericIonInformation(G4int, G4double, G4int, G4double);
- 
+
   void finish();
   // Close the .hbk file with the histograms and the ntuples
 
@@ -138,7 +154,7 @@ private:
   static HadrontherapyAnalysisManager* instance;
 #ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
-  AIDA::ITree* theTree; 
+  AIDA::ITree* theTree;
   AIDA::IHistogramFactory *histFact;
   AIDA::ITupleFactory *tupFact;
   AIDA::IHistogram1D *h1;
@@ -147,13 +163,13 @@ private:
   AIDA::IHistogram1D *h4;
   AIDA::IHistogram1D *h5;
   AIDA::IHistogram1D *h6;
-  AIDA::IHistogram1D *h7; 
-  AIDA::IHistogram1D *h8; 
+  AIDA::IHistogram1D *h7;
+  AIDA::IHistogram1D *h8;
   AIDA::IHistogram1D *h9;
   AIDA::IHistogram1D *h10;
   AIDA::IHistogram1D *h11;
-  AIDA::IHistogram1D *h12; 
-  AIDA::IHistogram1D *h13; 
+  AIDA::IHistogram1D *h12;
+  AIDA::IHistogram1D *h13;
   AIDA::IHistogram1D *h14;
   AIDA::ITuple *ntuple;
   AIDA::ITuple *ionTuple;
@@ -166,13 +182,13 @@ private:
   TH1F *th4;
   TH1F *th5;
   TH1F *th6;
-  TH1F *th7; 
-  TH1F *th8; 
+  TH1F *th7;
+  TH1F *th8;
   TH1F *th9;
   TH1F *th10;
   TH1F *th11;
-  TH1F *th12; 
-  TH1F *th13; 
+  TH1F *th12;
+  TH1F *th13;
   TH1F *th14;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
