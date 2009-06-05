@@ -99,9 +99,9 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   JQMDmodel -> SetMinEnergy(0*MeV);
   JQMDmodel -> SetMaxEnergy(10*GeV);
 
-  G4BinaryLightIonReaction* ligthBinary = new G4BinaryLightIonReaction();
-  ligthBinary -> SetMinEnergy(0*MeV);
-  ligthBinary -> SetMaxEnergy(10*GeV);  
+  G4BinaryLightIonReaction* lightBinary = new G4BinaryLightIonReaction();
+  lightBinary -> SetMinEnergy(0*MeV);
+  lightBinary -> SetMaxEnergy(10*GeV);  
 
   G4WilsonAbrasionModel* WilsonModel = new G4WilsonAbrasionModel();
   WilsonModel -> SetUseAblation(true);
@@ -193,7 +193,7 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   genericIonInelasticProcess -> AddDataSet(TripatiCrossSections);
   genericIonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  genericIonInelasticProcess -> RegisterMe(ligthBinary);
+  genericIonInelasticProcess -> RegisterMe(lightBinary);
   //genericIonInelasticProcess -> RegisterMe(JQMDmodel);
   //genericIonInelasticProcess -> RegisterMe(WilsonModel);
   
