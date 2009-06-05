@@ -1,0 +1,167 @@
+\documentclass[twoside,floatfix,a4wide]{d}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{makeidx}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{asymptote}
+\usepackage{amsmath}
+\usepackage{verbatim} % for comment
+\usepackage{eurosym} 
+\usepackage{color} % for definecolor
+\usepackage[colorlinks,bookmarks=true]{hyperref}
+
+\numberwithin{equation}{section} % reguires amsmath-package
+\pagestyle{fancy}
+\fancyhead{} % clear all fields
+
+\fancyhead[L]{\it {Geneva, June 5, 2009}} % Left Odd, Right Even 
+%\fancyfoot[L]{A.~Heikkinen: Report of Geant4 actictivity and outlook (June 2009)} 
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+\newcommand{\urltilde}[1]{\texttt{#1}} % solves the tilde problem
+
+\graphicspath{{images/}}
+\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1} % zipped images
+
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{dark-gray}{gray}{0.30}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{dark-blue}{cmyk}{1,0.5,0.5,0}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,      % page fit to window when opened
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfnewwindow=true,      % links in new window
+    pdfkeywords={keywords}, % list of keywords
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=dark-blue,          % color of internal links
+    citecolor=dark-blue,        % color of links to bibliography
+    filecolor=dark-blue,         % color of file links
+    urlcolor=dark-blue            % color of external links
+}
+\begin{document}
+
+\lstset{ % General settings
+language=c++,                   % choose the language of the code
+basicstyle=\ttfamily \tiny,     % the size of the fonts that are used for the code \footnotsize
+numbers=left,                   % where to put the line-numbers
+numberstyle=\small,             % the size of the fonts that are used for the line-numbers
+stepnumber=2,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=10pt,                 % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=,                         % adds a frame around the code (single)
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=t,                   % sets the caption-position: top (t), bottom (b)
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},         % if you want to add a comment within your code
+caption=footnote, 
+label=listing:relRef
+}
+
+\begin{asydef}
+// Global Asymptote definitions can be put here.
+usepackage("bm");
+\end{asydef}
+
+\title{Heavy charged-particle interaction data for radiotherapy -- 
+      Report of the Geant4 actictivity and outlook (June 2009)
+\footnote{2nd IAEA RCM on Heavy charged-particle interaction data for radiotherapy, 
+                 8-12 June 2009 INFN-LNS Catania, Italy}}
+
+\author{A.~Heikkinen} 
+\affiliation{Helsinki Institute of Physics, P.O. Box 64, FIN-00014 University of Helsinki (Finland)}
+
+
+\begin{abstract}
+This report summarises Geant4 activity until June 2009, 
+and outlines future plans in the Coordinated Research Project (CRP)
+for {\em Heavy charged-particle interaction data for radiotherapy}.
+\end{abstract}
+
+\maketitle
+\thispagestyle{fancy}
+
+%\tableofcontents
+
+\section{Geant4 collaborators}
+\vspace{-0.4cm}
+Several members from \href{http://geant4.cern.ch}{Geant4} collaboration
+have participated the CRP for
+\href{http://www-nds.iaea.org/charpar/charpar.htmlx}{Heavy Charged-Particle Interaction}:
+\begin{itemize}
+\item Collaborators from INFN-Catania 
+(Geant4 hadrontherapy code by G.A.P. Cirrone, G.Cuttone, F. Di Rosa, F.Romano, G.Russo, M.Russo)
+\item A.~Boudard and P.~Kaitaniemi, CEA-Sacley (INCL and ABLA models, Geant4 benchmarking platform) 
+\item J.~M.~Quesada, Universidad de Sevilla) (issues related to precompound)
+\item A.~Heikkinen, \href{http://www.hip.fi}{Helsinki Institute of physics} (coordination)
+\end{itemize}
+
+Also G.~Danielsen from Helsinki University of Technology is currently working with 
+Geant4 benchmarking application that will implement agreed CRP tasks
+(May -- August 2009. Work done in the framework Finnish CERN Summer Training 2009.)
+
+
+\section{A platform for IAEA benchmarking}
+\vspace{-0.4cm}
+We have prepared an open source Geant4 code that acts as a 
+platform for benchmarking and other tasks to be made in the CRP.
+\begin{itemize}
+\item The code is based on Geant4 Hadrontherapy example prepared by INFN-Catania collaborators
+and test30 which is originally used in Geant4 for internal validation of hadronic models.
+
+\item \href{http://github.com/kaitanie/hadrontherapy/}{The code 
+{\em radiotherapyData} is available in an open source repository}.
+\end{itemize}
+
+We have translated original INCL (courtesy of CER-Saclay) and ALBA (GSI) codes into
+Geant4 have prepared physics list which will provide optimal Geant4 settings for therapeutic applications. 
+\begin{itemize}
+\item  A recent report describer INCL model: INDC(NDS)-0530 
+(Joint ICTP-IAEA Advanced Workshop on Model Codes for Spallation Reactions).
+\item We have also prepared a paper 
+documenting physics results relevant in medical irradiations: 
+{\em Simulation of light ion collisions from Intra Nuclear Cascade
+(INCL-Fermi Breakup) relevant for medical irradiations and
+radioprotection.}, AP/IE-08.
+\end{itemize}
+
+%We expect that this new  Geant4 modeling will be suitable for radiotherapy applications. 
+
+\section{Plans}
+\vspace{-0.4cm}
+\begin{itemize}
+\item  When the Geant4 benchmarking software {\em radiotherapyData} used in 
+the agreed IAEA benchmarks is of production quality. (6~months)
+\begin{itemize}
+We are prepared to make the agreed proton and ions 
+benchmarks for {\emph all} relevant Geant4 models. (12 months)
+
+\end{itemize}
+\item G.~Danielsen is preparing a thesis work 
+{\em Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}
+\item Results of the Geant4 activity related to the CRP will be reported and published in 2010.
+\end{itemize}
+
+%\begin{figure} 
+%\begin{center}
+%\includegraphics[width=1.0\textwidth]{images/hotelDeCurtis.png}  
+%\caption{Bed and Breakfast.}
+% \label{fig:traineeApplication}
+% \end{center}
+% \end{figure}
+
+%\bibliographystyle{plain} \bibliography{refs.bib} 
+\end{document}
+

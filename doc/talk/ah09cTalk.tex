@@ -128,10 +128,10 @@ coupled with evaporation and fission models.
 ABLA\footnote{K-H Schmidt, A. Kelic, J. Benlliure GSI and Univ Santiago de C.} 
 de-excitation (evaporation and fission).
 
-\item \todo{Evaporation of light clusters is coming in ABLA07. This is
-  not part of Geant4 yet and we definitely don't have time to
-  translate it in 2009 (the FORTRAN version of abla07 will probably be
-  released in 2009).}
+%\item \todo{Evaporation of light clusters is coming in ABLA07. This is
+%  not part of Geant4 yet and we definitely don't have time to
+%  translate it in 2009 (the FORTRAN version of abla07 will probably be
+%  released in 2009).}
 
 \item Based on physics (phenomenology reduced)
 to be predictive.
@@ -143,8 +143,8 @@ no ad hoc parameters in the model.
 
 \item Trajectories are straight lines.
 \end{itemize}
-\todo{Reminder: There is no $\pi N \rightarrow \pi N$, but it is partly taken
-into account through $\Delta$ formation and decay.}
+%REMINDER: There is no $\pi N \rightarrow \pi N$, but it is partly taken
+%          into account through $\Delta$ formation and decay.
 \begin{center}
 \includegraphics[width=0.6\textwidth]{interactions}
 \end{center}
@@ -343,12 +343,14 @@ internal fragmentation model are shown.
 We are currently preparing a Geant4 simulation to validate INCL/ABLA models
 against data from GSI $^{12}$C beam fragmentation in water target\footnote{Images from 
 E. Haettner, {\em Experimental study on carbon ion fragmentation in water using GSI therapy beams},
-Master of Science Thesis, Kungliga tekniska h\"{o}gskolan, Stockholm\cite{haettner06a}.}.
+Master of Science Thesis, Kungliga tekniska h\"{o}gskolan, Stockholm~\cite{haettner06a}.}.
 
-\todo{Details: based on G4 hadrontherapy example, open source project, public Git repository hosted at GitHub}
+\vspace{0.1cm}
+Simulation is based on Geant4 hadrontherapy example, 
+and \href{http://github.com/kaitanie/hadrontherapy/}{available in open source Git repository}.
 
 \begin{center}
-\includegraphics[width=0.7\textwidth]{gsiSetupAngular}
+\includegraphics[width=0.55\textwidth]{gsiSetupAngular}
 \end{center}
 }
 
