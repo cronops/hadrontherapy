@@ -16,7 +16,10 @@
 # [local edit]
 # git diff
 # git status
+# [git add newfile , clean extra files]
 # git commit -a -m '[your comment]'  (add all changes)
+# git push
+
 # An alternatime method is to use a graphical commit tool:
 # git gui (and then select the files to be committed using mouse,
 # write a commit message, and press the "Commit" -button.
