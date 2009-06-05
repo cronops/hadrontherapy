@@ -43,6 +43,9 @@
 pushAH:
 	git push git@github.com:aatos/hadrontherapy.git
 
+pushGD:
+       	git push git@github.com:Gillis/hadrontherapy.git
+
 addPK:
 	git remote add pekka git://github.com/kaitanie/hadrontherapy.git
 
