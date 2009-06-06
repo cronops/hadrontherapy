@@ -97,7 +97,8 @@ aatos.heikkinen@cern.ch}}
 
 \item Validation of Geant4 against data from GSI $^{12}$C beam fragmentation in water target:
 \begin{itemize}
-\item This will evolve as Geant4 benchmarking platform for 
+\item Our plan is that this study will evolve as Geant4 benchmarking platform for
+the Coordinated Research Project (CRP) on
 \href{http://www-nds.iaea.org/charpar/charpar.htmlx}{Heavy Charged-Particle Interaction 
 Data for Radiotherapy}.
 \end{itemize}
@@ -345,12 +346,9 @@ against data from GSI $^{12}$C beam fragmentation in water target\footnote{Image
 E. Haettner, {\em Experimental study on carbon ion fragmentation in water using GSI therapy beams},
 Master of Science Thesis, Kungliga tekniska h\"{o}gskolan, Stockholm~\cite{haettner06a}.}.
 
-\vspace{0.1cm}
-Simulation is based on Geant4 hadrontherapy example, 
-and \href{http://github.com/kaitanie/hadrontherapy/}{available in open source Git repository}.
 
 \begin{center}
-\includegraphics[width=0.55\textwidth]{gsiSetupAngular}
+\includegraphics[width=0.60\textwidth]{gsiSetupAngular}
 \end{center}
 }
 
@@ -369,7 +367,7 @@ key plots as published by E.~Haettner 2006~\cite{haettner06a}.
 \frame{
 \frametitle{GSI experiment: Fragment build-up\footnote{Image from~\cite{haettner06a}.}}
 Then, by extending the software tools,  we will prepare IAEA benchmarks for proton and ions as agreed in
-the Coordinated Research Project (CRP) on Heavy Charged-Particle Interaction Data For Radiotherapy.
+the CRP on Heavy Charged-Particle Interaction Data For Radiotherapy.
 \begin{center}
 \includegraphics[width=0.54\textwidth]{gsiFragmentBuildup}
 \end{center}
@@ -386,18 +384,27 @@ EXFOR data format will be supported.
 
 \subsection{}
 \frame{
-\frametitle{GSI experiment: Attenuation and Bragg peak\footnote{Image from~\cite{haettner06a}.}}
+\frametitle{Implementing the CRP in Geant4}
+%\frametitle{GSI experiment: Attenuation and Bragg peak\footnote{Image from~\cite{haettner06a}.}}
+
 \begin{minipage}{6.0cm}
 \begin{center}
-\includegraphics[height=0.80\textheight]{gsiAttenuationBragg}
+\includegraphics[height=0.70\textheight]{gsiAttenuationBragg}
 \end{center}
+(Image from~\cite{haettner06a}.)
 \end{minipage}
 \begin{minipage}{5.5cm}
 \begin{itemize}
-\item  \href{http://github.com/kaitanie/hadrontherapy/}{Our software} 
-is based on exisiting {\bf Hadrontherapy} example and hadron physics {\bf test30} and 
+\item  Our software is based on existing {\bf Hadrontherapy} example (courtesy of INFN-Catania) 
+and hadron physics {\bf test30} and 
 will evolve as Geant4 benchmarking platform for {\em Heavy Charged-Particle
 Interaction Data for Radiotherapy.}
+
+\item Simulation is based on Geant4 hadrontherapy example, 
+and \href{http://github.com/kaitanie/hadrontherapy/}{available in open source Git repository}.
+\begin{itemize}
+\item  Transparent access for non Geant4 members 
+\end{itemize}
 \end{itemize}
 \end{minipage}
 }
@@ -415,7 +422,7 @@ described above before 2010. (6 months)
 \begin{itemize}
 \item Benchmarks will be repeated when INCL5 is available 2010. (18 months)
 \end{itemize}
-\item When the platform for agreed IAEA benchmark will have a production quality (6  months)
+\item When the platform for agreed IAEA benchmark will have a production quality (3  months)
 \begin{itemize}
 \item We are prepared to make agreed proton and ions 
 benchmarks for relevant Geant4 models. (12 months)
