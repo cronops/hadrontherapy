@@ -1,4 +1,5 @@
 \documentclass[twoside,floatfix,a4wide]{d}
+
 \usepackage{multirow}
 \usepackage{url}
 \usepackage{listings}
@@ -13,12 +14,12 @@
 \usepackage{eurosym} 
 \usepackage{color} % for definecolor
 \usepackage[colorlinks,bookmarks=true]{hyperref}
-
+\usepackage{attachfile} 
 \numberwithin{equation}{section} % reguires amsmath-package
 \pagestyle{fancy}
 \fancyhead{} % clear all fields
 
-\fancyhead[L]{\it {Geneva, June 5, 2009}} % Left Odd, Right Even 
+\fancyhead[L]{\it {Geneva, June 6, 2009}} % Left Odd, Right Even 
 %\fancyfoot[L]{A.~Heikkinen: Report of Geant4 actictivity and outlook (June 2009)} 
 \fancyhead[R]{\thepage}
 \fancyfoot[C]{}
@@ -113,28 +114,31 @@ Geant4 benchmarking application that will implement agreed CRP tasks
 (May -- August 2009. Work done in the framework Finnish CERN Summer Training 2009.)
 
 
-\section{A platform for IAEA benchmarking}
+\section{A platform for the IAEA benchmarking}
 \vspace{-0.4cm}
-We have prepared an open source Geant4 code that acts as a 
-platform for benchmarking and other tasks to be made in the CRP.
+We have prepared an open source Geant4 code, to allow non Geant4 members an access,
+that acts as a  platform for benchmarking and other tasks to be made in the CRP.
 \begin{itemize}
-\item The code is based on Geant4 Hadrontherapy example prepared by INFN-Catania collaborators
-and test30 which is originally used in Geant4 for internal validation of hadronic models.
+\item The code is based on Geant4 {\em Hadrontherapy} example prepared by INFN-Catania collaborators
+and {\em test30} which is originally used for internal validation of Geant4 hadronic models.
 
 \item \href{http://github.com/kaitanie/hadrontherapy/}{The code 
 {\em radiotherapyData} is available in an open source repository}.
 \end{itemize}
 
 We have translated original INCL (courtesy of CER-Saclay) and ALBA (GSI) codes into
-Geant4 have prepared physics list which will provide optimal Geant4 settings for therapeutic applications. 
+Geant4 (first release December 2008 in Geant4 9.2) and 
+have prepared physics list which will be validated to provide optimal Geant4 settings 
+for therapeutic applications. 
 \begin{itemize}
-\item  A recent report describer INCL model: INDC(NDS)-0530 
+\item  A recent report describes INCL model: INDC(NDS)-0530 
 (Joint ICTP-IAEA Advanced Workshop on Model Codes for Spallation Reactions).
 \item We have also prepared a paper 
 documenting physics results relevant in medical irradiations: 
 {\em Simulation of light ion collisions from Intra Nuclear Cascade
 (INCL-Fermi Breakup) relevant for medical irradiations and
 radioprotection.}, AP/IE-08.
+\attachfile{Acc_App_vienne2.pdf}
 \end{itemize}
 
 %We expect that this new  Geant4 modeling will be suitable for radiotherapy applications. 
@@ -143,7 +147,7 @@ radioprotection.}, AP/IE-08.
 \vspace{-0.4cm}
 \begin{itemize}
 \item  When the Geant4 benchmarking software {\em radiotherapyData} used in 
-the agreed IAEA benchmarks is of production quality. (6~months)
+the agreed IAEA benchmarks is of production quality. (3~months)
 \begin{itemize}
 We are prepared to make the agreed proton and ions 
 benchmarks for {\emph all} relevant Geant4 models. (12 months)
@@ -151,7 +155,7 @@ benchmarks for {\emph all} relevant Geant4 models. (12 months)
 \end{itemize}
 \item G.~Danielsen is preparing a thesis work 
 {\em Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}
-\item Results of the Geant4 activity related to the CRP will be reported and published in 2010.
+\item Results of the Geant4 activity related to the CRP will be reported and published in 2010. (18 months)
 \end{itemize}
 
 %\begin{figure} 
