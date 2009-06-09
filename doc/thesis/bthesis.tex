@@ -84,7 +84,7 @@ label=listing:boundary}}
 rev. 001-2009\\
 \vspace{7.5 cm}
 \Huge
-Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models\\
+Simulating carbon hhhbeam fragmentation on water phantom with the Geant4 INCL/ABLA models\\
 
 \vspace{5cm}
 
@@ -117,9 +117,39 @@ This work focuses on the simulation of carbon beams in a water phantom using GEA
 \item applications in Hadron treatment
 \item Structure of this report
 \end{itemize}
-This paper focuses on the simulation of carbon beams in a water phantom using GEANT4 code. GEANT4 is a multi-purpose physics simulation package developed at CERN, Switzerland. GEANT4 currently hosts multiple models suitable for the experiment, but this paper will focus on the INCL and ABLA models developed as a collaboration of scientists at CERN, HIP and CEA <tarkenna, nimet>.
+This paper focuses on the simulation of carbon beams in a water phantom using GEANT4 code as a medical application. GEANT4 is a multi-purpose physics simulation package developed at CERN, Switzerland. GEANT4 currently hosts multiple models suitable for the experiment, but this paper will focus on the INCL and ABLA models developed as a collaboration of scientists at CERN, HIP and CEA (tarkenna, nimet).
 
-Carbon beams are used for medical applications, due to the possibility of much more precise energy deposition in human tissue in comparison to the more conventional photon-treatments widely available. Photons have been used for medical treatments since the invention of the x-rays by W.K. Roentgen in 1895. Treatments involving hadrons, however, are relatively new and in many cases still experimental.
+The history of radiation treatments dates back to the late 19th century when W.K. Roentgen discovered the X-rays. It was not long before these photon rays were being used to treat malign tissue. The first methods used we're on todays standards very crude, and much work has gone into perfecting the treatments in order to minimize the effect of the rays on the surrounding healthy tissue and maximize the dose delivered to the malign tissue.
+
+However, due to the statistical nature of the photon interactions, a beam of many photons is
+exponentially attenuated yielding an exponential decrease of the dose with the depth. To
+obtain a higher dose in the tumor than in the surrounding normal tissue, many irradiation
+fields are used. The cost of this method is that a large volume of the normal tissue
+will suffer from a high dose. By replacing the x-rays with high energy photons, the dose
+maximum is shifted a few centimeters deeper and the exponential decrease is more shallow,
+which improves the ratio between dose in the tumors and in the normal tissue.
+
+Although very sophisticated variations of the photon treatments have been developed, such as Intensity Modulated RadioTherapy (IMRT) photon therapies still produce considerable harm to the surrounding tissue. A much younger and less widely used technology is that of hadron-based radiotherapies. Hadrons are charged particles and therefore react to tissue in a much different way than photons. This is due to the fact that the primary halting force is electromagnetic interaction. Hadrons produce a much sharper energy-loss, a so-called bragg-peak firstdocumented by Bragg in ....-
+
+An alternative to hadrons are carbon beams. The carbon beams produce a similar but considerably sharper Bragg-peak to the one of the protons. However, heavyer ions such as carbon will also produce smaller particles due to fragmentation, which yields a considerable ``tail``.
+
+hadron and heavy ion treatments have been pioneered by berkley
+
+The history of using photons in medical applications started at the end of the 19th century.
+The world was excited about the new rays, the X-rays, discovered by Roentgen 1895. Soon
+the x-rays were used for both imaging and treatment of malign tissue. Since then, the
+photon therapy has become more and more sophisticated in order to increase the dose
+given to the tumors and reduce the dose for the normal tissue.
+
+Because of the statistical nature of the photon interactions, a beam of many photons is
+exponentially attenuated yielding an exponential decrease of the dose with the depth. To
+obtain a higher dose in the tumor than in the surrounding normal tissue, many irradiation
+fields are used. The cost of this method is that a large volume of the normal tissue
+will suffer from a high dose. By replacing the x-rays with high energy photons, the dose
+maximum is shifted a few centimeters deeper and the exponential decrease is more shallow,
+which improves the ratio between dose in the tumors and in the normal tissue.
+
+Carbon beams are used in medical applications, due to the possibility of much more precise energy deposition in human tissue in comparison to the more conventional photon-treatments widely available. Photons have been used for medical treatments since the invention of the x-rays by W.K. Roentgen in 1895. Treatments involving hadrons and heavyer ions, however, are relatively new and in many cases still experimental.
 
 The aim of this paper is therefore both to provide good reference data for the standardization work involved in hadron treatments as well as to evaluate the feasibility of the GEANT4 models for such simulations by comparison to experimental data.
 
@@ -131,6 +161,12 @@ The results are then plotted against the Monte Carlo codes PHITS and ATIMA, with
 
 E Haettner's Master's thesis presents the measurement experiment 
 \section{Theory}
+\begin{equation}
+ \frac{dE}{dx} = \frac{4 \pi}{m_e c^2} \cdot \frac{nz^2}{\beta^2} \cdot \left(\frac{e^2}{4\pi\varepsilon_0}\right)^2 \cdot \left[\ln \left(\frac{2m_e c^2 \beta^2}{I \cdot (1-\beta^2)}\right) - \beta^2\right]
+\label{bethebloch}
+\end{equation}
+
+
 \begin{itemize}
  \item E. Haettner
  \item ABLA documentation
@@ -145,8 +181,8 @@ E Haettner's Master's thesis presents the measurement experiment
 \begin{figure} 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/inclScematic.png}  
-\caption{Schematic diagram of INCL and ABLA models.}
- \label{fig:inclschematic}
+\caption{\label{fig:inclschematic} Schematic diagram of INCL and ABLA models.}
+ 
  \end{center}
  \end{figure}
 
