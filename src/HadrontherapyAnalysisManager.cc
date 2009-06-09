@@ -69,6 +69,7 @@ AnalysisFileName = name;
 /////////////////////////////////////////////////////////////////////////////
 HadrontherapyAnalysisManager::~HadrontherapyAnalysisManager() 
 { 
+delete(fMess); //kill the messenger
 #ifdef G4ANALYSIS_USE
   delete ionTuple;
   ionTuple = 0;
