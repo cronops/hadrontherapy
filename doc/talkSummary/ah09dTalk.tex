@@ -3,7 +3,7 @@
 %\PAPERtrue % select either slide or note
 \PAPERfalse  
 
-\def\t{\title{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}}
+\def\t{\title{Comparison of NIRS HIMAC and HIBMC $^{12}$C beam data with Geant4 simulation} }
 
 \def\a{
 \author{A.~Heikkinen} 
@@ -68,7 +68,7 @@ label=listing:boundary}}
 \makeatother
 \beamertemplatetransparentcoveredhigh
 \t
-\author{\underline{A.~Heikkinen}
+\author{\underline{A.~Heikkinen} (on behalf of Takashi Sasaki and Toshiyuki Toshito)
 \footnote{Helsinki Institute of Physics, P.O. Box 64, FIN-00014 University of Helsinki, Finland.
 aatos.heikkinen@cern.ch}}
 
@@ -89,47 +89,68 @@ aatos.heikkinen@cern.ch}}
 
 \subsection{}
 \frame{
-\frametitle{Outline}
+\frametitle{Summary of Geant4 talks in the 2nd RCM}
+Geant4 talks in 2nd RCM of the Coordinated Research Project (CRP):
 \begin{itemize}
-\item INCL cascade and ABLA evaporation/fission models in Geant4 9.2.
-
-\item New Geant4 physics list for spallation studies.
-\item Examples of INCL/ABLA physics performance.
-
-\item Validation of Geant4 against data from GSI $^{12}$C beam fragmentation in water target:
+\item Suitability of Bertini, Binary and other models for simulation of proton induced 
+Bragg peak. (H.~Paganetti)
+\item Details of Binary (including light ions) and Bertini cascade. 
+Latest results from data libraries. (J.~M.~Quesada)
+\item Functionality of Hadrontherapy example. Suggestion for further development: 
+Benchmarking platform for the CRP. (G.A.P.~Cirrone, G.~Cuttone, F.~Romano, {\em et al.})
+\item Suggestion to consider a new Geant4 model INCL in the CRP. (A.~Heikkinen)  
+\item Note from the Japanese team. (A.~Heikkinen for the Japanese team in these slides)
 \begin{itemize}
-\item Our plan is that this study will evolve as Geant4 benchmarking platform for
-the Coordinated Research Project (CRP) on
-\href{http://www-nds.iaea.org/charpar/charpar.htmlx}{Heavy Charged-Particle Interaction 
-Data for Radiotherapy}.
+\item Slides were provided by Takashi Sasaki and Toshiyuki Toshito introduce
+the tuning of Geant4 EM models for the best reproduction of the Bragg peak parameters. 
+\item There has been a close collaboration with V.~Ivanchenko and S.~Incerti. 
+\item The results are due to extensive work by Geant4 EM developers, and the Japanese team.
 \end{itemize}
+
+%Toshiuki has been working in close touch with Vladimir and Sebastien, 
+%and they can also inform you about EM developments.  
+
+
 \end{itemize}
-\vspace{0.3cm}
-This work is done in collaboration with
-Alain Boudard\footnote{CEN-Saclay, CEA-IRFU/SPhN, 91 191 Gif sur Yvette, France},
-Pekka Kaitaniemi\footnote{CEN-Saclay and Helsinki Institue of Physics}, 
-and Gillis Danielsen\footnote{Helsinki University of Technology}.
-
-\vspace{0.3cm}
-Plans to extend Hadrontherapy example to implement the CRP in Geant4 are made in collaboration with
-its main developers (G.A.P. Cirrone, G.Cuttone, F.Romano, {\em et al.}) 
-and J.~M.~Quesada (Universidad de Sevilla).
-
 }
 
 \frame{
-\frametitle{INCL: $^{12}$C 500~MeV/A + Fe \footnote{From \cite{boudard09a}}}
+\frametitle{}
 \vspace{0.1cm}
 \begin{center}
-%\includegraphics[width=0.75\textwidth]{chargeChanging}
+\includegraphics[width=0.95\textwidth]{jp1}
+\end{center}
+}
+
+\frame{
+\frametitle{}
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=1.00\textwidth]{jp2}
+\end{center}
+}
+
+\frame{
+\frametitle{}
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=0.91\textwidth]{jp3}
+\end{center}
+}
+
+\frame{
+\frametitle{}
+\vspace{0.1cm}
+\begin{center}
+\includegraphics[width=0.95\textwidth]{jp4}
 \end{center}
 }
 
 
-\begin{frame}[allowframebreaks]{References}
-\bibliographystyle{alpha}  % Options plain, unsrt, alpha, abbrv
-\bibliography{refs} %10 p
-\end{frame}
+%\begin{frame}[allowframebreaks]{References}
+%\bibliographystyle{alpha}  % Options plain, unsrt, alpha, abbrv
+%\bibliography{refs} %10 p
+%\end{frame}
 \end{document}
 
 \fi %slides
