@@ -23,55 +23,46 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-//
-// LocalPenelopeEmPhysic.hh
+// $Id: HadrontherapyLetMessenger.hh; May 2007
 // ----------------------------------------------------------------------------
 //                 GEANT 4 - Hadrontherapy example
 // ----------------------------------------------------------------------------
 // Code developed by:
 //
-// G.A.P. Cirrone(a)*
+// G.A.P. Cirrone(a)*, F. Di Rosa(a), M. Sallemi, A. Salvia
 // 
 // (a) Laboratori Nazionali del Sud 
 //     of the INFN, Catania, Italy
 // 
 // * cirrone@lns.infn.it
-//
-// See more at: http://workgroup.lngs.infn.it/geant4lns/
 // ----------------------------------------------------------------------------
 
-#ifndef LocalPenelopeEmPhysic_h
-#define LocalPenelopeEmPhysic_h 1
+#ifndef HadrontherapyLetMessenger_h
+#define HadrontherapyLetMessenger_h 1
 
-#include "G4VPhysicsConstructor.hh"
 #include "globals.hh"
+#include "G4UImessenger.hh"
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+class HadrontherapyLet;
+class G4UIdirectory;
+class G4UIcmdWithAString;
+//class G4UIcmdWithADouble;
 
-class LocalPenelopeEmPhysic : public G4VPhysicsConstructor
+class HadrontherapyLetMessenger: public G4UImessenger
 {
-public: 
-  LocalPenelopeEmPhysic(const G4String& name = "local_penelope");
-  virtual ~LocalPenelopeEmPhysic();
+  public:
+  HadrontherapyLetMessenger(HadrontherapyLet* );
+  ~HadrontherapyLetMessenger();
+    
+    void SetNewValue(G4UIcommand*, G4String);
+    
+private:
 
-public: 
-  // This method is dummy for physics
-  void ConstructParticle() {};
- 
-  // This method will be invoked in the Construct() method.
-  // each physics process will be instantiated and
-  // registered to the process manager of each particle type 
-  void ConstructProcess();
+  // Pointer to the let component
+  HadrontherapyLet* hadrontherapyletp;
+
+  G4UIdirectory* letDir;
+  G4UIcmdWithAString* letDepthCmd;
+
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 #endif
-
-
-
-
-
-
-
-
