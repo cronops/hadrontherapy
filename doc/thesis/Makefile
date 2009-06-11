@@ -11,7 +11,7 @@ d = bthesis
 tex       = pdflatex
 #tex       = latex
 #pdfviewer = /home/gillis/Desktop/system/tools/acroread/opt/Adobe/Reader8/bin/./acroread
-pdfviewer = acroread #hope you have acroread aatos ;)
+pdfviewer = gv
 #pdfviewer = firefox
 dviviewer = xdvi -allowshell -geometry 700x900+750+100 
 
