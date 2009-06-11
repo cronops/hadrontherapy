@@ -135,21 +135,62 @@ The field of hadron treatments were pioneered by Berkeley. Based on research don
 
 Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at Lawrence Berkeley Laboratory (LBL) inbetween 1977 and 1993 with $Ne_20$. To date PCTOG estimates that more than 5000 heavy-ion treatments have been made. Treatments based on carbon beams have been offered at NISR in Japan and in Germany at GSI.
 
-The motivations for heavy-ion treatments as an alternative to hadron treatments are considerable as carbon ions have an added advantage of higher ionisation-density at the end of their range, this will cause greater correlated damage to the DNA-structure of a single cancerous cell and therefore make it more likely that cell is unable to repair. The papers ... approximate the beam's increase in biological efficiency of the dose by a factor between 1.5 and 3 in comparison to proton treatment. Heavy-ions ions are also less scattered in lateral directions which yields better control in many applications. However, as a tradeoff carbon-ions will produce smaller particles due to fragmentation, yielding an unwanted ``tail`` to the energy-loss profile.
+The motivations for heavy-ion treatments as an alternative to hadron treatments are considerable as carbon ions have an added advantage of higher ionisation-density at the end of their range, this will cause greater correlated damage to the DNA-structure of a single cancerous cell and therefore make it more likely that cell is unable to repair. In a 2008 article O.Jäkel ~\cite{ojakel}  approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 depending on the application in comparison to proton treatment. Heavy-ions ions are also less scattered in lateral directions which yields better control in many applications. However, as a tradeoff carbon-ions will produce smaller particles due to fragmentation, yielding an unwanted ``tail`` to the energy-loss profile.
 
 A number of data-sets are available for carbon beams. This paper will use the beams measured by E. Haettner ~\cite{ehaettner}  at the GSI Darmstadt facilities data comparison, and therefore aims to mimic that experiment setup. The aim of this paper is  to provide good reference data for the standardization work involved in hadron treatments as well as to evaluate the feasibility of the GEANT4 models for such simulations by comparison to experimental data.
 
 \section{Theory}
+\begin{itemize}
+ \item E. Haettner
+ \item ABLA documentation
+\end{itemize}
+\subsection{Physics}
+As charged particles cross tissue they interact with the particles in the tissue through elastic and inellastic collisions with the electrons and nuclei, eventually loosing all of its energy. The largest contribution comes from inellastic collisions with electrons, contributing as much as 99 percent of the total energy loss.
+
+The beam's energy loss as a function of depth is called the Bragg Curve. Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch} and reads. 
+
+\begin{figure}
+
 \begin{equation}
  \frac{dE}{dx} = \frac{4 \pi}{m_e c^2} \cdot \frac{nz^2}{\beta^2} \cdot \left(\frac{e^2}{4\pi\varepsilon_0}\right)^2 \cdot \left[\ln \left(\frac{2m_e c^2 \beta^2}{I \cdot (1-\beta^2)}\right) - \beta^2\right]
 \label{bethebloch}
 \end{equation}
 
+$\beta = v/c $\\
+$v$ 
+velocity of the particle \\
+$E$ 
+energy of the particle\\
+$x$ 
+distance travelled by the particle\\
+$c$ 
+speed of light\\
+$z\,e$ 
+particle charge\\
+$e$ 
+charge of the [[electron]]\\
+$m_e$ 
+rest mass of the electron\\
+$n$ 
+electron density of the target\\
+$I$ 
+mean excitation potential of the target\\
 
-\begin{itemize}
- \item E. Haettner
- \item ABLA documentation
-\end{itemize}
+\caption{Bethe Bloch formula}
+\end{figure} 
+
+However, as the speed of the particle has decresed to the order of magnitude of the Bohr velocity the nuclear charge $Z_P$ will no longer remain constant and has to be replaced by hte effective charge, given by the Barkas formula $Z_P_eff = Z_P(1-exp(-125*\beta_P*Z_P))$
+
+
+
+\subsection{Simulation}
+
+The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the GEANT4 suite.
+
+INCL is a monte Carlo 
+
+dimdim needs to be expanded-
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/ablationabration.png}  
