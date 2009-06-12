@@ -131,13 +131,13 @@ which improves the ratio between dose in the tumors and in the normal tissue.
 
 Although very sophisticated variations of the photon treatments have been perfected over time, photon therapies still produce considerable harm to the surrounding tissue. A much younger and less widely used technology are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavyer-ions are charged particles and therefore react to tissue in a much different way to photons. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the bragg-peak, and was first discovered by William Henry Bragg in 1903.
 
-The field of hadron treatments were pioneered by Berkeley. Based on research done at the Berkeley cyclotron J.Wilson first recomended the use of protons as a treatment method in a ... paper and the first de facto treatment was administered at Berkeley in 1953. Today there are is a number of proton-based therapies in clinical use around the world.
+The field of hadron treatments were pioneered by Berkeley. Based on research done at the Berkeley cyclotron J.Wilson first recomended the use of protons as a treatment method in a 1946 paper ~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are is a number of proton-based therapies in clinical use around the world.
 
-Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at Lawrence Berkeley Laboratory (LBL) inbetween 1977 and 1993 with $Ne_20$. To date PCTOG estimates that more than 5000 heavy-ion treatments have been made. Treatments based on carbon beams have been offered at NISR in Japan and in Germany at GSI.
+Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at Lawrence Berkeley Laboratory (LBL) inbetween 1977 and 1993 with $Ne_20$. At the end of 2008 PTCOG estimated that more than 7000 heavy-ion treatments had been conducted at treatment facilities it monitors worldwide . Treatments based on carbon beams have been offered at NISR in Japan and in Germany at GSI.~\cite{PTCOGstats}
 
-The motivations for heavy-ion treatments as an alternative to hadron treatments are considerable as carbon ions have an added advantage of higher ionisation-density at the end of their range, this will cause greater correlated damage to the DNA-structure of a single cancerous cell and therefore make it more likely that cell is unable to repair. In a 2008 article O.Jäkel ~\cite{ojakel}  approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 depending on the application in comparison to proton treatment. Heavy-ions ions are also less scattered in lateral directions which yields better control in many applications. However, as a tradeoff carbon-ions will produce smaller particles due to fragmentation, yielding an unwanted ``tail`` to the energy-loss profile.
+The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionisation-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair itself. In a 2008 article O.Jäkel ~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 depending on the application in comparison to proton treatment. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile.
 
-A number of data-sets are available for carbon beams. This paper will use the beams measured by E. Haettner ~\cite{ehaettner}  at the GSI Darmstadt facilities data comparison, and therefore aims to mimic that experiment setup. The aim of this paper is  to provide good reference data for the standardization work involved in hadron treatments as well as to evaluate the feasibility of the GEANT4 models for such simulations by comparison to experimental data.
+A number of data-sets are available for carbon beams. This paper will be compare data to beam.measurments by E. Haettner ~\cite{ehaettner}  at the GSI facility in Darmstadt, Germany. This paper aims to mimic the experimental setup used by E.Haettner. The aim of this paper is  to provide good reference data for the standardization work involved in hadron treatments and to evaluate the feasibility of the GEANT4 models for such simulations by comparison to experimental data.
 
 \section{Theory}
 \begin{itemize}
@@ -147,7 +147,7 @@ A number of data-sets are available for carbon beams. This paper will use the be
 \subsection{Physics}
 As charged particles cross tissue they interact with the particles in the tissue through elastic and inellastic collisions with the electrons and nuclei, eventually loosing all of its energy. The largest contribution comes from inellastic collisions with electrons, contributing as much as 99 percent of the total energy loss.
 
-The beam's energy loss as a function of depth is called the Bragg Curve. Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch} and reads. 
+The beam's energy loss as a function of depth is called the Bragg Curve. Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch53}  and is commonly known as "Bethe's stopping power formula". The Bethe stopping power formula is generally considered a good model for most swift charged particles, with the exception of electrons.
 
 \begin{figure}
 
@@ -179,17 +179,9 @@ mean excitation potential of the target\\
 \caption{Bethe Bloch formula}
 \end{figure} 
 
-However, as the speed of the particle has decresed to the order of magnitude of the Bohr velocity the nuclear charge $Z_P$ will no longer remain constant and has to be replaced by hte effective charge, given by the Barkas formula $Z_P_eff = Z_P(1-exp(-125*\beta_P*Z_P))$
+However, as the speed of the particle has decresed to the order of magnitude of the Bohr velocity the nuclear charge $Z_P$ will no longer remain constant and has to be aproximated by the effective charge, given by the Barkas formula $Z_{P_eff} = Z_P(1-exp(-125*\beta_{P}*Z_P))$.
 
-
-
-\subsection{Simulation}
-
-The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the GEANT4 suite.
-
-INCL is a monte Carlo 
-
-dimdim needs to be expanded-
+In this theoretical model the Bragg-peak can be understood as the $1/v_{p}^2$ increases the energy-loss as the speed decreases. However, the effective charge will decrease at an exponential rate and thus converging the Bragg-curve.
 
 \begin{figure}
 \begin{center}
@@ -198,6 +190,18 @@ dimdim needs to be expanded-
  \label{fig:ablationabration}
  \end{center}
  \end{figure}
+
+
+
+\subsection{Simulation}
+
+The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the GEANT4 suite.
+
+INCL is a monte Carlo simulation Intranuclear cascade model. INCL is developed from the on Liege cascade, but contains less free parameters in order to improve certain discrepancies in the Liege code.
+
+dimdim needs to be expanded-
+
+
 \begin{figure} 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/inclScematic.png}  
@@ -205,7 +209,17 @@ dimdim needs to be expanded-
  
  \end{center}
  \end{figure}
-
+Particles penetrating matter do not just loose energy through inelastic collisions with the
+target electrons, they might be involved in nuclear reactions and be fragmented. High
+energy projectiles can be described as particles that move on straight lines through the
+target and from time to time a target nucleus lies on this line and causes a collision. A
+nuclear interaction model known as abrasion-ablation model uses this idealization. Projectile
+and target nucleons which overlap in the collision process are called participants,
+while the remaining parts of the projectile and target nucleus are called spectators. The
+spectator projectile leaves the collision point with nearly unchanged velocity and direction,
+while the target spectator stays at rest. The participant nucleons form an excited
+complex called \reball", which breaks into single nucleons or light ions like , deuterons
+and tritons.
 
 \section{Simulation setup}
 \begin{itemize}
