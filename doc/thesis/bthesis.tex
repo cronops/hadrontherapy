@@ -84,7 +84,7 @@ label=listing:boundary}}
 rev. 001-2009\\
 \vspace{7.5 cm}
 \Huge
-Simulating carbon hhhbeam fragmentation on water phantom with the Geant4 INCL/ABLA models\\
+Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models\\
 
 \vspace{5cm}
 
@@ -112,7 +112,7 @@ This work focuses on the simulation of carbon beams in a water phantom using GEA
 \begin{itemize}
 \item CERN, CEA and HIP
 \item Simulations
-\item $C_{12}$ beams in water
+\item $^{12}$C beams in water
 \item reference data provided from GSI (E. Haettner, Master's thesis, KTH)
 \item applications in Hadron treatment
 \item Structure of this report
@@ -135,49 +135,52 @@ The field of hadron treatments were pioneered by Berkeley. Based on research don
 
 Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at Lawrence Berkeley Laboratory (LBL) inbetween 1977 and 1993 with $Ne_20$. At the end of 2008 PTCOG estimated that more than 7000 heavy-ion treatments had been conducted at treatment facilities it monitors worldwide . Treatments based on carbon beams have been offered at NISR in Japan and in Germany at GSI.~\cite{PTCOGstats}
 
-The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionisation-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair itself. In a 2008 article O.Jäkel ~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 depending on the application in comparison to proton treatment. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile.
+The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionisation-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair itself. In a 2008 article O.Jäkel ~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 depending on the application in comparison to proton treatment. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile. One of the main motivations of the work is to study this ''tail'' for worst case scenario of 400 MeV.
 
 A number of data-sets are available for carbon beams. This paper will be compare data to beam.measurments by E. Haettner ~\cite{ehaettner}  at the GSI facility in Darmstadt, Germany. This paper aims to mimic the experimental setup used by E.Haettner. The aim of this paper is  to provide good reference data for the standardization work involved in hadron treatments and to evaluate the feasibility of the GEANT4 models for such simulations by comparison to experimental data.
+
+In medical applications the upper limit for energies is about 400 MeV
 
 \section{Theory}
 \begin{itemize}
  \item E. Haettner
  \item ABLA documentation
 \end{itemize}
-\subsection{Physics}
+\subsection{Electromagnetic physics of Bragg-curve}
 As charged particles cross tissue they interact with the particles in the tissue through elastic and inellastic collisions with the electrons and nuclei, eventually loosing all of its energy. The largest contribution comes from inellastic collisions with electrons, contributing as much as 99 percent of the total energy loss.
 
 The beam's energy loss as a function of depth is called the Bragg Curve. Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch53}  and is commonly known as "Bethe's stopping power formula". The Bethe stopping power formula is generally considered a good model for most swift charged particles, with the exception of electrons.
 
-\begin{figure}
+
+for pion production delta resonance is used according to.
+
+kaava
+
+After intranuclear cascade thermal equilibrium is reached.
 
 \begin{equation}
- \frac{dE}{dx} = \frac{4 \pi}{m_e c^2} \cdot \frac{nz^2}{\beta^2} \cdot \left(\frac{e^2}{4\pi\varepsilon_0}\right)^2 \cdot \left[\ln \left(\frac{2m_e c^2 \beta^2}{I \cdot (1-\beta^2)}\right) - \beta^2\right]
+ \frac{dE}{dx} = \frac{4 \pi}{m_e c^2} \cdot \frac{nz^2}{\beta^2} \cdot \left(\frac{e^2}{4\pi\varepsilon_0}\right)^2 \cdot \left[\ln \left(\frac{2m_e c^2 \beta^2}{I \cdot (1-\beta^2)}\right) - \beta^2\right],
 \label{bethebloch}
 \end{equation}
-
-$\beta = v/c $\\
-$v$ 
-velocity of the particle \\
+where $\beta = v/c $ $v$ 
+velocity of the particle 
 $E$ 
-energy of the particle\\
+energy of the particle
 $x$ 
-distance travelled by the particle\\
+distance travelled by the particle
 $c$ 
-speed of light\\
+speed of light
 $z\,e$ 
-particle charge\\
+particle charge
 $e$ 
-charge of the [[electron]]\\
+charge of the [[electron]]
 $m_e$ 
-rest mass of the electron\\
+rest mass of the electron
 $n$ 
-electron density of the target\\
+electron density of the target
 $I$ 
-mean excitation potential of the target\\
+mean excitation potential of the target.
 
-\caption{Bethe Bloch formula}
-\end{figure} 
 
 However, as the speed of the particle has decresed to the order of magnitude of the Bohr velocity the nuclear charge $Z_P$ will no longer remain constant and has to be aproximated by the effective charge, given by the Barkas formula $Z_{P_eff} = Z_P(1-exp(-125*\beta_{P}*Z_P))$.
 
@@ -186,20 +189,27 @@ In this theoretical model the Bragg-peak can be understood as the $1/v_{p}^2$ in
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/ablationabration.png}  
-\caption{Schematic of the physics involved.}
+\caption{Schematic description of Wilson abration model in Geant4}
  \label{fig:ablationabration}
  \end{center}
  \end{figure}
 
 
 
-\subsection{Simulation}
+\subsection{INCL and ABLA models} %theory, no practical aspects
 
-The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the GEANT4 suite.
 
-INCL is a monte Carlo simulation Intranuclear cascade model. INCL is developed from the on Liege cascade, but contains less free parameters in order to improve certain discrepancies in the Liege code.
 
-dimdim needs to be expanded-
+INCL is a monte Carlo simulation Intranuclear cascade model, whereas ABLA is the used evaporation/fission model. In practice this means INCL is used to determine what happends as a particle hits a nucleus. Whereas
+
+INCL is developed from the on Liege cascade, but contains less free parameters in order to improve certain discrepancies in the Liege code.
+
+INCL uses a fermi-gas model with a Woods-Saxon potential-barrier for the nucleus.
+
+\begin{equation}
+V(r) = -\frac{V_0}{1+\exp({r-R\over a})}
+\label{WoodsSaxon}
+\end{equation}
 
 
 \begin{figure} 
@@ -209,6 +219,8 @@ dimdim needs to be expanded-
  
  \end{center}
  \end{figure}
+
+
 Particles penetrating matter do not just loose energy through inelastic collisions with the
 target electrons, they might be involved in nuclear reactions and be fragmented. High
 energy projectiles can be described as particles that move on straight lines through the
@@ -221,7 +233,9 @@ while the target spectator stays at rest. The participant nucleons form an excit
 complex called \reball", which breaks into single nucleons or light ions like , deuterons
 and tritons.
 
-\section{Simulation setup}
+\section{Simulation setup} %practical aspects of simulation
+The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the GEANT4 suite.
+
 \begin{itemize}
 \item Experiment data from GSI
 \item target description
@@ -229,6 +243,36 @@ and tritons.
 \item Simulation of detectors
 \item Implementation details
 \end{itemize}
+
+\subsection{Improving usability through messenger macro commands}
+The first action task taken in this work was to implement means of saving analysis files with a user-defined name.
+
+So as aen example the user can give a command according to the following syntax.
+\scriptsize
+\begin{verbatim}
+/analysis/setFileName <user-defined name>.root
+\end{verbatim}
+\normalsize
+
+The implementation was done by creating an analysismessenger inheriting functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
+
+
+\scriptsize
+\begin{verbatim}
+class HadrontherapyAnalysisFileMessenger: public G4UImessenger
+{
+  public:
+    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
+   ~HadrontherapyAnalysisFileMessenger();
+    
+    void SetNewValue(G4UIcommand*, G4String);
+    
+  private:
+    HadrontherapyAnalysisManager* AnalysisManager;
+\end{verbatim}
+\normalsize
+
+
 
 \section{Results and comparison to GSI data}
 \begin{itemize}
