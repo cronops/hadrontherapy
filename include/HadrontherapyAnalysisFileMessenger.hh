@@ -22,71 +22,45 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
+// HadrontherapyStepMaxMessenger.hh
 //
-// $Id: HadrontherapyPrimaryGeneratorAction.hh; May 2005
+// See more at: http://workgroup.lngs.infn.it/geant4lns/
+//
 // ----------------------------------------------------------------------------
 //                 GEANT 4 - Hadrontherapy example
 // ----------------------------------------------------------------------------
 // Code developed by:
 //
-// G.A.P. Cirrone(a)*, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
+// G.A.P. Cirrone(a)*
 // 
 // (a) Laboratori Nazionali del Sud 
-//     of the National Institute for Nuclear Physics, Catania, Italy
-// (b) National Institute for Nuclear Physics Section of Genova, genova, Italy
+//     of the INFN, Catania, Italy
 // 
 // * cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
 
-#ifndef HadrontherapyPrimaryGeneratorAction_h
-#define HadrontherapyPrimaryGeneratorAction_h 1
 
-#include "G4VUserPrimaryGeneratorAction.hh"
+#ifndef HadrontherapyAnalysisFileMessenger_h
+#define HadrontherapyAnalysisFileMessenger_h 1
+
+#include "G4UImessenger.hh"
 #include "globals.hh"
 
-class G4ParticleGun;
-class G4Event;
+class HadrontherapyAnalysisManager;
+class G4UIcmdWithAString;
 
-class HadrontherapyPrimaryGeneratorMessenger;
-class HadrontherapyPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
+/////////////////////////////////////////////////////////////////////////////
+class HadrontherapyAnalysisFileMessenger: public G4UImessenger
 {
-public:
-  HadrontherapyPrimaryGeneratorAction();    
-  ~HadrontherapyPrimaryGeneratorAction();
-  
-public:
-  // Methods to change the parameters of primary particle generation 
-  // interactively
-  void SetsigmaEnergy(G4double);
-  void SetmeanKineticEnergy(G4double);
-  void GeneratePrimaries(G4Event*);
-  void SetXposition(G4double);
-  void SetYposition(G4double);
-  void SetZposition(G4double);
-  void SetsigmaY(G4double);
-  void SetsigmaZ(G4double);
-  void SetsigmaMomentumY(G4double);
-  void SetsigmaMomentumZ(G4double);
-  G4double GetmeanKineticEnergy(void);
+  public:
+    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
+   ~HadrontherapyAnalysisFileMessenger();
     
-private:
-  void SetDefaultPrimaryParticle();
-  G4double meanKineticEnergy;
-  G4double sigmaEnergy;
-  G4double X0;
-  G4double Y0;
-  G4double Z0;
-  G4double sigmaY;
-  G4double sigmaZ;
-  G4double sigmaMomentumY;
-  G4double sigmaMomentumZ;
-
-private:
-  G4ParticleGun*                particleGun;
-  HadrontherapyPrimaryGeneratorMessenger* gunMessenger; 
-  G4double sigmaX;
+    void SetNewValue(G4UIcommand*, G4String);
+    
+  private:
+    HadrontherapyAnalysisManager* AnalysisManager;
+    G4UIcmdWithAString* FileNameCmd;
 };
 
 #endif
-
-

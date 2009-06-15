@@ -23,55 +23,56 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-//
-// LocalLivermoreEmPhysic.hh
+// $Id: HadrontherapyLet.hh,v 1.0, May 2007;
 // ----------------------------------------------------------------------------
 //                 GEANT 4 - Hadrontherapy example
 // ----------------------------------------------------------------------------
 // Code developed by:
 //
-// G.A.P. Cirrone(a)*
+// G.A.P. Cirrone(a)*, F. Di Rosa(a), M. Sallemi, A. Salvia
 // 
 // (a) Laboratori Nazionali del Sud 
 //     of the INFN, Catania, Italy
 // 
 // * cirrone@lns.infn.it
-//
-// See more at: http://workgroup.lngs.infn.it/geant4lns/
 // ----------------------------------------------------------------------------
 
-#ifndef LocalLivermoreEmPhysic_h
-#define LocalLivermoreEmPhysic_h 1
+#ifndef HadrontherapyLet_h
+#define HadrontherapyLet_h 1
 
-#include "G4VPhysicsConstructor.hh"
 #include "globals.hh"
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+class HadrontherapyLetMessenger;
+class HadrontherapyPrimaryGeneratorAction;
 
-class LocalLivermoreEmPhysic : public G4VPhysicsConstructor
+class HadrontherapyLet
 {
-public: 
-  LocalLivermoreEmPhysic(const G4String& name = "local_livermore");
-  virtual ~LocalLivermoreEmPhysic();
+public:
+  HadrontherapyLet(HadrontherapyPrimaryGeneratorAction*);
+  ~HadrontherapyLet();
 
-public: 
-  // This method is dummy for physics
-  void ConstructParticle() {};
+public:
+  void Fluence_Let(G4int,G4double);
+  void LetOutput(); 
+  void SetValue(G4String);
+
+  HadrontherapyLetMessenger* letMessenger;
+
+private:
+  ofstream flet,ffluence,*fspectrum;  
+  ifstream fstop; 
  
-  // This method will be invoked in the Construct() method.
-  // each physics process will be instantiated and
-  // registered to the process manager of each particle type 
-  void ConstructProcess();
+  G4int **spectrum, i, j, size, bins;
+  G4double energy, *stop, n1, d1, n2, d2, lett, letd;
+  G4String nome_file;
+
+  vector<double> vetdepth;  //vector containing the points where the energy spectrum and the let will be calculated (depth in mm)
+
+  HadrontherapyPrimaryGeneratorAction* pga; 
+ 
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 #endif
-
-
-
-
-
-
-
-

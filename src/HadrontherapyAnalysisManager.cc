@@ -41,6 +41,7 @@
 // ----------------------------------------------------------------------------
 
 #include "HadrontherapyAnalysisManager.hh"
+#include "HadrontherapyAnalysisFileMessenger.hh"
 
 HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 
@@ -50,20 +51,25 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
   h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
   ionTuple(0)
-{  
+{
 }
 #endif
 #ifdef G4ROOTANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() : 
-  theTFile(0), th1(0), th2(0), th3(0),
+  AnalysisFileName("DoseDistribution.root"),theTFile(0), th1(0), th2(0), th3(0),
   th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), theROOTNtuple(0),
   theROOTIonTuple(0)
-{  
+{
+fMess = new HadrontherapyAnalysisFileMessenger(this);
+}
+void HadrontherapyAnalysisManager::SetAnalysisFileName(G4String name){
+AnalysisFileName = name;
 }
 #endif
 /////////////////////////////////////////////////////////////////////////////
 HadrontherapyAnalysisManager::~HadrontherapyAnalysisManager() 
 { 
+delete(fMess); //kill the messenger
 #ifdef G4ANALYSIS_USE
   delete ionTuple;
   ionTuple = 0;
@@ -193,11 +199,12 @@ void HadrontherapyAnalysisManager::book()
   // Create the .hbk or the .root file
   G4String fileName = "DoseDistribution.hbk";
   G4String rootFileName = "DoseDistribution.root";
+  AnalysisFileName = rootFileName;
   
   std::string opts = "export=root";
  
   theTree = treeFact -> create(fileName,"hbook",false,true);
-  theTree = treeFact -> create(rootFileName,"ROOT",false,true,opts);
+  theTree = treeFact -> create(AnalysisFileName,"ROOT",false,true,opts);
 
   // Factories are not "managed" by an AIDA analysis system.
   // They must be deleted by the AIDA user code.
@@ -248,7 +255,7 @@ void HadrontherapyAnalysisManager::book()
 #endif
 #ifdef G4ROOTANALYSIS_USE
   // Use ROOT
-  theTFile = new TFile("DoseDistributionROOTANALYSIS.root", "RECREATE");
+  theTFile = new TFile(AnalysisFileName, "RECREATE");
 
   // Create the histograms with the enrgy deposit along the X axis
   th1 = createHistogram1D("braggPeak","slice, energy", 400, 0., 400.);

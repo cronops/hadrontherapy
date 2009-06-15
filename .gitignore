@@ -7,3 +7,6 @@ last.kumac
 paw.metafile
 *~
 *.root
+*/CVS/*
+CVS/*
+fluence.txt

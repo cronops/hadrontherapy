@@ -62,6 +62,11 @@ namespace AIDA{
 #endif
 
 /**
+ * Messenger class for analysis-settings for HadronTherapyAnalysisManager 
+ */
+class HadrontherapyAnalysisFileMessenger;
+
+/**
  * A class for connecting the simulation to an analysis package.
  */
 class HadrontherapyAnalysisManager
@@ -74,7 +79,8 @@ private:
 	 * @see getInstance
 	 */
   HadrontherapyAnalysisManager();
-
+  G4String AnalysisFileName;
+  
 public:
   ~HadrontherapyAnalysisManager();
 
@@ -87,7 +93,11 @@ public:
   * Book the histograms and ntuples in an AIDA or ROOT file.
   */
   void book();
-
+  /**
+   * Set name for the analysis file .root (used by macro)
+   */
+  void SetAnalysisFileName(G4String);
+  
   /**
   * Fill the ntuple with the energy deposit in the phantom
   */
@@ -152,6 +162,7 @@ private:
 
 private:
   static HadrontherapyAnalysisManager* instance;
+  HadrontherapyAnalysisFileMessenger* fMess;
 #ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
   AIDA::ITree* theTree;
