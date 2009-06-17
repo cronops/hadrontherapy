@@ -16,8 +16,12 @@ all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
 
+# Setting the environment variable G4ROOTANALYSIS_USE enables ROOT
+# based histogramming and disables the AIDA one.
+ifdef G4ROOTANALYSIS_USE
 CPPFLAGS += $(shell root-config --cflags) -DG4ROOTANALYSIS_USE
 LDFLAGS  += $(shell root-config --glibs)
+endif
 
 include $(G4INSTALL)/config/binmake.gmk
 
