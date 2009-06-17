@@ -61,3 +61,6 @@ run:
 
 r: # run in AH environment
 	$(G4INSTALL)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
+
+clean:
+	rm -f $(d).pdf $(d).ps *.out $(d)_*.eps $(d).asy
