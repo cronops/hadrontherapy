@@ -1,3 +1,8 @@
+/**
+* @file HadrontherapyAnalysisFileMessenger. 
+* @author Gillis Danielsen, HIP 
+* @date 3-30-08  
+*/ 
 //
 // ********************************************************************
 // * License and Disclaimer                                           *
@@ -45,7 +50,9 @@
 
 #include "G4UImessenger.hh"
 #include "globals.hh"
-
+/**
+ * An example class for the Doxygen tutorial
+ */
 class HadrontherapyAnalysisManager;
 class G4UIcmdWithAString;
 
@@ -55,11 +62,16 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
   public:
     HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
    ~HadrontherapyAnalysisFileMessenger();
-    
+/**   
+* Takes two integers and adds them together   
+* @param a the first integer in the addition   
+* @param b the second integer in the addition   
+* @return the value when the two integer parameters are added together   
+*/     
     void SetNewValue(G4UIcommand*, G4String);
     
   private:
-    HadrontherapyAnalysisManager* AnalysisManager;
+    HadrontherapyAnalysisManager* AnalysisManager;   ///< This was commented after declaration
     G4UIcmdWithAString* FileNameCmd;
 };
 
