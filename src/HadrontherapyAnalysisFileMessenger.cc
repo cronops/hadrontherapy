@@ -48,6 +48,9 @@
 HadrontherapyAnalysisFileMessenger::HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager* amgr)
 :AnalysisManager(amgr)
 { 
+	/**
+	 * trying some doxygenstuff
+	 */
   FileNameCmd = new G4UIcmdWithAString("/analysis/setAnalysisFile",this);
   FileNameCmd->SetGuidance("Set the .root filename for the root-output");
   FileNameCmd->SetDefaultValue("default.root");
