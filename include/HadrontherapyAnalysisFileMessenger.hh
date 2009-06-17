@@ -47,6 +47,8 @@
 #ifndef HadrontherapyAnalysisFileMessenger_h
 #define HadrontherapyAnalysisFileMessenger_h 1
 
+#ifdef ANALYSIS_USE
+
 #include "G4UImessenger.hh"
 #include "globals.hh"
 
@@ -84,4 +86,5 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
     G4UIcmdWithAString* FileNameCmd;
 };
 
+#endif
 #endif

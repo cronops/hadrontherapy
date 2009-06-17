@@ -44,6 +44,8 @@
 
 #include "globals.hh"
 
+#ifdef ANALYSIS_USE
+
 #ifdef G4ANALYSIS_USE
 # include <AIDA/AIDA.h>
 
@@ -79,7 +81,6 @@ private:
 	 * @see getInstance
 	 */
   HadrontherapyAnalysisManager();
-  G4String AnalysisFileName;
   
 public:
   ~HadrontherapyAnalysisManager();
@@ -163,6 +164,7 @@ private:
 private:
   static HadrontherapyAnalysisManager* instance;
   HadrontherapyAnalysisFileMessenger* fMess;
+  G4String AnalysisFileName;
 #ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
   AIDA::ITree* theTree;
@@ -205,5 +207,7 @@ private:
   TNtuple *theROOTIonTuple;
 #endif
 };
+#endif
+
 #endif
 

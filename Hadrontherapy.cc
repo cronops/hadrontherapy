@@ -106,9 +106,11 @@ int main(int argc ,char ** argv)
   HadrontherapySteppingAction* steppingAction = new HadrontherapySteppingAction(pRunAction, let); 
   runManager -> SetUserAction(steppingAction);    
 
+#ifdef ANALYSIS_USE
   HadrontherapyAnalysisManager* analysis = 
     HadrontherapyAnalysisManager::getInstance();
   analysis -> book();
+#endif
 
 #ifdef G4VIS_USE
   // Visualization manager
@@ -141,7 +143,9 @@ int main(int argc ,char ** argv)
 
   matrix -> TotalEnergyDeposit();
 
+#ifdef ANALYSIS_USE
   analysis -> finish();
+#endif
 
   // Job termination
 #ifdef G4VIS_USE
