@@ -49,7 +49,7 @@ HadrontherapyAnalysisFileMessenger::HadrontherapyAnalysisFileMessenger(Hadronthe
   FileNameCmd = new G4UIcmdWithAString("/analysis/setAnalysisFile",this);
   FileNameCmd->SetGuidance("Set the .root filename for the root-output");
   FileNameCmd->SetDefaultValue("default.root");
-  FileNameCmd->SetParameterName("choice",true); //doc did not say what second boolean really does
+  FileNameCmd->SetParameterName("choice",true); ///<doc did not say what second boolean really does
   FileNameCmd->AvailableForStates(G4State_Idle,G4State_PreInit);
 }
 

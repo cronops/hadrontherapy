@@ -38,7 +38,11 @@
 // 
 // * cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
-
+/**
+* @file HadrontherapyAnalysisFileMessenger.hh. 
+* @author Gillis Danielsen, HIP 
+* @date 6-10-09  
+*/ 
 
 #ifndef HadrontherapyAnalysisFileMessenger_h
 #define HadrontherapyAnalysisFileMessenger_h 1
@@ -46,20 +50,37 @@
 #include "G4UImessenger.hh"
 #include "globals.hh"
 
-class HadrontherapyAnalysisManager;
-class G4UIcmdWithAString;
+class HadrontherapyAnalysisManager; ///< Provides SetAnalysisFileName()
+class G4UIcmdWithAString; ///< Provides possibility to add commands
 
-/////////////////////////////////////////////////////////////////////////////
+/**
+* A messenger object of this class is created by the AnalysisManager.
+* The point of a messenger is to connect the G4UI with the simulation
+* functionality.
+* The messenger needs to contain a command object and to have SetValue
+* method that is called once a command is set.
+*/
 class HadrontherapyAnalysisFileMessenger: public G4UImessenger
 {
   public:
     HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
    ~HadrontherapyAnalysisFileMessenger();
-    
-    void SetNewValue(G4UIcommand*, G4String);
+
+	/**   
+	* Called when new command given.
+	* @param command is a pointer to the given command object
+	* @param newValue holds the argument given as a G4String
+	* @return is void   
+	*/     
+    void SetNewValue(G4UIcommand* command, G4String newValue);
     
   private:
-    HadrontherapyAnalysisManager* AnalysisManager;
+    HadrontherapyAnalysisManager* AnalysisManager; ///< handle to AnalysisManager
+
+	/**   
+	* G4 user interface command (that takes a string argument) object
+	* Constructor requires command name and messenger class(this).
+	*/ 
     G4UIcmdWithAString* FileNameCmd;
 };
 
