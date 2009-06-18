@@ -114,10 +114,10 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
  
       if (volumeName == "PhantomPhys")
 	{
+#ifdef ANALYSIS_USE   
 	  G4String secondaryParticleName =  (*fSecondary)[lp1]->GetDefinition() -> GetParticleName();  
 	  G4double secondaryParticleKineticEnergy =  (*fSecondary)[lp1] -> GetKineticEnergy();     
 
-#ifdef ANALYSIS_USE   
 	  HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
         
           if (secondaryParticleName == "e-")
