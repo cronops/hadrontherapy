@@ -123,10 +123,12 @@ void HadrontherapyMatrix::TotalEnergyDeposit()
 			ofs<< n <<'\t'<< m <<'\t'<<
 			  k<<'\t'<<matrix[i]<<G4endl;
 		       	
+#ifdef ANALYSIS_USE
 			HadrontherapyAnalysisManager* analysis = 
 			  HadrontherapyAnalysisManager::getInstance();
 			analysis -> FillEnergyDeposit(n, m, k, matrix[i]);
 			analysis -> BraggPeak(n, matrix[i]);
+#endif
 		      }
 		  }       
 	      }

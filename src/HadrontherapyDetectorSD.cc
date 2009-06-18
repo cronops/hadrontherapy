@@ -101,6 +101,7 @@ G4bool HadrontherapyDetectorSD::ProcessHits(G4Step* aStep, G4TouchableHistory* R
 
   // Energy deposit of secondary particles along X (integrated on Y and Z)
 
+#ifdef ANALYSIS_USE
  HadrontherapyAnalysisManager* analysis = 
 			HadrontherapyAnalysisManager::getInstance();
 
@@ -134,6 +135,7 @@ G4bool HadrontherapyDetectorSD::ProcessHits(G4Step* aStep, G4TouchableHistory* R
        analysis -> SecondaryPionEnergyDeposit(i, energyDeposit/MeV);   	
    }
     }
+#endif
 
   return true;
 }

@@ -116,7 +116,8 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	{
 	  G4String secondaryParticleName =  (*fSecondary)[lp1]->GetDefinition() -> GetParticleName();  
 	  G4double secondaryParticleKineticEnergy =  (*fSecondary)[lp1] -> GetKineticEnergy();     
-   
+
+#ifdef ANALYSIS_USE   
 	  HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
         
           if (secondaryParticleName == "e-")
@@ -144,6 +145,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	      // total number of electrons in the orbitals are stored in a ntuple 
 	      analysis -> genericIonInformation(a, z, electronOccupancy, secondaryParticleKineticEnergy/MeV);
 	    }
+#endif
 	}
     }
 }

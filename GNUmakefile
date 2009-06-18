@@ -7,6 +7,10 @@ name := Hadrontherapy
 G4TARGET := $(name)
 G4EXLIB := true
 
+ifdef G4ROOTANALYSIS_USE
+G4ANALYSIS_USE=0
+endif
+
 ifndef G4INSTALL
   G4INSTALL = ../../..
 endif
@@ -16,10 +20,12 @@ all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
 
-# Setting the environment variable G4ROOTANALYSIS_USE enables ROOT
-# based histogramming and disables the AIDA one.
+ifdef G4ANALYSIS_USE
+CPPFLAGS += -DANALYSIS_USE
+endif
 ifdef G4ROOTANALYSIS_USE
-CPPFLAGS += $(shell root-config --cflags) -DG4ROOTANALYSIS_USE
+CPPFLAGS += -DANALYSIS_USE -DG4ROOTANALYSIS_USE
+CPPFLAGS += $(shell root-config --cflags)
 LDFLAGS  += $(shell root-config --glibs)
 endif
 

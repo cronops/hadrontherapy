@@ -41,6 +41,8 @@
 #include "HadrontherapyAnalysisManager.hh"
 #include "G4UIcmdWithAString.hh"
 #include "G4UIdirectory.hh"
+
+#ifdef ANALYSIS_USE
 //
 /////////////////////////////////////////////////////////////////////////////
 HadrontherapyAnalysisFileMessenger::HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager* amgr)
@@ -72,3 +74,4 @@ void HadrontherapyAnalysisFileMessenger::SetNewValue(G4UIcommand* command, G4Str
     }
 }
 
+#endif

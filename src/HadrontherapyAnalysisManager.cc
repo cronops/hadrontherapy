@@ -43,27 +43,29 @@
 #include "HadrontherapyAnalysisManager.hh"
 #include "HadrontherapyAnalysisFileMessenger.hh"
 
+#ifdef ANALYSIS_USE
 HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 
+#ifdef G4ROOTANALYSIS_USE
+#undef G4ANALYSIS_USE
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
+
 #ifdef G4ANALYSIS_USE
-HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() : 
-  aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
+HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
+  AnalysisFileName("DoseDistribution.root"), aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
   h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
   ionTuple(0)
 {
 }
 #endif
 #ifdef G4ROOTANALYSIS_USE
-HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() : 
+HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   AnalysisFileName("DoseDistribution.root"),theTFile(0), th1(0), th2(0), th3(0),
   th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), theROOTNtuple(0),
   theROOTIonTuple(0)
 {
-fMess = new HadrontherapyAnalysisFileMessenger(this);
-}
-void HadrontherapyAnalysisManager::SetAnalysisFileName(G4String name){
-AnalysisFileName = name;
 }
 #endif
 /////////////////////////////////////////////////////////////////////////////
@@ -499,7 +501,7 @@ void HadrontherapyAnalysisManager::finish()
 #endif
 }
 
-
+#endif
 
 
 
