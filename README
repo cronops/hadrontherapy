@@ -288,7 +288,7 @@ Output is also stored in ASCII .out file. The file contains four columns; the fi
 
 ------->6.1  ROOT ANALYSIS
 
-The application also supports using ROOT (http://root.cern.ch) directly to generate the output files.
+The application also supports using ROOT (http://root.cern.ch) directly without using AIDA.
 This feature can be enabled by setting environment variable G4ROOTANALYSIS_USE to 1.
 
 Please contact cirrone@lns.infn.it for more details.
