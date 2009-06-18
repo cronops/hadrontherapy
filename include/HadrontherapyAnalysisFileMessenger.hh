@@ -59,6 +59,8 @@ class G4UIcmdWithAString; ///< Provides possibility to add commands
 * functionality.
 * The messenger needs to contain a command object and to have SetValue
 * method that is called once a command is set.
+* 
+* @see HadrontherapyAnalysisManager
 */
 class HadrontherapyAnalysisFileMessenger: public G4UImessenger
 {
