@@ -276,6 +276,7 @@ void HadrontherapyAnalysisManager::book()
   th14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
 
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
+  theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a/I:z/F:occupancy/I:energy/F");
 #endif
 }
 
@@ -481,6 +482,9 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
    ionTuple -> addRow(); 
 #endif
 #ifdef G4ROOTANALYSIS_USE
+   if (theROOTIonTuple) {
+     theROOTIonTuple->Fill(a, z, electronOccupancy, energy);
+   }
 #endif
 }
 
@@ -496,6 +500,7 @@ void HadrontherapyAnalysisManager::finish()
 #endif
 #ifdef G4ROOTANALYSIS_USE
   theROOTNtuple->Write();
+  theROOTIonTuple->Write();
   theTFile->Write();
   theTFile->Close();
 #endif
