@@ -7,10 +7,6 @@ name := Hadrontherapy
 G4TARGET := $(name)
 G4EXLIB := true
 
-ifdef G4ROOTANALYSIS_USE
-G4ANALYSIS_USE=0
-endif
-
 ifndef G4INSTALL
   G4INSTALL = ../../..
 endif
@@ -23,10 +19,12 @@ include $(G4INSTALL)/config/architecture.gmk
 ifdef G4ANALYSIS_USE
 CPPFLAGS += -DANALYSIS_USE
 endif
-ifdef G4ROOTANALYSIS_USE
+ifndef G4ANALYSIS_USE      # If we don't have AIDA
+ifdef G4ROOTANALYSIS_USE   # And we have ROOT
 CPPFLAGS += -DANALYSIS_USE -DG4ROOTANALYSIS_USE
 CPPFLAGS += $(shell root-config --cflags)
 LDFLAGS  += $(shell root-config --glibs)
+endif
 endif
 
 include $(G4INSTALL)/config/binmake.gmk
