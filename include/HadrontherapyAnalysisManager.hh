@@ -47,7 +47,7 @@
 #ifdef ANALYSIS_USE ///< If we use analysis
 
 #ifdef G4ANALYSIS_USE ///< If analysis is done via AIDA
-# include <AIDA/AIDA.h>
+#include <AIDA/AIDA.h>
 
 namespace AIDA{
   class ITree;
