@@ -66,6 +66,7 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), theROOTNtuple(0),
   theROOTIonTuple(0)
 {
+  fMess = new HadrontherapyAnalysisFileMessenger(this);
 }
 #endif
 /////////////////////////////////////////////////////////////////////////////
@@ -188,6 +189,12 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::getInstance()
 {
   if (instance == 0) instance = new HadrontherapyAnalysisManager;
   return instance;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HadrontherapyAnalysisManager::SetAnalysisFileName(G4String aFileName)
+{
+  this->AnalysisFileName = aFileName;
 }
 
 /////////////////////////////////////////////////////////////////////////////
