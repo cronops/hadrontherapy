@@ -3,6 +3,7 @@ New features:
   o Ability to use /analysis/setAnalysisFile <filename> to set the name of the output file
   o Default file name is DoseDistribution.root
   o Works for both ROOT and AIDA analysis (exception: HBOOK output is always DoseDistribution.hbk)
+  o Command is available only in "pre-init" state for now
 - Direct ROOT analysis support in the HadrontherapyAnalysisManager (bypasses AIDA)
   o Activate by setting G4ROOTANALYSIS_USE=1 and unsetting G4ANALYSIS_USE
   o Both analysis methods can be disabled and in this case there are no external
