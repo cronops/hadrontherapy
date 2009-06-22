@@ -6,5 +6,5 @@ void braggPeaks(){
    TH1F* h2 = (TH1F*)f2->Get("braggPeak");
    c1 = new TCanvas("c1","Bragg peaks for different particles",200,10,750,940);
    h1->Draw();
-   h2->Draw("same");
+   //h2->Draw("same");
 }

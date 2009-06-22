@@ -66,6 +66,7 @@ void HadrontherapyAnalysisFileMessenger::SetNewValue(G4UIcommand* command, G4Str
 { 
   if (command == FileNameCmd)
     {
+	AnalysisManager->finish(); //then it should be reset once a new name is given...
 	AnalysisManager->SetAnalysisFileName(newValue);
 	AnalysisManager->book(); //<books the histograms etc. again in new file, doesen't remove old one
     }

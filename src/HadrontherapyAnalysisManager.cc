@@ -493,7 +493,22 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
    }
 #endif
 }
-
+/////////////////////////////////////////////////////////////////////////////
+void HadrontherapyAnalysisManager::flush()
+{
+#ifdef G4ANALYSIS_USE
+  // Write all histograms to file
+  theTree -> commit();
+  // Close (will again commit)
+  theTree ->close();
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  theROOTNtuple->Write();
+  theROOTIonTuple->Write();
+  theTFile->Write();
+#endif
+this->book(); //< book, in fact this method is redundant right now as it is just finish with book
+}
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::finish()
 {
