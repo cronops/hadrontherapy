@@ -227,7 +227,7 @@ necessary for the run of Hadrontherapy.
  - G4RADIOACTIVEDATA      points to the libraries for radio-active decay 
                           hadronic processes;
 
- - G4ABLADATA             points to the library of the INCL/ABLA hadronic model;
+ - G4ABLADATA             points to the data files needed by the INCL/ABLA hadronic model;
  
  - G4LEDATA               points to the low energy electromagnetic libraries
 
