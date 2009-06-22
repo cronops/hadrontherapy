@@ -48,9 +48,6 @@
 HadrontherapyAnalysisFileMessenger::HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager* amgr)
 :AnalysisManager(amgr)
 { 
-	/**
-	 * trying some doxygenstuff
-	 */
   FileNameCmd = new G4UIcmdWithAString("/analysis/setAnalysisFile",this);
   FileNameCmd->SetGuidance("Set the .root filename for the root-output");
   FileNameCmd->SetDefaultValue("default.root");
@@ -70,7 +67,7 @@ void HadrontherapyAnalysisFileMessenger::SetNewValue(G4UIcommand* command, G4Str
   if (command == FileNameCmd)
     {
 	AnalysisManager->SetAnalysisFileName(newValue);
-	AnalysisManager->book(); //books the histograms etc. again in new file, doesen't remove old one
+	AnalysisManager->book(); //<books the histograms etc. again in new file, doesen't remove old one
     }
 }
 
