@@ -72,7 +72,7 @@
 //    'macro' folder .
 //
 // 3. Use of a *local* physics. In this case the models are implemented in local files
-//    contained in the Hadrontherapy folder. The use of local physic is recommended 
+//    contained in the Hadrontherapy folder. The use of local physic is recommended
 //    to more expert Users.
 //    We provide as local, only the LocalStandardICRU73EmPhysic.cc (an Elecromagnetic
 //    implementation containing the new ICRU73 data table for ions stopping powers)
@@ -133,7 +133,6 @@ HadrontherapyPhysicsList::HadrontherapyPhysicsList() : G4VModularPhysicsList()
   bicIsRegisted  = false;
   biciIsRegisted = false;
   locIonIonInelasticIsRegistered = false;
-  locINCLIonIonInelasticIsRegistered = false;
 
   stepMaxProcess  = 0;
 
@@ -280,9 +279,9 @@ void HadrontherapyPhysicsList::AddPhysicsList(const G4String& name)
     hadronPhys.push_back(new LocalIonIonInelasticPhysic());
     locIonIonInelasticIsRegistered = true;
 
-  } else if (name == "local_incl_ion_ion_inelastic" && !locINCLIonIonInelasticIsRegistered) {
+  } else if (name == "local_incl_ion_ion_inelastic" && !locIonIonInelasticIsRegistered) {
     hadronPhys.push_back(new LocalINCLIonIonInelasticPhysic());
-    locINCLIonIonInelasticIsRegistered = true;
+    locIonIonInelasticIsRegistered = true;
 
   } else {
 

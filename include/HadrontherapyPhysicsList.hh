@@ -31,10 +31,10 @@
 // Code developed by:
 //
 // G.A.P. Cirrone(a)*
-// 
-// (a) Laboratori Nazionali del Sud 
+//
+// (a) Laboratori Nazionali del Sud
 //     of the INFN, Catania, Italy
-// 
+//
 // * cirrone@lns.infn.it
 //
 // See more at: http://workgroup.lngs.infn.it/geant4lns/
@@ -60,22 +60,22 @@ public:
   virtual ~HadrontherapyPhysicsList();
 
   void ConstructParticle();
-    
+
   void SetCuts();
   void SetCutForGamma(G4double);
   void SetCutForElectron(G4double);
   void SetCutForPositron(G4double);
-        
+
   void AddPhysicsList(const G4String& name);
   void ConstructProcess();
-    
-  void AddStepMax();       
+
+  void AddStepMax();
   HadrontherapyStepMax* GetStepMaxProcess() {return stepMaxProcess;};
   void AddPackage(const G4String& name);
 
 private:
 
-  G4EmConfigurator em_config; 
+  G4EmConfigurator em_config;
 
   G4double cutForGamma;
   G4double cutForElectron;
@@ -85,15 +85,14 @@ private:
   G4bool bicIsRegisted;
   G4bool biciIsRegisted;
   G4bool locIonIonInelasticIsRegistered;
-  G4bool locINCLIonIonInelasticIsRegistered;
-    
+
   G4String                             emName;
   G4VPhysicsConstructor*               emPhysicsList;
   G4VPhysicsConstructor*               decPhysicsList;
   std::vector<G4VPhysicsConstructor*>  hadronPhys;
-    
+
   HadrontherapyStepMax* stepMaxProcess;
-    
+
   HadrontherapyPhysicsListMessenger* pMessenger;
 };
 
