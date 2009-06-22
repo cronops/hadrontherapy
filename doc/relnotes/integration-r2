@@ -1,0 +1,4 @@
+Release notes for integration-r2
+
+New features:
+- Ability to change the output file without closing the application. (under development)
