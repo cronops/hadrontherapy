@@ -1,0 +1,19 @@
+New features:
+- Added HadrontherapyAnalysisFileMessenger
+  o Ability to use /analysis/setAnalysisFile <filename> to set the name of the output file
+  o Default file name is DoseDistribution.root
+  o Works for both ROOT and AIDA analysis (exception: HBOOK output is always DoseDistribution.hbk)
+- Direct ROOT analysis support in the HadrontherapyAnalysisManager (bypasses AIDA)
+  o Activate by setting G4ROOTANALYSIS_USE=1 and unsetting G4ANALYSIS_USE
+  o Both analysis methods can be disabled and in this case there are no external
+    dependencies
+- INCL/ABLA light ion physics list for deuterons, tritons and alphas
+- Added Doxygen documentation tags to some header files and provided a Doxyfile that contains
+  Doxygen settings
+
+Bugfixes:
+- Light ion hadronic models didn't seem to be activated properly in hadrontherapy-V09-02-15
+  o Variable locIonIonInelasticIsRegistered was not inizialized to false in the constructor. This
+    produced an error message:
+    /physic/addPhysics local_ion_ion_inelastic
+    PhysicsList::AddPhysicsList: <local_ion_ion_inelastic> is not defined
