@@ -50,23 +50,23 @@
 
 #########################
 #200MeV case
-/analysis/setAnalysisFile DoseDistribution200MeV.root
+/analysis/setAnalysisFile DoseDistribution400MeV.root
 /gun/particle proton
-/beam/energy/meanEnergy 62 MeV
+/beam/energy/meanEnergy 40 MeV
 /beam/energy/sigmaEnergy 400 keV
-/beam/position/Xposition -2700 mm
+/beam/position/Xposition -1 mm
 #/run/beamOn 5000
 #testrun
 /run/beamOn 50
 
 #########
 #400MeV case
-#/analysis/setAnalysisFile DoseDistribution400MeV.root
-#/gun/particle proton
-#/beam/energy/meanEnergy 52 MeV
-#/beam/energy/sigmaEnergy 400 keV
-#/beam/position/Xposition -2700 mm
+/analysis/setAnalysisFile DoseDistribution200MeV.root
+/gun/particle proton
+/beam/energy/meanEnergy 20 MeV
+/beam/energy/sigmaEnergy 400 keV
+/beam/position/Xposition -1 mm
 #/run/beamOn 5000
 #testrun
-#/run/beamOn 50
+/run/beamOn 50
 

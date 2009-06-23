@@ -48,9 +48,14 @@
 
 class HadrontherapyMatrix 
 {
+private:
+  HadrontherapyMatrix(); //< this is supposed to be a singleton
+
 public:
-  HadrontherapyMatrix();
+
   ~HadrontherapyMatrix();
+ 
+  static HadrontherapyMatrix* getInstance();
  
   void Initialize(); 
   // All the elements of the matrix are initialised to zero
@@ -65,6 +70,7 @@ public:
   // a 1D Histogram
 
 private:
+  static HadrontherapyMatrix* instance;
   G4int numberVoxelX;
   G4int numberVoxelY;
   G4int numberVoxelZ;

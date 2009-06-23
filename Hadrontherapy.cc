@@ -93,7 +93,7 @@ int main(int argc ,char ** argv)
   HadrontherapyLet* let = new HadrontherapyLet(pPrimaryGenerator);
 
   // Initialize matrix 
-  HadrontherapyMatrix* matrix = new HadrontherapyMatrix();
+  HadrontherapyMatrix* matrix = HadrontherapyMatrix::getInstance();
   matrix -> Initialize();
 
   // Optional UserActions: run, event, stepping
