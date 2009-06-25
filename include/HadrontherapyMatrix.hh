@@ -57,6 +57,8 @@ public:
  
   static HadrontherapyMatrix* getInstance();
  
+ void flush();
+ 
   void Initialize(); 
   // All the elements of the matrix are initialised to zero
  

@@ -61,12 +61,12 @@
 
 #########
 #400MeV case
-#/analysis/setAnalysisFile DoseDistribution200MeV.root
-#/gun/particle He3
-#/beam/energy/meanEnergy 200 MeV
-#/beam/energy/sigmaEnergy 400 keV
-#/beam/position/Xposition -1 mm
+/analysis/setAnalysisFile DoseDistribution200MeV.root
+/gun/particle He3
+/beam/energy/meanEnergy 200 MeV
+/beam/energy/sigmaEnergy 400 keV
+/beam/position/Xposition -1 mm
 #/run/beamOn 5000
 #testrun
-/run/beamOn 50
+/run/beamOn 100
 
