@@ -498,6 +498,7 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
 void HadrontherapyAnalysisManager::flush()
 {
   HadrontherapyMatrix* matrix = HadrontherapyMatrix::getInstance();
+
   matrix->TotalEnergyDeposit();
 #ifdef G4ANALYSIS_USE
   theTree -> commit();
@@ -507,8 +508,10 @@ void HadrontherapyAnalysisManager::flush()
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
   theTFile->Write();
+  theTFile->Clear();
   theTFile->Close();
 #endif
+  matrix->flush();
   //this->book();
 }
 /////////////////////////////////////////////////////////////////////////////

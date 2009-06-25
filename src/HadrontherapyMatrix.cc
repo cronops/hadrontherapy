@@ -73,6 +73,14 @@ HadrontherapyMatrix::~HadrontherapyMatrix()
 {
   delete[] matrix;
 }
+
+void HadrontherapyMatrix::flush(){
+	if(matrix)
+		for(int i=0;i<numberVoxelX*numberVoxelY*numberVoxelZ;i++){
+		matrix[i] = 0;
+		}
+	}
+
 void HadrontherapyMatrix::Initialize()
 { 
   // Initialise the elemnts of the matrix to zero
