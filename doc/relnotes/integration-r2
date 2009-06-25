@@ -1,4 +1,6 @@
 Release notes for integration-r2
 
 New features:
-- Ability to change the output file without closing the application. (under development)
+- Ability to change the output file without closing the application
+  o The command /analysis/setAnalysisFile is now available in both
+    PreInit and Idle states
