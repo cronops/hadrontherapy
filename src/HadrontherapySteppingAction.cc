@@ -53,14 +53,13 @@
 #include "G4TrackVector.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTypes.hh"
-#include "HadrontherapyLet.hh"
 
 #include "HadrontherapyAnalysisManager.hh"
 
 #include "HadrontherapyRunAction.hh"
 
 /////////////////////////////////////////////////////////////////////////////
-HadrontherapySteppingAction::HadrontherapySteppingAction( HadrontherapyRunAction *run, HadrontherapyLet*)
+HadrontherapySteppingAction::HadrontherapySteppingAction( HadrontherapyRunAction *run)
 {
   runAction = run;
 }
