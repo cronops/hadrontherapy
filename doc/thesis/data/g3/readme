@@ -1,0 +1,10 @@
+directories: include the data of angular distributions for the fragments behind water tanks. the label of the file belongs to the thickness of the water tank.
+
+file 400tdk.dat:  depth ionization curve for 400 MeV/u carbon
+
+file N.dat: N/N(0) for  400 MeV/u carbon
+
+files TDK*.dat:  N/N(0) in 0° to 10° for fragment  * against water depth
+
+
+first column is x and second y. sometimes there are a 3rd and 4th column, which are the errors in x and y as printed by the program I used to digitalize the data.

@@ -218,7 +218,7 @@ which improves the ratio between dose in the tumors and in the normal tissue. Al
 A much younger and less widely used technology are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavyer-ions are charged particles and therefore interact with tissue in a much different way to photons. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the Bragg-peak, and was first discovered by William Henry Bragg in 1903.
 
 The field of hadron treatments was pioneered at the Lawrence Berkeley Laboratory (LBL). Based on research done at the Berkeley cyclotron J.~Wilson first recomended the use of protons as a treatment method in a 1946 paper~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are a number of proton-based therapies in clinical use all around the world, for example in Harvard General Hospital (see fig). %fixme
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics[height=7cm]{images/HarvardHadronTreatment.png}  
 \caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment simulation visualized.} 
@@ -274,7 +274,7 @@ target. From time to time a target nuclea lie on this line, thus causing a colli
 and target nucleons which overlap eachother in this model (see fig~\ref{fig:ablationabration}) are called participants. The remaining parts of the projectile and target nucleus are called spectators. The momentum of the spectators in the projectile and target are only slightly affected by the collision. The participant nucleons form an excited entity, ``a fireball'', which fragments into separate light ions or single nucleons.
 The Wilson-model %fixme physics reference manual reference here
 that also provided in Geant4 features a physics model more reminiscient to this approach. This kind of a model is however not directly comparable to the model used in this paper through INCL and ABLA.
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/ablationabration.png}  
 \caption{Schematic description of the Wilson abration-ablation model in Geant4.}
@@ -323,24 +323,41 @@ The major free parameter of the INCL code is the stopping-time; the time before 
 
 A further discussion of the theoretical basis of the Liège INC model and INCL code is available in references ~\cite{PhysRevC.66.044615,iia}.
 
+\begin{figure} 
+\begin{center}
+\includegraphics[width=0.3\textwidth]{images/inclPotential.png}  
+\caption{\label{fig:inclpotential} Schematic of the potential model used by the INCL-model.}
+ 
+ \end{center}
+ \end{figure}
+
+
 \subsubsection{ABLA}
 
 The ABLA code has been developed at the GSI facility in Darmstadt, Germany. Its principal developers being K-H.~Schmidt and A.~Kelic. It is a Monte-Carlo code based on a data-set {\tt G4ABLADATA} distributed alongside the code. ABLA takes as input nucleus parameters, excitation energy, mass number, charge number and nucleus spin. It then calculates on the basis of this data the probabilities for different fission or evaporation events taking place according to statistical distributions obtained from experiments and phenomenology.
 
 ABLA comes with two different fission models SimFis3 and SimFis18. These models are based on the proven PROFI-model also developed at GSI darmstadt. ABLA selects between competitive fission and evaporation processes as described in the flowchart~\ref{fig:ablatable}.
 
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=1\textwidth]{images/inclSummary.png}  
+\caption{\label{fig:inclpotential}}
+ 
+ \end{center}
+ \end{figure}
+
 %fixme, add another picture with data
 
-\begin{figure} 
+\begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.6\textwidth]{images/AblaTable.png}  
+\includegraphics[width=0.6\textwidth]{images/AblaTable.png}[h]  
 \caption{\label{fig:ablatable} General flow of ABLA submodels.}
  
  \end{center}
  \end{figure}
-\begin{figure} 
+\begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}  
+\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}[h]  
 \caption{\label{fig:ablahumps} ABLA symmetric (solid line) and antisymmetric (dashed line) fission plots.}
  
  \end{center}
@@ -351,6 +368,58 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 
 \section{Simulation setup} %practical aspects of simulation
 The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the Geant4 suite.
+
+\subsection{Characterization of the primary beam and experimental setup for the
+IAEA benchmark}
+
+Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below.
+
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/haettnersetup}[h]  
+\caption{\label{fig:haettnersetup} E.Haettner's experimental setup. The beam arrives at the experimental setup after traveling 10m from the last focuing magnets, thus it may be considered paralell at the time of entering the first detector.}
+
+In order to calulcate the bragg-peak for the beam in water the ionizing effect of the other elements in the experimental setup also had to be accounted for. Below are the water equivalents for the other parts of the measurement. It is notable that the water-equivalent is considerably different for the to differnd 400Meent beam-strengths.
+\begin{table}
+\begin{tabular}{l c c c}
+material	&	thickness	&	mass / a.u.	& WE \\
+aluminium	&	0.1mm		&	0.027		& 0.027cm \\
+air and IC	&	72cm 		&	0.073		& 0.073cm\\
+Plexiglas	&	4mm		&	0.478		& 0.478cm\\
+water		&	26.89cm		&	26.89		& 26.89\\
+\end{tabular} 
+\end{table}
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly. Haettner found that the FWHM of the beam varied according to the water-depth according to the following graph
+
+%fixme, insert emma 4.8 here
+
+For this paper the beam will be simulated as starting just before the first detector, here the FWHM is ... . Assuming the beam is of gaussian distribution it means the beam ill be randomly picked from the standard deviation of .. according to the formula $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ .
+
+
+ \end{center}
+ \end{figure}
+
+
+
+\begin{comment}
+Koska lupasin koordinoida speksien määärittelyn.
+voisit Gillis tehdä raporttiisi seuraavaksi alaluvun :
+'Characterization of the primary beam and experimental setup for the
+IAEA benchmark'
+Ennen kun rupeat rakentamaan Geant4 simulaatiota  voisit siis kerätä
+Emman työstä
+kaikki vaadittavat tiedot (etäisyydet, materiaalit, dimensiot, beamin
+tiedot) tähän lukuun.
+Tämän tekstin tulisi olla itsenäinen osa opinnäytetyötä jotta sen voi
+kätevästi jakaa muiden Monte-Carlo koodien edustajlle.
+(Näppärä taulukko ja kuva kuten gradussa selventävät asiaa.) Tekstin
+pohjalta pitää pystyä luomaan
+yksikäsitteisesti oikeanlainen Monte-Carlo koe jonka tuloksia sitten
+verrataan Emman mittauksiin.
+
+doc/talk/images/inclSummary.png
+images/haettnersetup.png
+\end{comment}
 
 \begin{itemize}
 \item Experiment data from GSI
@@ -387,7 +456,7 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
     HadrontherapyAnalysisManager* AnalysisManager;
 \end{verbatim}
 \normalsize
-\begin{figure} 
+\begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
 \includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
