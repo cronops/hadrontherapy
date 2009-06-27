@@ -1,6 +1,3 @@
-\newif\ifPAPER  
-\PAPERtrue % select either slide or note
-%\PAPERfalse  
 
 \def\g4{{\sf Geant4}}
 
@@ -14,17 +11,29 @@ caption= #1 ,
 label=listing:boundary}}
 
 \def\cppstart{\begin{lstlisting}}
-\def\cppend{\end{lstlisting}}
+\def\cppend{\end{lstlisting}}%% Uncomment these if you write in English
 
-\newif\ifCITENOTE 
-\CITENOTEtrue
+\documentclass[12pt]{article}
+\usepackage[english]{thesis}
 
-\ifPAPER
-\documentclass[twoside,floatfix,a4wide]{d}
+\usepackage[utf8]{inputenc} % look here if scands are broken
+
+%% Jos käytät latex-komentoa käännettäessä (oletusarvo) 
+%% kuvat kannattaa tehdä eps-muotoon. Älä käytä ps-muotoisia kuvia!
+%% Käytä seuraavaa latex-komennon ja eps-kuvien kanssa 
+%%\usepackage[dvips]{graphicx}
+
+%% Jos tääs käytät pdflatex-komentoa, 
+%% joka kääntää tekstin suoraan pdf-tiedostoksi ja kuvasi
+%% ovat esim. jpg-formaatissa tai pdf-formaatissa,   
+%% käytetään seuraavaa pakettia, kommentoi siis kommenttimerkki pois
+%% Huom! Tekstin marginaalit saattavat poiketa n. 2-5 mm
+%% suosituksesta, jos käytät pdflatex-komentoa!
+\usepackage[pdftex]{graphicx} 
 \usepackage{multirow}
 \usepackage{url}
 \usepackage{listings}
-\usepackage{graphicx}
+%\usepackage{graphicx}
 \usepackage[utf8]{inputenc} % look here if scands are broken
 \usepackage{wrapfig}
 %\usepackage{makeidx}
@@ -37,47 +46,94 @@ label=listing:boundary}}
 \usepackage{color} % for definecolor
 \usepackage[colorlinks,bookmarks=true]{hyperref}
 
-\numberwithin{equation}{section} % reguires amsmath-package
-\pagestyle{fancy}
-%\fancyhead{} % clear all fields
+%% Saat pdf-tiedoston viittaukset ja linkit kuntoon seuraavalla paketilla.
+%% Paketti toimii erityisen hyvin pdflatexin kanssa. 
+%\usepackage[pdfpagemode=None,colorlinks=true,urlcolor=red,%
+%linkcolor=blue,citecolor=black,pdfstartview=FitH]{hyperref}
 
-%\fancyhead[L]{\it {Helsinki, May 4, 2009}} % Left Odd, Right Even 
-%\fancyfoot[L]{G.Danielsen - Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models} 
-%\fancyhead[R]{\thepage}
-%\fancyfoot[C]{}
-\newcommand{\urltilde}[1]{\texttt{#1}} % solves the tilde problem
+%% Jos et jostain syystä tykkää käyttää
+%% edellistä hyperref pakettia, voit käyttää myös seuraavaa pakettia
+%% (tarvitaan lähinnä url-komennon määrittämiseen ja formatoimiseen)
+\usepackage{url}
 
-\graphicspath{{images/}}
-\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1} % zipped images
+%% Matematiikan fontteja, symboleja ja muotoiluja lisää, näitä tarvitaan usein 
+\usepackage{amsfonts,amssymb,amsbsy}  
 
-\definecolor{light-gray}{gray}{0.95}
-\definecolor{dark-gray}{gray}{0.30}
-\definecolor{orange}{rgb}{1,0.5,0}
-\definecolor{dark-blue}{cmyk}{1,0.5,0.5,0}
-\hypersetup{
-    bookmarks=true,         % show bookmarks bar?
-    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
-    pdftoolbar=true,        % show Acrobat’s toolbar?
-    pdfmenubar=true,        % show Acrobat’s menu?
-    pdffitwindow=true,      % page fit to window when opened
-    pdftitle={My title},    % title
-    pdfauthor={Author},     % author
-    pdfsubject={Subject},   % subject of the document
-    pdfnewwindow=true,      % links in new window
-    pdfkeywords={keywords}, % list of keywords
-    colorlinks=true,        % false: boxed links; true: colored links
-    linkcolor=dark-blue,          % color of internal links
-    citecolor=dark-blue,        % color of links to bibliography
-    filecolor=dark-blue,         % color of file links
-    urlcolor=dark-blue            % color of external links
-}
+%% Käytä seuraavaa pakettia jos haluat
+%% Times-fontit LaTeX:n normaalien Computer Modern-fonttien sijaan.
+%% Times-fontit ja Computer Modern-fontit ovat kummatkin roomalaisia
+%% fonttityyppejä ja monet kutsuvat kaikkia roomalaisia
+%% fontteja virheellisesti Times-fonteiksi,
+%% vaikka tarkasti ottaen Times on vain Times-lehden fontti.
+%% Computer Modern on Donald Knuthin suunnittelema fontti, joka
+%% on Century Magazinen fontin variantti.
+%% Huom! Kaavoihin ei tule Times-fontteja, joten lopputulos ei ole
+%% välttämättä aivan tyylikäs. Pakettia ei suositella sen vuoksi. 
+%\usepackage{times}  
+
+%% Vaakasuunnan mitat, ÄLÄ KOSKE!
+\setlength{\hoffset}{-1in}
+\setlength{\oddsidemargin}{35mm}
+\setlength{\evensidemargin}{25mm}
+\setlength{\textwidth}{15cm}
+%% Pystysuunnan mitat, ÄLÄ KOSKE!
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{7mm}
+\setlength{\headheight}{1em}
+\setlength{\topmargin}{25mm-\headheight-\headsep}
+\setlength{\textheight}{23cm}
+%% Vasensuora-asettelu, joka opinnäytteessä vaaditaan. ÄLÄ KOSKE
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+
+%% Kaikki mikä paperille tulostuu, on tämän jälkeen
 \begin{document}
 
+\Language{English}{Englanti}
+
+\university{helsinki university of technology}{teknillinen korkeakoulu}
+
+%% Korjaa seuraavat vastaamaan omaa tiedekuntaasi
+\faculty{Faculty of Information and Natural Sciences}%
+{}%
+%%
+
+%% Vain kandityölle: Korjaa seuraavat vastaamaan tutkinto-ohjelmaasi
+\degreeprogram{Engineering Physics and Mathematics}{}
+%%
+
+%% Vain DI- ja lisensiaatintyölle
+%\professorship{Circuit theory}{Piiriteoria}
+%\code{S-55}
+%%
+
+%% Valitse yksi näistä kolmesta
+\degree{BSc}
+%\degree{MSc}
+%\degree{Lic}
+
+%% Oma nimi
+\author{Gillis Danielsen}
+
+%% Opinnäytteen nimi tulee vain tähän
+\thesistitle{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}{}
+
+%% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
+%%\date{22.1.2008}
+
+%% Kandidaattiseminaarin vastuuopettaja
+\supervisor{Ph.D. Veikko Karimäki, Prof. Harri Ehtamo}{}
+
+%% Kandidaatintyön ohjaaja
+\instructor{Aatos Heikkinen}{}
+
+%% Tehdään kansilehti
+\makecoverpage
+
+\begin{comment}
 \title{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}
 
-
-\author{Gillis Danielsen} 
-\affiliation{Helsinki University of Technology, Helsinki Institute of Physics, P.O. Box 64, FIN-00014 University of Helsinki (Finland)}
 \begin{titlepage}
 \pagestyle{empty}
 \begin{center}
@@ -96,23 +152,58 @@ Helsinki University of Technology\\
   \end{center}
 
 \end{titlepage}
+\end{comment}
 
-
-\begin{abstract}
+%% Tiivistelmän avainsanat 
+\keywords{Geant4, INCL, Liege cascade, ABLA, CERN, IAEA, Hadrontherapy}
+%% Tiivistelmän tekstiosa
+\begin{abstractpage}[english]
 This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the INCL and ABLA models developed as a collaboration of scientists at CERN, GSI, HIP and CEA. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling weestimate particularly the magnitude of fragment build-up at the end of the Bragg-curve.
+\end{abstractpage}
 
-% at  INDC International Nuclear Data Committee Heavy Charged-Particle Interaction Data For Radiotherapy
+%% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
+%% mahdollinen suomenkielinen ja englanninkielinen tiivistelmä
+%% eivät tule vahingossakaan samalle sivulle
+\newpage
 
 
 
-\end{abstract}
-\maketitle
-\thispagestyle{fancy}
-
+%% Sisällysluettelo
+%% addcontentsline tekee pdf-tiedostoon viitteen sisällysluetteloa varten
+\addcontentsline{toc}{section}{Contents}
+%% Tehdään sisällysluettelo
 \tableofcontents
 
-\section{Introduction}
 
+%% Symbolit ja lyhenteet
+\mysection{Symbols and legends}
+
+\begin{tabular}{ll}
+CERN         & Organisation europeenne pour la researche nucleare \\
+INCL      & intranuclear cascade, liege\\
+ABLA        & Abla \\tion Abration model\\
+IAEA         & International Atomic Energy Association \\
+HIP        & Helsinki Institute of Physics
+\end{tabular}
+
+
+%% Sivulaskurin viilausta opinnäytteen vaatimusten mukaan:
+%% Aloitetaan sivunumerointi arabialaisilla numeroilla (ja jätetään
+%% leipätekstin ensimmäinen sivu tyhjäksi, 
+%% ks. alla \thispagestyle{empty}).
+%% Pakotetaan lisäksi ensimmäinen varsinainen tekstisivu alkamaan 
+%% uudelta sivulta clearpage-komennolla. 
+%% clearpage on melkein samanlainen kuin newpage, mutta 
+%% flushaa myös LaTeX:n floatit 
+\cleardoublepage
+\storeinipagenumber
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+%% Ensimmäinen osa, LEIPÄTEKSTI ALKAA
+\section{Introduction}
+\thispagestyle{empty}
 %Carbon beams are a promising new alternative to traditional radiation cancer therapy. 
 The history of radiation treatments dates back to 1895 when W.K.~Roentgen discovered the x-rays. It was not long before these photon rays were used to treat malign tissue. The first methods used were on today's standards very crude, and much work has gone into perfecting the treatments in order to minimize the effect of the rays on the surrounding healthy tissue and maximize the dose delivered to the malign tissue.
 
@@ -128,8 +219,10 @@ A much younger and less widely used technology are those of hadron- or heavy-ion
 
 The field of hadron treatments was pioneered at the Lawrence Berkeley Laboratory (LBL). Based on research done at the Berkeley cyclotron J.~Wilson first recomended the use of protons as a treatment method in a 1946 paper~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are a number of proton-based therapies in clinical use all around the world, for example in Harvard General Hospital (see fig). %fixme
 \begin{figure}
-\includegraphics[width=0.3\textwidth]{images/HarvardHadronTreatment.png}  
-\caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment simulation visualized.}
+\begin{center}
+\includegraphics[height=7cm]{images/HarvardHadronTreatment.png}  
+\caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment simulation visualized.} 
+\end{center}
 \end{figure} 
 Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at LBL inbetween 1977 and 1993 with $^{20}$Ne. At the end of 2008 the Particle Therapy Co-Operative  Group (PTCOG) estimated that more than 7000 heavy-ion treatments had been conducted at treatment facilities it monitors worldwide. Treatments based on $^{12}$C beams have been offered at NISR in Japan and in Germany at GSI~\cite{PTCOGstat}. Carbon beams is currently the most active and promising area of heavy-ion therapy research. 
 
@@ -137,6 +230,8 @@ The motivations for heavy-ion treatments as an alternative or complement to hadr
 
 A number of data-sets are available for carbon beams. This paper will be compare data to beam-measurments by E.~Haettner as a part of her master's thesis~\cite{ehaettner}  at the GSI facility in Darmstadt, Germany. This paper reproduces the experimental setup used by E.Haettner as a computer simulation model. The aim of this paper is to provide good reference data for the standardization work involved in hadron treatment. Furthermore, this paper evaluates the feasibility of the Geant4 models for such simulations by comparison to experimental data. This benchmarking is part of IAEA's INDC International Nuclear Data Committee and Heavy Charged-Particle Interaction Data For Radiotherapy project which compares different Monte-Carlo codes~\cite{SummaryReport}.\footnote{Bachelor's thesis produced in the framework of the Finnish CERN Summer Training 2009. Supervisors A.~Heikkinen and V.~Karimäki from Helsinki Institute of Physics and H.~Ehtamo of Helsinki University of Technology} %fixme footnote
 
+%% Opinnäytteessä jokainen osa alkaa uudelta sivulta, joten clearpage
+\clearpage
 \section{Theory}
 
 \subsection{Electromagnetic physics of Bragg-curve}
@@ -323,8 +418,24 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
 
 
 \bibliographystyle{plain} \bibliography{refs.bib} 
+
+%%%%% Liitteet 
+%\appendix 
+
+%\clearpage
+%\addcontentsline{toc}{section}{Liite A}
+%\section*{Liite A \label{LiiteA}}
+
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+%\renewcommand{\theequation}{A\arabic{equation}}
+%\setcounter{equation}{0}  
+%\renewcommand{\thefigure}{A\arabic{figure}}
+%\setcounter{figure}{0}
+%\renewcommand{\thetable}{A\arabic{table}}
+%\setcounter{table}{0}
+
+
 \end{document}
 
-\else
 
-\fi
+
