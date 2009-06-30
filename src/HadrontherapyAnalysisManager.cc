@@ -69,6 +69,7 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   theROOTIonTuple(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
+  debugi = 0;
 }
 #endif
 /////////////////////////////////////////////////////////////////////////////
@@ -143,6 +144,9 @@ delete(fMess); //kill the messenger
   delete theROOTNtuple;
   theROOTNtuple = 0;
 
+  delete TTntuple; //GDADD
+  TTntuple = 0;
+  
   delete th14;
   th14 = 0;
 
@@ -282,6 +286,7 @@ void HadrontherapyAnalysisManager::book()
   th13 = createHistogram1D("h130","Energy distribution of secondary tritons", 70, 0., 70.);
   th14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
 
+  TTntuple = new TNtuple("ThinTargetBeam","Thin-target beam-measurement x-axis", "x/I:y/I");
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a/I:z/F:occupancy/I:energy/F");
 #endif
@@ -465,6 +470,21 @@ void HadrontherapyAnalysisManager::alphaEnergyDistribution(G4double energy)
 #endif
 #ifdef G4ROOTANALYSIS_USE
   th14->Fill(energy);
+#endif
+}
+//GDADD
+/////////////////////////////////////////////////////////////////////////////
+void HadrontherapyAnalysisManager::ThintargetBeamDisp(G4double dx, G4double dy)
+{
+#ifdef G4ANALYSIS_USE
+  h14 -> fill(displacement); //there's no h14
+#endif
+#ifdef G4ROOTANALYSIS_USE
+  if (TTntuple) {
+    TTntuple->Fill(dx,dy);
+  }
+  debugi++;
+  std::cout << "Saved " << debugi << "\n";
 #endif
 }
 

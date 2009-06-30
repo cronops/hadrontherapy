@@ -72,7 +72,14 @@ HadrontherapySteppingAction::~HadrontherapySteppingAction()
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 { 
-  
+#ifdef MEASUREBEAM
+	//Very clufgy, is supposed to record just positions of the beams hitting the water phantom
+	if(aStep->GetTrack()->GetVolume()->GetName() == "phantomPhys"){
+		HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance(); 
+		analysis->ThintargetBeamDisp(aStep->GetTrack()->GetPosition().x(),aStep->GetTrack()->GetPosition().x());
+		aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+		}
+#endif
   // Electromagnetic and hadronic processes of primary particles in the phantom
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
     (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&

@@ -148,6 +148,8 @@ public:
 
   void genericIonInformation(G4int, G4double, G4int, G4double);
 
+  void ThintargetBeamDisp(G4double,G4double);
+
   void finish();
   ///< Close the .hbk file with the histograms and the ntuples
 
@@ -160,6 +162,7 @@ private:
     histo->SetLineWidth(2);
     return histo;
   }
+  G4int debugi;
 #endif
 
 private:
@@ -206,6 +209,7 @@ private:
   TH1F *th14;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
+  TNtuple *TTntuple; //beam dcattering measurements
 #endif
 };
 #endif
