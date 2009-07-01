@@ -1,1 +1,7 @@
 Release notes for integration-r3
+
+New features:
+- Beam plots
+
+Bugfixes:
+- HadrontherapySteppingAction: Fixed the name of the phantom solid name.
