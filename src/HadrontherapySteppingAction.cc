@@ -73,16 +73,17 @@ HadrontherapySteppingAction::~HadrontherapySteppingAction()
 void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 { 
 #ifdef MEASUREBEAM
-	//Very clufgy, is supposed to record just positions of the beams hitting the water phantom
+	//Very cludgy, is supposed to record just positions of the beams hitting the water phantom
 	if(aStep->GetTrack()->GetVolume()->GetName() == "phantomPhys"){
+		//std::cout << aStep -> GetPreStepPoint() -> GetPhysicalVolume() -> GetName() << "\n"; //humm why does this also give phantomPhys?
 		HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance(); 
-		analysis->ThintargetBeamDisp(aStep->GetTrack()->GetPosition().x(),aStep->GetTrack()->GetPosition().x());
+		analysis->ThintargetBeamDisp(aStep->GetTrack()->GetPosition().x(),aStep->GetTrack()->GetPosition().y());
 		aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
 		}
 #endif
   // Electromagnetic and hadronic processes of primary particles in the phantom
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
-    (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&
+    (aStep -> GetTrack() -> GetVolume() -> GetName() == "phantomPhys") &&
     (aStep -> GetPostStepPoint() -> GetProcessDefinedStep() != NULL))
 	    {
 	      G4String process = aStep -> GetPostStepPoint() -> 
@@ -118,7 +119,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
     { 
       G4String volumeName = (*fSecondary)[lp1] -> GetVolume() -> GetName(); 
  
-      if (volumeName == "PhantomPhys")
+      if (volumeName == "phantomPhys")
 	{
 #ifdef ANALYSIS_USE   
 	  G4String secondaryParticleName =  (*fSecondary)[lp1]->GetDefinition() -> GetParticleName();  

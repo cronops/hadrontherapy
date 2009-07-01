@@ -397,10 +397,14 @@ The beam is considered a pen-shaped beam. Haettner has performed several measurm
 
 For this paper the beam will be simulated as starting just before the first detector, here the FWHM is ... . Assuming the beam is of gaussian distribution it means the beam ill be randomly picked from the standard deviation of .. according to the formula $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ .
 
-\subsubsection{Thin-target experiment}
+\subsubsection{Beam shape - Thin-target experiment}
 E.Haettner analyzed the beams scattering in two different experiments, first using no water-target and three different distances, and later with variable water thicknesses. When no water is used the paralell beam is scattered solely by the aluminium and air along its path. The three used distances were 0, 1 and 3 meters from the initial aluminium beam-window.
 
-This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then detected with 
+This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with an emtpy 10x10x1cm phantom that registers upon entry the displacement in the x and y directions of the incoming particles at impact and then removes the particles from the simulation.
+
+\subsubsection{Beam attenuation}
+
+In order to calculate the Bragg Curve of the beam the previous experiment will be augemented with the following components.
 
  \end{center}
  \end{figure}

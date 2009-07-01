@@ -482,9 +482,9 @@ void HadrontherapyAnalysisManager::ThintargetBeamDisp(G4double dx, G4double dy)
 #ifdef G4ROOTANALYSIS_USE
   if (TTntuple) {
     TTntuple->Fill(dx,dy);
-  }
   debugi++;
-  std::cout << "Saved " << debugi << "\n";
+  //std::cout << "Saved " << debugi << "\n";
+  }
 #endif
 }
 
