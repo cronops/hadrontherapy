@@ -286,7 +286,7 @@ void HadrontherapyAnalysisManager::book()
   th13 = createHistogram1D("h130","Energy distribution of secondary tritons", 70, 0., 70.);
   th14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
 
-  TTntuple = new TNtuple("ThinTargetBeam","Thin-target beam-measurement x-axis", "x/I:y/I");
+  TTntuple = new TNtuple("ThinTargetBeam","Thin-target beam-measurement x-axis", "x/F:y/F");
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a/I:z/F:occupancy/I:energy/F");
 #endif
