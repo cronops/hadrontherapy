@@ -374,24 +374,28 @@ IAEA benchmark}
 
 Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below.
 
+In order to calulcate the bragg-peak for the beam in water the ionizing effect of the other elements in the experimental setup also had to be accounted for. Below are the water equivalents for the other parts of the measurement. It is notable that the water-equivalent is considerably different for the to differnd 400Meent beam-strengths.
+
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/haettnersetup}[h]  
 \caption{\label{fig:haettnersetup} E.Haettner's experimental setup. The beam arrives at the experimental setup after traveling 10m from the last focuing magnets, thus it may be considered paralell at the time of entering the first detector.}
+ \end{center}
+ \end{figure}
 
-In order to calulcate the bragg-peak for the beam in water the ionizing effect of the other elements in the experimental setup also had to be accounted for. Below are the water equivalents for the other parts of the measurement. It is notable that the water-equivalent is considerably different for the to differnd 400Meent beam-strengths.
 
-400MeV beam
-\begin{table}
-\begin{tabular}{l c c c}
-material	&	thickness	&	mass / a.u.	& WE		&	thickness \\
-aluminium	&	0.1mm		&	0.027		& 0.027cm	& \\
-air and IC	&	72cm 		&	0.073		& 0.073cm	& \\
-Plexiglas	&	4mm		&	0.478		& 0.478cm	&\\
-water		&	26.89cm		&	26.89		& 26.89		&\\
+\begin{table}[h]
+\begin{tabular}{llllll}
+ & \textbf{200MeV} & & \textbf{400 MeV} & & \\
+ &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{WE} \\
+\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027cm\\
+\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.092cm\\
+\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.478cm\\
+\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
+\textbf{TOTAL}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
 \end{tabular} 
 \end{table}
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly. Haettner found that the FWHM of the beam varied according to the water-depth according to the following graph
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner found that the FWHM of the beam varied according to the water-depth according to the following graph
 
 %fixme, insert emma 4.8 here
 
@@ -400,36 +404,35 @@ For this paper the beam will be simulated as starting just before the first dete
 \subsubsection{Beam shape - Thin-target experiment}
 E.Haettner analyzed the beams scattering in two different experiments, first using no water-target and three different distances, and later with variable water thicknesses. When no water is used the paralell beam is scattered solely by the aluminium and air along its path. The three used distances were 0, 1 and 3 meters from the initial aluminium beam-window.
 
-This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with an emtpy 10x10x1cm phantom that registers upon entry the displacement in the x and y directions of the incoming particles at impact and then removes the particles from the simulation.
+This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with an emtpy 10x10x1cm phantom that registers upon entry the displacement in the x and y directions of the incoming particles at impact and then removes the particles from the simulation. Different types of particles may be visualized.s
 
 \subsubsection{Beam attenuation}
 
 In order to calculate the Bragg Curve of the beam the previous experiment will be augemented with the following components.
 
- \end{center}
- \end{figure}
 
 
 
-\begin{comment}
-Koska lupasin koordinoida speksien määärittelyn.
-voisit Gillis tehdä raporttiisi seuraavaksi alaluvun :
-'Characterization of the primary beam and experimental setup for the
-IAEA benchmark'
-Ennen kun rupeat rakentamaan Geant4 simulaatiota  voisit siis kerätä
-Emman työstä
-kaikki vaadittavat tiedot (etäisyydet, materiaalit, dimensiot, beamin
-tiedot) tähän lukuun.
-Tämän tekstin tulisi olla itsenäinen osa opinnäytetyötä jotta sen voi
-kätevästi jakaa muiden Monte-Carlo koodien edustajlle.
-(Näppärä taulukko ja kuva kuten gradussa selventävät asiaa.) Tekstin
-pohjalta pitää pystyä luomaan
-yksikäsitteisesti oikeanlainen Monte-Carlo koe jonka tuloksia sitten
-verrataan Emman mittauksiin.
 
-doc/talk/images/inclSummary.png
-images/haettnersetup.png
-\end{comment}
+%\begin{comment}
+%Koska lupasin koordinoida speksien määärittelyn.
+%voisit Gillis tehdä raporttiisi seuraavaksi alaluvun :
+%'Characterization of the primary beam and experimental setup for the
+%IAEA benchmark'
+%Ennen kun rupeat rakentamaan Geant4 simulaatiota  voisit siis kerätä
+%Emman työstä
+%kaikki vaadittavat tiedot (etäisyydet, materiaalit, dimensiot, beamin
+%tiedot) tähän lukuun.
+%Tämän tekstin tulisi olla itsenäinen osa opinnäytetyötä jotta sen voi
+%kätevästi jakaa muiden Monte-Carlo koodien edustajlle.
+%(Näppärä taulukko ja kuva kuten gradussa selventävät asiaa.) Tekstin
+%pohjalta pitää pystyä luomaan
+%yksikäsitteisesti oikeanlainen Monte-Carlo koe jonka tuloksia sitten
+%verrataan Emman mittauksiin.
+
+%doc/talk/images/inclSummary.png
+%images/haettnersetup.png
+%\end{comment}
 
 \begin{itemize}
 \item Experiment data from GSI
