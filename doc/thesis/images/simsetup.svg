@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="simsetup.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       id="perspective4935"
+       inkscape:persp3d-origin="346.33295 : 340.78739 : 1"
+       inkscape:vp_z="718.38019 : 516.18109 : 1"
+       inkscape:vp_y="6.1230318e-14 : 1000 : 0"
+       inkscape:vp_x="-25.714285 : 516.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="16.595579 : 512.68342 : 1"
+       inkscape:vp_y="4.5227487e-14 : 880.1932 : 0"
+       inkscape:vp_z="566.21747 : 512.68342 : 1"
+       inkscape:persp3d-origin="291.40653 : 358.30308 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="341.53386"
+     inkscape:cy="504.91036"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1274"
+     inkscape:window-height="724"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4839"
+       visible="true"
+       enabled="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#000000;fill-opacity:1"
+       id="g4841"
+       inkscape:perspectiveID="#perspective10"
+       inkscape:corner0="-0.15569317 : 0.25667534 : 0 : 1"
+       inkscape:corner7="-0.35397047 : 0.11031397 : 0.027521454 : 1"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4851"
+         style="fill:#800000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="13"
+         d="M 342.08264,607.52464 L 441.98008,628.34767 L 447.05645,624.72464 L 349.15802,605.38291 L 342.08264,607.52464 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4843"
+         style="fill:#2b0000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="6"
+         d="M 342.08264,454.94233 L 342.08264,607.52464 L 349.15802,605.38291 L 349.15802,457.61725 L 342.08264,454.94233 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4853"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="11"
+         d="M 349.15802,457.61725 L 447.05645,433.4603 L 447.05645,624.72464 L 349.15802,605.38291 L 349.15802,457.61725 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4845"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="5"
+         d="M 342.08264,454.94233 L 441.98008,428.9353 L 447.05645,433.4603 L 349.15802,457.61725 L 342.08264,454.94233 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4849"
+         style="fill:#55ff55"
+         inkscape:box3dsidetype="14"
+         d="M 441.98008,428.9353 L 441.98008,628.34767 L 447.05645,624.72464 L 447.05645,433.4603 L 441.98008,428.9353 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path4847"
+         style="fill:#aa0000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="3"
+         d="M 342.08264,454.94233 L 441.98008,428.9353 L 441.98008,628.34767 L 342.08264,607.52464 L 342.08264,454.94233 z" />
+      <path
+         d="M 342.08264,454.94233 L 441.98008,428.9353 L 441.98008,628.34767 L 342.08264,607.52464 L 342.08264,454.94233 z"
+         inkscape:box3dsidetype="3"
+         style="fill:#00aa00;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4889"
+         sodipodi:type="inkscape:box3dside" />
+    </g>
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#ff0000"
+       id="g2441"
+       inkscape:perspectiveID="#perspective4935"
+       inkscape:corner0="0.41539711 : 0.28594276 : 0 : 1"
+       inkscape:corner7="0.13726231 : 0.070884553 : 0.21822361 : 1"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2451"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="13"
+         d="M 237.14285,610.01843 L 301.42857,628.07647 L 368.55482,613.28197 L 301.42788,600.15503 L 237.14285,610.01843 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2443"
+         style="fill:#353564;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="6"
+         d="M 237.14285,458.07647 L 237.14285,610.01843 L 301.42788,600.15503 L 301.42788,468.5099 L 237.14285,458.07647 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2453"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="11"
+         d="M 301.42788,468.5099 L 368.55482,454.62432 L 368.55482,613.28197 L 301.42788,600.15503 L 301.42788,468.5099 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2445"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="5"
+         d="M 237.14285,458.07647 L 301.42857,438.97479 L 368.55482,454.62432 L 301.42788,468.5099 L 237.14285,458.07647 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2449"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="14"
+         d="M 301.42857,438.97479 L 301.42857,628.07647 L 368.55482,613.28197 L 368.55482,454.62432 L 301.42857,438.97479 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path2447"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="3"
+         d="M 237.14285,458.07647 L 301.42857,438.97479 L 301.42857,628.07647 L 237.14285,610.01843 L 237.14285,458.07647 z" />
+    </g>
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g5077"
+       inkscape:perspectiveID="#perspective4935"
+       inkscape:corner0="1.1347558 : 0.18253396 : 0 : 1"
+       inkscape:corner7="1.0059685 : 0.13202079 : 0.012205786 : 1"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5087"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="13"
+         d="M 148.56665,556.4986 L 159.75584,557.80302 L 163.13437,557.67225 L 151.80612,556.38309 L 148.56665,556.4986 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5079"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="6"
+         d="M 148.56665,532.83633 L 148.56665,556.4986 L 151.80612,556.38309 L 151.80612,532.85534 L 148.56665,532.83633 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5089"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="11"
+         d="M 151.80612,532.85534 L 163.13437,532.64311 L 163.13437,557.67225 L 151.80612,556.38309 L 151.80612,532.85534 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5081"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="5"
+         d="M 148.56665,532.83633 L 159.75584,532.62159 L 163.13437,532.64311 L 151.80612,532.85534 L 148.56665,532.83633 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5085"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="14"
+         d="M 159.75584,532.62159 L 159.75584,557.80302 L 163.13437,557.67225 L 163.13437,532.64311 L 159.75584,532.62159 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path5083"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         inkscape:box3dsidetype="3"
+         d="M 148.56665,532.83633 L 159.75584,532.62159 L 159.75584,557.80302 L 148.56665,556.4986 L 148.56665,532.83633 z" />
+    </g>
+    <g
+       id="g2383"
+       style="fill:#ff0000"
+       transform="translate(-65.714285,18.571429)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473">
+      <path
+         d="M 103.84689,539.56053 L 122.28718,541.93634 L 225.38768,539.324 L 196.30865,537.62833 L 103.84689,539.56053 z"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4823" />
+      <path
+         d="M 103.84689,514.62193 L 103.84689,539.56053 L 196.30865,537.62833 L 196.30865,516.29125 L 103.84689,514.62193 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4825" />
+      <path
+         d="M 196.30865,516.29125 L 225.38768,514.82628 L 225.38768,539.324 L 196.30865,537.62833 L 196.30865,516.29125 z"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4827" />
+      <path
+         d="M 103.84689,514.62193 L 122.28718,512.56934 L 225.38768,514.82628 L 196.30865,516.29125 L 103.84689,514.62193 z"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4829" />
+      <path
+         d="M 122.28718,512.56934 L 122.28718,541.93634 L 225.38768,539.324 L 225.38768,514.82628 L 122.28718,512.56934 z"
+         style="fill:#666666;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4831" />
+      <path
+         d="M 103.84689,514.62193 L 122.28718,512.56934 L 122.28718,541.93634 L 103.84689,539.56053 L 103.84689,514.62193 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="path4833" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15.99999997;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="9.3877954"
+       y="547.22345"
+       id="text5049"
+       transform="scale(1.0377902,0.9635859)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5051"
+         x="9.3877954"
+         y="547.22345"
+         style="font-size:15.99999997">Beam source</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5053"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;-inkscape-font-specification:Sans;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion5055"><rect
+           id="rect5057"
+           width="22.857143"
+           height="67.14286"
+           x="118.57143"
+           y="595.2193" /></flowRegion><flowPara
+         id="flowPara5059" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5061"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;-inkscape-font-specification:Sans;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion5063"><rect
+           id="rect5065"
+           width="44.285713"
+           height="48.57143"
+           x="60"
+           y="626.64789" /></flowRegion><flowPara
+         id="flowPara5067" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="334.42856"
+       y="649.64789"
+       id="text5069"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5071"
+         x="334.42856"
+         y="649.64789"
+         style="font-size:20px">Water phantom</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:19.00000006;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="381.58408"
+       y="421.14798"
+       id="text5073"
+       transform="scale(0.9940092,1.0060269)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5075"
+         x="381.58408"
+         y="421.14798"
+         style="font-size:19.00000006">MWPC detector</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="56"
+       y="579.86218"
+       id="text5091"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5093"
+         x="56"
+         y="579.86218"
+         style="font-size:10px">Aluminium window</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 152.5,571.86218 C 152.5,571.86218 163,567.36218 163,559.86218 C 163,552.36218 162.5,557.86218 162.5,557.86218"
+       id="path5097"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       id="path5099"
+       d="M 152.5,571.86218 C 152.5,571.86218 163,567.36218 163,559.86218 C 163,552.36218 162.5,557.86218 162.5,557.86218"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1.00938725px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 163.5047,547.35748 L 257.9953,546.86688"
+       id="path5105"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.51624,540.61301 C 384.51624,541.61301 388.51624,540.61301 388.51624,540.61301"
+       id="path5257"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.97018236px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.65836,534.8563 L 387.86838,531.72549"
+       id="path5289"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.55842,537.71268 L 387.85347,537.02357"
+       id="path5293"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.55841,544.02951 L 388.31287,547.58991"
+       id="path5295"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       id="path5337"
+       d="M 368.55841,544.02951 L 388.31287,547.58991"
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 126.73301,644.46933 L 146.47599,649.82513 L 146.26596,624.4113"
+       id="path5415"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 146.79104,649.82513 L 165.48386,645.41447"
+       id="path5417"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="170.13545"
+       y="655.26257"
+       id="text5421"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5423"
+         x="170.13545"
+         y="655.26257">z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="112.13546"
+       y="653.26257"
+       id="text5425"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5427"
+         x="112.13546"
+         y="653.26257">x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="140.13545"
+       y="614.26257"
+       id="text5429"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5431"
+         x="140.13545"
+         y="614.26257">y</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 304.16405,436.30704 L 235.67446,456.32708 L 235.32323,612.62385 L 303.49127,631.64679 L 304.16405,436.30704 z"
+       id="path5433"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 360.88713,451.8909 C 362.48092,452.16396 366.68694,452.01277 368.65743,451.02753 C 369.53978,450.58635 370.70049,450.84053 371.67921,450.59585 L 370.38416,615.06713 L 366.49901,614.63545"
+       id="path5439"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
+       x="185"
+       y="436.36218"
+       id="text5455"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473"><tspan
+         sodipodi:role="line"
+         id="tspan5457"
+         x="185"
+         y="436.36218"
+         style="font-size:12px">Plexi-glas</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 304.18069,436.20129 L 372.17203,450.78297"
+       id="path5470"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 372.17203,450.44387 C 372.11551,450.44387 372.05899,450.44387 372.17203,450.44387 z"
+       id="path5472"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 357.25124,451.63075 L 372.17203,450.95253"
+       id="path5474"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 303.33292,631.86713 L 370.30693,614.91169"
+       id="path5476"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 315,608.36218 C 315,608.36218 308,643.36218 330,645.36218 C 352,647.36218 333,645.36218 333,645.36218"
+       id="path5484"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.81720495px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 214.71685,442.27078 C 214.71685,442.27078 224.54533,499.59152 228.13607,505.77152 C 235.47088,518.39539 235.36293,514.60605 235.36293,514.60605"
+       id="path5486"
+       sodipodi:nodetypes="csc"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 464,428.36218 C 464,428.36218 471,461.36218 444,483.36218 C 417,505.36218 441,486.36218 441,486.36218"
+       id="path5488"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/simsetup.png"
+       inkscape:export-xdpi="520.03473"
+       inkscape:export-ydpi="520.03473" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.71366149px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 449.84915,522.59506 L 449.84915,543.15359 L 473.62214,543.29939 L 473.91205,550.44385 L 495.36572,532.80142 L 473.91206,513.84674 L 472.75239,522.59506 L 449.84914,522.59506"
+       id="path2596"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.71366149px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 298.44977,428.12046 L 319.0083,428.12046 L 319.1541,404.34747 L 326.29856,404.05756 L 308.65612,382.60389 L 289.70145,404.05755 L 298.44977,405.21722 L 298.44977,428.12047"
+       id="path2598"
+       sodipodi:nodetypes="cccccccc" />
+  </g>
+</svg>

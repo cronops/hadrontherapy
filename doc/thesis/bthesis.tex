@@ -374,15 +374,21 @@ IAEA benchmark}
 
 Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below.
 
-In order to calulcate the bragg-peak for the beam in water the ionizing effect of the other elements in the experimental setup also had to be accounted for. Below are the water equivalents for the other parts of the measurement. It is notable that the water-equivalent is considerably different for the to differnd 400Meent beam-strengths.
+In order to calulcate the bragg-peak for the beam in water the ionizing effect of the other elements in the experimental setup also had to be accounted for by E. Haettner by converting other sources of ionization into the similar water-equivalent (WE). Below are the water equivalents as e.haettner has approximated them in her work. It is notable that the water-equivalents differ considerably for the two beam.strengths.
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/haettnersetup}[h]  
+\includegraphics[width=0.9\textwidth]{images/haettnersetup.png}[h]  
 \caption{\label{fig:haettnersetup} E.Haettner's experimental setup. The beam arrives at the experimental setup after traveling 10m from the last focuing magnets, thus it may be considered paralell at the time of entering the first detector.}
  \end{center}
  \end{figure}
 
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/SimSetup.png}[h]  
+\caption{\label{fig:SimSetup} the used simulation-setup (not in scale).}
+ \end{center}
+ \end{figure}
 
 \begin{table}[h]
 \begin{tabular}{llllll}
@@ -395,20 +401,26 @@ In order to calulcate the bragg-peak for the beam in water the ionizing effect o
 \textbf{TOTAL}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
 \end{tabular} 
 \end{table}
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner found that the FWHM of the beam varied according to the water-depth according to the following graph
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the following relation for the depth in water and the FWHM of the beam.
 
-%fixme, insert emma 4.8 here
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/haettner48.png}[h]  
+\caption{\label{fig:haettner48} Haettner's experimental measurements of the relation between the depth in water and FWHM of different nucleons.}
+ \end{center}
+ \end{figure}
 
-For this paper the beam will be simulated as starting just before the first detector, here the FWHM is ... . Assuming the beam is of gaussian distribution it means the beam ill be randomly picked from the standard deviation of .. according to the formula $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ .
+In this simulation the beam is reproduced (at the beam source in ~\ref{fig:SimSetup} as it is according to E.Haettner when leaving the start-detector. This means The beam will at its origin in the simulation have an FWHM of 4mm. And gaussian FWHM of 4mm is equivalent to a standard deviation of 9.42mm according to the rekation $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ . %perhaps the mwpc should be accounted for or simulated?
 
-\subsubsection{Beam shape - Thin-target experiment}
-E.Haettner analyzed the beams scattering in two different experiments, first using no water-target and three different distances, and later with variable water thicknesses. When no water is used the paralell beam is scattered solely by the aluminium and air along its path. The three used distances were 0, 1 and 3 meters from the initial aluminium beam-window.
+\subsubsection{Beam shape}
+E.Haettner analyzed the beams scattering in two different experiments, first using no water-target and three different distances, and later with variable water thicknesses. When no water is used the paralell beam is scattered solely by the aluminium and air along its path. For the characterization of the beam with no water-phantom three distances were used, they were 0, 1 and 3 meters from the initial aluminium beam-window.
 
-This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with an emtpy 10x10x1cm phantom that registers upon entry the displacement in the x and y directions of the incoming particles at impact and then removes the particles from the simulation. Different types of particles may be visualized.s
+This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with 10x10x1cm body with no physical density but with the logical function to register particles upon entry by their type and displacement. After the particles have been registered upon entry in the volume they are removed from the simulation.
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg Curve of the beam the previous experiment will be augemented with the following components.
+In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of ... cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the water-phantom was presented as 400 logical ``slices''. The bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
+
 
 
 
