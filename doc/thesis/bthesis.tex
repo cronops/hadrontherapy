@@ -323,7 +323,7 @@ The major free parameter of the INCL code is the stopping-time; the time before 
 
 A further discussion of the theoretical basis of the Liège INC model and INCL code is available in references ~\cite{PhysRevC.66.044615,iia}.
 
-\begin{figure} 
+\begin{figure}[ht]
 \begin{center}
 \includegraphics[width=0.3\textwidth]{images/inclPotential.png}  
 \caption{\label{fig:inclpotential} Schematic of the potential model used by the INCL-model.}
@@ -393,15 +393,15 @@ In order to calulcate the bragg-peak for the beam in water the ionizing effect o
 \begin{table}[h]
 \begin{tabular}{llllll}
  & \textbf{200MeV} & & \textbf{400 MeV} & & \\
- &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{WE} \\
-\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027cm\\
-\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.092cm\\
-\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.478cm\\
-\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
-\textbf{TOTAL}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
+ &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE} \\
+\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027 $g/cm^2$&0.027cm\\
+\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.109 $g/cm^2$&0.092cm\\
+\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.476 $g/cm^2$&0.478cm\\
+\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04 $g/cm^2$&8.04cm\\
+\textbf{TOTAL}& &27.47 $g/cm^2$& 27.46 cm& &8.65 $g/cm^2$&8.64cm\\
 \end{tabular} 
 \end{table}
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the following relation for the depth in water and the FWHM of the beam.
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam.
 
 \begin{figure}[h] 
 \begin{center}
@@ -420,7 +420,7 @@ This experiment can be reproduced as a thin-target simulation where the beam pas
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of ... cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the water-phantom was presented as 400 logical perpendicularily to the beam placed ``slices''. The bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
+In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the water-phantom was presented as 400 logical perpendicularily to the beam placed ``slices''. The bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
 
 
 
