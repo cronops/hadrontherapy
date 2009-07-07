@@ -48,12 +48,36 @@
 /physic/setCuts 0.01 mm
 /Step/waterPhantomStepMax 0.01 mm 
 
+
+#########################
+#200MeV case
+/analysis/setAnalysisFile DoseDistributionphoton.root
+/gun/particle gamma
+/beam/energy/meanEnergy 18 MeV
+#/beam/energy/sigmaEnergy 400 keV
+/beam/position/Xposition -1 mm
+#/run/beamOn 5000
+#testrun
+/run/beamOn 100
+
+#########################
+#200MeV case
+/analysis/setAnalysisFile DoseDistributionProton.root
+/gun/particle proton
+/beam/energy/meanEnergy 135 MeV
+#/beam/energy/sigmaEnergy 400 keV
+/beam/position/Xposition -1 mm
+#/run/beamOn 5000
+#testrun
+/run/beamOn 100
+
 #########################
 #200MeV case
 /analysis/setAnalysisFile DoseDistribution400MeV.root
 /gun/particle He3
+#/gun/particle C12
 /beam/energy/meanEnergy 400 MeV
-/beam/energy/sigmaEnergy 400 keV
+#/beam/energy/sigmaEnergy 400 keV
 /beam/position/Xposition -1 mm
 #/run/beamOn 5000
 #testrun
@@ -63,9 +87,9 @@
 #400MeV case
 /analysis/setAnalysisFile DoseDistribution200MeV.root
 /gun/particle He3
-/beam/energy/meanEnergy 200 MeV
-/beam/energy/sigmaEnergy 400 keV
-/beam/position/Xposition -1 mm
+/beam/energy/meanEnergy 254 MeV
+#/beam/energy/sigmaEnergy 400 keV
+/beam/position/Xposition -1 mm #chk, z-position
 #/run/beamOn 5000
 #testrun
 /run/beamOn 100
