@@ -1,0 +1,110 @@
+# G.Danielsen benchmark for IAEA carbon treatment beamline
+
+#########################
+# Set of the verboses 
+#
+/control/verbose 1
+/tracking/verbose 0
+/run/verbose 1
+/event/verbose 0
+
+##########################
+# Set of the physic models
+#
+/physic/addPhysics emstandard_opt3                     # Electromagnetic model
+/physic/addPhysics elastic                             # Hadronic elastic model
+/physic/addPhysics binary                              # Hadronic inelastic model
+/physic/addPhysics local_ion_ion_inelastic             # Hadronic inelastic model for ions (local physic list)
+
+##########################
+# Initialisation procedure
+#
+/run/initialize
+
+##########################
+# Visualisation 
+#
+#/vis/scene/create
+#/vis/open OGLIX
+#/vis/viewer/flush
+#/vis/viewer/set/viewpointThetaPhi 30 140 deg
+#/vis/viewer/zoom 1
+#/vis/viewer/pan -10  0 cm
+#/tracking/storeTrajectory 1
+#/vis/scene/endOfEventAction accumulate
+#/vis/viewer/update
+
+##########################
+# Set here the cut and the step max for the tracking. 
+# Suggested values of cut and step:
+#
+/physic/setCuts 0.01 mm
+/Step/waterPhantomStepMax 0.01 mm 
+
+
+#########################
+#200MeV case
+/analysis/setAnalysisFile iaeaBenchmark200.root
+#beam characterization
+/gun/particle C12
+/beam/energy/meanEnergy 200 MeV
+/beam/energy/sigmaEnergy 0 keV
+/beam/position/Zposition -0.1 mm
+/beam/FWHM 4 mm
+#/run/beamOn 5000
+#testrun
+/run/beamOn 100
+
+
+#########################
+#400MeV case
+/analysis/setAnalysisFile iaeaBenchmark400.root
+#beam characterization
+/gun/particle C12
+/beam/energy/meanEnergy 400 MeV
+/beam/energy/sigmaEnergy 0 keV
+/beam/position/Zposition -0.1 mm
+/beam/FWHM 4 mm
+
+#Beampipe window
+/iaea/addLayer w
+/iaea/setLayerWidth w 0.1 mm
+/iaea/setLayerMaterial w Al
+/iaea/setLayerPosition w 0 mm
+
+#First ionization chamber
+/iaea/addLayer IC1
+/iaea/setLayerWidth IC1 13.5 mm
+/iaea/setLayerMaterial IC1 Air
+/iaea/setLayerPosition IC1 34 mm
+
+#Phantom (water)
+/iaea/addLayer phantom
+/iaea/setLayerWidth phantom 400 mm
+/iaea/setLayerMaterial phantom Water
+/iaea/setLayerPosition phantom 89.9 cm
+
+#Second ionization chamber
+/iaea/addLayer IC2
+/iaea/setLayerWidth IC2 3.7 cm
+/iaea/setLayerMaterial IC2 Air
+/iaea/setLayerPosition IC2 99.2 cm
+
+#MWPC
+#/iaea/addLayer MWPC
+#/iaea/setLayerWidth MWPC 10.8 cm
+#/iaea/setLayerMaterial IC2 Air
+#/iaea/setLayerPosition IC2 102 cm #chk and fix
+
+#Telescope detector
+#/iaea/addLayer det
+#/iaea/setLayerWidth det 0 cm #fix
+#/iaea/setLayerMaterial det Air
+#/iaea/setLayerPosition det 116.5 cm #chk and fix
+
+#/run/beamOn 5000
+#testrun
+for(waterThickness = 0 mm to 150mm)
+#/iaea/setHistoParameter waterThickness
+/run/beamOn 100
+end
