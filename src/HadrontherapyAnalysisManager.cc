@@ -527,6 +527,7 @@ void HadrontherapyAnalysisManager::flush()
 #ifdef G4ROOTANALYSIS_USE
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
+  TTntuple->Write();
   theTFile->Write();
   theTFile->Clear();
   theTFile->Close();

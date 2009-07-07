@@ -323,7 +323,7 @@ The major free parameter of the INCL code is the stopping-time; the time before 
 
 A further discussion of the theoretical basis of the Liège INC model and INCL code is available in references ~\cite{PhysRevC.66.044615,iia}.
 
-\begin{figure} 
+\begin{figure}[ht]
 \begin{center}
 \includegraphics[width=0.3\textwidth]{images/inclPotential.png}  
 \caption{\label{fig:inclpotential} Schematic of the potential model used by the INCL-model.}
@@ -393,15 +393,15 @@ In order to calulcate the bragg-peak for the beam in water the ionizing effect o
 \begin{table}[h]
 \begin{tabular}{llllll}
  & \textbf{200MeV} & & \textbf{400 MeV} & & \\
- &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{WE} \\
-\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027cm\\
-\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.092cm\\
-\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.478cm\\
-\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
-\textbf{TOTAL}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04cm\\
+ &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE} \\
+\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027 $g/cm^2$&0.027cm\\
+\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.109 $g/cm^2$&0.092cm\\
+\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.476 $g/cm^2$&0.478cm\\
+\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04 $g/cm^2$&8.04cm\\
+\textbf{TOTAL}& &27.47 $g/cm^2$& 27.46 cm& &8.65 $g/cm^2$&8.64cm\\
 \end{tabular} 
 \end{table}
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the following relation for the depth in water and the FWHM of the beam.
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam.
 
 \begin{figure}[h] 
 \begin{center}
@@ -410,16 +410,17 @@ The beam is considered a pen-shaped beam. Haettner has performed several measurm
  \end{center}
  \end{figure}
 
-In this simulation the beam is reproduced (at the beam source in ~\ref{fig:SimSetup} as it is according to E.Haettner when leaving the start-detector. This means The beam will at its origin in the simulation have an FWHM of 4mm. And gaussian FWHM of 4mm is equivalent to a standard deviation of 9.42mm according to the rekation $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ . %perhaps the mwpc should be accounted for or simulated?
-
 \subsubsection{Beam shape}
+
+In this simulation the beam is reproduced at the beam source (see ~\ref{fig:SimSetup}) as measured by Haettner with no phantom and zero distance from start detector to MWPC-detector. This means that all scattering will have been produced by the air in the IC or by the aluminium foil window. The beam will thus at its origin in the simulation have an FWHM of 4mm as per E.Haettner 4.7. A gaussian FWHM of 4mm is equivalent to a standard deviation of 9.42mm according to the relation $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$ . %perhaps the mwpc should be accounted for or simulated?
+
 E.Haettner analyzed the beams scattering in two different experiments, first using no water-target and three different distances, and later with variable water thicknesses. When no water is used the paralell beam is scattered solely by the aluminium and air along its path. For the characterization of the beam with no water-phantom three distances were used, they were 0, 1 and 3 meters from the initial aluminium beam-window.
 
 This experiment can be reproduced as a thin-target simulation where the beam passes through 0.1 mm of aluminium and is then recorder at the three different distances. This was done by simulating Haettner's MWPC detector with 10x10x1cm body with no physical density but with the logical function to register particles upon entry by their type and displacement. After the particles have been registered upon entry in the volume they are removed from the simulation.
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of ... cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the water-phantom was presented as 400 logical ``slices''. The bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
+In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the water-phantom was presented as 400 logical perpendicularily to the beam placed ``slices''. The bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
 
 
 
