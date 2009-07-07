@@ -66,6 +66,7 @@
 
 #include "HadrontherapyGeometryController.hh"
 #include "HadrontherapyGeometryMessenger.hh"
+#include "G4ScoringManager.hh"
 
 #ifdef G4UI_USE_XM
 #include "G4UIXm.hh"
@@ -83,6 +84,7 @@ int main(int argc ,char ** argv)
 
 
   G4RunManager* runManager = new G4RunManager;
+
   //Initialize possible analysis needs, needs to come early in order to pick up metadata
 #ifdef ANALYSIS_USE
   HadrontherapyAnalysisManager* analysis = 
@@ -93,9 +95,14 @@ int main(int argc ,char ** argv)
   // Initialize the geometry user interface
   HadrontherapyGeometryController *geometryController = new HadrontherapyGeometryController();
   HadrontherapyGeometryMessenger *geometryMessenger = new HadrontherapyGeometryMessenger(geometryController);
+  G4ScoringManager *scoringManager = G4ScoringManager::GetScoringManager();
+  //  scoringManager->SetScoreWriter(new HadrontherapyScoreWriter());
 
   // Initialize the default Hadrontherapy geometry
   geometryController->SetGeometry("default");
+
+  // Initialize command based scoring
+  G4ScoringManager::GetScoringManager();
 
   // Initialize the physics 
   runManager -> SetUserInitialization(new HadrontherapyPhysicsList());
