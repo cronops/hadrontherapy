@@ -59,6 +59,9 @@ getPK:
 run:
 	$(G4WORKDIR)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
 
+iaea:
+	$(G4WORKDIR)/bin/$(G4SYSTEM)/Hadrontherapy iaea.mac
+
 r: # run in AH environment
 	$(G4INSTALL)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
 
