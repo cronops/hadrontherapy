@@ -83,7 +83,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 #endif
   // Electromagnetic and hadronic processes of primary particles in the phantom
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
-    (aStep -> GetTrack() -> GetVolume() -> GetName() == "phantomPhys") &&
+    (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&
     (aStep -> GetPostStepPoint() -> GetProcessDefinedStep() != NULL))
 	    {
 	      G4String process = aStep -> GetPostStepPoint() -> 
