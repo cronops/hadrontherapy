@@ -46,7 +46,7 @@
 exfor:
 	root macro/readExfor.C
 pushAH:
-	git push git@github.com:aatos/hadront	herapy.git
+	git push git@github.com:aatos/hadrontherapy.git
 
 pushGD:
 	git push git@github.com:Gillis/hadrontherapy.git
