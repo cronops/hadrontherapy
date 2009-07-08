@@ -209,7 +209,7 @@ void IAEADetectorConstruction::ConstructDetector()
   // NewDetector
   //-----------
   G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
-  G4Box* NewDetector = new G4Box("NewDetector",20.*cm,20.*cm,20.*cm);
+  G4Box* NewDetector = new G4Box("NewDetector",20.*cm,20.*cm,3.7*cm);
   NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,
 					      NewDetectorMaterial,
 					      "NewDetectorLog",
