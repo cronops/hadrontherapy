@@ -83,20 +83,28 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 #endif
 
     if( aStep->GetTrack()->GetVolume()->GetName() == "NewDetectorPhys"){
-      G4cout <<"Now in NewDetectorPhys" << G4endl;
+      //G4cout <<"Now in NewDetectorPhys" << G4endl;
       G4String secondaryParticleName =  aStep->GetTrack()->GetDefinition() -> GetParticleName();  
-      G4cout <<"Particle: " << secondaryParticleName << G4endl;
+      //G4cout <<"Particle: " << secondaryParticleName << G4endl;
       G4double secondaryParticleKineticEnergy =  aStep->GetTrack()->GetKineticEnergy();     
-      G4cout <<"Energy: " << secondaryParticleKineticEnergy << G4endl;
+      //G4cout <<"Energy: " << secondaryParticleKineticEnergy << G4endl;
 #ifdef ANALYSIS_USE
 	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
-
-	if(secondaryParticleName == "proton" || secondaryParticleName == "deuteron" || secondaryParticleName == "triton") {
+	//There is a bunch of stuff recorded with the energy 0, something should perhaps be done about this.
+	if(secondaryParticleName == "proton") {
 	  analysis->hydrogenEnergy(secondaryParticleKineticEnergy / MeV);
 	}
-
-	if(secondaryParticleName == "alpha" || secondaryParticleName == "He3") {
-	  analysis->heliumEnergy(secondaryParticleKineticEnergy / MeV);
+	if(secondaryParticleName == "deuteron") {
+	  analysis->heliumEnergy((secondaryParticleKineticEnergy/2) / MeV);
+	}
+	if(secondaryParticleName == "triton") {
+	  analysis->heliumEnergy((secondaryParticleKineticEnergy/3) / MeV);
+	}
+	if(secondaryParticleName == "alpha") {
+	  analysis->heliumEnergy((secondaryParticleKineticEnergy/4) / MeV);
+	}
+	if(secondaryParticleName == "He3"){
+	  analysis->heliumEnergy((secondaryParticleKineticEnergy/3) / MeV);		
 	}
 #endif
 
@@ -104,6 +112,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
       }
 
   // Electromagnetic and hadronic processes of primary particles in the phantom
+  //setting phantomPhys correctly will break something here fix
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
     (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&
     (aStep -> GetPostStepPoint() -> GetProcessDefinedStep() != NULL))
