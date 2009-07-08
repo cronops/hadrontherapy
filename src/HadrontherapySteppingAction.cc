@@ -95,10 +95,10 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	  analysis->hydrogenEnergy(secondaryParticleKineticEnergy / MeV);
 	}
 	if(secondaryParticleName == "deuteron") {
-	  analysis->heliumEnergy((secondaryParticleKineticEnergy/2) / MeV);
+	  analysis->hydrogenEnergy((secondaryParticleKineticEnergy/2) / MeV);
 	}
 	if(secondaryParticleName == "triton") {
-	  analysis->heliumEnergy((secondaryParticleKineticEnergy/3) / MeV);
+	  analysis->hydrogenEnergy((secondaryParticleKineticEnergy/3) / MeV);
 	}
 	if(secondaryParticleName == "alpha") {
 	  analysis->heliumEnergy((secondaryParticleKineticEnergy/4) / MeV);
