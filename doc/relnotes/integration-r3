@@ -2,6 +2,13 @@ Release notes for integration-r3
 
 New features:
 - Beam plots
+- The first version of the IAEA benchmark geometry
 
 Bugfixes:
 - HadrontherapySteppingAction: Fixed the name of the phantom solid name.
+- Fixed the initialization of the histograms and analysis objects
+  (HadrontherapyAnalysisManager::book() was not called properly)
+
+Unresolved issues:
+- "Warning! Unknown proton process: ionIoni" error message produced by
+  the HadrontherapySteppingManager
