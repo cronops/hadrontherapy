@@ -81,6 +81,28 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 		aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
 		}
 #endif
+
+    if( aStep->GetTrack()->GetVolume()->GetName() == "NewDetectorPhys"){
+      G4cout <<"Now in NewDetectorPhys" << G4endl;
+      G4String secondaryParticleName =  aStep->GetTrack()->GetDefinition() -> GetParticleName();  
+      G4cout <<"Particle: " << secondaryParticleName << G4endl;
+      G4double secondaryParticleKineticEnergy =  aStep->GetTrack()->GetKineticEnergy();     
+      G4cout <<"Energy: " << secondaryParticleKineticEnergy << G4endl;
+#ifdef ANALYSIS_USE
+	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
+
+	if(secondaryParticleName == "proton" || secondaryParticleName == "deuteron" || secondaryParticleName == "triton") {
+	  analysis->hydrogenEnergy(secondaryParticleKineticEnergy / MeV);
+	}
+
+	if(secondaryParticleName == "alpha" || secondaryParticleName == "He3") {
+	  analysis->heliumEnergy(secondaryParticleKineticEnergy / MeV);
+	}
+#endif
+
+	aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+      }
+
   // Electromagnetic and hadronic processes of primary particles in the phantom
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
     (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&
@@ -119,22 +141,6 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
     { 
       G4String volumeName = (*fSecondary)[lp1] -> GetVolume() -> GetName(); 
  
-      if(volumeName == "NewDetectorPhys") {
-	G4String secondaryParticleName =  (*fSecondary)[lp1]->GetDefinition() -> GetParticleName();  
-	G4double secondaryParticleKineticEnergy =  (*fSecondary)[lp1] -> GetKineticEnergy();     
-
-#ifdef ANALYSIS_USE
-	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
-
-	if(secondaryParticleName == "alpha" || secondaryParticleName == "He3") {
-	  analysis->heliumEnergy(secondaryParticleKineticEnergy / MeV);
-	}
-#endif
-
-	aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
-	continue;
-      }
-
       if (volumeName == "phantomPhys")
 	{
 #ifdef ANALYSIS_USE   
