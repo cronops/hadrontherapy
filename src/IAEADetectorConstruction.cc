@@ -151,17 +151,26 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   //----------------------------------------
 
   G4Material* waterNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", isotopes);
-  G4Box* phantom = new G4Box("Phantom",20 *cm, 20 *cm, 20 *cm);
+  G4Box* phantom = new G4Box("Phantom",20 *cm, 20 *cm, 27.9 *cm);
   G4LogicalVolume* phantomLogicalVolume = new G4LogicalVolume(phantom,	
 							      waterNist, 
 							      "phantomLog", 0, 0, 0);
   
-  phantomPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(200.*mm, 0.*mm, 0.*mm),
+  phantomPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(57.7*mm, 0.*mm, 0.*mm),
 					    "phantomPhys",
 					    phantomLogicalVolume,
 					    physicalTreatmentRoom,
 					    false,0);
-
+  //----------------------------------------
+  // NewDetector:
+  // A box used to simulate the end detector
+  //----------------------------------------
+  G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", isotopes);
+  G4Box* NewDetector = new G4Box("NewDetector",1 *cm, 20 *cm, 27.9 *cm);
+  G4LogicalVolume* NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,	
+							      NewDetectorMaterial, 
+							      "NewDetectorLog", 0, 0, 0); 
+  
   // Visualisation attributes of the patient
   red = new G4VisAttributes(G4Colour(255/255., 0/255. ,0/255.));
   red -> SetVisibility(true);
@@ -198,6 +207,24 @@ void IAEADetectorConstruction::ConstructDetector()
   skyBlue -> SetForceSolid(true);
 
   detectorLogicalVolume -> SetVisAttributes(skyBlue);
+  
+  //-----------
+  // NewDetector
+  //-----------
+  G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
+  G4Box* NewDetector = new G4Box("NewDetector",detectorSizeX,detectorSizeY,detectorSizeZ);
+  NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,
+					      NewDetectorMaterial,
+					      "NewDetectorLog",
+					      0,0,0);
+						  
+  NewDetectorPhysicalVolume = new G4PVPlacement(0,
+					     G4ThreeVector(856.*mm, 0.0 *mm, 0.0 *mm),
+					     "NewDetectorPhys",
+					     NewDetectorLogicalVolume,
+					     physicalTreatmentRoom,
+					     false,0);
+  
   
   // **************
   // Cut per Region
