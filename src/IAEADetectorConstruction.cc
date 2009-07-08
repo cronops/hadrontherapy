@@ -165,11 +165,8 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   // NewDetector:
   // A box used to simulate the end detector
   //----------------------------------------
-  G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", isotopes);
-  G4Box* NewDetector = new G4Box("NewDetector",1 *cm, 20 *cm, 27.9 *cm);
-  G4LogicalVolume* NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,	
-							      NewDetectorMaterial, 
-							      "NewDetectorLog", 0, 0, 0); 
+  //G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", isotopes);
+  //G4Box* NewDetector = new G4Box("NewDetector",1 *cm, 20 *cm, 27.9 *cm);
   
   // Visualisation attributes of the patient
   red = new G4VisAttributes(G4Colour(255/255., 0/255. ,0/255.));
