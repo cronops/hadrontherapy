@@ -149,6 +149,9 @@ public:
   void heliumEnergy(G4double secondaryParticleKineticEnergy);
   ///< Energy distribution of the helium (He3 and alpha) particles after the phantom
 
+  void hydrogenEnergy(G4double secondaryParticleKineticEnergy);
+  ///< Energy distribution of the hydrogen (proton, d, t) particles after the phantom
+
   void genericIonInformation(G4int, G4double, G4int, G4double);
 
   void ThintargetBeamDisp(G4double,G4double);
@@ -211,6 +214,7 @@ private:
   TH1F *th13;
   TH1F *th14;
   TH1F *th15;
+  TH1F *th16;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
   TNtuple *TTntuple; //beam dcattering measurements
