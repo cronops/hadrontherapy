@@ -119,6 +119,22 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
     { 
       G4String volumeName = (*fSecondary)[lp1] -> GetVolume() -> GetName(); 
  
+      if(volumeName == "NewDetectorPhys") {
+	G4String secondaryParticleName =  (*fSecondary)[lp1]->GetDefinition() -> GetParticleName();  
+	G4double secondaryParticleKineticEnergy =  (*fSecondary)[lp1] -> GetKineticEnergy();     
+
+#ifdef ANALYSIS_USE
+	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
+
+	if(secondaryParticleName == "alpha" || secondaryParticleName == "He3") {
+	  analysis->heliumEnergy(secondaryParticleKineticEnergy / MeV);
+	}
+#endif
+
+	aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+	continue;
+      }
+
       if (volumeName == "phantomPhys")
 	{
 #ifdef ANALYSIS_USE   

@@ -65,7 +65,8 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
 #ifdef G4ROOTANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   AnalysisFileName("DoseDistribution.root"),theTFile(0), th1(0), th2(0), th3(0),
-  th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), theROOTNtuple(0),
+  th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), th15(0),
+  theROOTNtuple(0),
   theROOTIonTuple(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
@@ -147,6 +148,9 @@ delete(fMess); //kill the messenger
   delete TTntuple; //GDADD
   TTntuple = 0;
   
+  delete th14;
+  th14 = 0;
+
   delete th14;
   th14 = 0;
 
@@ -285,6 +289,7 @@ void HadrontherapyAnalysisManager::book()
   th12 = createHistogram1D("h120","Energy distribution of secondary deuterons", 70, 0., 70.);
   th13 = createHistogram1D("h130","Energy distribution of secondary tritons", 70, 0., 70.);
   th14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
+  th15 = createHistogram1D("heliumEnergyAfterPhantom","Energy distribution of secondary helium fragments after the phantom", 500, 0., 500.);
 
   TTntuple = new TNtuple("ThinTargetBeam","Thin-target beam-measurement x-axis", "x/F:y/F");
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
@@ -472,6 +477,14 @@ void HadrontherapyAnalysisManager::alphaEnergyDistribution(G4double energy)
   th14->Fill(energy);
 #endif
 }
+/////////////////////////////////////////////////////////////////////////////
+void HadrontherapyAnalysisManager::heliumEnergy(G4double secondaryParticleKineticEnergy)
+{
+#ifdef G4ROOTANALYSIS_USE
+  th15->Fill(secondaryParticleKineticEnergy);
+#endif
+}
+
 //GDADD
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::ThintargetBeamDisp(G4double dx, G4double dy)
