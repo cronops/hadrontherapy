@@ -43,6 +43,8 @@
 #    Use git add/rm or, in case of a beginner: git gui to fix the commit
 #    git commit --amend   (replaces the latest commit with a new one)
 
+exfor:
+	root macro/readExfor.C
 pushAH:
 	git push git@github.com:aatos/hadrontherapy.git
 
