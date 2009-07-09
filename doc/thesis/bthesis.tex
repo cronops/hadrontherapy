@@ -450,7 +450,9 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 \subsubsection{Beam shape}
 
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beams accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
+
+Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. However, this error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
 
 In this simulation the beam is reproduced at the beam source (see ~\ref{fig:SimSetup}) as measured by Haettner with no phantom and zero distance from start detector to the last detector. The beam is measured right after the beam-source window. The beam-source itself is assumed to produce a paralell beam. The first source of scattering the beam is the aluminium window of the beam-source, but as this measurement is made right after the window it can be used to characterize the paralell beams width. However inspecting further measurements at 1 and 3 meters show the effects of scattering in the aluminium, detectors and air as a broadening beam. The scattering of the beam is considerably different depending on the energy of the beam.
 
