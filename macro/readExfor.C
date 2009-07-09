@@ -43,23 +43,30 @@ Float_t f1,f2,f3, f4,f5,f6;
    ntuple->Draw("Be:Energy","","l,Same");
    printf(" found %d points\n",nlines);
    //Let's pull in the monte carlo analysis results
+
+   TCanvas *mc = new TCanvas("c2", "Simulation");
    TFile *MCData = TFile::Open("IAEA.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 		//scale and plot
+   TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
+
    ScaleHelium = 1/(MC_helium->Integral());
    ScaleHydrogen = 1/(MC_hydrogen->Integral()); 
    //x should also be scaled to per nucleon
    
    MC_helium->Scale(ScaleHelium);
-   MC_helium->Draw("Same");
+   MC_helium->Draw("");
    printf("Scaled helium by %.9f\n",ScaleHelium);
 
    MC_hydrogen->Scale(ScaleHydrogen);
+   MC_hydrogen->SetLineColor(kRed);
    MC_hydrogen->Draw("Same");
    printf("Scaled hydrogen by %.9f\n",ScaleHydrogen));
    
-   
+TCanvas *fc = new TCanvas("fc", "Fragments");
+fragments->Draw("energy");
+
    in.close();
 
    f->Write();
