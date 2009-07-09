@@ -45,19 +45,23 @@
 
 ##########################
 # Set here the cut and the step max for the tracking. 
-# Suggested values of cut and step:
+# Suggested values of cut and step is 0.01 mm:
 #
-/physic/setCuts 1 cm #changed from .01mm
-/Step/waterPhantomStepMax 1 cm #changed from .01mm 
+/physic/setCuts 1 cm
+#/physic/setCuts 0.01 mm
+/Step/waterPhantomStepMax 1 cm
+#/Step/waterPhantomStepMax 0.01 mm 
+
 
 #########################
 # Set the primary particle type,
 # energy and position along the X direction
 #
 /gun/particle ion
-/gun/ion 6 12 6
+/gun/ion 6 12 6     # Carbon-12
+
 /beam/energy/meanEnergy 4800 MeV
-#/beam/energy/sigmaEnergy 400 keV
+/beam/energy/sigmaEnergy 24 MeV # dE/E = 5e-3
 /beam/position/Xposition -2700 mm
 
 
