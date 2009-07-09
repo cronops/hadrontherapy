@@ -118,8 +118,8 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   //------------------------------
   // Treatment room sizes
   const G4double worldX = 400.0 *cm;
-  const G4double worldY = 400.0 *cm;
-  const G4double worldZ = 400.0 *cm;
+  const G4double worldY = 100.0 *cm;
+  const G4double worldZ = 100.0 *cm;
   G4bool isotopes = false;
  
   G4Material* airNist =  G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", isotopes);
@@ -209,7 +209,7 @@ void IAEADetectorConstruction::ConstructDetector()
 					      0,0,0);
 						  
   NewDetectorPhysicalVolume = new G4PVPlacement(0,
-					     G4ThreeVector(856.*mm, 0.0 *mm, 0.0 *mm),
+					     G4ThreeVector(300.0 *cm, 0.0 *cm, 0.0 *cm),
 					     "NewDetectorPhys",
 					     NewDetectorLogicalVolume,
 					     physicalTreatmentRoom,
