@@ -67,7 +67,8 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   AnalysisFileName("DoseDistribution.root"),theTFile(0), th1(0), th2(0), th3(0),
   th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), th15(0), th16(0),
   theROOTNtuple(0),
-  theROOTIonTuple(0)
+  theROOTIonTuple(0),
+  fragmentNtuple(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
   debugi = 0;
@@ -139,6 +140,9 @@ delete(fMess); //kill the messenger
   aFact = 0;
 #endif
 #ifdef G4ROOTANALYSIS_USE
+  delete fragmentNtuple;
+  fragmentNtuple = 0;
+
   delete theROOTIonTuple;
   theROOTIonTuple = 0;
 
@@ -300,6 +304,7 @@ void HadrontherapyAnalysisManager::book()
   TTntuple = new TNtuple("ThinTargetBeam","Thin-target beam-measurement x-axis", "x/F:y/F");
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i/I:j/I:k/I:energy/F");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a/I:z/F:occupancy/I:energy/F");
+  fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A/I:Z/I:energy/F");
 #endif
 }
 
@@ -515,6 +520,14 @@ void HadrontherapyAnalysisManager::ThintargetBeamDisp(G4double dx, G4double dy)
 #endif
 }
 
+void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4int Z, G4double energy)
+{
+#ifdef G4ROOTANALYSIS_USE
+  G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
+  fragmentNtuple->Fill(A, Z, energy);
+#endif
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
 							 G4double z,
@@ -555,8 +568,9 @@ void HadrontherapyAnalysisManager::flush()
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
   TTntuple->Write();
+  fragmentNtuple->Write();
   theTFile->Write();
-  theTFile->Clear();
+  //  theTFile->Clear();
   theTFile->Close();
 #endif
   matrix->flush();
@@ -574,6 +588,7 @@ void HadrontherapyAnalysisManager::finish()
 #ifdef G4ROOTANALYSIS_USE
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
+  fragmentNtuple->Write();
   TTntuple->Write();
   theTFile->Write();
   theTFile->Close();

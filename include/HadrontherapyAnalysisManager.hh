@@ -152,6 +152,9 @@ public:
   void hydrogenEnergy(G4double secondaryParticleKineticEnergy);
   ///< Energy distribution of the hydrogen (proton, d, t) particles after the phantom
 
+  void fillFragmentTuple(G4int A, G4int Z, G4double energy);
+  ///< Energy ntuple
+
   void genericIonInformation(G4int, G4double, G4int, G4double);
 
   void ThintargetBeamDisp(G4double,G4double);
@@ -218,6 +221,7 @@ private:
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
   TNtuple *TTntuple; //beam dcattering measurements
+  TNtuple *fragmentNtuple; // fragments
 #endif
 };
 #endif

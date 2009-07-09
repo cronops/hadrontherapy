@@ -84,9 +84,23 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 
     if( aStep->GetTrack()->GetVolume()->GetName() == "NewDetectorPhys"){
       //G4cout <<"Now in NewDetectorPhys" << G4endl;
-      G4String secondaryParticleName =  aStep->GetTrack()->GetDefinition() -> GetParticleName();  
-      //G4cout <<"Particle: " << secondaryParticleName << G4endl;
+      G4ParticleDefinition *def = aStep->GetTrack()->GetDefinition();
       G4double secondaryParticleKineticEnergy =  aStep->GetTrack()->GetKineticEnergy();     
+      G4String particle = def->GetParticleType();
+      if(particle =="nucleus" || particle=="deuteron" || particle=="triton" || 
+	 particle=="He3" || particle=="alpha") {
+	G4int A = def->GetBaryonNumber();
+	G4int Z = def->GetPDGCharge();
+	G4double energy = secondaryParticleKineticEnergy / A / MeV;
+#ifdef G4ROOTANALYSIS_USE
+	HadrontherapyAnalysisManager* analysisMgr =  HadrontherapyAnalysisManager::getInstance();   
+	G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
+	analysisMgr->fillFragmentTuple(A, Z, energy);
+#endif
+      }
+
+      G4String secondaryParticleName =  def -> GetParticleName();  
+      //G4cout <<"Particle: " << secondaryParticleName << G4endl;
       //G4cout <<"Energy: " << secondaryParticleKineticEnergy << G4endl;
 #ifdef ANALYSIS_USE
 	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
