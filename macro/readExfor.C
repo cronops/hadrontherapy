@@ -13,7 +13,7 @@ void readExfor() {
    dir.ReplaceAll("/./","/");
    ifstream in;
 //in.open(Form("../data/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-in.open(Form("data/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
+in.open(Form("experimentalData/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
 Float_t f1,f2,f3, f4,f5,f6;
    Int_t nlines = 0;
    TFile *f = new TFile("basic.root","RECREATE");
