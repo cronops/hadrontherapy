@@ -34,11 +34,11 @@
 # Visualisation 
 #
 #/vis/scene/create
-#/vis/open OGLIX
+#/vis/open DAWNFILE
 #/vis/viewer/flush
-#/vis/viewer/set/viewpointThetaPhi 30 140 deg
-#/vis/viewer/zoom 1
-#/vis/viewer/pan -10  0 cm
+#/vis/viewer/set/viewpointThetaPhi 0 0 deg
+#/vis/viewer/zoom 0
+#/vis/viewer/pan 0  0 cm
 #/tracking/storeTrajectory 1
 #/vis/scene/endOfEventAction accumulate
 #/vis/viewer/update
@@ -52,7 +52,6 @@
 /Step/waterPhantomStepMax 1 cm
 #/Step/waterPhantomStepMax 0.01 mm 
 
-
 #########################
 # Set the primary particle type,
 # energy and position along the X direction
@@ -62,13 +61,14 @@
 
 /beam/energy/meanEnergy 4800 MeV
 /beam/energy/sigmaEnergy 24 MeV # dE/E = 5e-3
-/beam/position/Xposition -2700 mm
-
 
 #########################
 # Start of the run
 #
-/run/beamOn 5000
+#/run/beamOn 1
 
-#/beam/energy/meanEnergy 100 MeV
-#/run/beamOn 5
+/beam/position/Xposition -90 cm
+/beam/position/Yposition 0 cm
+/beam/position/Zposition 0 cm
+
+/run/beamOn 100
