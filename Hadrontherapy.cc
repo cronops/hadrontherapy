@@ -84,7 +84,7 @@ int main(int argc ,char ** argv)
   // Initialize the geometry
   if(argc > 1) {
     G4String iaeaFlag = argv[1];
-    if(iaeaFlag == "iaea.mac") {
+    if(iaeaFlag == "macro/iaea.mac" || iaeaFlag == "iaea.mac") {
       G4cout <<"Geometry for IAEA Benchmark" << G4endl;
       runManager -> SetUserInitialization(new IAEADetectorConstruction());
     } else {
