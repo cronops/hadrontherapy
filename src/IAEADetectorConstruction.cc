@@ -138,13 +138,6 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   // The treatment room is invisible in the Visualisation
   logicTreatmentRoom -> SetVisAttributes (G4VisAttributes::Invisible);
  
-  // The following lines construc a typical modulator wheel inside the Passive Beam line.
-  // Please remember to set the nodulator material (default is air, i.e. no modulator!) 
-  // in the HadrontherapyModulator.cc file
-  modulator = new HadrontherapyModulator();
-  modulator -> BuildModulator(physicalTreatmentRoom);
-
-
   //----------------------------------------
   // Phantom:
   // A box used to approximate tissues
