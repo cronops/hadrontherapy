@@ -97,7 +97,7 @@ public:
   /**
    * Set name for the analysis file .root (used by macro)
    */
-  void SetAnalysisFileName(G4String);
+  void SetanalysisFileName(G4String);
   
   /**
   * Fill the ntuple with the energy deposit in the phantom
@@ -177,7 +177,7 @@ private:
 private:
   static HadrontherapyAnalysisManager* instance;
   HadrontherapyAnalysisFileMessenger* fMess;
-  G4String AnalysisFileName;
+  G4String analysisFileName;
 #ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
   AIDA::ITree* theTree;

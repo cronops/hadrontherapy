@@ -55,7 +55,7 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 
 #ifdef G4ANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
-  AnalysisFileName("DoseDistribution.root"), aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
+  analysisFileName("DoseDistribution.root"), aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
   h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
   ionTuple(0)
 {
@@ -64,8 +64,8 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
 #endif
 #ifdef G4ROOTANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
-  AnalysisFileName("DoseDistribution.root"),theTFile(0), th1(0), th2(0), th3(0),
-  th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), th15(0), th16(0),
+  analysisFileName("DoseDistribution.root"),theTFile(0), histo1(0), histo2(0), histo3(0),
+  histo4(0), histo5(0), histo6(0), histo7(0), histo8(0), histo9(0), histo10(0), histo11(0), histo12(0), histo13(0), histo14(0), histo15(0), histo16(0),
   theROOTNtuple(0),
   theROOTIonTuple(0),
   fragmentNtuple(0),
@@ -153,53 +153,53 @@ delete(fMess); //kill the messenger
   delete theROOTNtuple;
   theROOTNtuple = 0;
   
-  delete th16;
-  th14 = 0;
+  delete histo16;
+  histo14 = 0;
 
-  delete th15;
-  th14 = 0;
+  delete histo15;
+  histo14 = 0;
 
-  delete th14;
-  th14 = 0;
+  delete histo14;
+  histo14 = 0;
 
-  delete th13;
-  th13 = 0;
+  delete histo13;
+  histo13 = 0;
 
-  delete th12;
-  th12 = 0;
+  delete histo12;
+  histo12 = 0;
 
-  delete th11;
-  th11 = 0;
+  delete histo11;
+  histo11 = 0;
 
-  delete th10;
-  th10 = 0;
+  delete histo10;
+  histo10 = 0;
 
-  delete th9;
-  th9 = 0;
+  delete histo9;
+  histo9 = 0;
 
-  delete th8;
-  th8 = 0;
+  delete histo8;
+  histo8 = 0;
 
-  delete th7;
-  th7 = 0;
+  delete histo7;
+  histo7 = 0;
 
-  delete th6;
-  th6 = 0;
+  delete histo6;
+  histo6 = 0;
 
-  delete th5;
-  th5 = 0;
+  delete histo5;
+  histo5 = 0;
 
-  delete th4;
-  th4 = 0;
+  delete histo4;
+  histo4 = 0;
 
-  delete th3;
-  th3 = 0;
+  delete histo3;
+  histo3 = 0;
 
-  delete th2;
-  th2 = 0;
+  delete histo2;
+  histo2 = 0;
 
-  delete th1;
-  th1 = 0;
+  delete histo1;
+  histo1 = 0;
 #endif
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -210,9 +210,9 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::getInstance()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void HadrontherapyAnalysisManager::SetAnalysisFileName(G4String aFileName)
+void HadrontherapyAnalysisManager::SetanalysisFileName(G4String aFileName)
 {
-  this->AnalysisFileName = aFileName;
+  this->analysisFileName = aFileName;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -229,7 +229,7 @@ void HadrontherapyAnalysisManager::book()
   std::string opts = "export=root";
 
   theTree = treeFact -> create(fileName,"hbook",false,true);
-  theTree = treeFact -> create(AnalysisFileName,"ROOT",false,true,opts);
+  theTree = treeFact -> create(analysisFileName,"ROOT",false,true,opts);
 
   // Factories are not "managed" by an AIDA analysis system.
   // They must be deleted by the AIDA user code.
@@ -280,7 +280,7 @@ void HadrontherapyAnalysisManager::book()
 #endif
 #ifdef G4ROOTANALYSIS_USE
   // Use ROOT
-  theTFile = new TFile(AnalysisFileName, "RECREATE");
+  theTFile = new TFile(analysisFileName, "RECREATE");
 
   // Create the histograms with the enrgy deposit along the X axis
   histo1 = createHistogram1D("braggPeak","slice, energy", 400, 0., 400.);
@@ -299,7 +299,7 @@ void HadrontherapyAnalysisManager::book()
   histo14 = createHistogram1D("h140","Energy distribution of secondary alpha particles", 70, 0., 70.);
   histo15 = createHistogram1D("heliumEnergyAfterPhantom","Energy distribution of secondary helium fragments after the phantom",
 			   70, 0., 500.);
-  th16 = createHistogram1D("hydrogenEnergyAfterPhantom","Energy distribution of secondary helium fragments after the phantom",
+  histo16 = createHistogram1D("hydrogenEnergyAfterPhantom","Energy distribution of secondary helium fragments after the phantom",
 			   70, 0., 500.);
 
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i:j:k:energy");
