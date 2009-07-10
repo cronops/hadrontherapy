@@ -222,6 +222,7 @@ private:
   TNtuple *theROOTIonTuple;
   TNtuple *TTntuple; //beam dcattering measurements
   TNtuple *fragmentNtuple; // fragments
+	TNtuple *metaData;
 #endif
 };
 #endif
