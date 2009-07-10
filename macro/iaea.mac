@@ -71,4 +71,4 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-/run/beamOn 100
+/run/beamOn 10000

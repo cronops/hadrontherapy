@@ -97,7 +97,7 @@ public:
   /**
    * Set name for the analysis file .root (used by macro)
    */
-  void SetAnalysisFileName(G4String);
+  void SetanalysisFileName(G4String);
   
   /**
   * Fill the ntuple with the energy deposit in the phantom
@@ -177,7 +177,7 @@ private:
 private:
   static HadrontherapyAnalysisManager* instance;
   HadrontherapyAnalysisFileMessenger* fMess;
-  G4String AnalysisFileName;
+  G4String analysisFileName;
 #ifdef G4ANALYSIS_USE
   AIDA::IAnalysisFactory* aFact;
   AIDA::ITree* theTree;
@@ -202,26 +202,26 @@ private:
 #endif
 #ifdef G4ROOTANALYSIS_USE
   TFile *theTFile;
-  TH1F *th1;
-  TH1F *th2;
-  TH1F *th3;
-  TH1F *th4;
-  TH1F *th5;
-  TH1F *th6;
-  TH1F *th7;
-  TH1F *th8;
-  TH1F *th9;
-  TH1F *th10;
-  TH1F *th11;
-  TH1F *th12;
-  TH1F *th13;
-  TH1F *th14;
-  TH1F *th15;
-  TH1F *th16;
+  TH1F *histo1;
+  TH1F *histo2;
+  TH1F *histo3;
+  TH1F *histo4;
+  TH1F *histo5;
+  TH1F *histo6;
+  TH1F *histo7;
+  TH1F *histo8;
+  TH1F *histo9;
+  TH1F *histo10;
+  TH1F *histo11;
+  TH1F *histo12;
+  TH1F *histo13;
+  TH1F *histo14;
+  TH1F *histo15;
+  TH1F *histo16;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
-  TNtuple *TTntuple; //beam dcattering measurements
   TNtuple *fragmentNtuple; // fragments
+  TNtuple *metaData;
 #endif
 };
 #endif

@@ -5,7 +5,8 @@ New features:
 - The first version of the IAEA benchmark geometry based on E. Haettner's
   thesis
 - Collect fragment energy distributions
-- Plotting script for 
+- Added fragment energy distribution data
+- ROOT script preparing an IAEA benchmark figure with data
 
 Bugfixes:
 - HadrontherapySteppingAction: Fixed the name of the phantom solid name.
