@@ -73,37 +73,6 @@ private:
   
 public: 
 
-  void SetModulatorAngle(G4double angle);
-  // This method allows moving the modulator through UI commands
-
-  void SetRangeShifterXPosition(G4double translation);
-  // This method allows to move the Range Shifter along
-  // the X axis through UI commands
-
-  void SetRangeShifterXSize(G4double halfSize);
-  // This method allows to change the size of the range shifter along
-  // the X axis through UI command.
-
-  void SetFirstScatteringFoilSize(G4double halfSize);
-  // This method allows to change the size of the first scattering foil
-  // along the X axis through UI command.
-
-  void SetSecondScatteringFoilSize (G4double halfSize); 
-  // This method allows to change the size of the second scattering foil
-  // along the X axis through UI command.
-
-  void SetOuterRadiusStopper (G4double value); 
-  // This method allows to change the size of the outer radius of the stopper
-  // through UI command.
-
-  void SetInnerRadiusFinalCollimator (G4double value);
-  // This method allows to change the size of the inner radius of the 
-  // final collimator through UI command.
-
-  void SetRSMaterial(G4String material);
-  // This method allows to change the material 
-  // of the range shifter through UI command.
-
   G4double ComputeVoxelSize() {return detectorSizeX/numberOfVoxelsAlongX;};
   // Returns the size of the voxel along the X axis
  
