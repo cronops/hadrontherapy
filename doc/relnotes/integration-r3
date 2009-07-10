@@ -2,7 +2,10 @@ Release notes for integration-r3
 
 New features:
 - Beam plots
-- The first version of the IAEA benchmark geometry
+- The first version of the IAEA benchmark geometry based on E. Haettner's
+  thesis
+- Collect fragment energy distributions
+- Plotting script for 
 
 Bugfixes:
 - HadrontherapySteppingAction: Fixed the name of the phantom solid name.
