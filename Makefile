@@ -44,7 +44,7 @@
 #    git commit --amend   (replaces the latest commit with a new one)
 
 exfor:
-	root macro/readExfor.C
+	root RootScripts/iaeaBenchmark/readExfor.C
 pushAH:
 	git push git@github.com:aatos/hadrontherapy.git
 
@@ -64,8 +64,13 @@ run:
 iaea:
 	$(G4WORKDIR)/bin/$(G4SYSTEM)/Hadrontherapy iaea.mac
 
-r: # run in AH environment
-	$(G4INSTALL)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
+r: # 
+	Hadrontherapy macro/iaea.mac
+	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
+
+r0: # run in AH environment
+
+	Hadrontherapy defaultMacro.mac
 
 clean:
 	rm -f $(d).pdf $(d).ps *.out $(d)_*.eps $(d).asy
