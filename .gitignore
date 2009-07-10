@@ -12,3 +12,4 @@ CVS/*
 fluence.txt
 *.eps
 *.prim
+*.so

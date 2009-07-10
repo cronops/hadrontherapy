@@ -220,7 +220,8 @@ private:
   TH1F *histo16;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
-  TNtuple *fragmentNtuple; ///< fragments recorded here
+  TNtuple *fragmentNtuple; // fragments
+  TNtuple *metaData;
 #endif
 };
 #endif

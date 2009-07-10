@@ -68,7 +68,8 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   th4(0), th5(0), th6(0), th7(0), th8(0), th9(0), th10(0), th11(0), th12(0), th13(0), th14(0), th15(0), th16(0),
   theROOTNtuple(0),
   theROOTIonTuple(0),
-  fragmentNtuple(0)
+  fragmentNtuple(0),
+  metaData(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
   debugi = 0;
@@ -140,6 +141,9 @@ delete(fMess); //kill the messenger
   aFact = 0;
 #endif
 #ifdef G4ROOTANALYSIS_USE
+  delete metaData;
+  metaData = 0;
+
   delete fragmentNtuple;
   fragmentNtuple = 0;
 
@@ -301,6 +305,7 @@ void HadrontherapyAnalysisManager::book()
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i:j:k:energy");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a:z:occupancy:energy");
   fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A:Z:energy");
+  metaData = new TNtuple("metaData", "Metadata", "events");
 #endif
 }
 
@@ -547,6 +552,8 @@ void HadrontherapyAnalysisManager::flush()
   theTree ->close();
 #endif
 #ifdef G4ROOTANALYSIS_USE
+  metaData->Fill(10000); //FIXME event counter!
+  metaData->Write();
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
   fragmentNtuple->Write();
@@ -566,6 +573,8 @@ void HadrontherapyAnalysisManager::finish()
   theTree ->close();
 #endif
 #ifdef G4ROOTANALYSIS_USE
+  metaData->Fill(10000); //FIXME event counter!
+  metaData->Write();
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
   fragmentNtuple->Write();
