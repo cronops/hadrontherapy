@@ -210,7 +210,7 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::getInstance()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void HadrontherapyAnalysisManager::SetanalysisFileName(G4String aFileName)
+void HadrontherapyAnalysisManager::SetAnalysisFileName(G4String aFileName)
 {
   this->analysisFileName = aFileName;
 }

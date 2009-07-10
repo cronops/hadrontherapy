@@ -97,7 +97,7 @@ public:
   /**
    * Set name for the analysis file .root (used by macro)
    */
-  void SetanalysisFileName(G4String);
+  void SetAnalysisFileName(G4String);
   
   /**
   * Fill the ntuple with the energy deposit in the phantom
