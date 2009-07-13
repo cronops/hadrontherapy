@@ -52,6 +52,13 @@ class HadrontherapyDetectorMessenger;
 class HadrontherapyModulator;
 class HadrontherapyDetectorSD;
 
+/**
+ * Geometry for the IAEA benchmark
+ *
+ * This geometry includes two main components: water target and a
+ * detector that counts the particles that go through the phantom.
+ *
+ */
 class IAEADetectorConstruction : public G4VUserDetectorConstruction
 {
 public:
