@@ -1,1 +1,9 @@
 Notes for integration-r4 release:
+
+* New Features:
+** Added beam window
+| Material | Size                   | Placement        |
+|----------+------------------------+------------------|
+| Aluminum | 10 cm x 10 cm x 0.1 mm | 0 cm, 0 cm, 0 cm |
+|----------+------------------------+------------------|
+
