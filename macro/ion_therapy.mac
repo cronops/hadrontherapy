@@ -17,7 +17,6 @@
 #
 /physic/addPhysics emstandard_opt3                     # Electromagnetic model    (Geant4 native physic list)
 /physic/addPhysics elastic                             # Hadronic elastic model   (Geant4 native physic list)
-/physic/addPhysics local_standardICRU73
 /physic/addPhysics binary                              # Hadronic inelastic model for proton and neutron (Geant4 native physic list)
 /physic/addPhysics local_ion_ion_inelastic             # Hadronic inelastic model for ions (local physic list)
 
@@ -54,8 +53,8 @@
 # Set the primary particle type,
 # energy and position along the X direction
 #
-/gun/particle alpha
-#/gun/ion 6 12 6
+/gun/particle ion
+/gun/ion 6 12 6
 
 /beam/energy/meanEnergy 744 MeV
 /beam/energy/sigmaEnergy 3 MeV
