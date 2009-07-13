@@ -93,9 +93,13 @@ private:
 
   G4VPhysicalVolume* physicalTreatmentRoom;
   G4VPhysicalVolume* phantomPhysicalVolume;
+  
   G4LogicalVolume* detectorLogicalVolume;
-  G4LogicalVolume* NewDetectorLogicalVolume; ///<Logical volume for end-detector
+  G4LogicalVolume* beamWindowLogicalVolume; //<Logical volume for beam source window
+  G4LogicalVolume* NewDetectorLogicalVolume; //<Logical volume for end-detector
+  
   G4VPhysicalVolume* detectorPhysicalVolume;
+  G4VPhysicalVolume* beamWindowPhysicalVolume; ///<Logical volume for end-detector
   G4VPhysicalVolume* NewDetectorPhysicalVolume; ///<Physical volume for end-detector
     
   HadrontherapyDetectorMessenger* detectorMessenger; 

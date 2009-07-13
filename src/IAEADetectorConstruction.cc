@@ -155,6 +155,20 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
 					    physicalTreatmentRoom,
 					    false,0);
   //----------------------------------------
+  // Beamwindow:
+  // The aluminium-window of the beam-source
+  //----------------------------------------
+  G4Material* aluNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_Al", isotopes);
+  G4Box* beamWindow = new G4Box("beamwindow",10 *cm, 10 *cm, 0.1 *mm);
+  G4LogicalVolume* beamWindowLogicalVolume = new G4LogicalVolume(beamWindow,	
+							      aluNist, 
+							      "beamWindowLog", 0, 0, 0);
+  beamWindowPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(0.*mm, 0.*mm, 0.*mm),
+					    "beamPhys",
+					    beamWindowLogicalVolume,
+					    physicalTreatmentRoom,
+					    false,0);
+  //----------------------------------------
   // NewDetector:
   // A box used to simulate the end detector
   //----------------------------------------
@@ -173,7 +187,7 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
 void IAEADetectorConstruction::ConstructDetector()
 {
   //-----------
-  // Detector
+  // Braggcurve Detector
   //-----------
   G4bool isotopes =  false; 
   G4Material* waterNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", isotopes);
@@ -198,8 +212,10 @@ void IAEADetectorConstruction::ConstructDetector()
 
   detectorLogicalVolume -> SetVisAttributes(skyBlue);
   
+  //Visualization attributes for the beamwindow
+  
   //-----------
-  // NewDetector
+  // NewDetector (mwpc etc. type behind hte phantom)
   //-----------
   G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
   G4Box* NewDetector = new G4Box("NewDetector",3.7*cm,20.*cm,20.*cm);
