@@ -1,7 +1,6 @@
 Release notes for integration-r3
 
 New features:
-- Beam plots
 - The first version of the IAEA benchmark geometry based on E. Haettner's
   thesis
 - Collect fragment energy distributions
