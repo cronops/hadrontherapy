@@ -48,7 +48,6 @@
 # Suggested values of cut and step is 0.01 mm:
 #
 /physic/setCuts 1 cm
-#/physic/setCuts 0.01 mm
 /Step/waterPhantomStepMax 1 cm
 #/Step/waterPhantomStepMax 0.01 mm 
 
