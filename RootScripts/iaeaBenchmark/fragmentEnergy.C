@@ -10,26 +10,22 @@
 #include "TCut.h"
 #include "TString.h"
 
+/**
+ * Macro for plotting the fragment energy distributions.
+ *
+ * Usage:
+ * root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
+ */
 void fragmentEnergy() {
-//   example of macro to read data from an ascii file and
-//   create a root file with an histogram and an ntuple.
-//   see a variant of this macro in basic2.C
-//Author: Rene Brun
-      
-
-// read file $ROOTSYS/tutorials/tree/basic.dat
-// this file has 3 columns of float data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
    ifstream in;
-//in.open(Form("../data/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-in.open(Form("experimentalData/iaeaBenchmark/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-Float_t f1,f2,f3, f4,f5,f6;
+   in.open(Form("experimentalData/iaeaBenchmark/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
+   Float_t f1,f2,f3, f4,f5,f6;
    Int_t nlines = 0;
-   TFile *f = new TFile("basic.root","RECREATE");
-   TH1F *h1 = new TH1F("h1","x distribution",100,-4,4);
-   TNtuple *ntuple = new TNtuple("ntuple","data from ascii file","Energy:He:B:H:Li:Be");
+   TFile *f = new TFile("fragmentEnergy.root","RECREATE");
+   TNtuple *ntuple = new TNtuple("ntuple","Data from ascii file","Energy:He:B:H:Li:Be");
 	  
    Char_t DATAFLAG[4];
    Int_t NDATA;
@@ -42,7 +38,6 @@ Float_t f1,f2,f3, f4,f5,f6;
       in >> f1 >> f2 >> f3 >>f4 >> f5 >> f6;
       if (!in.good()) break;
       if (nlines < 500 ) printf("%f  %0.2f %0.2f %0.2f %0.2f %0.2f \n",f1,f2,f3,f4,f5,f6);
-      //h1->Fill(f1);
       ntuple->Fill(f1,f2,f3,f4,f5,f6);
       nlines++;
    }
@@ -87,31 +82,30 @@ Float_t f1,f2,f3, f4,f5,f6;
 
    TString normalization("/(350.0)");
 
-//TCanvas *fc = new TCanvas("fc", "Fragments");
    fragments->SetLineColor(kRed);
    fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45)" + normalization);
-fragments->SetLineColor(kGreen);
-fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
-fragments->Draw("energy >> histH", "(Z == 1 && energy > 45)" + normalization, "same");
-fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45)" + normalization, "same");
-fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45)" + normalization, "same");
-fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
+   fragments->SetLineColor(kGreen);
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
+   fragments->Draw("energy >> histH", "(Z == 1 && energy > 45)" + normalization, "same");
+   fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45)" + normalization, "same");
+   fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45)" + normalization, "same");
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
 
-TCanvas *c3 = new TCanvas("histograms", "Histograms");
-histHe->Draw();
-cout <<"He : " << histHe->GetEntries() << endl;
-histB->Draw("same");
-cout <<"B : " << histB->GetEntries() << endl;
-histH->Draw("same");
-cout <<"H : " << histH->GetEntries() << endl;
-histLi->Draw("same");
-cout <<"Li : " << histLi->GetEntries() << endl;
-histBe->Draw("same");
-cout <<"Be : " << histBe->GetEntries() << endl;
-//histB->Draw("same");
-cout <<"B : " << histB->GetEntries() << endl;
+   TCanvas *c3 = new TCanvas("histograms", "Histograms");
+   histHe->Draw();
+   cout <<"He : " << histHe->GetEntries() << endl;
+   histB->Draw("same");
+   cout <<"B : " << histB->GetEntries() << endl;
+   histH->Draw("same");
+   cout <<"H : " << histH->GetEntries() << endl;
+   histLi->Draw("same");
+   cout <<"Li : " << histLi->GetEntries() << endl;
+   histBe->Draw("same");
+   cout <<"Be : " << histBe->GetEntries() << endl;
+   //histB->Draw("same");
+   cout <<"B : " << histB->GetEntries() << endl;
 
-ntuple->SetMarkerStyle(22);
+   ntuple->SetMarkerStyle(22);
    ntuple->Draw("H:Energy","","p,same");
    ntuple->SetMarkerColor(kRed);
    ntuple->Draw("He:Energy","","p,same");

@@ -1,20 +1,18 @@
 #include "Riostream.h"
-void readExfor() {
-//   example of macro to read data from an ascii file and
-//   create a root file with an histogram and an ntuple.
-//   see a variant of this macro in basic2.C
-//Author: Rene Brun
-      
 
-// read file $ROOTSYS/tutorials/tree/basic.dat
-// this file has 3 columns of float data
+/**
+ * Example script for reading datafile.
+ * Usage:
+ * root -l RootScripts/iaeaBenchmark/readExfor.C
+ */
+void readExfor() {
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
    ifstream in;
-//in.open(Form("../data/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-in.open(Form("experimentalData/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-Float_t f1,f2,f3, f4,f5,f6;
+   //in.open(Form("../data/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
+   in.open(Form("experimentalData/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
+   Float_t f1,f2,f3, f4,f5,f6;
    Int_t nlines = 0;
    TFile *f = new TFile("basic.root","RECREATE");
    TH1F *h1 = new TH1F("h1","x distribution",100,-4,4);
@@ -62,10 +60,10 @@ Float_t f1,f2,f3, f4,f5,f6;
    MC_hydrogen->Scale(ScaleHydrogen);
    MC_hydrogen->SetLineColor(kRed);
    MC_hydrogen->Draw("Same");
-   printf("Scaled hydrogen by %.9f\n",ScaleHydrogen));
+   printf("Scaled hydrogen by %.9f\n",ScaleHydrogen);
    
-TCanvas *fc = new TCanvas("fc", "Fragments");
-fragments->Draw("energy");
+   TCanvas *fc = new TCanvas("fc", "Fragments");
+   fragments->Draw("energy");
 
    in.close();
 
