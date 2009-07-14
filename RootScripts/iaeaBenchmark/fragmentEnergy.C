@@ -57,6 +57,8 @@ void fragmentEnergy() {
 		//scale and plot
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
+   fragments->Scan();
+
    Double_t ScaleHelium = 1/(MC_helium->Integral());
    Double_t ScaleHydrogen = 1/(MC_hydrogen->Integral()); 
    //x should also be scaled to per nucleon
@@ -83,27 +85,33 @@ void fragmentEnergy() {
    TString normalization("/(350.0)");
 
    fragments->SetLineColor(kRed);
-   fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45)" + normalization);
+   fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && posY < 200 && posZ < 200)" + normalization);
    fragments->SetLineColor(kGreen);
-   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
-   fragments->Draw("energy >> histH", "(Z == 1 && energy > 45)" + normalization, "same");
-   fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45)" + normalization, "same");
-   fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45)" + normalization, "same");
-   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45)" + normalization, "same");
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
+   fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
+   fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
+   fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
 
    TCanvas *c3 = new TCanvas("histograms", "Histograms");
-   histHe->Draw();
-   cout <<"He : " << histHe->GetEntries() << endl;
-   histB->Draw("same");
-   cout <<"B : " << histB->GetEntries() << endl;
-   histH->Draw("same");
-   cout <<"H : " << histH->GetEntries() << endl;
+   Int_t nEve = 10000; //temporarily hardcoded
+
+   cout <<"H : " << histH->GetEntries() / nEve << endl;
+   histH->Draw();
+
+   cout <<"He : " << histHe->GetEntries() / nEve << endl;
+   histHe->Draw("same");
+    
+   cout <<"Li : " << histLi->GetEntries() / nEve << endl;
    histLi->Draw("same");
-   cout <<"Li : " << histLi->GetEntries() << endl;
+
+   
+   cout <<"Be : " << histBe->GetEntries() / nEve << endl;
    histBe->Draw("same");
-   cout <<"Be : " << histBe->GetEntries() << endl;
-   //histB->Draw("same");
-   cout <<"B : " << histB->GetEntries() << endl;
+   
+   cout <<"B : " << histB->GetEntries() / nEve << endl;
+   histB->Draw("same");
+
 
    ntuple->SetMarkerStyle(22);
    ntuple->Draw("H:Energy","","p,same");
@@ -114,7 +122,7 @@ void fragmentEnergy() {
    ntuple->SetMarkerColor(kGreen);
    ntuple->Draw("Be:Energy","","p,same");
    ntuple->SetMarkerColor(kYellow);
-//   ntuple->Draw("B:Energy","","p,same");
+   ntuple->Draw("B:Energy","","p,same");
 
    c3->SaveAs("fig520.png");
 

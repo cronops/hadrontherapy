@@ -66,6 +66,7 @@ iaea:
 
 r: # 
 	Hadrontherapy macro/iaea.mac
+	echo -e '\a'
 	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
 
 r0: # run in AH environment

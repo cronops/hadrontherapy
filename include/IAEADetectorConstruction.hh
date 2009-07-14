@@ -100,6 +100,8 @@ private:
 
   G4VPhysicalVolume* physicalTreatmentRoom;
   G4VPhysicalVolume* phantomPhysicalVolume;
+  G4VPhysicalVolume* phantomEdge1PhysicalVolume;
+  G4VPhysicalVolume* phantomEdge2PhysicalVolume;
   
   G4LogicalVolume* detectorLogicalVolume;
   G4LogicalVolume* beamWindowLogicalVolume; //<Logical volume for beam source window

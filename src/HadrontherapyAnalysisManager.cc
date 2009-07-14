@@ -74,7 +74,6 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   eventCounter(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
-  debugi = 0;
 }
 #endif
 /////////////////////////////////////////////////////////////////////////////
@@ -306,7 +305,7 @@ void HadrontherapyAnalysisManager::book()
 
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i:j:k:energy");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a:z:occupancy:energy");
-  fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A:Z:energy");
+  fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A:Z:energy:posX:posY:PosZ");
   metaData = new TNtuple("metaData", "Metadata", "events");
 #endif
 }
@@ -509,11 +508,11 @@ void HadrontherapyAnalysisManager::hydrogenEnergy(G4double secondaryParticleKine
 
 
 
-void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4int Z, G4double energy)
+void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4int Z, G4double energy, G4double posX, G4double posY, G4double posZ)
 {
 #ifdef G4ROOTANALYSIS_USE
   //G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
-  fragmentNtuple->Fill(A, Z, energy);
+  fragmentNtuple->Fill(A, Z, energy, posX, posY, posZ);
 #endif
 }
 
