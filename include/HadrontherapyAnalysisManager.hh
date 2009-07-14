@@ -159,6 +159,9 @@ public:
 
   void ThintargetBeamDisp(G4double,G4double);
 
+  void startNewEvent();
+  ///< Tell the analysis manager that a new event is starting
+
   void finish();
   ///< Close the .hbk file with the histograms and the ntuples
 
@@ -223,6 +226,7 @@ private:
   TNtuple *fragmentNtuple; // fragments
   TNtuple *metaData;
 #endif
+  G4long eventCounter;
 };
 #endif
 

@@ -57,7 +57,8 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   analysisFileName("DoseDistribution.root"), aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
   h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
-  ionTuple(0)
+  ionTuple(0),
+  eventCounter(0)
 {
 	fMess = new HadrontherapyAnalysisFileMessenger(this);
 }
@@ -69,7 +70,8 @@ HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   theROOTNtuple(0),
   theROOTIonTuple(0),
   fragmentNtuple(0),
-  metaData(0)
+  metaData(0),
+  eventCounter(0)
 {
   fMess = new HadrontherapyAnalysisFileMessenger(this);
   debugi = 0;
@@ -541,6 +543,13 @@ void HadrontherapyAnalysisManager::genericIonInformation(G4int a,
    }
 #endif
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HadrontherapyAnalysisManager::startNewEvent()
+{
+  eventCounter++;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::flush()
 {
@@ -552,7 +561,7 @@ void HadrontherapyAnalysisManager::flush()
   theTree ->close();
 #endif
 #ifdef G4ROOTANALYSIS_USE
-  metaData->Fill(10000); //FIXME event counter!
+  metaData->Fill((Float_t) eventCounter);
   metaData->Write();
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
@@ -561,6 +570,7 @@ void HadrontherapyAnalysisManager::flush()
   //  theTFile->Clear();
   theTFile->Close();
 #endif
+  eventCounter = 0;
   matrix->flush();
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -573,7 +583,7 @@ void HadrontherapyAnalysisManager::finish()
   theTree ->close();
 #endif
 #ifdef G4ROOTANALYSIS_USE
-  metaData->Fill(10000); //FIXME event counter!
+  metaData->Fill((Float_t) eventCounter);
   metaData->Write();
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
@@ -581,6 +591,7 @@ void HadrontherapyAnalysisManager::finish()
   theTFile->Write();
   theTFile->Close();
 #endif
+  eventCounter = 0;
 }
 
 #endif

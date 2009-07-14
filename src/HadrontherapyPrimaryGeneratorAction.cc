@@ -46,6 +46,7 @@
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "Randomize.hh"
+#include "HadrontherapyAnalysisManager.hh"
 
 HadrontherapyPrimaryGeneratorAction::HadrontherapyPrimaryGeneratorAction()
 {
@@ -113,6 +114,9 @@ void HadrontherapyPrimaryGeneratorAction::SetDefaultPrimaryParticle()
 
 void HadrontherapyPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+  // Increment the event counter
+  HadrontherapyAnalysisManager::getInstance()->startNewEvent();
+
   // ****************************************
   // Set the beam angular apread 
   // and spot size

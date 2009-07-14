@@ -1,6 +1,7 @@
 Notes for integration-r4 release:
 
 * New Features:
+** Added event counter
 ** Added beam window
 | Material | Size                   | Placement        |
 |----------+------------------------+------------------|
