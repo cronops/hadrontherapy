@@ -35,13 +35,21 @@
 #
 #/vis/scene/create
 #/vis/open DAWNFILE
+#/vis/open OGLSX
+#/vis/open OGLIX
 #/vis/viewer/flush
 #/vis/viewer/set/viewpointThetaPhi 0 0 deg
 #/vis/viewer/zoom 0
 #/vis/viewer/pan 0  0 cm
 #/tracking/storeTrajectory 1
-#/vis/scene/endOfEventAction accumulate
+
 #/vis/viewer/update
+#/vis/scene/add/trajectories
+#/vis/modeling/trajectories/create/drawByCharge
+#/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+#/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+
+#/vis/scene/endOfEventAction accumulate
 
 ##########################
 # Set here the cut and the step max for the tracking. 
@@ -58,7 +66,7 @@
 /gun/particle ion
 /gun/ion 6 12 6     # Carbon-12
 
-/beam/energy/meanEnergy 4800 MeV
+/beam/energy/meanEnergy 4800 MeV # 400MeV/u * C12 = 4800
 /beam/energy/sigmaEnergy 24 MeV # dE/E = 5e-3
 
 #########################
@@ -66,8 +74,10 @@
 #
 #/run/beamOn 1
 
-/beam/position/Xposition -90 cm
+#/beam/position/Xposition -90 cm
+/beam/position/Xposition 0 cm
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
 /run/beamOn 10000
+#/run/beamOn 1000

@@ -305,7 +305,7 @@ void HadrontherapyAnalysisManager::book()
 
   theROOTNtuple = new TNtuple("theROOTNtuple", "Energy deposit by slice", "i:j:k:energy");
   theROOTIonTuple = new TNtuple("theROOTIonTuple", "Generic ion information", "a:z:occupancy:energy");
-  fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A:Z:energy:posX:posY:PosZ");
+  fragmentNtuple = new TNtuple("fragmentNtuple", "Fragments", "A:Z:energy:posX:posY:posZ");
   metaData = new TNtuple("metaData", "Metadata", "events");
 #endif
 }

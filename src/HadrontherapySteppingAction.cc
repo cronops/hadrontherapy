@@ -100,6 +100,9 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	HadrontherapyAnalysisManager* analysisMgr =  HadrontherapyAnalysisManager::getInstance();   
 //	G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
 	analysisMgr->fillFragmentTuple(A, Z, energy, posX, posY, posZ);
+	//if(Z == 6){
+	//	G4cout << "got carbon\n";
+	//	}
 #endif
       }
 
