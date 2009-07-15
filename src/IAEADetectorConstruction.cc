@@ -81,6 +81,14 @@ IAEADetectorConstruction::IAEADetectorConstruction()
   numberOfVoxelsAlongY = 1;
   numberOfVoxelsAlongZ = 1;
   
+  startDetectorThickness = 5.*cm; // approximation, exakt value not given by Haettner 2006
+  phantomCenter = startDetectorThickness + 64.*cm;
+  phantomDepth = 27.9 *cm;
+  plexiThickness = 0.2 *cm;
+  aluWindowThickness = 0.01 *cm;
+  endDetectorThickness = 3.7 *cm;
+  endDetectorPosition =  startDetectorThickness + 358 *cm + endDetectorThickness / 2;
+  
  }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -138,6 +146,8 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   // The treatment room is invisible in the Visualisation
   logicTreatmentRoom -> SetVisAttributes (G4VisAttributes::Invisible);
  
+
+ 
   //----------------------------------------
   // Phantom:
   // A box used to approximate tissues. Is surrounded by plexi-glas.
@@ -146,9 +156,9 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   G4Material* waterNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", isotopes);
   G4Material* plexiGlas = G4NistManager::Instance()->FindOrBuildMaterial("G4_PLEXIGLASS", isotopes);
   //G4Box* phantom = new G4Box("Phantom",10 *cm, 20 *cm, 20 *cm);
-  //the below for itnegrated angular distribution plot
-  G4Box* phantom = new G4Box("Phantom",27.9 *cm, 20 *cm, 20 *cm);
-  G4Box* plexiSheet = new G4Box("phantomEdge",2*mm, 20 *cm, 20 *cm);
+  //the below for integrated angular distribution plot
+  G4Box* phantom = new G4Box("Phantom",phantomDepth/2, 20 *cm, 20 *cm);
+  G4Box* plexiSheet = new G4Box("phantomEdge",plexiThickness, 20 *cm, 20 *cm);
   G4LogicalVolume* phantomLogicalVolume = new G4LogicalVolume(phantom,	
 							      waterNist, 
 							      "phantomLog", 0, 0, 0);
@@ -156,19 +166,21 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   G4LogicalVolume* phantomEdgeLogicalVolume = new G4LogicalVolume(plexiSheet,	
 							      plexiGlas, 
 							      "phantomEdgeLog", 0, 0, 0);
-					//5.5cm for veto and start detector, see fig 5.1 and 4.1 ref Haettner 2006  
-  phantomPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(50.5+5.5*cm, 0.*cm, 0.*cm),
+					//5.5cm for veto and start detector, see fig 5.1 and 4.1 ref Haettner 2006 
+
+    
+  phantomPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(phantomCenter, 0.*cm, 0.*cm),
 					    "phantomPhys",
 					    phantomLogicalVolume,
 					    physicalTreatmentRoom,
 					    false,0);
 
-  phantomEdge1PhysicalVolume = new G4PVPlacement(0,G4ThreeVector(50.3+5.5*cm, 0.*cm, 0.*cm),
+  phantomEdge1PhysicalVolume = new G4PVPlacement(0,G4ThreeVector(phantomCenter - phantomDepth/2 - plexiThickness/2, 0.*cm, 0.*cm),
 					    "phantomEdgePhys",
 					    phantomEdgeLogicalVolume,
 					    physicalTreatmentRoom,
 					    false,0);
-  phantomEdge2PhysicalVolume = new G4PVPlacement(0,G4ThreeVector((50.5+27.9)*cm, 0.*cm, 0.*cm),
+  phantomEdge2PhysicalVolume = new G4PVPlacement(0,G4ThreeVector(phantomCenter + phantomDepth/2 + plexiThickness/2, 0.*cm, 0.*cm),
 					    "phantomEdgePhys",
 					    phantomEdgeLogicalVolume,
 					    physicalTreatmentRoom,
@@ -178,11 +190,11 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   // The aluminium-window of the beam-source
   //----------------------------------------
   G4Material* aluNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_Al", isotopes);
-  G4Box* beamWindow = new G4Box("beamwindow",.1 *mm, 10 *cm, 10 *mm);
+  G4Box* beamWindow = new G4Box("beamwindow",aluWindowThickness, 10 *cm, 10 *mm);
   G4LogicalVolume* beamWindowLogicalVolume = new G4LogicalVolume(beamWindow,	
 							      aluNist, 
 							      "beamWindowLog", 0, 0, 0);
-  beamWindowPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(-100.*mm, 0.*mm, 0.*mm),
+  beamWindowPhysicalVolume = new G4PVPlacement(0,G4ThreeVector(1.*mm, 0.*mm, 0.*mm),
 					    "beamPhys",
 					    beamWindowLogicalVolume,
 					    physicalTreatmentRoom,
@@ -208,9 +220,12 @@ void IAEADetectorConstruction::ConstructDetector()
   //-----------
   // Braggcurve Detector
   //-----------
+  //Is currently not used
+  
   G4bool isotopes =  false; 
   G4Material* waterNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", isotopes);
   G4Box* detector = new G4Box("Detector",detectorSizeX,detectorSizeY,detectorSizeZ);
+
   detectorLogicalVolume = new G4LogicalVolume(detector,
 					      waterNist,
 					      "DetectorLog",
@@ -244,9 +259,8 @@ void IAEADetectorConstruction::ConstructDetector()
 					      NewDetectorMaterial,
 					      "NewDetectorLog",
 					      0,0,0);
-						  //placement of center of mass, check
   NewDetectorPhysicalVolume = new G4PVPlacement(0,
-					     G4ThreeVector(358.0+5.5 *cm, 0.0 *cm, 0.0 *cm),
+					     G4ThreeVector(this->endDetectorPosition, 0.0 *cm, 0.0 *cm),
 					     "NewDetectorPhys",
 					     NewDetectorLogicalVolume,
 					     physicalTreatmentRoom,

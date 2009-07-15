@@ -110,7 +110,15 @@ private:
   G4VPhysicalVolume* detectorPhysicalVolume;
   G4VPhysicalVolume* beamWindowPhysicalVolume; ///<Logical volume for end-detector
   G4VPhysicalVolume* NewDetectorPhysicalVolume; ///<Physical volume for end-detector
-    
+
+  G4double startDetectorThickness;
+  G4double phantomCenter;
+  G4double phantomDepth;
+  G4double plexiThickness;
+  G4double aluWindowThickness;
+  G4double endDetectorThickness;
+  G4double endDetectorPosition;
+
   HadrontherapyDetectorMessenger* detectorMessenger; 
 
   G4double detectorSizeX; 
