@@ -56,7 +56,7 @@ namespace AIDA{
 }
 #endif
 
-#ifdef G4ROOTANALYSIS_USE ///< If analysis is done directly with ROOT
+#ifdef G4ANALYSIS_USE_ROOT ///< If analysis is done directly with ROOT
 #include "TROOT.h"
 #include "TFile.h"
 #include "TNtuple.h"
@@ -167,7 +167,7 @@ public:
 
 void flush();
 
-#ifdef G4ROOTANALYSIS_USE
+#ifdef G4ANALYSIS_USE_ROOT
 private:
   TH1F *createHistogram1D(const TString name, const TString title, int bins, double xmin, double xmax) {
     TH1F *histo = new TH1F(name, title, bins, xmin, xmax);
@@ -202,7 +202,7 @@ private:
   AIDA::ITuple *ntuple;
   AIDA::ITuple *ionTuple;
 #endif
-#ifdef G4ROOTANALYSIS_USE
+#ifdef G4ANALYSIS_USE_ROOT
   TFile *theTFile;
   TH1F *histo1;
   TH1F *histo2;

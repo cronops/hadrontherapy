@@ -20,8 +20,8 @@ ifdef G4ANALYSIS_USE
 CPPFLAGS += -DANALYSIS_USE
 endif
 ifndef G4ANALYSIS_USE      # If we don't have AIDA
-ifdef G4ROOTANALYSIS_USE   # And we have ROOT
-CPPFLAGS += -DANALYSIS_USE -DG4ROOTANALYSIS_USE
+ifdef G4ANALYSIS_USE_ROOT   # And we have ROOT
+CPPFLAGS += -DANALYSIS_USE -DG4ANALYSIS_USE_ROOT
 CPPFLAGS += $(shell root-config --cflags)
 LDFLAGS  += $(shell root-config --glibs)
 endif
