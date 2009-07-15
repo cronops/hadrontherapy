@@ -16,12 +16,6 @@ all: lib bin
 
 include $(G4INSTALL)/config/architecture.gmk
 
-ifdef MEASUREBEAM #if we want to perform a tt-measurement of the beam
-CPPFLAGS += -DMEASUREBEAM
-endif
-
-
-
 ifdef G4ANALYSIS_USE
 CPPFLAGS += -DANALYSIS_USE
 endif
