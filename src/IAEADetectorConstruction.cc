@@ -54,7 +54,7 @@
 #include "G4VisAttributes.hh"
 #include "G4NistManager.hh"
 #include "HadrontherapyDetectorROGeometry.hh"
-#include "HadrontherapyDetectorMessenger.hh"
+#include "IAEADetectorMessenger.hh"
 #include "HadrontherapyDetectorSD.hh"
 #include "IAEADetectorConstruction.hh"
 #include "HadrontherapyModulator.hh"
@@ -69,7 +69,7 @@ IAEADetectorConstruction::IAEADetectorConstruction()
     detectorPhysicalVolume(0)
 {
   // Messenger to change parameters of the geometry
-  //  detectorMessenger = new HadrontherapyDetectorMessenger(this);
+  detectorMessenger = new IAEADetectorMessenger(this);
 
   // Detector sizes
   detectorSizeX = 20.*mm;
@@ -213,6 +213,12 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   //red -> SetForceWireframe(true);
   phantomLogicalVolume -> SetVisAttributes(red);
 }
+
+void IAEADetectorConstruction::setWaterThickness(G4double newWaterThickness){
+	//This has to be run before the elements are made.
+	this->phantomDepth = newWaterThickness;	
+	}
+
 
 /////////////////////////////////////////////////////////////////////////////
 void IAEADetectorConstruction::ConstructDetector()

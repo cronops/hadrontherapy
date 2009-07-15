@@ -15,6 +15,8 @@
 /run/verbose 1
 /event/verbose 0
 
+/iaea/waterPhantomThickness 27.9 cm #default is 27.9
+
 /analysis/setAnalysisFile IAEA.root
 
 ##########################
@@ -38,7 +40,7 @@
 #/vis/open OGLSX
 /vis/open OGLIX
 /vis/viewer/flush
-/vis/viewer/set/viewpointThetaPhi -45 45	 deg
+/vis/viewer/set/viewpointThetaPhi 45 45	 deg
 #/vis/viewer/zoom 0
 #/vis/viewer/pan 0 0 cm
 #/vis/scene/add/trajectories
