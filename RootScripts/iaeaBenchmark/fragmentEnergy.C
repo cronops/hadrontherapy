@@ -57,7 +57,7 @@ void fragmentEnergy() {
 		//scale and plot
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
-   fragments->Scan();
+   //fragments->Scan();
 
    Double_t ScaleHelium = 1/(MC_helium->Integral());
    Double_t ScaleHydrogen = 1/(MC_hydrogen->Integral()); 
@@ -81,17 +81,30 @@ void fragmentEnergy() {
    histBe->SetLineColor(kGreen);
    TH1F *histB = new TH1F("histB", "Boron", 60, 0.0, 450.0);
    histB->SetLineColor(kYellow);
+   TH1F *histC = new TH1F("histC", "Carbon", 60, 0.0, 450.0);
+
+	//TH2F
+
+	TH1F* histPos = new TH1F("histPos", "check position",100,-2000,2000);
 
    TString normalization("/(350.0)");
 
    fragments->SetLineColor(kRed);
-   fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && posY < 200 && posZ < 200)" + normalization);
+   fragments->SetMarkerStyle(22);
+   
+   fragments->Draw("posY:posZ", "abs(posZ) < 2000 && abs(posY) < 2000");
+
+   fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization);
+   
    fragments->SetLineColor(kGreen);
-   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
-   fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
-   fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
-   fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
-   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && posY < 200 && posZ < 200)" + normalization, "same");
+
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+   fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+   fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+   fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+   fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+   fragments->Draw("energy >> histC", "(Z == 6 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+
 
    TCanvas *c3 = new TCanvas("histograms", "Histograms");
    Int_t nEve = 10000; //temporarily hardcoded
