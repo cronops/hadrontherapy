@@ -158,7 +158,7 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   //G4Box* phantom = new G4Box("Phantom",10 *cm, 20 *cm, 20 *cm);
   //the below for integrated angular distribution plot
   G4Box* phantom = new G4Box("Phantom",phantomDepth/2, 20 *cm, 20 *cm);
-  G4Box* plexiSheet = new G4Box("phantomEdge",plexiThickness, 20 *cm, 20 *cm);
+  G4Box* plexiSheet = new G4Box("phantomEdge",plexiThickness/2, 20 *cm, 20 *cm);
   G4LogicalVolume* phantomLogicalVolume = new G4LogicalVolume(phantom,	
 							      waterNist, 
 							      "phantomLog", 0, 0, 0);
@@ -190,7 +190,7 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   // The aluminium-window of the beam-source
   //----------------------------------------
   G4Material* aluNist = G4NistManager::Instance()->FindOrBuildMaterial("G4_Al", isotopes);
-  G4Box* beamWindow = new G4Box("beamwindow",aluWindowThickness, 10 *cm, 10 *mm);
+  G4Box* beamWindow = new G4Box("beamwindow",aluWindowThickness/2, 10 *cm, 10 *mm);
   G4LogicalVolume* beamWindowLogicalVolume = new G4LogicalVolume(beamWindow,	
 							      aluNist, 
 							      "beamWindowLog", 0, 0, 0);
@@ -252,7 +252,7 @@ void IAEADetectorConstruction::ConstructDetector()
   // NewDetector (mwpc etc. type behind hte phantom)
   //-----------
   G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
-  G4Box* NewDetector = new G4Box("NewDetector",3.7*cm,190.*cm,190.*cm); //huge detector, will be scaled in root
+  G4Box* NewDetector = new G4Box("NewDetector",endDetectorThickness/2,190.*cm,190.*cm); //huge detector, will be scaled in root
   //For integrated angular distribution below
   //G4Box* NewDetector = new G4Box("NewDetector",3.7*cm,104.*cm,104.*cm);
   NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,
@@ -260,7 +260,7 @@ void IAEADetectorConstruction::ConstructDetector()
 					      "NewDetectorLog",
 					      0,0,0);
   NewDetectorPhysicalVolume = new G4PVPlacement(0,
-					     G4ThreeVector(this->endDetectorPosition, 0.0 *cm, 0.0 *cm),
+					     G4ThreeVector(endDetectorPosition, 0.0 *cm, 0.0 *cm),
 					     "NewDetectorPhys",
 					     NewDetectorLogicalVolume,
 					     physicalTreatmentRoom,
