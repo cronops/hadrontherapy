@@ -33,15 +33,18 @@
 ##########################
 # Visualisation 
 #
-#/vis/scene/create
+/vis/scene/create
 #/vis/open DAWNFILE
 #/vis/open OGLSX
-#/vis/open OGLIX
-#/vis/viewer/flush
-#/vis/viewer/set/viewpointThetaPhi 0 0 deg
+/vis/open OGLIX
+/vis/viewer/flush
+/vis/viewer/set/viewpointThetaPhi 45 45 deg
 #/vis/viewer/zoom 0
 #/vis/viewer/pan 0  0 cm
-#/tracking/storeTrajectory 1
+#/vis/scene/add/trajectories
+#/vis/scene/endOfEventAction accumulate
+/tracking/storeTrajectory 1
+
 
 #/vis/viewer/update
 #/vis/scene/add/trajectories
