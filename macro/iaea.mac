@@ -7,6 +7,8 @@
 # This macro can be used for a proton beam in water. Both electrmagnetic and
 # hadronic models are swiched on
 
+ /control/getEnv G4SYSTEM
+ 
 #########################
 # Set of the verboses 
 #
@@ -46,11 +48,35 @@
 #/vis/viewer/update
 
 # OGLIX
-#/vis/scene/create
+/vis/scene/create
 #/vis/open OGLIX
-#/vis/viewer/set/viewpointThetaPhi 0 0 deg
-#/tracking/storeTrajectory 1
-#/vis/scene/endOfEventAction accumulate
+/vis/open OGLIX 600x600-100+0
+/vis/drawVolume
+
+
+/vis/viewer/set/viewpointThetaPhi 0 0 deg
+#/vis/viewer/set/viewpointThetaPhi 80 170 deg
+
+/vis/viewer/zoom 1.0
+/vis/scene/add/trajectories
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+
+
+# Draw only certain particles
+/vis/filtering/trajectories/create/particleFilter
+
+#/vis/filtering/trajectories/particleFilter-0/add gamma
+#/vis/filtering/trajectories/particleFilter-0/add electron
+#/vis/filtering/trajectories/particleFilter-0/add neutron
+/vis/filtering/trajectories/particleFilter-0/add proton
+
+#/vis/filtering/trajectories/particleFilter-0/invert true # charged particles only
+
+
+/tracking/storeTrajectory 1
+/vis/scene/endOfEventAction accumulate
 
 ##########################
 # Set here the cut and the step max for the tracking. 
@@ -79,5 +105,12 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-/run/beamOn 100
+#/run/beamOn 100
+#/run/beamOn 1000
 #/run/beamOn 10000
+
+/control/alias initialValue 0
+/control/alias   finalValue 3
+/control/alias     stepSize 1
+/control/loop macro/iaea.loop counterName {initialValue} {finalValue} {stepSize}
+#/control/unalias initialValue 1
