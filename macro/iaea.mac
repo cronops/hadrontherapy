@@ -33,6 +33,8 @@
 ##########################
 # Visualisation 
 #
+
+# DAWNFILE: 
 #/vis/scene/create
 #/vis/open DAWNFILE
 #/vis/viewer/flush
@@ -42,6 +44,13 @@
 #/tracking/storeTrajectory 1
 #/vis/scene/endOfEventAction accumulate
 #/vis/viewer/update
+
+# OGLIX
+#/vis/scene/create
+#/vis/open OGLIX
+#/vis/viewer/set/viewpointThetaPhi 0 0 deg
+#/tracking/storeTrajectory 1
+#/vis/scene/endOfEventAction accumulate
 
 ##########################
 # Set here the cut and the step max for the tracking. 
@@ -64,10 +73,11 @@
 #########################
 # Start of the run
 #
-#/run/beamOn 1
+
 
 /beam/position/Xposition -90 cm
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-/run/beamOn 10000
+/run/beamOn 100
+#/run/beamOn 10000
