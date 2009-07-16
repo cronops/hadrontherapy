@@ -84,6 +84,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 
     if( aStep->GetTrack()->GetVolume()->GetName() == "NewDetectorPhys"){
       //G4cout <<"Now in NewDetectorPhys" << G4endl;
+#ifdef ANALYSIS_USE
       G4ParticleDefinition *def = aStep->GetTrack()->GetDefinition();
       G4double secondaryParticleKineticEnergy =  aStep->GetTrack()->GetKineticEnergy();     
       G4String particle = def->GetParticleType();
@@ -96,20 +97,18 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	G4double posY = aStep->GetTrack()->GetPosition().y() / cm;
 	G4double posZ = aStep->GetTrack()->GetPosition().z() / cm;
 	G4double energy = secondaryParticleKineticEnergy / A / MeV;
-#ifdef ANALYSIS_USE
+
 	HadrontherapyAnalysisManager* analysisMgr =  HadrontherapyAnalysisManager::getInstance();   
 //	G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
 	analysisMgr->fillFragmentTuple(A, Z, energy, posX, posY, posZ);
 	//if(Z == 6){
 	//	G4cout << "got carbon\n";
 	//	}
-#endif
       }
 
       G4String secondaryParticleName =  def -> GetParticleName();  
       //G4cout <<"Particle: " << secondaryParticleName << G4endl;
       //G4cout <<"Energy: " << secondaryParticleKineticEnergy << G4endl;
-#ifdef ANALYSIS_USE
 	HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance();   
 	//There is a bunch of stuff recorded with the energy 0, something should perhaps be done about this.
 	if(secondaryParticleName == "proton") {
@@ -130,7 +129,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 #endif
 
 	aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
-      }
+    }
 
   // Electromagnetic and hadronic processes of primary particles in the phantom
   //setting phantomPhys correctly will break something here fix
