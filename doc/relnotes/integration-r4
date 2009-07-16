@@ -1,7 +1,7 @@
 Notes for integration-r4 release:
 
 * New Features:
-** Added event counter
+** Added event counter (for normalization purposes)
 ** Added beam window
 ** Complete geometry of the E. Haettner experiment implemented
 ** Improved plotting scripts
