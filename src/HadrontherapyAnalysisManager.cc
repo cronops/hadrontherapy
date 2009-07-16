@@ -533,7 +533,7 @@ void HadrontherapyAnalysisManager::hydrogenEnergy(G4double secondaryParticleKine
 
 
 
-void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4int Z, G4double energy, G4double posX, G4double posY, G4double posZ)
+void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4double Z, G4double energy, G4double posX, G4double posY, G4double posZ)
 {
 #ifdef G4ANALYSIS_USE
   if (fragmentTuple)    {

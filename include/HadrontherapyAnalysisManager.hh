@@ -152,7 +152,7 @@ public:
   void hydrogenEnergy(G4double secondaryParticleKineticEnergy);
   ///< Energy distribution of the hydrogen (proton, d, t) particles after the phantom
 
-  void fillFragmentTuple(G4int A, G4int Z, G4double energy, G4double posX, G4double posY, G4double posZ);
+  void fillFragmentTuple(G4int A, G4double Z, G4double energy, G4double posX, G4double posY, G4double posZ);
   ///< Energy ntuple
 
   void genericIonInformation(G4int, G4double, G4int, G4double);
