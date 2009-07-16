@@ -199,8 +199,11 @@ private:
   AIDA::IHistogram1D *h12;
   AIDA::IHistogram1D *h13;
   AIDA::IHistogram1D *h14;
+  AIDA::IHistogram1D *h15;
+  AIDA::IHistogram1D *h16;
   AIDA::ITuple *ntuple;
   AIDA::ITuple *ionTuple;
+  AIDA::ITuple *fragmentTuple;
 #endif
 #ifdef G4ANALYSIS_USE_ROOT
   TFile *theTFile;

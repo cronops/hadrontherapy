@@ -56,8 +56,9 @@ HadrontherapyAnalysisManager* HadrontherapyAnalysisManager::instance = 0;
 #ifdef G4ANALYSIS_USE
 HadrontherapyAnalysisManager::HadrontherapyAnalysisManager() :
   analysisFileName("DoseDistribution.root"), aFact(0), theTree(0), histFact(0), tupFact(0), h1(0), h2(0), h3(0),
-  h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), ntuple(0),
+  h4(0), h5(0), h6(0), h7(0), h8(0), h9(0), h10(0), h11(0), h12(0), h13(0), h14(0), h15(0), h16(0), ntuple(0),
   ionTuple(0),
+  fragmentTuple(0),
   eventCounter(0)
 {
 	fMess = new HadrontherapyAnalysisFileMessenger(this);
@@ -81,11 +82,20 @@ HadrontherapyAnalysisManager::~HadrontherapyAnalysisManager()
 {
 delete(fMess); //kill the messenger
 #ifdef G4ANALYSIS_USE
+  delete fragmentTuple;
+  fragmentTuple = 0;
+
   delete ionTuple;
   ionTuple = 0;
 
   delete ntuple;
   ntuple = 0;
+
+  delete h16;
+  h16 = 0;
+
+  delete h15;
+  h15 = 0;
 
   delete h14;
   h14 = 0;
@@ -269,6 +279,10 @@ void HadrontherapyAnalysisManager::book()
 
   h14 = histFact -> createHistogram1D("140","Energy distribution of secondary alpha particles", 70, 0., 70. );
 
+  h15 = histFact -> createHistogram1D("150","Energy distribution of helium fragments after the phantom", 70, 0., 500.);
+
+  h16 = histFact -> createHistogram1D("160","Energy distribution of hydrogen fragments after the phantom", 70, 0., 500.);
+
   // Create the ntuple
   G4String columnNames = "int i; int j; int k; double energy;";
   G4String options = "";
@@ -278,6 +292,11 @@ void HadrontherapyAnalysisManager::book()
   G4String columnNames2 = "int a; double z;  int occupancy; double energy;";
   G4String options2 = "";
   if (tupFact) ionTuple = tupFact -> create("2","2", columnNames2, options2);
+
+  // Create the fragment ntuple
+  G4String columnNames3 = "int a; double z; double energy; double posX; double posY; double posZ;";
+  G4String options3 = "";
+  if (tupFact) fragmentTuple = tupFact -> create("3","3", columnNames3, options3);
 #endif
 #ifdef G4ANALYSIS_USE_ROOT
   // Use ROOT
@@ -493,6 +512,9 @@ void HadrontherapyAnalysisManager::alphaEnergyDistribution(G4double energy)
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::heliumEnergy(G4double secondaryParticleKineticEnergy)
 {
+#ifdef G4ANALYSIS_USE
+  h15->fill(secondaryParticleKineticEnergy);
+#endif
 #ifdef G4ANALYSIS_USE_ROOT
   histo15->Fill(secondaryParticleKineticEnergy);
 #endif
@@ -501,6 +523,9 @@ void HadrontherapyAnalysisManager::heliumEnergy(G4double secondaryParticleKineti
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::hydrogenEnergy(G4double secondaryParticleKineticEnergy)
 {
+#ifdef G4ANALYSIS_USE
+  h16->fill(secondaryParticleKineticEnergy);
+#endif
 #ifdef G4ANALYSIS_USE_ROOT
   histo16->Fill(secondaryParticleKineticEnergy);
 #endif
@@ -510,6 +535,24 @@ void HadrontherapyAnalysisManager::hydrogenEnergy(G4double secondaryParticleKine
 
 void HadrontherapyAnalysisManager::fillFragmentTuple(G4int A, G4int Z, G4double energy, G4double posX, G4double posY, G4double posZ)
 {
+#ifdef G4ANALYSIS_USE
+  if (fragmentTuple)    {
+       G4int aIndex = fragmentTuple -> findColumn("a");
+       G4int zIndex = fragmentTuple -> findColumn("z");
+       G4int energyIndex = fragmentTuple -> findColumn("energy");
+       G4int posXIndex = fragmentTuple -> findColumn("posX");
+       G4int posYIndex = fragmentTuple -> findColumn("posY");
+       G4int posZIndex = fragmentTuple -> findColumn("posZ");
+
+       fragmentTuple -> fill(aIndex,A);
+       fragmentTuple -> fill(zIndex,Z);
+       fragmentTuple -> fill(energyIndex, energy);
+       fragmentTuple -> fill(posXIndex, posX);
+       fragmentTuple -> fill(posYIndex, posY);
+       fragmentTuple -> fill(posZIndex, posZ);
+       fragmentTuple -> addRow();
+  }
+#endif
 #ifdef G4ANALYSIS_USE_ROOT
   //G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
   fragmentNtuple->Fill(A, Z, energy, posX, posY, posZ);

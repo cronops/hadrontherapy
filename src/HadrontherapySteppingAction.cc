@@ -96,7 +96,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 	G4int posY = aStep->GetTrack()->GetPosition().y();
 	G4int posZ = aStep->GetTrack()->GetPosition().z();
 	G4double energy = secondaryParticleKineticEnergy / A / MeV;
-#ifdef G4ANALYSIS_USE_ROOT
+#ifdef ANALYSIS_USE
 	HadrontherapyAnalysisManager* analysisMgr =  HadrontherapyAnalysisManager::getInstance();   
 //	G4cout <<" A = " << A << "  Z = " << Z << " energy = " << energy << G4endl;
 	analysisMgr->fillFragmentTuple(A, Z, energy, posX, posY, posZ);
