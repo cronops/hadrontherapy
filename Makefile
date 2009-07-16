@@ -69,6 +69,9 @@ r: #
 	echo -e '\a'
 	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
 
+ra: # run only analysis
+	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
+
 r0: # run in AH environment
 
 	Hadrontherapy defaultMacro.mac

@@ -106,17 +106,22 @@ void fragmentEnergy() {
    fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
    fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
    fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
-   fragments->Draw("energy >> histC", "(Z == 6 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
+//   fragments->Draw("energy >> histC", "(Z == 6 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
 
 
    TCanvas *c3 = new TCanvas("histograms", "Histograms");
    Int_t nEve = 10000; //temporarily hardcoded
 
-   cout <<"H : " << histH->GetEntries() / nEve << endl;
-   histH->Draw();
+
 
    cout <<"He : " << histHe->GetEntries() / nEve << endl;
-   histHe->Draw("same");
+   histHe->Draw("");
+
+
+   cout <<"H : " << histH->GetEntries() / nEve << endl;
+   histH->Draw("same");
+
+
     
    cout <<"Li : " << histLi->GetEntries() / nEve << endl;
    histLi->Draw("same");
