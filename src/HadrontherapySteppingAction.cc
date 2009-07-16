@@ -92,9 +92,9 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 		 //< the G4 kernel presents deut's alphas and triton's as non nucleus for some reason
 	G4int A = def->GetBaryonNumber();
 	G4double Z = def->GetPDGCharge();
-	G4double posX = aStep->GetTrack()->GetPosition().x();
-	G4double posY = aStep->GetTrack()->GetPosition().y();
-	G4double posZ = aStep->GetTrack()->GetPosition().z();
+	G4double posX = aStep->GetTrack()->GetPosition().x() / cm;
+	G4double posY = aStep->GetTrack()->GetPosition().y() / cm;
+	G4double posZ = aStep->GetTrack()->GetPosition().z() / cm;
 	G4double energy = secondaryParticleKineticEnergy / A / MeV;
 #ifdef ANALYSIS_USE
 	HadrontherapyAnalysisManager* analysisMgr =  HadrontherapyAnalysisManager::getInstance();   
