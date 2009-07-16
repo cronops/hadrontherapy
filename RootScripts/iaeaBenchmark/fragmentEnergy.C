@@ -17,6 +17,9 @@
  * root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
  */
 void fragmentEnergy() {
+
+//   gROOT->SetStyle("clearRetro");
+
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
