@@ -114,8 +114,10 @@ void HadrontherapyPrimaryGeneratorAction::SetDefaultPrimaryParticle()
 
 void HadrontherapyPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+#ifdef ANALYSIS_USE
   // Increment the event counter
   HadrontherapyAnalysisManager::getInstance()->startNewEvent();
+#endif
 
   // ****************************************
   // Set the beam angular apread 
