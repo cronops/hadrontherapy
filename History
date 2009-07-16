@@ -9,6 +9,10 @@ $Id: History, 2004/02/27  G.A.P. Cirrone,
 
                       Category History file
 
+17.07.2009 P. Kaitaniemi; Tag: hadrontherapy-V09-02-23
+            - Full geometry of the E. Haettner experiment implemented (IAEADetectorConstruction)
+            - Improved plotting scripts
+
 13.07.2009 P. Kaitaniemi; Tag: hadrontherapy-V09-02-22
             - Added the first version of the IAEA benchmark geometry based on
               E. Haettner's thesis
