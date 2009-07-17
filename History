@@ -10,7 +10,8 @@ $Id: History, 2004/02/27  G.A.P. Cirrone,
                       Category History file
 
 17.07.2009 P. Kaitaniemi; Tag: hadrontherapy-V09-02-23
-            - Full geometry of the E. Haettner experiment implemented (IAEADetectorConstruction)
+            - Tuned geometry of the E. Haettner experimet (IAEADetectorConstruction)
+            - Adopted G4ANALYSIS_USE_ROOT flag to activate ROOT analysis
             - Improved plotting scripts
 
 13.07.2009 P. Kaitaniemi; Tag: hadrontherapy-V09-02-22
