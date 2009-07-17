@@ -31,7 +31,7 @@
 ##########################
 # Geomtery
 #
-/iaea/waterPhantomThickness 27.9 cm #default is 27.9
+/iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
 
 ##########################
 # Initialisation procedure
@@ -67,7 +67,7 @@
 #/vis/open OGLIX 600x600-100+0
 #/vis/drawVolume
 #/vis/viewer/set/viewpointThetaPhi 0 0 deg
-#/vis/viewer/set/viewpointThetaPhi 80 170 deg
+#/vis/viewer/set/viewpointThetaPhi 45 45 deg
 #/vis/viewer/zoom 1.0
 #/vis/scene/add/trajectories
 #/vis/modeling/trajectories/create/drawByCharge
@@ -113,8 +113,8 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-#/run/beamOn 100    # For test/visualization
- /run/beamOn 1000   # Default value in release
+/run/beamOn 100    # For test/visualization
+#/run/beamOn 1000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 100000 # Accurate results with good statistics 
 
