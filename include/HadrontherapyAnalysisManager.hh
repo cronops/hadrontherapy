@@ -162,6 +162,12 @@ public:
   void startNewEvent();
   ///< Tell the analysis manager that a new event is starting
 
+  void setGeometryMetaData(G4double, G4double);
+  ///< from the detector construction information about the geometry can be written as metadata
+
+  void setBeamMetaData(G4double, G4double);
+  ///< metadata about the beam can be written this way
+
   void finish();
   ///< Close the .hbk file with the histograms and the ntuples
 
@@ -223,6 +229,10 @@ private:
   TH1F *histo14;
   TH1F *histo15;
   TH1F *histo16;
+  G4double detectorDistance;
+  G4double phantomDepth;
+  G4double beamEnergy;
+  G4double energyError;
   TNtuple *theROOTNtuple;
   TNtuple *theROOTIonTuple;
   TNtuple *fragmentNtuple; // fragments

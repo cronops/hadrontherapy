@@ -53,6 +53,7 @@
 #include "G4UserLimits.hh"
 #include "G4VisAttributes.hh"
 #include "G4NistManager.hh"
+#include "HadrontherapyAnalysisManager.hh"
 #include "HadrontherapyDetectorROGeometry.hh"
 #include "IAEADetectorMessenger.hh"
 #include "HadrontherapyDetectorSD.hh"
@@ -114,7 +115,10 @@ G4VPhysicalVolume* IAEADetectorConstruction::Construct()
 
   ConstructPassiveProtonBeamLine();
   ConstructDetector();
-
+#ifdef ANALYSIS_USE
+  //write the metadata for analysis
+  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData(endDetectorPosition, phantomDepth);
+#endif
   // Set the sensitive detector where the energy deposit is collected
   ConstructSensitiveDetector();
   return physicalTreatmentRoom;

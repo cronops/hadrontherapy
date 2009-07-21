@@ -149,6 +149,11 @@ void HadrontherapyPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double kineticEnergy = G4RandGauss::shoot( meanKineticEnergy, sigmaEnergy );
   particleGun -> SetParticleEnergy ( kineticEnergy );
 
+#ifdef ANALYSIS_USE
+  // Write into analysis file meta data of the beam
+  HadrontherapyAnalysisManager::getInstance()->setBeamMetaData(meanKineticEnergy, sigmaEnergy);
+#endif
+
   // Set the direction of the primary particles
   G4double momentumX = 1.0;
   G4double momentumY = 0.0;
