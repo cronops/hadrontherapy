@@ -1,1 +1,4 @@
 Release notes for integration-r5
+
+New features:
+- IAEA geometry: added ability to remove the phantom by setting its thickness to zero
