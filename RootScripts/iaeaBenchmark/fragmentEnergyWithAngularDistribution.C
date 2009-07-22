@@ -52,17 +52,30 @@ void fragmentEnergyWithAngularDistribution() {
    ntuple->Draw("Li:Energy","","l,Same");
    ntuple->Draw("Be:Energy","","l,Same");
    printf(" found %d points\n",nlines);
-   //Let's pull in the monte carlo analysis results
-
+   
+   //Let's pull in the simulation-data
    TCanvas *mc = new TCanvas("mc", "Simulation");
    TFile *MCData = TFile::Open("IAEA.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
-		//scale and plot
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
-
-   //fragments->Scan();
-
+   
+   //Block bellow pulls out the simulation's metadata from the metadata ntuple.
+   TNtuple *metadata = (TNtuple*) MCData->Get("metaData");
+   Float_t events, detectorDistance,waterThickness,beamEnergy,energyError,phantomCenterDistance;
+   metadata->SetBranchAddress("events",&events);
+   metadata->SetBranchAddress("waterThickness",&waterThickness);
+   metadata->SetBranchAddress("detectorDistance",&detectorDistance);
+   metadata->SetBranchAddress("beamEnergy",&beamEnergy);
+   metadata->SetBranchAddress("energyError",&energyError);
+   metadata->SetBranchAddress("phantomCenterDistance",&phantomCenterDistance);
+   metadata->GetEntry(0); //there is just one row to consider.
+   
+	//good to keep for ref. G4 might give weird units due to change.
+	metadata->Scan();
+	std::cout << "Recieved metadata-row: " << events << " " <<  detectorDistance << " " << waterThickness << " " << beamEnergy << " " << energyError << " " << phantomCenterDistance;
+/*
+ //This is perhaps deprecated?
    Double_t ScaleHelium = 1/(MC_helium->Integral());
    Double_t ScaleHydrogen = 1/(MC_hydrogen->Integral()); 
    //x should also be scaled to per nucleon
@@ -75,6 +88,7 @@ void fragmentEnergyWithAngularDistribution() {
    MC_hydrogen->SetLineColor(kRed);
 //   MC_hydrogen->Draw("Same");
    printf("Scaled hydrogen by %.9f\n",ScaleHydrogen);
+*/
    
    TH1F *histH = new TH1F("histH", "Hydrogen", 60, 0.0, 450.0);
    TH1F *histHe = new TH1F("histHe", "Helium", 60, 0.0, 450.0);
@@ -100,25 +114,33 @@ void fragmentEnergyWithAngularDistribution() {
 
 
    fragments->SetLineColor(kGreen);
-	Double_t detectorSideLength = 0.04; //40mm
-	Double_t scatteringDistance = 3; //temporarily hard-coded, should be distance from target-center to detector
-	Double_t degrees = 3;
+
+	//ALL UNITS ARE FOR NOW cm
+	Double_t detectorSideLength = 4; //40mm
+	Double_t scatteringDistance = detectorDistance - phantomCenterDistance; //temporarily hard-coded, should be distance from target-center to detector
+	Double_t degrees = 1.0;
 	//Double_t r = TMath::Sqrt(posY*posY + posZ*posZ); //just fed through cut, but here for clarity
 	
-
-	Double_t rMin = TMath::Sin(degrees * TMath::DegToRad) - detectorSideLength;
-	Double_t rMax = TMath::Sin(degrees * TMath::DegToRad) - detectorSideLength;
+	//Point at the requested angle
+	Double_t r = scatteringDistance * TMath::Tan(degrees * TMath::DegToRad());
+	//now the "detector is rotated around all possible perpendicularly  angle values to beamline" 
+	Double_t rMin = TMath::Max(0.0,r - (detectorSideLength/2));
+	Double_t rMax = r + (detectorSideLength/2);
 	
-	char rMinString[100];
-	char rMaxString[100];
-	sprintf(rMinString,"%f",rMin); //fixme, root perhaps has something smarter?
-	sprintf(rMaxString,"%f",rMax);
+	TString rMinString(Form("%f", rMin));
+	TString rMaxString(Form("%f", rMax));
+	//"(Z == 1 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")"
 	
-	fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization);
-   
+	fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+	fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")", "same");
 	
-    fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && Sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& Sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization, "same");
-    fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && Sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& Sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization, "same");
+	
+	//fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)");
+   fragments->Scan("posY:posZ","(Z == 5 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+   std::cout << "rmin and rmax are:" << rMinString << "/" << rMaxString << "\n";
+	//std::cout << "energy >> histB", "(Z == 5 && energy > 45 && Sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& Sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization;
+    ///fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+    ///fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization, "same");
    //fragments->Draw("energy >> histLi", "(Z == 3 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
    //fragments->Draw("energy >> histBe", "(Z == 4 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");
    //fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)" + normalization, "same");

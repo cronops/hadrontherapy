@@ -117,7 +117,7 @@ G4VPhysicalVolume* IAEADetectorConstruction::Construct()
   ConstructDetector();
 #ifdef ANALYSIS_USE
   //write the metadata for analysis
-  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData(endDetectorPosition, phantomDepth);
+  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData(endDetectorPosition/10, phantomDepth/10, phantomCenter/10); //FIXME! unit correction hardcoded
 #endif
   // Set the sensitive detector where the energy deposit is collected
   ConstructSensitiveDetector();
