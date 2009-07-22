@@ -83,16 +83,15 @@
 #/vis/filtering/trajectories/particleFilter-0/add neutron
 #/vis/filtering/trajectories/particleFilter-0/add proton
 #/vis/filtering/trajectories/particleFilter-0/invert true # charged particles only
-
 /tracking/storeTrajectory 1
 /vis/scene/endOfEventAction accumulate
 
 ##########################
 # Set here the cut and the step max for the tracking. 
-# Suggested values of cut and step is 0.01 mm:
+# Fixme, recommenadtions needed
 #
-/physic/setCuts 1 cm
-/Step/waterPhantomStepMax 1 cm
+/physic/setCuts 0.8 cm
+/Step/waterPhantomStepMax 0.5 cm
 #/Step/waterPhantomStepMax 0.01 mm 
 
 #########################
@@ -113,8 +112,8 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-/run/beamOn 100    # For test/visualization
-#/run/beamOn 1000   # Default value in release
+#/run/beamOn 100    # For test/visualization
+/run/beamOn 1000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 100000 # Accurate results with good statistics 
 
