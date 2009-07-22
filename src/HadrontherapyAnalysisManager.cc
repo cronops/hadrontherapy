@@ -594,13 +594,13 @@ void HadrontherapyAnalysisManager::startNewEvent()
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::setGeometryMetaData(G4double endDetectorPosition, G4double waterThickness)
 {
-  this->detectorDistance = endDetectorPosition;
-  this->phantomDepth = waterThickness;
+  detectorDistance = endDetectorPosition;
+  phantomDepth = waterThickness;
 }
 void HadrontherapyAnalysisManager::setBeamMetaData(G4double meanKineticEnergy,G4double sigmaEnergy)
 {
-  this->beamEnergy = meanKineticEnergy;
-  this->energyError = sigmaEnergy;
+  beamEnergy = meanKineticEnergy;
+  energyError = sigmaEnergy;
 }
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::flush()
@@ -635,7 +635,7 @@ void HadrontherapyAnalysisManager::finish()
   theTree ->close();
 #endif
 #ifdef G4ANALYSIS_USE_ROOT
-  metaData->Fill((Float_t) eventCounter);
+  metaData->Fill((Float_t) eventCounter,(Float_t) detectorDistance, (Float_t) phantomDepth, (Float_t) beamEnergy, energyError);
   metaData->Write();
   theROOTNtuple->Write();
   theROOTIonTuple->Write();
