@@ -68,9 +68,13 @@ r: #
 	Hadrontherapy macro/iaea.mac
 	echo -e '\a'
 	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
-
-ra: # run only analysis
+	root -l RootScripts/iaeaBenchmark/fragmentEnergyWithAngularDistribution.C
+	
+raFragments: # run only analysis
 	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
+
+raAngular: #produce the angular distribution plots of the fragments
+	root RootScripts/iaeaBenchmark/fragmentEnergyWithAngularDistribution.C
 
 r0: # run in AH environment
 

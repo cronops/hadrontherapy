@@ -60,6 +60,20 @@ void fragmentEnergy() {
 		//scale and plot
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
+   //Block bellow pulls out the simulation's metadata from the metadata ntuple.
+   TNtuple *metadata = (TNtuple*) MCData->Get("metaData");
+   Float_t events, detectorDistance,waterThickness,beamEnergy,energyError,phantomCenterDistance;
+   metadata->SetBranchAddress("events",&events);
+   metadata->SetBranchAddress("waterThickness",&waterThickness);
+   metadata->SetBranchAddress("detectorDistance",&detectorDistance);
+   metadata->SetBranchAddress("beamEnergy",&beamEnergy);
+   metadata->SetBranchAddress("energyError",&energyError);
+   metadata->SetBranchAddress("phantomCenterDistance",&phantomCenterDistance);
+   metadata->GetEntry(0); //there is just one row to consider.
+   
+	//good to keep for ref. G4 might give weird units due to change.
+	metadata->Scan();
+
    //fragments->Scan();
 
    Double_t ScaleHelium = 1/(MC_helium->Integral());
@@ -110,7 +124,7 @@ void fragmentEnergy() {
 
 
    TCanvas *c3 = new TCanvas("histograms", "Histograms");
-   Int_t nEve = 10000; //temporarily hardcoded
+   Int_t nEve = events; //redundant
 
 
 

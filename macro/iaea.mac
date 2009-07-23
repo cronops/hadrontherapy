@@ -83,8 +83,8 @@
 #/vis/filtering/trajectories/particleFilter-0/add neutron
 #/vis/filtering/trajectories/particleFilter-0/add proton
 #/vis/filtering/trajectories/particleFilter-0/invert true # charged particles only
-/tracking/storeTrajectory 1
-/vis/scene/endOfEventAction accumulate
+#/tracking/storeTrajectory 1
+#/vis/scene/endOfEventAction accumulate
 
 ##########################
 # Set here the cut and the step max for the tracking. 
@@ -113,9 +113,9 @@
 /beam/position/Zposition 0 cm
 
 #/run/beamOn 100    # For test/visualization
-/run/beamOn 1000   # Default value in release
+#/run/beamOn 1000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
-#/run/beamOn 100000 # Accurate results with good statistics 
+/run/beamOn 100000 # Accurate results with good statistics 
 
 
 # Example of running in loop 
