@@ -220,7 +220,7 @@ hist9->Draw("same");
 	
 	//fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && abs(posY) < 200 && abs(posZ) < 200)");
 	//fragments->Scan("posY:posZ","(Z == 5 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
-   std::cout << "rmin and rmax are:" << rMinString << "/" << rMaxString << "\n";
+//   std::cout << "rmin and rmax are:" << rMinString << "/" << rMaxString << "\n";
 	//std::cout << "energy >> histB", "(Z == 5 && energy > 45 && Sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& Sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization;
     ///fragments->Draw("energy >> histB", "(Z == 5 && energy > 45 && sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
     ///fragments->Draw("energy >> histH", "(Z == 1 && energy > 45 && sqrt(posY*posY + posZ*posZ) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normalization, "same");
