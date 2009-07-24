@@ -29,7 +29,7 @@
 
 
 ##########################
-# Geomtery
+# Geometry
 #
 /iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
 
