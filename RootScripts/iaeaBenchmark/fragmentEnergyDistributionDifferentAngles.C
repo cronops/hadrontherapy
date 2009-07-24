@@ -12,13 +12,7 @@
 #include "TString.h"
 #include "TMath.h"
 
-/**
- * Macro for plotting the fragment energy distributions.
- *
- * Usage:
- * root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
- */
-void fragmentEnergyWithAngularDistribution() {
+void fragmentEnergyDistributionDifferentAngles() {
 
 //   gROOT->SetStyle("clearRetro");
 
@@ -193,7 +187,7 @@ for(int k = 1; k <= 6; k++){
 // The following is veryvery ugly relies on a bunch of hardcoded histograms	
 	histName = Form("hist%i", i);
 	std::cout << histName << "\n";
-	fragments->Project(histName,"energy", "(Z == " + Znum + " && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normString);
+	fragments->Project(histName,"energy", "(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normString);
 
 		}
 
