@@ -111,7 +111,7 @@ void fragmentEnergy() {
    fragments->SetLineColor(kRed);
    fragments->SetMarkerStyle(22);
    
-   fragments->Draw("posY:posZ", "abs(posZ) < 2000 && abs(posY) < 2000");
+   fragments->Draw("posY:posZ", "abs(posZ) < 20 && abs(posY) < 20");
 
    fragments->Draw("energy >> histHe", "(Z == 2 && energy > 45 && abs(posY) < 2 && abs(posZ) < 2)" + normalization);
    
