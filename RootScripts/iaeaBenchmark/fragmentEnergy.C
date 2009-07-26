@@ -9,6 +9,7 @@
 #include "TH1F.h"
 #include "TCut.h"
 #include "TString.h"
+#include "TMath.h"
 
 /**
  * Macro for plotting the fragment energy distributions.
