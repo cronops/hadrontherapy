@@ -1,1 +1,4 @@
 Release notes for integration-r6
+
+New features:
+* Added ability to select the geometry using G4 macro commands
