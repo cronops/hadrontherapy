@@ -31,6 +31,7 @@
 ##########################
 # Geometry
 #
+/geometrySetup/selectGeometry IAEA  # Select the IAEA geometry
 /iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
 
 ##########################
