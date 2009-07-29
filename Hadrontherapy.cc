@@ -71,6 +71,10 @@
 #include "G4UIXm.hh"
 #endif
 
+#ifdef G4UI_USE_QT
+#include "G4UIQt.hh"
+#endif
+
 #ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
 #endif
@@ -130,7 +134,11 @@ int main(int argc ,char ** argv)
   G4UIsession* session = 0;
   if (argc == 1)   
     {
+#ifdef G4UI_USE_QT
+      session = new G4UIQt(argc, argv);
+#else
       session = new G4UIterminal();
+#endif
     }
 
   // Get the pointer to the User Interface manager 
@@ -138,7 +146,11 @@ int main(int argc ,char ** argv)
   if (session)   // Define UI session for interactive mode.
     { 
       G4cout<<" UI session starts ..."<< G4endl;
-      UI -> ApplyCommand("/control/execute defaultMacro.mac");    
+#ifdef G4UI_USE_QT
+      UI->ApplyCommand("/control/execute macros/gui.mac");
+#else
+      UI->ApplyCommand("/control/execute defaultMacro.mac");
+#endif
       session -> SessionStart();
       delete session;
     }
