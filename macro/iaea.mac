@@ -62,18 +62,18 @@
 #/vis/scene/endOfEventAction accumulate
 
 ####### OGLIX #######
-#/vis/scene/create
+/vis/scene/create
 #/vis/open OGLSX
-#/vis/open OGLIX
+/vis/open OGLIX
 #/vis/open OGLIX 600x600-100+0
 #/vis/drawVolume
 #/vis/viewer/set/viewpointThetaPhi 0 0 deg
-#/vis/viewer/set/viewpointThetaPhi 45 45 deg
+/vis/viewer/set/viewpointThetaPhi 45 45 deg
 #/vis/viewer/zoom 1.0
-#/vis/scene/add/trajectories
-#/vis/modeling/trajectories/create/drawByCharge
-#/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
-#/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/scene/add/trajectories
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
 
 
 # Draw only certain particles
@@ -113,9 +113,9 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-#/run/beamOn 100    # For test/visualization
+/run/beamOn 100    # For test/visualization
 #/run/beamOn 1000   # Default value in release
-/run/beamOn 10000  # Good for basic physics run (takes few min)
+#/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 100000 # Accurate results with good statistics 
 
 

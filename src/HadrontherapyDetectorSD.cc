@@ -72,6 +72,7 @@ void HadrontherapyDetectorSD::Initialize(G4HCofThisEvent*)
 
 G4bool HadrontherapyDetectorSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 {
+		//The code doesen't seem to get here. FIXME
   if(!ROhist)
     return false;
  
