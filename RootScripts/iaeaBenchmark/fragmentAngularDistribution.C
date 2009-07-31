@@ -109,7 +109,7 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
 		deltaPhi = width/2;
 		binNormalization = 2*TMath::Pi()*(TMath::Cos(TMath::DegToRad()*(degrees-deltaPhi)) - TMath::Cos(TMath::DegToRad()*(degrees+deltaPhi))); //Gunzer-marx uses this , which is a tad of an approximation
 		std::cout << bin << "\t" << value << "\t" << binNormalization << endl;
-		hist1->SetBinContent(bin, 40*value/(binNormalization*events)); //Solid angle and amount of events
+		hist1->SetBinContent(bin, value/(binNormalization*events)); //Solid angle and amount of events
 		//hist1->SetBinContent(bin, value/(binNormalization*events*width)); //normalized to solid angle, bin width and event count
 	}
 
