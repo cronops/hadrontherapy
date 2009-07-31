@@ -19,8 +19,10 @@
  */
 void fragmentEnergy() {
 
-//   gROOT->SetStyle("clearRetro");
-
+//   gROOT->SetStyle("clearRetro"); //For stylesheet
+////////////////////////////////////////
+//////     Importing data      /////////
+////////////////////////////////////////
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
@@ -55,7 +57,7 @@ void fragmentEnergy() {
    //Let's pull in the monte carlo analysis results
 
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA_static.root");
+   TFile *MCData = TFile::Open("IAEA_static_qmd.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 		//scale and plot
@@ -97,6 +99,7 @@ void fragmentEnergy() {
    Double_t maxEnergy = 450.0;
    Double_t binWidth = maxEnergy / binAmount;
    TH1F *histH = new TH1F("histH", "Hydrogen", binAmount, 0.0, maxEnergy);
+   //HistH will be black
    TH1F *histHe = new TH1F("histHe", "Helium", binAmount, 0.0, maxEnergy);
    histHe->SetLineColor(kRed);
    TH1F *histLi = new TH1F("histLi", "Lithium", binAmount, 0.0, maxEnergy);
@@ -130,6 +133,9 @@ void fragmentEnergy() {
    fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
 
    histH->Draw("");
+   //TAxis *Yaxis = histH->GetYaxis();
+   //Yaxis->set
+   histH->SetMaximum(0.3);
    histHe->Draw("same");
    histLi->Draw("same");
    histBe->Draw("same");
