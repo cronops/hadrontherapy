@@ -44,7 +44,7 @@ void fragmentAngularDistribution() {
 	   printf(" found %d points\n",nlines);
    //Let's pull in the simulation-data
    //TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *simulation = TFile::Open("IAEA_static_wilson.root");
+   TFile *simulation = TFile::Open("IAEA.root");
    TNtuple *fragments = (TNtuple*) simulation->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -110,7 +110,7 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
 		binNormalization = 2*TMath::Pi()*(TMath::Cos(TMath::DegToRad()*(degrees-deltaPhi)) - TMath::Cos(TMath::DegToRad()*(degrees+deltaPhi))); //Gunzer-marx uses this , which is a tad of an approximation
 		std::cout << bin << "\t" << value << "\t" << binNormalization << endl;
 		hist1->SetBinContent(bin, 40*value/(binNormalization*events)); //Solid angle and amount of events
-		//hist1->SetBinContent(bin, value/(binNormalization*events*width)); //normalized to solid angle, bin widht and event count
+		//hist1->SetBinContent(bin, value/(binNormalization*events*width)); //normalized to solid angle, bin width and event count
 	}
 
 	///fragments->Scan("posY:posZ:atan((posZ^2+posY^2)/" + sdstring + ")");
@@ -124,7 +124,6 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
 	hist1->SetMaximum(35);
 	ntuple->SetMarkerStyle(22);
     ntuple->SetMarkerColor(kRed);
-	//std::cout << "scaling resultts to 10% in order to fit (this is def. fixme)" << endl:
 	ntuple->Draw("y:x","","p,same");
 
 

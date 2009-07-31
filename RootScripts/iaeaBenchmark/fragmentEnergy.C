@@ -54,13 +54,13 @@ void fragmentEnergy() {
    ntuple->Draw("Li:Energy","","l,Same");
    ntuple->Draw("Be:Energy","","l,Same");
    printf(" found %d points\n",nlines);
-   //Let's pull in the monte carlo analysis results
-
+   
+   //Let's pull in the monte carlo simulation results
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA_static_qmd.root");
+   TFile *MCData = TFile::Open("IAEA.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
-		//scale and plot
+	//scale and plot
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -80,20 +80,6 @@ void fragmentEnergy() {
 	//good to keep for ref. G4 might give weird units due to change.
 	metadata->Scan();
 
-   //fragments->Scan();
-
-   Double_t ScaleHelium = 1/(MC_helium->Integral());
-   Double_t ScaleHydrogen = 1/(MC_hydrogen->Integral()); 
-   //x should also be scaled to per nucleon
-   
-   MC_helium->Scale(ScaleHelium);
-//   MC_helium->Draw("");
-   //printf("Scaled helium by %.9f\n",ScaleHelium);
-
-   MC_hydrogen->Scale(ScaleHydrogen);
-   MC_hydrogen->SetLineColor(kRed);
-//   MC_hydrogen->Draw("Same");
-  // printf("Scaled hydrogen by %.9f\n",ScaleHydrogen);
    
    Double_t binAmount = 50.0; //casting from int failed somehow, so in float temporarily, fixme
    Double_t maxEnergy = 450.0;
@@ -140,8 +126,6 @@ void fragmentEnergy() {
    histLi->Draw("same");
    histBe->Draw("same");
    histB->Draw("same");
-
-//   fragments->Draw("energy >> histC", "(Z == 6 && energy > 45 && abs(posY) < 2 && abs(posZ) < 2)" + normalization, "same");
 
 	/*
 	 * This is cludgy but the previous plots can't contain <45MeV stuff but hte following calcualtions need them
