@@ -73,7 +73,7 @@ void fragmentEnergy() {
    metadata->GetEntry(0); //there is just one row to consider.
 
 	//analysis numbers based on metadata
- Double_t scatteringDistance = detectorDistance - phantomCenterDistance;
+	Double_t scatteringDistance = detectorDistance - phantomCenterDistance;
     Double_t detectorSideLength = 4; //hardcoded, we have a zero angle square detector
 	//good to keep for ref. G4 might give weird units due to change.
 	metadata->Scan();
@@ -93,38 +93,41 @@ void fragmentEnergy() {
 //   MC_hydrogen->Draw("Same");
   // printf("Scaled hydrogen by %.9f\n",ScaleHydrogen);
    
-   TH1F *histH = new TH1F("histH", "Hydrogen", 60, 0.0, 450.0);
-   TH1F *histHe = new TH1F("histHe", "Helium", 60, 0.0, 450.0);
+   Double_t binAmount = 50.0; //casting from int failed somehow, so in float temporarily, fixme
+   Double_t maxEnergy = 450.0;
+   Double_t binWidth = maxEnergy / binAmount;
+   TH1F *histH = new TH1F("histH", "Hydrogen", binAmount, 0.0, maxEnergy);
+   TH1F *histHe = new TH1F("histHe", "Helium", binAmount, 0.0, maxEnergy);
    histHe->SetLineColor(kRed);
-   TH1F *histLi = new TH1F("histLi", "Lithium", 60, 0.0, 450.0);
+   TH1F *histLi = new TH1F("histLi", "Lithium", binAmount, 0.0, maxEnergy);
    histLi->SetLineColor(kBlue);
-   TH1F *histBe = new TH1F("histBe", "Beryllium", 60, 0.0, 450.0);
+   TH1F *histBe = new TH1F("histBe", "Beryllium", binAmount, 0.0, maxEnergy);
    histBe->SetLineColor(kGreen);
-   TH1F *histB = new TH1F("histB", "Boron", 60, 0.0, 450.0);
+   TH1F *histB = new TH1F("histB", "Boron", binAmount, 0.0, maxEnergy);
    histB->SetLineColor(kYellow);
-   TH1F *histC = new TH1F("histC", "Carbon", 60, 0.0, 450.0);
+   TH1F *histC = new TH1F("histC", "Carbon", binAmount, 0.0, maxEnergy);
 
 	TH1F* histPos = new TH1F("histPos", "check position",100,-2000,2000);
 	//Solid angle according to \Omega = 4 \arcsin \frac {\alpha\beta} {\sqrt{(4d^2+\alpha^2)(4d^2+\beta^2)}}
 	Double_t steradians = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
    std::cout << "Detector seen at solid angle: " << steradians << endl;
-   TString normalization(Form("/%f", steradians*events));
+   TString normalization(Form("/%f", steradians*events*binWidth));
 
    fragments->SetLineColor(kRed);
    fragments->SetMarkerStyle(22);
    
-   fragments->Draw("posY:posZ", "abs(posZ) < 20 && abs(posY) < 20");
+   fragments->Draw("posY:posZ", "abs(posZ) < 2 && abs(posY) < 2");
 
 	TString halfSideLengthString(Form("%f", detectorSideLength/2));
 
    
    fragments->SetLineColor(kGreen);
    fragments->Project("histHe", "energy", "(Z == 2 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
-   fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
-   fragments->Project("histH", "energy", "(Z == 1 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
-   fragments->Project("histLi", "energy", "(Z == 3 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
-   fragments->Project("histBe", "energy", "(Z == 4 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
-   fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
+   fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
+   fragments->Project("histH", "energy", "(Z == 1 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
+   fragments->Project("histLi", "energy", "(Z == 3 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
+   fragments->Project("histBe", "energy", "(Z == 4 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
+   fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
 
    histH->Draw("");
    histHe->Draw("same");
