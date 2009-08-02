@@ -359,6 +359,7 @@ void HadrontherapyAnalysisManager::FillEnergyDeposit(G4int i,
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapyAnalysisManager::BraggPeak(G4int slice, G4double energy)
 {
+	std::cout << "Got something" << "\n";
 #ifdef G4ANALYSIS_USE
   h1 -> fill(slice,energy);
 #endif
