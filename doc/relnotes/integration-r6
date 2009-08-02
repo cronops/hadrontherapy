@@ -1,4 +1,13 @@
 Release notes for integration-r6
 
-New features:
-* Added ability to select the geometry using G4 macro commands
+* New features:
+- Added ability to select the geometry using G4 macro commands
+
+* Bugfixes:
+- Fixed plotting scripts and corrected normalization for the
+  fragment energy distribution
+
+* Issues:
+- A problem was discovered with the sensitive detector code when used
+  with the IAEA geometry. The system does not collect data for the
+  bragg peak histogram.
