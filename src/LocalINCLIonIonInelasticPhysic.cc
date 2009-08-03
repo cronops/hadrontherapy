@@ -123,8 +123,8 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   deuteronInelasticProcess -> AddDataSet(TripatiCrossSections);
   deuteronInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  deuteronInelasticProcess -> RegisterMe(INCLIonModel);
-  //deuteronInelasticProcess -> RegisterMe(ligthBinary);
+  //deuteronInelasticProcess -> RegisterMe(INCLIonModel);
+  deuteronInelasticProcess -> RegisterMe(lightBinary);
   //deuteronInelasticProcess -> RegisterMe(JQMDmodel);
   //deuteronInelasticProcess -> RegisterMe(WilsonModel);
 
@@ -141,10 +141,10 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   tritonInelasticProcess -> AddDataSet(TripatiCrossSections);
   tritonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  tritonInelasticProcess -> RegisterMe(INCLIonModel);
-  //tritonInelasticProcess -> RegisterMe(ligthBinary);
+  //tritonInelasticProcess -> RegisterMe(INCLIonModel);
+  tritonInelasticProcess -> RegisterMe(lightBinary);
   //tritonInelasticProcess -> RegisterMe(JQMDmodel);
-  //tritonInelasticProcess -> RegisterMe(WilsonModel);
+  tritonInelasticProcess -> RegisterMe(WilsonModel);
   
   particle = G4Triton::Triton();
   processManager = particle -> GetProcessManager();
@@ -175,10 +175,10 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   alphaInelasticProcess -> AddDataSet(TripatiCrossSections);
   alphaInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  alphaInelasticProcess -> RegisterMe(INCLIonModel);
-  //alphaInelasticProcess -> RegisterMe(ligthBinary);
+  //alphaInelasticProcess -> RegisterMe(INCLIonModel);
+  alphaInelasticProcess -> RegisterMe(lightBinary);
  //alphaInelasticProcess -> RegisterMe(JQMDmodel);
- //alphaIonInelasticProcess -> RegisterMe(WilsonModel);
+ //alphaInelasticProcess -> RegisterMe(WilsonModel);
 
   particle = G4Alpha::Alpha();
   processManager = particle -> GetProcessManager();
@@ -193,7 +193,7 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   genericIonInelasticProcess -> AddDataSet(TripatiCrossSections);
   genericIonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  genericIonInelasticProcess -> RegisterMe(lightBinary);
+ genericIonInelasticProcess -> RegisterMe(lightBinary);
   //genericIonInelasticProcess -> RegisterMe(JQMDmodel);
   //genericIonInelasticProcess -> RegisterMe(WilsonModel);
   
