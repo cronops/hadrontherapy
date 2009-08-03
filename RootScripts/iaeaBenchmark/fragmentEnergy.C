@@ -18,14 +18,17 @@
  * root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
  */
 void fragmentEnergy() {
-
-//   gROOT->SetStyle("clearRetro"); //For stylesheet
 ////////////////////////////////////////
 //////     Importing data      /////////
 ////////////////////////////////////////
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
+
+TString macroPath(gROOT->GetMacroPath());
+gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
+gROOT->LoadMacro("rootlogon.C");
+gROOT->SetStyle("clearRetro"); //For stylesheet
    ifstream in;
    in.open(Form("experimentalData/iaeaBenchmark/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
    Float_t f1,f2,f3, f4,f5,f6;
