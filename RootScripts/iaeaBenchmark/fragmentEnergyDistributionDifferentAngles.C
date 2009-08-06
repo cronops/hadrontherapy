@@ -97,14 +97,15 @@ for(int k = 1; k <= 6; k++){
 	//"(Z == 1 && energy > 45 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")"
 	TString same = "";
 	TString histName;
-
 	TCanvas *c3 = new TCanvas("histograms", "Distribution (at different angles)");
 	THStack hs("hs","test stacked histograms");
 	int i = 0; //so that the degree steps can be varied to unevenly spaced values separate counter is used
+
+	std::cout << "The following numbers also make it possible to make number of fragments comparison to the graph in A1 of E.Haettner\n";
 	for(Double_t j = 1.0; j <= 9.0; j=j+1.0){
 		i++;
 		degrees = j * TMath::DegToRad();
-		std::cout << "plotting for Z = " << Znum << " at " << j << " degrees\n";
+		//std::cout << "plotting for Z = " << Znum << " at " << j << " degrees\n";
 		//Distance from straight beam at the requested angle
 		r = scatteringDistance * TMath::Tan(degrees);
 		//now the "detector is rotated around all possible perpendicularlynangle values to beamline".
@@ -124,6 +125,9 @@ for(int k = 1; k <= 6; k++){
 	// The following is veryvery ugly relies on a bunch of hardcoded histograms	because other solutions did not work
 		histName = Form("hist%i", i);
 		fragments->Project(histName,"energy", "(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")" + normString);
+		int numEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+		std::cout << "\nj: "<< numEntries/(deltaOmega * events) << " entries for " << j;
+		
 		}
 
 //the ugly hardcoded histograms being plotted
