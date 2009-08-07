@@ -12,9 +12,23 @@
 #include "TString.h"
 #include "TMath.h"
 
+/***************************
+ * Root script that produces a graph of the angular distribution of
+ * a certain type of charged fragment (default Z=1).
+ * 
+ * Results are not stored in a histogram.
+ * 
+ * This can be compared to measurements made with a square 
+ * detector that is being moved around. Such as that of E.Haettner[1].
+ * 
+ * @author Gillis Danielsen
+ * **************************/
+
 
 void fragmentAngularDistribution() {
 
+	TCanvas *c1 = new TCanvas("AngularDistribution", "Angular distribution with discrete measurement annuluses");
+	
 //   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
@@ -41,14 +55,14 @@ void fragmentAngularDistribution() {
       ntuple->Fill(f1,f2);
       nlines++;
    }
-	   printf(" found %d points\n",nlines);
+   
+
    //Let's pull in the simulation-data
-   //TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *simulation = TFile::Open("IAEA.root");
-   TNtuple *fragments = (TNtuple*) simulation->Get("fragmentNtuple");
+   TFile *MCData = TFile::Open("IAEA.root");
+   TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
-   TNtuple *metadata = (TNtuple*) simulation->Get("metaData");
+   TNtuple *metadata = (TNtuple*) MCData->Get("metaData");
    Float_t events, detectorDistance,waterThickness,beamEnergy,energyError,phantomCenterDistance;
    metadata->SetBranchAddress("events",&events);
    metadata->SetBranchAddress("waterThickness",&waterThickness);
@@ -60,91 +74,60 @@ void fragmentAngularDistribution() {
    
 	//good to keep for ref. G4 might give weird units due to change.
 	metadata->Scan();
-
-
-	TString Znum = Form("%i", 1); //hydrogen seems to be the only interesting fragment due to largest amounts
-	/* 
-	 * A logical bin amount could be calculated as follows, E.Haettner used a detector with 4cm side length, 
-	 * the scattering distance is 295.85, thus arctan(4 / 295.85) = 0.774612657 degrees. As 14 degrees is shown
-	 * in Haettners graphs and is chosen here as well that would mean approx 14/.77 ~ 18.
-	 * This should mean moving the detector one detectorlength. so that the bins "do not overlap". This is ab it of an approx though
-	 * because the change in degrees is not linear.
-	 * So far these results are though very much inconsistent with Haettners.
-	 * 
-	 * Although here one should note that the degrees are not linear.
-	 * 
-	 * The negativeHist is a cludge-fix to get the negative degrees (will be exactly the same)
-	*/
-	Double_t maxDegrees = 14; //highest plotted degree amount
-	int binAmount = 18; //amount of bins in plotted histogram
-    TH1F *hist1 = new TH1F("hist1", "Fragment angular distr.", binAmount, 0, maxDegrees); //The histogram for the angular distribution at a set length
-	//This histogram needs to be hist1 with a symmetric negative side
-	TH1F *symmetricHist = new TH1F("symmetricHist", "Fragment angular distr.", 2*binAmount, -1*maxDegrees, maxDegrees); //bin amount must be even
-
-	//Things needed for the analysis (based on the metadata pulled earlier)
-	//ALL UNITS ARE FOR NOW cm
-	Double_t detectorSideLength = 4; //40mm
-	Double_t scatteringDistance = detectorDistance - phantomCenterDistance;
-	TString sdstring = Form("%.4f", scatteringDistance);
 	
-	TCanvas *c1 = new TCanvas("histograms", "Angular distribution at certain phantom thickness, sd" + sdstring); //This is where we will plot
+	//ALL UNITS ARE cm!
+	Double_t detectorSideLength = 1.6; //40mm, as e.haettner H1 detector
+	Double_t scatteringDistance = detectorDistance - phantomCenterDistance; //temporarily hard-coded, should be distance from target-center to detector
+
+	Double_t r;
+	Double_t degrees;
+	TString rMinString;
+	TString rMaxString;
 	
-////////////////////////////////////////
-//////        Analysis         /////////
-////////////////////////////////////////
-TString middleY;
-Double_t sinuse;
-std::cout << "Check, single detector, different degrees, amounts of hits:\n\n\n";
-for(float p = -2; p < 12; p = p + 1.0){
-middleY = Form("%f",scatteringDistance * TMath::Sin(p*TMath::RadToDeg()));
-std::cout << "\n" << p << " degrees: " << fragments->GetEntries("posY > (" + middleY + " -2.00) && posY < (" + middleY + "+2.00) && posZ > -2 && posZ < 2 && Z == 1");
-}
-std::cout << "\n";
-std::cout << "\n";
-//Projection from ntuple to histogram, so that the angle is trigonometrically pulled as the binned variable
-	fragments->Project("hist1","57.29577*atan((posZ^2+posY^2)/" + sdstring + ")", "(Z == " + Znum + ")");
+	//TCanvas *c3 = new TCanvas("histograms", "Distribution (at different angles)");
+	int i = 0; //so that the degree steps can be varied to unevenly spaced values separate counter is used
+	TString Znum = "1"; //set here what will be put in the selection for z
+	TNtuple* distrib = new TNtuple("angularDistrib","FragmentAngularDistrib","angle:particleAmount:normalized");
 
-//Secondly all bins need to be scaled according to the solid angle of that phi+-deltaPhi circlepart. Before this the curve is "bragg-curvish", what I want is "concaveish".
-//this could be done inside the reading of the tuple into the histo, however doing it afterwards improves
-	Double_t value, width, deltaPhi, degrees;
-	Double_t binNormalization = 1;
-	std::cout << "bin-number" << "\t" << "value" << "\t" << "solid angle segment" << endl;
-for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
-		value = hist1->GetBinContent(bin); //the incident-particle normalized amount of hits
-		width = hist1->GetBinWidth(bin); //so this is degrees/radians
-		degrees = hist1->GetBinCenter(bin);
-		deltaPhi = width/2;
-		binNormalization = 2*TMath::Pi()*(TMath::Cos(TMath::DegToRad()*(degrees-deltaPhi)) - TMath::Cos(TMath::DegToRad()*(degrees+deltaPhi))); //Gunzer-marx uses this , which is a tad of an approximation
-		std::cout << bin << "\t(" << hist1->GetNbinsX()-bin << ")" << value << "\t" << binNormalization << endl;
-		symmetricHist->SetBinContent(bin+hist1->GetNbinsX(), value/(binNormalization*events)); //Solid angle and amount of events
-		symmetricHist->SetBinContent(hist1->GetNbinsX()-bin+1, value/(binNormalization*events)); //Solid angle and amount of events
-	}
-	/*
-	 * taken out of root manual, still does not work.
-	TList *list = new TList;
-    list->Add(negativeHist1);    
-	list->Add(hist1);
-    TH1F *h = (TH1F*)negativeHist1->Clone("h");
-    h->Reset();
-    h.Merge(list);
-	* */
-	symmetricHist->SetAxisRange(-2,14);
-
-
-	///fragments->Scan("posY:posZ:atan((posZ^2+posY^2)/" + sdstring + ")");
-	TF1* fitgaus = new TF1("fitgaus","gaus");
-	TF2* fitexpo = new TF1("fitexpo","expo");
-	//fitgaus->SetLineColor(2);
-	fitexpo->SetLineColor(2);	
-	symmetricHist->Fit(fitgaus,""); // data should be reshaped a bit for the gaussian (as root seems to have some problems here)
-	symmetricHist->Fit(fitexpo, "+"); //aparently two fits on the same histo seem to much for root
-	symmetricHist->Draw();
-	//symmetricHist->SetMaximum(); //needed to get E.Haettners data visible
+	std::cout << "The following numbers also make it possible to make number of fragments comparison to the graph in A1 of E.Haettner\n";
+	//has to start from .5 to avoid error when annulus space angle becomes large due to the usage of max
+	for(Double_t j = 0.5; j <= 20.0; j=j+.2){
+		i++;
+		degrees = j * TMath::DegToRad();
+		//std::cout << "plotting for Z = " << Znum << " at " << j << " degrees\n";
+		//Distance from straight beam at the requested angle
+		r = scatteringDistance * TMath::Tan(degrees);
+		//now the "detector is rotated around all possible perpendicularlynangle values to beamline".
+		//This forms an annulus with rMin and Rmax as otuer and inner radiuses
+		//Notice this will give a bit of approximation at small angles where at 0 degrees this gives a round sensor.
+		rMin = TMath::Max(0.0,r - (detectorSideLength/2));
+		rMax = r + (detectorSideLength/2);
+		rMinString = Form("%f", rMin);
+		rMaxString = Form("%f", rMax);
+		
+		//deltaPhi calculated so that phi+deltaphi points to the sides of the detector and phi-deltaphi the other side
+		Double_t deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - detectorSideLength/scatteringDistance); // this should be around arctan(detectorsidelength/sd)
+		/*
+		* From Gunzert-marx. Solid angle of annulus with rmin trmax, 
+		* a bit of an aproximation especially at small phi.
+		* However, one should notice this will go to zero and
+		* crash the simulation at 0. Also at distances smaller than
+		* arctan(detectorSidelength/(scatteringDistance/2)) this will not be trustworthy
+		* because the solid angle will be very small as long as rMin is zero which gives big values
+		* in the normalization.
+		*/
+		Double_t deltaOmega = 2*TMath::Pi()*(TMath::Cos(degrees-deltaPhi) - TMath::Cos(degrees+deltaPhi));
+		int numEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+		distrib->Fill(j,numEntries,numEntries/(deltaOmega * events)); //< degrees, entyamount, normalized result for graph
+		distrib->Fill(-j,numEntries,numEntries/(deltaOmega * events)); //< To get gaussian shape better visible
+		}
+	distrib->SetMarkerStyle(22);
+	distrib->SetMarkerColor(kBlue);
+	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p"); //similar axises to e.haettner
 	ntuple->SetMarkerStyle(22);
     ntuple->SetMarkerColor(kRed);
-	ntuple->Draw("y:x","","p,same");
-	
-	
-   c1->SaveAs("angulardistribution.png");
-
+	ntuple->Draw(".1*y:x","","p,same"); //Why, oh why dear Emma does it match so well with a tenth.
+	c1->SaveAs("angularDistribComparedToEHaettner.png");
+	in.close();
+	f->Write();
 }

@@ -144,7 +144,7 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   //tritonInelasticProcess -> RegisterMe(INCLIonModel);
   tritonInelasticProcess -> RegisterMe(lightBinary);
   //tritonInelasticProcess -> RegisterMe(JQMDmodel);
-  tritonInelasticProcess -> RegisterMe(WilsonModel);
+  //tritonInelasticProcess -> RegisterMe(WilsonModel);
   
   particle = G4Triton::Triton();
   processManager = particle -> GetProcessManager();
@@ -193,7 +193,7 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   genericIonInelasticProcess -> AddDataSet(TripatiCrossSections);
   genericIonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
- genericIonInelasticProcess -> RegisterMe(lightBinary);
+  genericIonInelasticProcess -> RegisterMe(lightBinary);
   //genericIonInelasticProcess -> RegisterMe(JQMDmodel);
   //genericIonInelasticProcess -> RegisterMe(WilsonModel);
   

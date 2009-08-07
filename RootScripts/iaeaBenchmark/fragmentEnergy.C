@@ -61,7 +61,7 @@ gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
    
    //Let's pull in the monte carlo simulation results
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA_static_qmd_small.root");
+   TFile *MCData = TFile::Open("IAEA.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 //scale and plot

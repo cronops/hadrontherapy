@@ -71,10 +71,14 @@ r: #
 	root -l RootScripts/iaeaBenchmark/fragmentEnergyWithAngularDistribution.C
 	
 raFragments: # run only analysis
-	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++
+	root -l RootScripts/iaeaBenchmark/fragmentEnergy.C
 
 raAngular: #produce the angular distribution plots of the fragments
 	root RootScripts/iaeaBenchmark/fragmentAngularDistribution.C
+
+raAngularHistogram: #produce the angular distribution in a histogram with equal bins
+	root RootScripts/iaeaBenchmark/fragmentAngularDistributionHistogram.C
+
 
 raAngularEnergy: #produce the angular distribution plots of the fragments
 	root RootScripts/iaeaBenchmark/fragmentEnergyDistributionDifferentAngles.C
