@@ -163,8 +163,8 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
   G4Material* plexiGlas = G4NistManager::Instance()->FindOrBuildMaterial("G4_PLEXIGLASS", isotopes);
   //G4Box* phantom = new G4Box("Phantom",10 *cm, 20 *cm, 20 *cm);
   //the below for integrated angular distribution plot
-  G4Box* phantom = new G4Box("Phantom",phantomDepth/2, 20 *cm, 20 *cm);
-  G4Box* plexiSheet = new G4Box("phantomEdge",plexiThickness/2, 20 *cm, 20 *cm);
+  G4Box* phantom = new G4Box("Phantom",phantomDepth/2, 32 *cm, 32 *cm); //< E.haettner has 32x8, but simulation takes scattering symmetrically
+  G4Box* plexiSheet = new G4Box("phantomEdge",plexiThickness/2, 32 *cm, 32 *cm);
   G4LogicalVolume* phantomLogicalVolume = new G4LogicalVolume(phantom,	
 							      waterNist, 
 							      "phantomLog", 0, 0, 0);

@@ -117,7 +117,7 @@ for(int k = 1; k <= 6; k++){
 		rMaxString = Form("%f", rMax);
 		
 		//normalization of the bins.
-		deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - detectorSideLength/scatteringDistance); // this should be around arctan(detectorsidelength/sd)
+		deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - detectorSideLength/(2*scatteringDistance)); // this should be around arctan(detectorsidelength/sd)
 		deltaOmega = 2*TMath::Pi()*(TMath::Cos(degrees-deltaPhi) - TMath::Cos(degrees+deltaPhi));
 		normFloat = deltaOmega * events * binWidth;
 		normString = Form("/%f", normFloat);
