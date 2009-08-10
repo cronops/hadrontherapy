@@ -34,6 +34,26 @@
 /geometrySetup/selectGeometry IAEA  # Select the IAEA geometry
 /iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
 
+#
+# define scoring mesh
+#
+/score/create/boxMesh boxMesh_1
+/score/mesh/boxSize 20. 20. 20. cm        # The box size and translation may require adjustement
+/score/mesh/translate/xyz 70.0 0.0 0.0 cm
+/score/mesh/nBin 100 1 1      # 100 bins in x-direction, 1 in y and z directions
+
+#
+# define scorers and filters
+#
+/score/quantity/energyDeposit eDep
+#/score/quantity/nOfStep nOfStepGamma
+#/score/filter/particle gammaFilter gamma
+#/score/quantity/nOfStep nOfStepEMinus
+#/score/filter/particle eMinusFilter e-
+#/score/quantity/nOfStep nOfStepEPlus
+#/score/filter/particle ePlusFilter e+
+/score/close
+
 ##########################
 # Initialisation procedure
 #
@@ -118,6 +138,8 @@
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 100000 # Accurate results with good statistics 
 
+
+/score/dumpQuantityToFile boxMesh_1 eDep eDep.txt
 
 # Example of running in loop 
 /control/alias initialValue 0
