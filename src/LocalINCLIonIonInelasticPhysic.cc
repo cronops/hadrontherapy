@@ -124,8 +124,8 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   deuteronInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
   //deuteronInelasticProcess -> RegisterMe(INCLIonModel);
-  deuteronInelasticProcess -> RegisterMe(lightBinary);
-  //deuteronInelasticProcess -> RegisterMe(JQMDmodel);
+  //deuteronInelasticProcess -> RegisterMe(lightBinary);
+  deuteronInelasticProcess -> RegisterMe(JQMDmodel);
   //deuteronInelasticProcess -> RegisterMe(WilsonModel);
 
   particle = G4Deuteron::Deuteron();
@@ -142,8 +142,8 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   tritonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
   //tritonInelasticProcess -> RegisterMe(INCLIonModel);
-  tritonInelasticProcess -> RegisterMe(lightBinary);
-  //tritonInelasticProcess -> RegisterMe(JQMDmodel);
+  //tritonInelasticProcess -> RegisterMe(lightBinary);
+  tritonInelasticProcess -> RegisterMe(JQMDmodel);
   //tritonInelasticProcess -> RegisterMe(WilsonModel);
   
   particle = G4Triton::Triton();
@@ -176,8 +176,8 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   alphaInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
   //alphaInelasticProcess -> RegisterMe(INCLIonModel);
-  alphaInelasticProcess -> RegisterMe(lightBinary);
- //alphaInelasticProcess -> RegisterMe(JQMDmodel);
+  //alphaInelasticProcess -> RegisterMe(lightBinary);
+ alphaInelasticProcess -> RegisterMe(JQMDmodel);
  //alphaInelasticProcess -> RegisterMe(WilsonModel);
 
   particle = G4Alpha::Alpha();
@@ -193,8 +193,8 @@ void LocalINCLIonIonInelasticPhysic::ConstructProcess()
   genericIonInelasticProcess -> AddDataSet(TripatiCrossSections);
   genericIonInelasticProcess -> AddDataSet(TripatiLightCrossSections);
 
-  genericIonInelasticProcess -> RegisterMe(lightBinary);
-  //genericIonInelasticProcess -> RegisterMe(JQMDmodel);
+  //genericIonInelasticProcess -> RegisterMe(lightBinary);
+  genericIonInelasticProcess -> RegisterMe(JQMDmodel);
   //genericIonInelasticProcess -> RegisterMe(WilsonModel);
   
   particle = G4GenericIon::GenericIon();
