@@ -67,6 +67,7 @@
 #include "HadrontherapyGeometryController.hh"
 #include "HadrontherapyGeometryMessenger.hh"
 #include "G4ScoringManager.hh"
+#include "IAEAScoreWriter.hh"
 
 #ifdef G4UI_USE_XM
 #include "G4UIXm.hh"
@@ -87,16 +88,17 @@ int main(int argc ,char ** argv)
 
   //Initialize possible analysis needs, needs to come early in order to pick up metadata
 #ifdef ANALYSIS_USE
-  HadrontherapyAnalysisManager* analysis = 
+ HadrontherapyAnalysisManager* analysis = 
     HadrontherapyAnalysisManager::getInstance();
   analysis -> book();
 #endif
 
-  // Initialize the geometry user interface
+  // Initialize the geometry user interface and scoringmanager
   HadrontherapyGeometryController *geometryController = new HadrontherapyGeometryController();
   HadrontherapyGeometryMessenger *geometryMessenger = new HadrontherapyGeometryMessenger(geometryController);
   G4ScoringManager *scoringManager = G4ScoringManager::GetScoringManager();
-  //  scoringManager->SetScoreWriter(new HadrontherapyScoreWriter());
+  scoringManager->SetVerboseLevel(1);
+  scoringManager->SetScoreWriter(new IAEAScoreWriter());
 
   // Initialize the default Hadrontherapy geometry
   geometryController->SetGeometry("default");

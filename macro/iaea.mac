@@ -27,15 +27,17 @@
 # Geometry
 #
 /geometrySetup/selectGeometry IAEA  # Select the IAEA geometry
-/iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
+/iaea/waterPhantomThickness 40 cm #default is 27.9, zero will remove phantom
 
 #
-# define scoring mesh
+# define scoring mesh for energy deposits
 #
 /score/create/boxMesh boxMesh_1
-/score/mesh/boxSize 20. 20. 20. cm        # The box size and translation may require adjustement
-/score/mesh/translate/xyz 70.0 0.0 0.0 cm
-/score/mesh/nBin 100 1 1      # 100 bins in x-direction, 1 in y and z directions
+#/score/mesh/boxSize 27.9 32. 32. cm        # The box size and translation may require adjustement
+/score/mesh/boxSize 300 32. 32. cm        # The box size and translation may require adjustement
+#/score/mesh/translate/xyz 55.05 0.0 0.0 cm
+/score/mesh/translate/xyz 0 0.0 0.0 cm
+/score/mesh/nBin 400 1 1      # 400 bins in x-direction, 1 in y and z directions -> goes into
 
 #
 # define scorers and filters
@@ -128,8 +130,8 @@
 /beam/position/Yposition 0 cm
 /beam/position/Zposition 0 cm
 
-#/run/beamOn 100    # For test/visualization
-/run/beamOn 1000   # Default value in release
+/run/beamOn 100    # For test/visualization
+#/run/beamOn 1000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 400000 # Accurate results with good statistics 
 
