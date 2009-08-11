@@ -1,11 +1,6 @@
-# G. Andersen, A. Heikkinen, P. Kaitaniemi
+# G. Danielsen, A. Heikkinen, P. Kaitaniemi
 #
-# Default macro file. It is called if no argument is provided at run
-# 
-# i.e. simply typing $G4WORKDIR/bin/Linux-++/Hadrontherapy <no argument here!> 
-#
-# This macro can be used for a proton beam in water. Both electrmagnetic and
-# hadronic models are swiched on
+# Macro file for IAEA geometry for a carbon beams in water.
 
 /control/getEnv G4SYSTEM
  
@@ -136,7 +131,7 @@
 #/run/beamOn 100    # For test/visualization
 /run/beamOn 1000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
-3/run/beamOn 400000 # Accurate results with good statistics 
+#/run/beamOn 400000 # Accurate results with good statistics 
 
 
 /score/dumpQuantityToFile boxMesh_1 eDep eDep.txt
