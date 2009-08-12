@@ -105,13 +105,23 @@ void fragmentAngularDistribution() {
 	
 	//First calculates the normalization from teh zero position
 	//Normalization by events becomes redundant but is left in place for future needs
+
+	Double_t deltaPhi = TMath::ATan((detectorSideLength/2)/scatteringDistance); //Angle where side of detector is found
+	
+	/*
+	//Alternative normalization, here zero position is also done with annulus where rMin=0, the actual detector is a square though
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
-	Double_t deltaPhi = TMath::ATan((detectorSideLength/2)/scatteringDistance);
 	Double_t zeroSA = 2*TMath::Pi()*(TMath::Cos(0) - TMath::Cos(deltaPhi));
+	*/
+	
+	//Results are normalized by a square detector mimicing H1 with center at 0 degrees.
+	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
+	Double_t zeroSA = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	Double_t zeroNorm = normEntries / (events * zeroSA);
+	distrib->Fill(0,normEntries,1); //< degrees, entyamount, normalized result for graph
 
 	//Loop through all other wanted angles, too large angles will fall outside reach of phantom window.
-	for(Double_t j = 0.0; j <= 15.0; j=j+.05){
+	for(Double_t j = deltaPhi*TMath::RadToDeg(); j <= 15.0; j=j+.05){
 		i++;
 		degrees = j * TMath::DegToRad();
 		//Distance from straight beam at the requested angle
