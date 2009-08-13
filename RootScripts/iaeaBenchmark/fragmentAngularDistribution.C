@@ -62,7 +62,7 @@ void fragmentAngularDistribution() {
    
 
    //Let's pull in the simulation-data
-   TFile *MCData = TFile::Open("IAEA.root");
+   TFile *MCData = TFile::Open("IAEA_qmd.root");
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -110,12 +110,13 @@ void fragmentAngularDistribution() {
 	
 	/*
 	//Alternative normalization, here zero position is also done with annulus where rMin=0, the actual detector is a square though
+	//Difference with this approach and the other is very small
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
 	Double_t zeroSA = 2*TMath::Pi()*(TMath::Cos(0) - TMath::Cos(deltaPhi));
 	*/
 	
 	//Results are normalized by a square detector mimicing H1 with center at 0 degrees.
-	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
+	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
 	Double_t zeroSA = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	Double_t zeroNorm = normEntries / (events * zeroSA);
 	distrib->Fill(0,normEntries,1); //< degrees, entyamount, normalized result for graph
@@ -141,7 +142,7 @@ void fragmentAngularDistribution() {
 		* a bit of an aproximation especially at small phi.
 		*/
 		Double_t deltaOmega = 2*TMath::Pi()*(TMath::Cos(TMath::Max(0.0,degrees-deltaPhi)) - TMath::Cos(degrees+deltaPhi));
-		int numEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+		int numEntries = fragments->GetEntries("(Z == " + Znum + "  && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
 		distrib->Fill(j,numEntries,numEntries/(deltaOmega * events * zeroNorm)); //< degrees, entyamount, normalized result for graph
 		distrib->Fill(-j,numEntries,numEntries/(deltaOmega * events * zeroNorm)); //< To get gaussian shape better visible
 		maxValue = TMath::Max(maxValue, numEntries/(deltaOmega * events * zeroNorm)); //< for calculation of FWHM
