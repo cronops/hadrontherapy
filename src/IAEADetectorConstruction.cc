@@ -77,8 +77,9 @@ IAEADetectorConstruction::IAEADetectorConstruction()
   detectorSizeY = 20.*cm;
   detectorSizeZ = 20.*cm;
 
-  // Number of the detector voxels  
-  numberOfVoxelsAlongX = 200;
+  // Number of the detector voxels
+  // This does notthing, since a primitive score is used  
+  numberOfVoxelsAlongX = 400;
   numberOfVoxelsAlongY = 1;
   numberOfVoxelsAlongZ = 1;
   
@@ -269,7 +270,7 @@ void IAEADetectorConstruction::ConstructDetector()
   //-----------
   // NewDetector (mwpc etc. type behind the phantom)
   //-----------
-  G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_WATER", false);
+  G4Material* NewDetectorMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR", false);
   G4Box* NewDetector = new G4Box("NewDetector",endDetectorThickness/2,190.*cm,190.*cm); //huge detector, will be scaled in root
   //For integrated angular distribution below
   NewDetectorLogicalVolume = new G4LogicalVolume(NewDetector,

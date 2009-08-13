@@ -55,7 +55,6 @@ void braggPeak() {
    while (1) {
       in >> f1 >> f2 >> f3 >> f4;
       if (!in.good()){ 
-		  std::cerr << "Problem with input \n";
 		  break;
 	  }
       if (nlines < 500 ) printf("%f %f %f %f\n",f1,f2,f3,f4);
@@ -89,12 +88,14 @@ void braggPeak() {
 	simBragg->SetYTitle("Relative Ionization");
 	//simBragg->GetXaxis()->SetTitleOffset(1);
 	simBragg->GetYaxis()->SetTitleOffset(1.5);
-
+	std::cout << "Maximum (Bragg peak) for simulation data is at: " << simBragg->GetBinCenter(simBragg->GetMaximumBin()) << endl;
+	std::cout << "Bin width is " << simBragg->GetBinWidth(simBragg->GetMaximumBin()) << endl;
+	simBragg->Scale(1.0/events);
 	simBragg->Draw();
 	ntuple->SetMarkerColor(kRed);
 	ntuple->SetMarkerStyle(22);
 	std::cout << ntuple->GetEntries() << endl;
-	ntuple->Draw("6000*i:d-(0.478/2)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
+	ntuple->Draw("6*i:d-(0.478/2)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
 	/*
 	TH1F combinedBragg("Bragg peaks","slice, energy", 400, 0., 400);
 	

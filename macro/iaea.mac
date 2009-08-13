@@ -43,6 +43,7 @@
 # define scorers and filters
 #
 /score/quantity/energyDeposit eDep
+#/score/quantity/population eDep
 #/score/quantity/nOfStep nOfStepGamma
 #/score/filter/particle gammaFilter gamma
 #/score/quantity/nOfStep nOfStepEMinus

@@ -76,6 +76,9 @@ raFragments: # run only analysis
 raAngular: #produce the angular distribution plots of the fragments
 	root RootScripts/iaeaBenchmark/fragmentAngularDistribution.C
 
+raBragg: #produce the bragg peak, check that command based scorer is on in macro
+	root RootScripts/iaeaBenchmark/braggPeak.C
+
 raAngularHistogram: #produce the angular distribution in a histogram with equal bins
 	root RootScripts/iaeaBenchmark/fragmentAngularDistributionHistogram.C
 
