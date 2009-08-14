@@ -155,10 +155,10 @@ Helsinki University of Technology\\
 \end{comment}
 
 %% Tiivistelmän avainsanat 
-\keywords{Geant4, INCL, Liege cascade, ABLA, CERN, IAEA, Hadrontherapy}
+\keywords{Geant4, binary, INCL, Liege cascade, ABLA, CERN, IAEA, Hadrontherapy}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[english]
-This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the INCL and ABLA models developed as a collaboration of scientists at CERN, GSI, HIP and CEA. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling weestimate particularly the magnitude of fragment build-up at the end of the Bragg-curve.
+This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the binary and ABLA models developed as a collaboration of scientists at CERN and many other research institutions worldwide. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling we estimate particularly the magnitude distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
 
 %% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
@@ -367,7 +367,7 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 %fixme add another ABLAsource
 
 \section{Simulation setup} %practical aspects of simulation
-The simulation is to be performed with the latest versions of the INCL and ABLA code that is a part of the Geant4 suite.
+The simulation is to be performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite.
 
 \subsection{Characterization of the primary beam and experimental setup for the
 IAEA benchmark}
@@ -502,7 +502,15 @@ In order to calculate the Bragg-curve available in the data-set the thickness of
 \end{itemize}
 
 \subsection{Improving usability through messenger macro commands}
-The first action task taken in this work was to implement means of saving analysis files with a user-defined name.
+The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
+
+Macro commands are itnerpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
+\begin{itemize}
+ \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
+\item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to acustom the new phantom.
+\item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
+\end{itemize}
+
 
 So as aen example the user can give a command according to the following syntax.
 \scriptsize
@@ -537,7 +545,32 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
  \end{center}
  \end{figure}
 
-\section{Results and comparison to GSI data}
+\subsection{Analysis}
+The simulation setup generates relatively little data. Thus a n approach with separate analysis was chosen. All events hitting the detectors were recorded and suitable ones were chosen in ROOT. This section covers the analysis of the recorded events.
+
+\section{Results and comparison to GSI data and other simulation models}
+
+This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
+
+\subsection{Beam shape}
+The results of beam shape measurements concluded a 3m in air distance to scatter the beam into a 5mm FWHM. This is clearly less than the 9mm measured by E.Haettner.
+
+
+\subsection{Energy distribution of fragments}
+The shape of the results are in line with the experimental data. However, for the lightest fragments the yields seem to be smaller than expected by experimental data.
+
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated.}
+\end{center}
+\end{figure}
+
+\subsection{Angulara distribution of fragments}
+\subsection{Angular energy distribution of fragments}
+\subsection{Bragg curve}
+
+
 \begin{itemize}
 \item comparison (Haettner 5.4.1)
 \item energy distribution of fragments

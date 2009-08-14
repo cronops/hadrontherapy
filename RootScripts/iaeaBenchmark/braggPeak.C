@@ -85,17 +85,17 @@ void braggPeak() {
 	simBragg->SetLineColor(kBlue);
 	//simBragg->GetXaxis()->SetName("test");
 	simBragg->SetXTitle("Depth (cm)");
-	simBragg->SetYTitle("Relative Ionization");
+	simBragg->SetYTitle("Ionization (MeV/m)");
 	//simBragg->GetXaxis()->SetTitleOffset(1);
 	simBragg->GetYaxis()->SetTitleOffset(1.5);
 	std::cout << "Maximum (Bragg peak) for simulation data is at: " << simBragg->GetBinCenter(simBragg->GetMaximumBin()) << endl;
 	std::cout << "Bin width is " << simBragg->GetBinWidth(simBragg->GetMaximumBin()) << endl;
-	simBragg->Scale(1.0/events);
+	simBragg->Scale(1.0/(100*events*simBragg->GetBinWidth(0)));
 	simBragg->Draw();
 	ntuple->SetMarkerColor(kRed);
 	ntuple->SetMarkerStyle(22);
 	std::cout << ntuple->GetEntries() << endl;
-	ntuple->Draw("6*i:d-(0.478/2)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
+	ntuple->Draw("i:d-(0.478/2)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
 	/*
 	TH1F combinedBragg("Bragg peaks","slice, energy", 400, 0., 400);
 	
