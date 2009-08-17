@@ -553,20 +553,37 @@ The simulation setup generates relatively little data. Thus a n approach with se
 This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape}
-The results of beam shape measurements concluded a 3m in air distance to scatter the beam into a 5mm FWHM. This is clearly less than the 9mm measured by E.Haettner.
+The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error of the size .1\% of the total momentum was introduced in the beam momentum symmetrically along the Y and Z-axises.
+
+
+\begin{center}
+ \begin{table}[h]
+\begin{tabular}{llll} %fixme:
+& \textbf{E.Haettner (hxv)} & \textbf{Direct} & \textbf{With added beam angular distribution} \\
+0m &4x4 mm& 3.9 mm & 3.9 mm\\
+1m &5x4 & 4.8 mm & 4.2 mm\\
+3m &11x9mm& 9 mm & 5.2 mm\\
+\end{tabular} 
+\caption{\label{fig:beamFWHMtable} The beam FWHM as measured in experiment and reproduced in simulation and modified simulation.}
+\end{table}
+\end{center}
 
 
 \subsection{Energy distribution of fragments}
-The shape of the results are in line with the experimental data. However, for the lightest fragments the yields seem to be smaller than expected by experimental data.
+Events with energy greater than 45 MeV were picked as experimental data was unavailable at smaller energies. The data was normalized for bin-width (9MeV) and the solid angle of the square H1 detector with middlepoint at 0 degree angle from the mean direction of the beam.
+
+The shape of the results are mosly in line with the experimental data. However, the yields of fragmented fydrogen and surviving carbon ions does not seem to match experimental results.
 
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated.}
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated. Water phantom thickness was 27.9cm (slightly above the Bragg-peak)}
 \end{center}
 \end{figure}
 
 \subsection{Angulara distribution of fragments}
+A detector distance of 298.5cm was used as Haettner describes in figure ... . In the experiment the H1 detector was moved, however, in order to increase effectivness of the simulation circle annuluses were used.
+
 \subsection{Angular energy distribution of fragments}
 \subsection{Bragg curve}
 

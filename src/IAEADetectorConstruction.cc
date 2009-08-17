@@ -89,7 +89,8 @@ IAEADetectorConstruction::IAEADetectorConstruction()
   plexiThickness = 0.2 *cm;
   aluWindowThickness = 0.01 *cm;
   endDetectorThickness = 3.7 *cm;
-  endDetectorPosition =  startDetectorThickness + 358 *cm + endDetectorThickness / 2;
+  moveEndDetectorForward = 0 *cm; //if detector needs to be moved
+  endDetectorPosition =  startDetectorThickness + 358 *cm + (endDetectorThickness / 2) - moveEndDetectorForward;
   
   noPhantom = false;
   

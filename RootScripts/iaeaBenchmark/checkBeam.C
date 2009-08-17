@@ -85,6 +85,7 @@ metadata->Scan();
     //fragments->Draw("posY:posZ", "abs(posZ) < 2 && abs(posY) < 2");
 	TH1F* posYHisto = new TH1F("vertical","Vertical distribution of beam",200,-2.,2.);
 	TH1F* posZHisto = new TH1F("horizontal","horizontal distribution of beam",200,-2.,2.);
+	//TH1F* posZHisto = new TH2F("2ddisp","horizontal distribution of beam",200,-2.,2.);
 	fragments->Project("vertical","posZ","abs(posZ) < 2 && abs(posY) < 2");
 	fragments->Project("horizontal","posZ","abs(posZ) < 2 && abs(posY) < 2");
 	Float_t maxVal = posYHisto->GetMaximum();
@@ -93,7 +94,6 @@ metadata->Scan();
 	//posYHisto->Draw();
 //	posZHisto->Draw("same");
 
-
  	Float_t fwhm = 0.0, middle = 0.0, curVal;
 	int fwhmBin;
 	//So these dots have been binned and a fwhm is calculated.
@@ -101,16 +101,32 @@ metadata->Scan();
 		
 		curVal = posYHisto->GetBinContent(i);
 		if(pow(maxVal/2 - middle, 2.0) > pow(maxVal/2 - curVal, 2.0)){
-				fwhm = 2*TMath::Abs(posYHisto->GetBinCenter(i+2));
+				fwhm = 2*TMath::Abs(posYHisto->GetBinCenter(i));
 				middle = curVal;
 				fwhmBin = i;
 			}else{
 				}
 		}
-		posYHisto->SetBinContent(fwhmBin, 160);
+		//posYHisto->SetBinContent(fwhmBin, 0);
+		/*
+		TNtuple* where = new TNtuple("where","where","x:y");
+		where->Fill(fwhmBin*posYHisto->GetBinWidth(0), 0);
+		where->Fill((200-fwhmBin)*posYHisto->GetBinWidth(0), 0);
+		where->->SetMarkerStyle(22); //triangle
+		where->SetMarkerColor(kRed);
+		*/
+		TF1* fitgaus = new TF1("fitgaus","gaus");
+		fitgaus->SetLineColor(2);
+		posYHisto->Fit(fitgaus,"");
+		posYHisto->Draw();
+		std::cout << "fitted FWHM from normal distribution is: " << fitgaus->GetParameter(2)*10*2.35482 << endl;
+		//where->Draw("x:y","same");
+		//posYHisto->Smooth(150);
 		posYHisto->Draw();
 		std::cout << "Calculated (closest point) FWHM of Monte-Carlo simulation to be: " << fwhm*10 << " mm" << endl; 
-	
+		std::cout << "beam contained " << fragments->GetEntries("Z == 6") << " carbon nuclei." << endl;
+		
+		
    //c3->SaveAs("checkBeam.png");
  
 }

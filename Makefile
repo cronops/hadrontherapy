@@ -82,6 +82,8 @@ raBragg: #produce the bragg peak, check that command based scorer is on in macro
 raAngularHistogram: #produce the angular distribution in a histogram with equal bins
 	root RootScripts/iaeaBenchmark/fragmentAngularDistributionHistogram.C
 
+raCheckBeam:
+	root RootScripts/iaeaBenchmark/checkBeam.C
 
 raAngularEnergy: #produce the angular distribution plots of the fragments
 	root RootScripts/iaeaBenchmark/fragmentEnergyDistributionDifferentAngles.C
