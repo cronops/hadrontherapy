@@ -367,7 +367,7 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 %fixme add another ABLAsource
 
 \section{Simulation setup} %practical aspects of simulation
-The simulation is to be performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite.
+The simulation is to be performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite version 4.9.3b.
 
 \subsection{Characterization of the primary beam and experimental setup for the
 IAEA benchmark}
@@ -454,7 +454,7 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
 
-Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. However, this error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
+Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
 
 In this simulation the beam is reproduced at the beam source (see ~\ref{fig:SimSetup}) as measured by Haettner with no phantom and zero distance from start detector to the last detector. The beam is measured right after the beam-source window. The beam-source itself is assumed to produce a paralell beam. The first source of scattering the beam is the aluminium window of the beam-source, but as this measurement is made right after the window it can be used to characterize the paralell beams width. However inspecting further measurements at 1 and 3 meters show the effects of scattering in the aluminium, detectors and air as a broadening beam. The scattering of the beam is considerably different depending on the energy of the beam.
 
@@ -464,9 +464,8 @@ E.Haettner proceeds to analyze the scattering of the beam with variable water th
 
 \subsubsection{Beam attenuation}
 
-%In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of 40 cm was placed in the path of %the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a %considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 voxels. This in effect means the %water-phantom was presented as 400 logical perpendicularily to the beam placed ``slices''. The bragg-peak is calculated by saving the %energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
+In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 primitive scoring voxels. This in effect means the water-phantom was presented as 400 ``slices`` placed perpendicularily to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
 
-In order to calculate the Bragg-curve available in the data-set the thickness of the water-phantom was varied. The MWPC detector was then augmented with the ability to register the energy of the incoming particles. Repeating this simulation for a number of water-depths gives the characteristic Bragg curve with its fragment-tail.
 
 
 
@@ -553,16 +552,15 @@ The simulation setup generates relatively little data. Thus a n approach with se
 This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape}
-The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error of the size .1\% of the total momentum was introduced in the beam momentum symmetrically along the Y and Z-axises.
-
+The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error was introduced in the beam's momentum vector. This error was symmetrical in y and z and had the magnitude of $1 \permille$ of the x-component. This error was empirically chosen. The results are summarized in the table below.
 
 \begin{center}
  \begin{table}[h]
-\begin{tabular}{llll} %fixme:
-& \textbf{E.Haettner (hxv)} & \textbf{Direct} & \textbf{With added beam angular distribution} \\
+\begin{tabular}{cccc} %fixme:
+\textbf{Distance} & \textbf{E.Haettner (hxv)} & \textbf{Straight incident beam} & \textbf{Added scattering} \\
 0m &4x4 mm& 3.9 mm & 3.9 mm\\
-1m &5x4 & 4.8 mm & 4.2 mm\\
-3m &11x9mm& 9 mm & 5.2 mm\\
+1m &5x4 & 4.2 mm & 4.8 mm\\
+3m &11x9mm& 5.2 mm & 9.0 mm\\
 \end{tabular} 
 \caption{\label{fig:beamFWHMtable} The beam FWHM as measured in experiment and reproduced in simulation and modified simulation.}
 \end{table}
@@ -572,19 +570,35 @@ The particle guns beam shape was set so that E.Haettner's measured 0 cm distance
 \subsection{Energy distribution of fragments}
 Events with energy greater than 45 MeV were picked as experimental data was unavailable at smaller energies. The data was normalized for bin-width (9MeV) and the solid angle of the square H1 detector with middlepoint at 0 degree angle from the mean direction of the beam.
 
-The shape of the results are mosly in line with the experimental data. However, the yields of fragmented fydrogen and surviving carbon ions does not seem to match experimental results.
+The shape of the results are mostly in line with the experimental data. However, the yields of fragmented hydrogen and surviving carbon ions does not seem to match experimental results. This pheomena is repeated also in other water-depths. Further results are found in the appendices.
 
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated. Water phantom thickness was 27.9cm (slightly above the Bragg-peak)}
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated. Water phantom thickness was 27.9cm (slightly beyond the Bragg-peak)}
 \end{center}
 \end{figure}
 
 \subsection{Angulara distribution of fragments}
-A detector distance of 298.5cm was used as Haettner describes in figure ... . In the experiment the H1 detector was moved, however, in order to increase effectivness of the simulation circle annuluses were used.
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.6\textwidth]{images/annulus.png}  
+\caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. Zero degrees is read out from a square detector while larger than zero degree angles are read out with consecutive largening circle annuluses where the middle radius corresponds to that scattering angle. The annulus width corresponds to the detector width.}
+\end{center}
+\end{figure}
+
+A detector distance of 298.5cm was used as described by Haettner \cite[fig 5.1]{ehaettner} . In the experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectivness of the simulation circle annuluses were used as detection areas at angles greater than zero. For the fragmentation at 0 degrees angle a square detection area was used. This approach is a slight approximation when it comes to small angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
+
+Results were normalized to the amount of events and divided by the solid angle of the detection area.
+
+A square detector at 0 degree angle forms the base of the pyramid where the beam source is at the top and the principal beam axis runs along the apex. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{s^2}{(4d^2+s^2)}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 with side-length s at distance d from the beam-source.
+
+The annulus of a circle subtends the solid angle $\Omega_{annulus} = 2 \pi (\cos(\theta_{min}) - \cos(\theta_{max}))$. in this formula $\theta_{min}$ and $\theta_{max}$ corresponds to the angle that $r_{min}$ respectively $r_{max}$ are seen at in the middle of the water-phantom. The magnitude of these two angles can be trigonometrically determined with the knowledge of the measurement angle $\theta$ and the annulus width, which is chosen to be the same as the detector side length.
 
 \subsection{Angular energy distribution of fragments}
+
+The angular energy plots were normalized for solid angle, number of events and bin-width. The match seems fair, but both the distributions and yields have clear faults in comparison to the experimental data when it comes to hydrogen.
+
 \subsection{Bragg curve}
 
 
@@ -600,6 +614,7 @@ A detector distance of 298.5cm was used as Haettner describes in figure ... . In
 
 \section{Appendices}
 \begin{itemize}
+\item angular distribution plots
 \item code examples
 \item runtime log
 \end{itemize}
