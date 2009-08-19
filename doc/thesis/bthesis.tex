@@ -117,7 +117,7 @@ label=listing:boundary}}
 \author{Gillis Danielsen}
 
 %% Opinnäytteen nimi tulee vain tähän
-\thesistitle{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}{}
+\thesistitle{Simulating carbon beam fragmentation on water phantom with Geant4}{}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
 %%\date{22.1.2008}
@@ -140,7 +140,7 @@ label=listing:boundary}}
 rev. 001-2009\\
 \vspace{7.5 cm}
 \Huge
-Simulating carbon beam fragmentation on water phantom with the Geant4 INCL and ABLA models\\
+Simulating carbon beam fragmentation on water phantom with Geant4\\
 
 \vspace{5cm}
 
@@ -155,7 +155,7 @@ Helsinki University of Technology\\
 \end{comment}
 
 %% Tiivistelmän avainsanat 
-\keywords{Geant4, binary, INCL, Liege cascade, ABLA, CERN, IAEA, Hadrontherapy}
+\keywords{Geant4, binary, ABLA, CERN, IAEA, Hadrontherapy}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[english]
 This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the binary and ABLA models developed as a collaboration of scientists at CERN and many other research institutions worldwide. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling we estimate particularly the magnitude distribution of fragment build-up at the end of the Bragg-curve.
@@ -367,7 +367,22 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 %fixme add another ABLAsource
 
 \section{Simulation setup} %practical aspects of simulation
-The simulation is to be performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite version 4.9.3b.
+The simulation is performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite version 4.9.3b.
+
+\begin{figure}[ht] 
+\begin{center}
+\includegraphics[width=0.5\textwidth]{images/oneEvent.png}  
+\caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water-phantom.}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht] 
+\begin{center}
+\includegraphics[width=0.5\textwidth]{images/twentyEvents.png}  
+\caption{\label{fig:twentyEvents} OpenGL visualized view from one side of the experiment with the tracks generated from 23 incident events. This clearly visualizes the yield of fragments has a clear forward directed distribution.}
+\end{center}
+\end{figure}
+
 
 \subsection{Characterization of the primary beam and experimental setup for the
 IAEA benchmark}
@@ -552,14 +567,14 @@ The simulation setup generates relatively little data. Thus a n approach with se
 This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape}
-The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error was introduced in the beam's momentum vector. This error was symmetrical in y and z and had the magnitude of $.1 %$ of the x-component. This error was empirically chosen. The results are summarized in the table below.
+The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error was introduced in the beam's momentum vector. This error was symmetrical in y and z and had the magnitude of $.1 \%$ of the x-component. This error was empirically chosen. The results are summarized in the table below.
  %permille sign, fix 
 \begin{center}
  \begin{table}[h]
 \begin{tabular}{cccc} %fixme:
 \textbf{Distance} & \textbf{E.Haettner (hxv)} & \textbf{Straight incident beam} & \textbf{Added scattering} \\
 0m &4x4 mm& 3.9 mm & 3.9 mm\\
-1m &5x4 & 4.2 mm & 4.8 mm\\
+1m &5x4 mm & 4.2 mm & 4.8 mm\\
 3m &11x9mm& 5.2 mm & 9.0 mm\\
 \end{tabular} 
 \caption{\label{fig:beamFWHMtable} The beam FWHM as measured in experiment and reproduced in simulation and modified simulation.}
