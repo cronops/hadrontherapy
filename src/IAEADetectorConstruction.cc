@@ -83,7 +83,7 @@ IAEADetectorConstruction::IAEADetectorConstruction()
   numberOfVoxelsAlongY = 1;
   numberOfVoxelsAlongZ = 1;
   
-  startDetectorThickness = 5.*cm; // approximation, exakt value not given by Haettner 2006
+  startDetectorThickness = 5.*cm; // approximation, exact value not given by Haettner
   phantomCenter = startDetectorThickness + 64.*cm;
   phantomDepth = 27.9 *cm;
   plexiThickness = 0.2 *cm;
@@ -119,7 +119,7 @@ G4VPhysicalVolume* IAEADetectorConstruction::Construct()
   ConstructDetector();
 #ifdef ANALYSIS_USE
   //write the metadata for analysis
-  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData(endDetectorPosition/10, phantomDepth/10, phantomCenter/10); //FIXME! unit correction hardcoded
+  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData((endDetectorPosition - endDetectorThickness/2)/10, phantomDepth/10, phantomCenter/10); //FIXME! unit correction hardcoded
 #endif
   // Set the sensitive detector where the energy deposit is collected
   ConstructSensitiveDetector();
@@ -224,12 +224,17 @@ void IAEADetectorConstruction::ConstructPassiveProtonBeamLine()
 }
 
 void IAEADetectorConstruction::setWaterThickness(G4double newWaterThickness){
-	//This has to be run before the elements are made.
+	//This has to be run before the elements are constructed
+	//does not support multiple thicknesses per run.
 	if(newWaterThickness > 0){
 	this->phantomDepth = newWaterThickness;
 	}else{
 	this->noPhantom = true;
-	}	
+	}
+#ifdef ANALYSIS_USE
+	  //update the geometry metadata
+	  HadrontherapyAnalysisManager::getInstance()->setGeometryMetaData((this->endDetectorPosition - this->endDetectorThickness/2)/10, this->phantomDepth/10, this->phantomCenter/10); //FIXME! unit correction hardcoded
+#endif
 	}
 
 

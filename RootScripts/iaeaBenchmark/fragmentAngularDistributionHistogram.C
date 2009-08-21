@@ -25,8 +25,8 @@
  * **************************/
 
 void fragmentAngularDistributionHistogram() {
-
-//   gROOT->SetStyle("clearRetro");
+gStyle->SetOptStat(0000000000); //remove the redundant statbox
+   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
@@ -87,8 +87,8 @@ void fragmentAngularDistributionHistogram() {
 	 * The negativeHist is a cludge-fix to get the negative degrees (will be exactly the same)
 	*/
 	Double_t maxDegrees = 14; //highest plotted degree amount
-	int binAmount = 18; //amount of bins in plotted histogram
-    TH1F *hist1 = new TH1F("hist1", "Fragment angular distr.", binAmount, 0, maxDegrees); //The histogram for the angular distribution at a set length
+	int binAmount = 20; //amount of bins in plotted histogram
+    TH1F *hist1 = new TH1F("hist1", "Fragment angular distribution", binAmount, 0, maxDegrees); //The histogram for the angular distribution at a set length
 	//This histogram needs to be hist1 with a symmetric negative side
 	TH1F *symmetricHist = new TH1F("symmetricHist", "Fragment angular distr.", 2*binAmount, -1*maxDegrees, maxDegrees); //bin amount must be even
 
@@ -140,8 +140,9 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
     h.Merge(list);
 	* */
 	symmetricHist->SetAxisRange(-2,14);
-
-
+	symmetricHist->SetXTitle("Angle (degrees)");
+	symmetricHist->SetYTitle("(N/N0) / [sr]");
+	
 	///fragments->Scan("posY:posZ:atan((posZ^2+posY^2)/" + sdstring + ")");
 	TF1* fitgaus = new TF1("fitgaus","gaus");
 	TF2* fitexpo = new TF1("fitexpo","expo");

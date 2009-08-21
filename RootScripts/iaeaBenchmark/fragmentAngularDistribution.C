@@ -38,8 +38,16 @@ void fragmentAngularDistribution() {
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
    ifstream in;
-   in.open(Form("experimentalData/iaeaBenchmark/He27.9.dat",dir.Data())); //also set Znum!
-   TString Znum = "2"; //set here what will be put in the selection for z, does not automatically change imoprted data.
+
+   //Settings for analysis
+   TString pDepth = "5.9"; //set ehre what depth to analyse, requries suitable root file and data file
+   TString fragment = "H"; //string of what fragment is being looked at H, He, Li ...
+   TString Znum = "5"; //set here what will be put in the selection for z, does not automatically change imoprted data.
+   //TString experimentalDataFile = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat";
+   //in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat",dir.Data()));
+   in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/27.9/B27.9.dat",dir.Data()));
+   std::cout << "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat" << endl;
+   std::cout << "didata" << dir.Data() << endl;
    Float_t f1,f2;
    Int_t nlines = 0;
    TFile *f = new TFile("fragmentAngularDistribution.root","RECREATE");
@@ -59,10 +67,11 @@ void fragmentAngularDistribution() {
       ntuple->Fill(f1,f2);
       nlines++;
    }
-   
+   std::cout << "Imported " << nlines << " lines from data-file" << endl;
 
    //Let's pull in the simulation-data
-   TFile *MCData = TFile::Open("IAEA_qmd.root");
+   //TFile *MCData = TFile::Open("IAEA_" + pDepth + ".root");
+   TFile *MCData = TFile::Open("IAEA_27.9.root");
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -93,9 +102,9 @@ void fragmentAngularDistribution() {
 	
 	int i = 0; //so that the degree steps can be varied to unevenly spaced values separate counter is used
 	TNtuple* distrib = new TNtuple("angularDistrib","FragmentAngularDistrib","angle:particleAmount:normalized");
-
 	std::cout << "Fragments comparison to the graphs in appendices of E.Haettner\n";
-
+	std::cout << "Scattering distance: " << scatteringDistance << " cm" << endl ;
+	std::cout << "(scattering distance may vary with data-files too, see haettner A.1." << endl << endl;
 	//This will norm it to the zero degree entry to get rid of Emma's weird normalization
 	//fixme detectorsidelengthstring
 	rMinString = "0.00";
@@ -103,24 +112,23 @@ void fragmentAngularDistribution() {
 	//SA of a square Double_t zeroSAsquare = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	//SA with square approx squareApprox = (4*4) / (4*3.14*scatteringDistance*scatteringDistance);
 	
-	//First calculates the normalization from teh zero position
+	//First calculates the normalization from the zero position
 	//Normalization by events becomes redundant but is left in place for future needs
 
 	Double_t deltaPhi = TMath::ATan((detectorSideLength/2)/scatteringDistance); //Angle where side of detector is found
-	
 	/*
 	//Alternative normalization, here zero position is also done with annulus where rMin=0, the actual detector is a square though
 	//Difference with this approach and the other is very small
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && energy > 0 && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
 	Double_t zeroSA = 2*TMath::Pi()*(TMath::Cos(0) - TMath::Cos(deltaPhi));
 	*/
-	
+	//fragments->Scan();
 	//Results are normalized by a square detector mimicing H1 with center at 0 degrees.
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
 	Double_t zeroSA = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	Double_t zeroNorm = normEntries / (events * zeroSA);
 	distrib->Fill(0,normEntries,1); //< degrees, entyamount, normalized result for graph
-
+	std::cout << "Norming events: " << normEntries << endl;
 	//Loop through all other wanted angles, too large angles will fall outside reach of phantom window.
 	for(Double_t j = deltaPhi*TMath::RadToDeg(); j <= 15.0; j=j+.05){
 		i++;
@@ -128,7 +136,7 @@ void fragmentAngularDistribution() {
 		//Distance from straight beam at the requested angle
 		r = scatteringDistance * TMath::Tan(degrees);
 		//now the "detector is rotated around all possible perpendicularlynangle values to beamline".
-		//This forms an annulus with rMin and Rmax as otuer and inner radiuses
+		//This forms an annulus with rMin and Rmax as outer and inner radiuses
 		//this will give a bit of approximation at small angles and at 0 degrees this gives a completely round sensor.
 		rMin = TMath::Max(0.0,r - (detectorSideLength/2));
 		rMax = r + (detectorSideLength/2);
@@ -147,7 +155,7 @@ void fragmentAngularDistribution() {
 		distrib->Fill(-j,numEntries,numEntries/(deltaOmega * events * zeroNorm)); //< To get gaussian shape better visible
 		maxValue = TMath::Max(maxValue, numEntries/(deltaOmega * events * zeroNorm)); //< for calculation of FWHM
 		}
-	distrib->SetMarkerStyle(1); //filled dot
+	distrib->SetMarkerStyle(2); //filled dot
 	distrib->SetMarkerColor(kBlue);
 	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p"); //similar axises to e.haettner
 	ntuple->SetMarkerStyle(22); //triangle
@@ -169,7 +177,6 @@ void fragmentAngularDistribution() {
 	std::cout << "For zero-position of experimental data using angle " << zeroPosAngle << " with amount " << zeroPosData << " on row " << row << endl;
 	TString experimentalNorm = Form("(1/%f)*", zeroPosData);
 	ntuple->Draw(experimentalNorm + "y:x","","p,same");
-
 
 	//Calculate FWHM, ineffective solution. (but works also without normalizing to 1)
 	Float_t fwhm = 0.0, middle = 0.0, currentX, currentY;

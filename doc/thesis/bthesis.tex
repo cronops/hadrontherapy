@@ -155,7 +155,7 @@ Helsinki University of Technology\\
 \end{comment}
 
 %% Tiivistelmän avainsanat 
-\keywords{Geant4, binary, ABLA, CERN, IAEA, Hadrontherapy}
+\keywords{Geant4, Binary cascade, ABLA, CERN, IAEA, Hadrontherapy, Bragg peak, fragment buildup}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[english]
 This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the binary and ABLA models developed as a collaboration of scientists at CERN and many other research institutions worldwide. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling we estimate particularly the magnitude distribution of fragment build-up at the end of the Bragg-curve.
@@ -220,7 +220,7 @@ A much younger and less widely used technology are those of hadron- or heavy-ion
 The field of hadron treatments was pioneered at the Lawrence Berkeley Laboratory (LBL). Based on research done at the Berkeley cyclotron J.~Wilson first recomended the use of protons as a treatment method in a 1946 paper~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are a number of proton-based therapies in clinical use all around the world, for example in Harvard General Hospital (see fig). %fixme
 \begin{figure}[h]
 \begin{center}
-\includegraphics[height=7cm]{images/HarvardHadronTreatment.png}  
+\includegraphics[height=9cm]{images/HarvardHadronTreatment.png}  
 \caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment simulation visualized.} 
 \end{center}
 \end{figure} 
@@ -296,6 +296,10 @@ INCL4 is a Monte-Carlo type Intranuclear Cascade Model, whereas ABLA is the the 
  \end{center}
  \end{figure}
 
+\subsubsection{Binary cascade}
+The binary cascade is a hybride cascade model with certain aspects of a quantum mechanical dynamics model. In this model 
+
+The Binary cascade uses a Woods-saxon potential for the nucleon distribution of heavy Ions. Whereas lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light (A < 16). 
 
 \subsubsection{INCL}
 

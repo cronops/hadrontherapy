@@ -25,6 +25,9 @@ void fragmentEnergy() {
    dir.ReplaceAll("fragmentEnergy.C","");
    dir.ReplaceAll("/./","/");
 
+gStyle->SetOptStat(0000000000); //remove the redundant statbox
+
+
 TString macroPath(gROOT->GetMacroPath());
 gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
 //gROOT->LoadMacro("rootlogon.C");
@@ -61,7 +64,7 @@ gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
    
    //Let's pull in the monte carlo simulation results
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA.root");
+   TFile *MCData = TFile::Open("IAEA_31.2.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 //scale and plot
@@ -123,8 +126,6 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
  
    histH->Draw("");
-   //TAxis *Yaxis = histH->GetYaxis();
-   //Yaxis->set
    histH->SetMaximum(0.3);
    histHe->Draw("same");
    histLi->Draw("same");
@@ -145,7 +146,7 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
  
  
  
-   TCanvas *c3 = new TCanvas("histograms", "Histograms");
+   TCanvas *c3 = new TCanvas("histograms", "Energy distribution of charged fragments");
    Int_t nEve = events; //redundant
  
    cout <<"H : " << histH->GetEntries() / nEve << endl;
