@@ -144,7 +144,7 @@
 /beam/position/Zposition 0 cm
 
 #/run/beamOn 100    # For test/visualization
-/run/beamOn 1000   # Default value in release
+/run/beamOn 10000   # Default value in release
 #/run/beamOn 10000  # Good for basic physics run (takes few min)
 #/run/beamOn 400000 # Accurate results with good statistics 
 

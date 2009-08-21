@@ -72,18 +72,7 @@ HadrontherapySteppingAction::~HadrontherapySteppingAction()
 /////////////////////////////////////////////////////////////////////////////
 void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
 { 
-#ifdef MEASUREBEAM
-	//Very cludgy, is supposed to record just positions of the beams hitting the water phantom
-	if(aStep->GetTrack()->GetVolume()->GetName() == "phantomPhys"){
-		//std::cout << aStep -> GetPreStepPoint() -> GetPhysicalVolume() -> GetName() << "\n"; //humm why does this also give phantomPhys?
-		HadrontherapyAnalysisManager* analysis =  HadrontherapyAnalysisManager::getInstance(); 
-		analysis->ThintargetBeamDisp(aStep->GetTrack()->GetPosition().x(),aStep->GetTrack()->GetPosition().y());
-		aStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
-		}
-#endif
-
     if( aStep->GetTrack()->GetVolume()->GetName() == "NewDetectorPhys"){
-      //G4cout <<"Now in NewDetectorPhys" << G4endl;
 #ifdef ANALYSIS_USE
       G4ParticleDefinition *def = aStep->GetTrack()->GetDefinition();
       G4double secondaryParticleKineticEnergy =  aStep->GetTrack()->GetKineticEnergy();     
@@ -133,7 +122,7 @@ void HadrontherapySteppingAction::UserSteppingAction(const G4Step* aStep)
     }
 
   // Electromagnetic and hadronic processes of primary particles in the phantom
-  //setting phantomPhys correctly will break something here fix
+  //setting phantomPhys correctly will break something here fixme
   if ((aStep -> GetTrack() -> GetTrackID() == 1) &&
     (aStep -> GetTrack() -> GetVolume() -> GetName() == "PhantomPhys") &&
     (aStep -> GetPostStepPoint() -> GetProcessDefinedStep() != NULL))
