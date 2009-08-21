@@ -297,9 +297,30 @@ INCL4 is a Monte-Carlo type Intranuclear Cascade Model, whereas ABLA is the the 
  \end{figure}
 
 \subsubsection{Binary cascade}
-The binary cascade is a hybride cascade model with certain aspects of a quantum mechanical dynamics model. In this model 
+The binary cascade is a hybride cascade model with certain aspects of a quantum mechanical dynamics model. The model is characterized by being based on binary scatterings between reaction participants and nucleons within the nucleus.
 
-The Binary cascade uses a Woods-saxon potential for the nucleon distribution of heavy Ions. Whereas lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light (A < 16). 
+In this model the nucleons are described as gaussian wave packages, a nucleus is then built up by combinations of these wave-packages. However, the Slater determinant is ignored.
+
+
+\begin{equation}
+\Phi(x,q_i,p_i,t) = \frac{2}{(L\pi)^{\frac{3}{4}}}exp((-2/L(x -q(t)))^2+ip_i(t)x)
+\label{wavePackage}
+\end{equation}
+
+
+The 3-dimensional nucleus model in the binary cascade assumes a isotropic spherical nucleus. The potential is described either with a Woods-saxon potential for the nucleon distribution of heavy Ions. Lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light by this definition.
+
+\begin{equation}
+\rho(r) = \begin{cases}
+(\pi R^2)^{\frac{3}{2}}exp(-r^2/R^2) & \text{A}<16 \\
+\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & \text{A}>16
+\end{cases}
+\label{binaryCascadePotential}
+\end{equation}
+
+The nucleons are then distributed according to these distributions. The Fermi-momentum for a nucleon is then decided according to the Thomas-Fermi approximation $p_F(r) = \hbar c (3*\pi^2*\rho(r))^\frac{1}{3}$. $A-1$ nucleons are then given a momentum between zero and the Fermi momentum. The last momentum is then choosen so that all momentums even out by picking the negative sum of all other momentums. If this momentumn happends to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
+
+The binary cascade transportation algorithm starts by picking randomly the impact parameter from a disc which is perpendicular to the distance vector to the middlepoint of the nucleus.
 
 \subsubsection{INCL}
 
@@ -316,7 +337,7 @@ In the Liège INC model particles move in straight deterministic trajectories, w
 \frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & 0 < r < R_{max} \\
 0 & \text{otherwise}
 \end{cases}
-\label{WoodsSaxon}
+\label{WoodsSaxon2}
 \end{equation}
 
 If the energy of the bullet particle breaks the nucleus potential barrier and enters the nucleus several binary collisions between participating nucleons will take place, smaller particles may be emerge out from the nucleus. Spectator particles may move around the nucleus and bounce off its edges by reflection, however, they will not leave the nucleus.

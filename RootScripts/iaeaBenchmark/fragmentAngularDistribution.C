@@ -71,7 +71,7 @@ void fragmentAngularDistribution() {
 
    //Let's pull in the simulation-data
    //TFile *MCData = TFile::Open("IAEA_" + pDepth + ".root");
-   TFile *MCData = TFile::Open("IAEA_27.9.root");
+   TFile *MCData = TFile::Open("IAEA.root");
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.

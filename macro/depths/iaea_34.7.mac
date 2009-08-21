@@ -26,6 +26,8 @@
 ##########################
 /geometrySetup/selectGeometry IAEA  # Select the IAEA geometry
 #/iaea/waterPhantomThickness 27.9 cm #default is 27.9, zero will remove phantom
+/analysis/setAnalysisFile IAEA_34.7.root
+/iaea/waterPhantomThickness 34.7 cm
 
 #############################
 #    Beam energy detection  #
@@ -158,6 +160,5 @@
 
 # Batch run of different depths for fragmentation-depths
 
-/analysis/setAnalysisFile IAEA_34.7.root
-/iaea/waterPhantomThickness 34.7 cm
-/run/beamOn 75000
+
+/run/beamOn 50000
