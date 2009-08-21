@@ -36,20 +36,20 @@
 # If attenuation measures are not needed this is redundant
 # and time-consuming. Even pretty small runs give good attenuation graphs.
 
-/score/create/boxMesh boxMesh_1
+#/score/create/boxMesh boxMesh_1
 
 #Box size is the radius of the box ie 20x20x20 gives 40x40x40 outer dimensions
-/score/mesh/boxSize 13.95 16. 16. cm        # The box size and translation may require adjustement
+#/score/mesh/boxSize 13.95 16. 16. cm        # The box size and translation may require adjustement
 
 #this translates the middle of the mesh-box.
-/score/mesh/translate/xyz 69 0.0 0.0 cm
-/score/mesh/nBin 400 1 1      # 400 bins in x-direction, 1 in y and z directions, changes require change in code
+#/score/mesh/translate/xyz 69 0.0 0.0 cm
+#/score/mesh/nBin 400 1 1      # 400 bins in x-direction, 1 in y and z directions, changes require change in code
 
 #
 # define scorers and filters
 # is not able to filter ions.
 
-/score/quantity/energyDeposit eDep
+#/score/quantity/energyDeposit eDep
 #/score/quantity/population eDep
 #/score/quantity/nOfStep nOfStepGamma
 #/score/filter/particle gammaFilter gamma
@@ -57,7 +57,7 @@
 #/score/filter/particle eMinusFilter e-
 #/score/quantity/nOfStep nOfStepEPlus
 #/score/filter/particle ePlusFilter e+
-/score/close
+#/score/close
 
 ############################
 # Initialisation procedure #
@@ -149,7 +149,7 @@
 #/run/beamOn 400000 # Accurate results with good statistics 
 
 
-/score/dumpQuantityToFile boxMesh_1 eDep eDep.txt
+#/score/dumpQuantityToFile boxMesh_1 eDep eDep.txt
 
 # Example of running in loop 
 /control/alias initialValue 0

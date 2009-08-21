@@ -56,7 +56,7 @@
 #include "HadrontherapyMatrix.hh"
 
 HadrontherapyEventAction::HadrontherapyEventAction(HadrontherapyMatrix* matrixPointer) :
-  drawFlag("all" ),printModulo(10000)
+  drawFlag("all" ),printModulo(1000)
 { 
   hitsCollectionID = -1;
   matrix = matrixPointer; 
