@@ -1,2 +1,8 @@
 Release notes for integration-r7
 
+* New features:
+** Produce Bragg peak using the IAEA geometry
+** Command based scoring
+We now use command based scoring for the bragg peak data. 
+The IAEAScoreWriter uses HadrontherapyAnalysisManager to write the output (works with both AIDA and ROOT).
+** Normalization fixes to the analysis scripts in RootScripts/iaeaBenchmark/
