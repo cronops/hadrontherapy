@@ -308,19 +308,37 @@ In this model the nucleons are described as gaussian wave packages, a nucleus is
 \end{equation}
 
 
-The 3-dimensional nucleus model in the binary cascade assumes a isotropic spherical nucleus. The potential is described either with a Woods-saxon potential for the nucleon distribution of heavy Ions. Lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light by this definition.
+The 3-dimensional nucleus model in the binary cascade assumes a isotropic spherical nucleus. The nucleus density is then describedby a Woods-Saxon potential for heavy Ions. Lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light by this definition. These distributions are sumarized below.
 
 \begin{equation}
 \rho(r) = \begin{cases}
-(\pi R^2)^{\frac{3}{2}}exp(-r^2/R^2) & \text{A}<16 \\
-\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & \text{A}>16
+(\pi R^2)^{\frac{3}{2}}exp(-r^2/R^2) & \text{A}<16 \text{(Woods-saxon model)}\\
+\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & \text{A}>16 \text{(Harmonic oscillator model)}
 \end{cases}
 \label{binaryCascadePotential}
 \end{equation}
 
-The nucleons are then distributed according to these distributions. The Fermi-momentum for a nucleon is then decided according to the Thomas-Fermi approximation $p_F(r) = \hbar c (3*\pi^2*\rho(r))^\frac{1}{3}$. $A-1$ nucleons are then given a momentum between zero and the Fermi momentum. The last momentum is then choosen so that all momentums even out by picking the negative sum of all other momentums. If this momentumn happends to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
+The nucleons are then randomly distributed from these probability densitydistributions. The Fermi-momentum for a nucleon is then decided according to the Thomas-Fermi approximation $p^{max}_F(r) = \hbar c (3 \pi^2 \rho(r))^\frac{1}{3}$. $A-1$ nucleons are then given a momentum between zero and the Fermi momentum. The last momentum is choosen so that all momentums even out by picking the negative sum of all other momentums. If this momentumn happends to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
 
-The binary cascade transportation algorithm starts by picking randomly the impact parameter from a disc which is perpendicular to the distance vector to the middlepoint of the nucleus.
+The binary cascade transportation algorithm starts by picking randomly the impact parameter from a disc which is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the stochastically generated nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\siqma_i$ with all target based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed accoring to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths in the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_i+1$. The equations of motion are solved in the nuclear field by integration with Runge-Kutta approximation. If no collision between the primary and any nucleon is found a new nucleus and impact parameter is picked.
+%fixme, below could be better formulated
+Nucleon-nucleon interactions are then based on experimental data and phenomenology. After collisions secondaries of the collision that are Pauli allowed and above the Fermi momentum $p_F$ are traversed as new primaries. The Binary cascade does however not consider collisions inbetween participants.
+%humm, why do we care about this if they are below fermi mometum anyway? or do we mean the different primaries?
+
+The Binary cascade model proceeds as long as there are still particles above the kinetic energy threshold  of 75 MeV. The cscade model is also stopped if the mean kinetic energy of the participants has dropped below a second threshold (15 MeV). Once this phase is reached the nucleus is handed to the evaporation model.
+
+\subsubsection{Fermi break-up and fission models}
+
+For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. It is applied to all nucleuses with $A < 17$ that have suitable excitation. %fixme: phase space should be mentioned
+
+\subsubsection{Geant4 evaporation model}
+
+Once the cascade model has reached one of its cut-off criteria the remaining excited nucleus is passed on to the evaporation model which is a more statistical model based originally on the work of Weisskopf \ref{Weisskopf}. In this model the nucleus is assumed to be in an equilibrium state.
+
+For light-nucleons a Fermi-break-up is possible if the nucleus type satisfies $A < 12$ and $3(A - Z) < Z < 6$ and furthermore has an excitation energy three times as large as its binding energy.
+
+The evaporation model takes the nucleuses parameters as input. On the basis of this data statistical distribution is served and monte-carlo picked events are decided.
+
 
 \subsubsection{INCL}
 

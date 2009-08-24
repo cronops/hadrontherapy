@@ -39,14 +39,15 @@ void fragmentAngularDistribution() {
    dir.ReplaceAll("/./","/");
    ifstream in;
 
-   TString pDepth, fragment, Znum;
+   TString pDepth, fragment, Znum, normToOneAtZeroAngle;
    cout << "Enter phantom depth (eg. 27.9, see experimentalData directory for choices): ";
    cin >> pDepth;
    cout << "Enter fragment Z-number (eg. 1): ";
    cin >> Znum;
    cout << "Enter fragment name (Znum 1 -> H,Znum 2->He...): ";
    cin >> fragment;
-   
+   cout << "Normalize to 1 at zero angle? (Y/N): ";
+   cin >> normToOneAtZeroAngle;   
 
    TString experimentalDataPath = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + "" + pDepth +".dat";
    TString simulationDataPath = "IAEA_" + pDepth + ".root";
@@ -133,8 +134,12 @@ void fragmentAngularDistribution() {
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
 	Double_t zeroSA = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	Double_t zeroYieldNormed = normEntries / (events * zeroSA);
-	//Double_t zeroNorm = zeroYieldNormed; //values normalized to one at zero.
-	Double_t zeroNorm = 1; //non-zeronormalized values
+	if(normToOneAtZeroAngle == "Y"){
+		Double_t zeroNorm = zeroYieldNormed; //values normalized to one at zero
+	}else{
+		Double_t zeroNorm = 1.0; //non-zeronormalized values
+	}
+
 	distrib->Fill(0,normEntries,zeroYieldNormed/zeroNorm); //< degrees, entyamount, normalized result for graph
 	//fragments->Scan(); //debug
 	std::cout << "Norming events: " << normEntries << endl;
@@ -168,28 +173,28 @@ void fragmentAngularDistribution() {
 	distrib->SetMarkerColor(kBlue);
 	ntuple->SetMarkerStyle(22); //triangle
     ntuple->SetMarkerColor(kRed);
-	if(zeroNorm != 1.0){
-	Float_t zeroPosData; //This is where we store what we norm the experimental data with
-	Float_t zeroPosAngle; //okay, so this should be zero, but regrettably is not allways that
-	ntuple->SetBranchAddress("y",&zeroPosData);
-	ntuple->SetBranchAddress("x",&zeroPosAngle);
-	int row = 0;	
-	ntuple->GetEntry(row); //Pull the first row, usually is the right one
-	while(zeroPosAngle*zeroPosAngle > .01){
-		row++;
-		ntuple->GetEntry(row);
-		if(row == ntuple->GetEntries()){
-			std::cerr << "Could not find zero angle data in imported experimental data. Change normalization or relax exactness of this check." << endl;
-			exit();
+	if(normToOneAtZeroAngle == "Y"){
+		Float_t zeroPosData; //This is where we store what we norm the experimental data with
+		Float_t zeroPosAngle; //okay, so this should be zero, but regrettably is not allways that
+		ntuple->SetBranchAddress("y",&zeroPosData);
+		ntuple->SetBranchAddress("x",&zeroPosAngle);
+		int row = 0;	
+		ntuple->GetEntry(row); //Pull the first row, usually is the right one
+		while(zeroPosAngle*zeroPosAngle > .01){
+			row++;
+			ntuple->GetEntry(row);
+			if(row == ntuple->GetEntries()){
+				std::cerr << "Could not find zero angle data in imported experimental data. Change normalization or relax exactness of this check." << endl;
+				exit();
+				}
 			}
-		}
-	
-	std::cout << "For zero-position of experimental data using angle " << zeroPosAngle << " with amount " << zeroPosData << " on row " << row << endl;
-	TString experimentalNorm = Form("(1/%f)*", zeroPosData);
-	ntuple->Draw(experimentalNorm + "y:x","","p");
+		
+		std::cout << "For zero-position of experimental data using angle " << zeroPosAngle << " with amount " << zeroPosData << " on row " << row << endl;
+		TString experimentalNorm = Form("(1/%f)*", zeroPosData);
+		ntuple->Draw(experimentalNorm + "y:x","","p");
     }else{
-	//nor normalization to 1 of data
-	ntuple->Draw("y:x","","p");
+		//nor normalization to 1 of data
+		ntuple->Draw("y:x","","p");
 	}
 	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p,same"); //similar axises to e.haettner
 
@@ -224,7 +229,7 @@ void fragmentAngularDistribution() {
 		*/
 	
 	
-	c1->SaveAs("angularDistrib_depth_" + pDepth + "_Z_" + Znum + "_ComparedToEHaettner.png");
+	c1->SaveAs("angularDistrib_depth_" + pDepth + "_Z_" + Znum + "_normedToZero_" + normToOneAtZeroAngle + "_ComparedToEHaettner.png");
 	in.close();
 	f->Write();
 }
