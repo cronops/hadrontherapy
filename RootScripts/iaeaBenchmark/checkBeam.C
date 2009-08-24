@@ -12,7 +12,7 @@
 #include "TMath.h"
  
 /**
- * Macro for plotting the fragment energy distributions.
+ * Macro for checking beam FWHM
  *
  * Usage:
  * root -l RootScripts/iaeaBenchmark/fragmentEnergy.C++

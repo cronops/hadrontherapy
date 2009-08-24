@@ -116,7 +116,7 @@
 # Set here the cut and the step max for the tracking. 
 # Fixme, recommenadtions needed
 #
-/physic/setCuts 0.8 cm
+/physic/setCuts 1.5 cm
 #/physic/setCuts 0.4 cm
 /Step/waterPhantomStepMax 0.5 cm
 #/Step/waterPhantomStepMax 0.01 mm 
@@ -160,7 +160,7 @@
 
 # Batch run of different depths for fragmentation-depths
 
-/run/beamOn 200000
+/run/beamOn 400000
 
 #/analysis/setAnalysisFile IAEA_25.8.root
 #/iaea/waterPhantomThickness 25.8 cm

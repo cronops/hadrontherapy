@@ -32,7 +32,19 @@ gStyle->SetOptStat(0000000000); //remove the redundant statbox
    dir.ReplaceAll("basic.C","");
    dir.ReplaceAll("/./","/");
    ifstream in;
-   in.open(Form("experimentalData/iaeaBenchmark/H27.9.dat",dir.Data()));
+   
+   TString pDepth, fragment, Znum;
+   cout << "Enter phantom depth (eg. 27.9, see experimentalData directory for choices): ";
+   cin >> pDepth;
+   cout << "Enter fragment Z-number (eg. 1): ";
+   cin >> Znum;
+   cout << "Enter fragment name (Znum 1 -> H,Znum 2->He...): ";
+   cin >> fragment;
+   
+   TString experimentalDataPath = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + "" + pDepth +".dat";
+   TString simulationDataPath = "IAEA_" + pDepth + ".root";
+   
+   in.open(experimentalDataPath);
    Float_t f1,f2;
    Int_t nlines = 0;
    TFile *f = new TFile("fragmentAngularDistribution.root","RECREATE");
@@ -55,7 +67,7 @@ gStyle->SetOptStat(0000000000); //remove the redundant statbox
 	   printf(" found %d points\n",nlines);
    //Let's pull in the simulation-data
    //TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *simulation = TFile::Open("IAEA.root");
+   TFile *simulation = TFile::Open(simulationDataPath);
    TNtuple *fragments = (TNtuple*) simulation->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -87,7 +99,7 @@ gStyle->SetOptStat(0000000000); //remove the redundant statbox
 	 * The negativeHist is a cludge-fix to get the negative degrees (will be exactly the same)
 	*/
 	Double_t maxDegrees = 14; //highest plotted degree amount
-	int binAmount = 20; //amount of bins in plotted histogram
+	int binAmount = 25; //amount of bins in plotted histogram
     TH1F *hist1 = new TH1F("hist1", "Fragment angular distribution", binAmount, 0, maxDegrees); //The histogram for the angular distribution at a set length
 	//This histogram needs to be hist1 with a symmetric negative side
 	TH1F *symmetricHist = new TH1F("symmetricHist", "Fragment angular distr.", 2*binAmount, -1*maxDegrees, maxDegrees); //bin amount must be even
@@ -104,14 +116,6 @@ gStyle->SetOptStat(0000000000); //remove the redundant statbox
 //////        Analysis         /////////
 ////////////////////////////////////////
 TString middleY;
-Double_t sinuse;
-std::cout << "Check, single detector, different degrees, amounts of hits:\n\n\n";
-for(float p = -2; p < 12; p = p + 1.0){
-middleY = Form("%f",scatteringDistance * TMath::Sin(p*TMath::RadToDeg()));
-std::cout << "\n" << p << " degrees: " << fragments->GetEntries("posY > (" + middleY + " -2.00) && posY < (" + middleY + "+2.00) && posZ > -2 && posZ < 2 && Z == 1");
-}
-std::cout << "\n";
-std::cout << "\n";
 //Projection from ntuple to histogram, so that the angle is trigonometrically pulled as the binned variable
 	fragments->Project("hist1","57.29577*atan((posZ^2+posY^2)/" + sdstring + ")", "(Z == " + Znum + ")");
 
@@ -126,19 +130,9 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
 		degrees = hist1->GetBinCenter(bin);
 		deltaPhi = width/2;
 		binNormalization = 2*TMath::Pi()*(TMath::Cos(TMath::DegToRad()*(degrees-deltaPhi)) - TMath::Cos(TMath::DegToRad()*(degrees+deltaPhi))); //Gunzer-marx uses this , which is a tad of an approximation
-		std::cout << bin << "\t(" << hist1->GetNbinsX()-bin << ")" << value << "\t" << binNormalization << endl;
 		symmetricHist->SetBinContent(bin+hist1->GetNbinsX(), value/(binNormalization*events)); //Solid angle and amount of events
 		symmetricHist->SetBinContent(hist1->GetNbinsX()-bin+1, value/(binNormalization*events)); //Solid angle and amount of events
 	}
-	/*
-	 * taken out of root manual, still does not work.
-	TList *list = new TList;
-    list->Add(negativeHist1);    
-	list->Add(hist1);
-    TH1F *h = (TH1F*)negativeHist1->Clone("h");
-    h->Reset();
-    h.Merge(list);
-	* */
 	symmetricHist->SetAxisRange(-2,14);
 	symmetricHist->SetXTitle("Angle (degrees)");
 	symmetricHist->SetYTitle("(N/N0) / [sr]");
@@ -146,16 +140,18 @@ for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
 	///fragments->Scan("posY:posZ:atan((posZ^2+posY^2)/" + sdstring + ")");
 	TF1* fitgaus = new TF1("fitgaus","gaus");
 	TF2* fitexpo = new TF1("fitexpo","expo");
-	//fitgaus->SetLineColor(2);
-	fitexpo->SetLineColor(2);	
+	fitgaus->SetLineColor(2);
+	fitexpo->SetLineColor(4);	
 	symmetricHist->Fit(fitgaus,""); // data should be reshaped a bit for the gaussian (as root seems to have some problems here)
 	symmetricHist->Fit(fitexpo, "+"); //aparently two fits on the same histo seem to much for root
 	symmetricHist->Draw();
 	//symmetricHist->SetMaximum(35); //needed to get E.Haettners data visible
+	/*
+	//Plots of experimental data are kind of meaningless with a constant-angle-binned histogram.
 	ntuple->SetMarkerStyle(22);
     ntuple->SetMarkerColor(kRed);
 	ntuple->Draw("y:x","","p,same");
-	
+	*/
 	
    c1->SaveAs("angularDistributionHistogramWithFits.png");
 

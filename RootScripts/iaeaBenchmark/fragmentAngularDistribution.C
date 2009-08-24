@@ -35,19 +35,25 @@ void fragmentAngularDistribution() {
 //   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
-   dir.ReplaceAll("basic.C","");
+   dir.ReplaceAll("fragmentAngularDistribution.C","");
    dir.ReplaceAll("/./","/");
    ifstream in;
 
-   //Settings for analysis
-   TString pDepth = "5.9"; //set ehre what depth to analyse, requries suitable root file and data file
-   TString fragment = "H"; //string of what fragment is being looked at H, He, Li ...
-   TString Znum = "5"; //set here what will be put in the selection for z, does not automatically change imoprted data.
-   //TString experimentalDataFile = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat";
-   //in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat",dir.Data()));
-   in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/27.9/B27.9.dat",dir.Data()));
-   std::cout << "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat" << endl;
-   std::cout << "didata" << dir.Data() << endl;
+   TString pDepth, fragment, Znum;
+   cout << "Enter phantom depth (eg. 27.9, see experimentalData directory for choices): ";
+   cin >> pDepth;
+   cout << "Enter fragment Z-number (eg. 1): ";
+   cin >> Znum;
+   cout << "Enter fragment name (Znum 1 -> H,Znum 2->He...): ";
+   cin >> fragment;
+   
+
+   TString experimentalDataPath = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + "" + pDepth +".dat";
+   TString simulationDataPath = "IAEA_" + pDepth + ".root";
+
+   //Pull in ascii/exfor-style data
+   in.open(experimentalDataPath);
+
    Float_t f1,f2;
    Int_t nlines = 0;
    TFile *f = new TFile("fragmentAngularDistribution.root","RECREATE");
@@ -71,7 +77,7 @@ void fragmentAngularDistribution() {
 
    //Let's pull in the simulation-data
    //TFile *MCData = TFile::Open("IAEA_" + pDepth + ".root");
-   TFile *MCData = TFile::Open("IAEA.root");
+   TFile *MCData = TFile::Open(simulationDataPath);
    TNtuple *fragments = (TNtuple*) MCData->Get("fragmentNtuple");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.
@@ -108,7 +114,7 @@ void fragmentAngularDistribution() {
 	//This will norm it to the zero degree entry to get rid of Emma's weird normalization
 	//fixme detectorsidelengthstring
 	rMinString = "0.00";
-	rMaxString = "2.00";
+	rMaxString = Form("%f", detectorSideLength/2);
 	//SA of a square Double_t zeroSAsquare = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
 	//SA with square approx squareApprox = (4*4) / (4*3.14*scatteringDistance*scatteringDistance);
 	
@@ -126,8 +132,11 @@ void fragmentAngularDistribution() {
 	//Results are normalized by a square detector mimicing H1 with center at 0 degrees.
 	Double_t normEntries = fragments->GetEntries("(Z == " + Znum + " && posY < " + rMaxString + " && posY > -" + rMaxString + " &&  posZ > -" + rMaxString + " && posZ < " + rMaxString + ")");
 	Double_t zeroSA = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatteringDistance,2) + pow(detectorSideLength,2)) );
-	Double_t zeroNorm = normEntries / (events * zeroSA);
-	distrib->Fill(0,normEntries,1); //< degrees, entyamount, normalized result for graph
+	Double_t zeroYieldNormed = normEntries / (events * zeroSA);
+	//Double_t zeroNorm = zeroYieldNormed; //values normalized to one at zero.
+	Double_t zeroNorm = 1; //non-zeronormalized values
+	distrib->Fill(0,normEntries,zeroYieldNormed/zeroNorm); //< degrees, entyamount, normalized result for graph
+	//fragments->Scan(); //debug
 	std::cout << "Norming events: " << normEntries << endl;
 	//Loop through all other wanted angles, too large angles will fall outside reach of phantom window.
 	for(Double_t j = deltaPhi*TMath::RadToDeg(); j <= 15.0; j=j+.05){
@@ -157,9 +166,9 @@ void fragmentAngularDistribution() {
 		}
 	distrib->SetMarkerStyle(2); //filled dot
 	distrib->SetMarkerColor(kBlue);
-	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p"); //similar axises to e.haettner
 	ntuple->SetMarkerStyle(22); //triangle
     ntuple->SetMarkerColor(kRed);
+	if(zeroNorm != 1.0){
 	Float_t zeroPosData; //This is where we store what we norm the experimental data with
 	Float_t zeroPosAngle; //okay, so this should be zero, but regrettably is not allways that
 	ntuple->SetBranchAddress("y",&zeroPosData);
@@ -174,11 +183,17 @@ void fragmentAngularDistribution() {
 			exit();
 			}
 		}
+	
 	std::cout << "For zero-position of experimental data using angle " << zeroPosAngle << " with amount " << zeroPosData << " on row " << row << endl;
 	TString experimentalNorm = Form("(1/%f)*", zeroPosData);
-	ntuple->Draw(experimentalNorm + "y:x","","p,same");
+	ntuple->Draw(experimentalNorm + "y:x","","p");
+    }else{
+	//nor normalization to 1 of data
+	ntuple->Draw("y:x","","p");
+	}
+	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p,same"); //similar axises to e.haettner
 
-	//Calculate FWHM, ineffective solution. (but works also without normalizing to 1)
+	//Calculate closest-point-FWHM.
 	Float_t fwhm = 0.0, middle = 0.0, currentX, currentY;
 	distrib->SetBranchAddress("normalized",&currentY);
 	distrib->SetBranchAddress("angle",&currentX);
@@ -209,7 +224,7 @@ void fragmentAngularDistribution() {
 		*/
 	
 	
-	c1->SaveAs("angularDistrib_for_Z_" + Znum + "_ComparedToEHaettner.png");
+	c1->SaveAs("angularDistrib_depth_" + pDepth + "_Z_" + Znum + "_ComparedToEHaettner.png");
 	in.close();
 	f->Write();
 }
