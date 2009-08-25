@@ -157,8 +157,16 @@ void fragmentAngularDistribution() {
 		rMinString = Form("%f", rMin);
 		rMaxString = Form("%f", rMax);
 		
-		//deltaPhi calculated so that phi+deltaphi points to one side of the detector and phi-deltaphi the other side
-		Double_t deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - (detectorSideLength/(2*scatteringDistance)));
+		/*
+		 * deltaPhi calculated so that phi+deltaphi points to one side of the detector and phi-deltaphi the other side
+		 * 
+		 * Alternative 1: detector is moved but the normal is not pointed towards the scattering source. (Gunzert-Marx ?) 
+		 * Alternative 2: detector is moved and pointed towards scattering source. (E.Haettner seems to use this)
+		 * 
+		 * The difference in results is very minute though. (3% at largest angles)
+		 */
+		//Double_t deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - (detectorSideLength/(2*scatteringDistance)));
+		Double_t deltaPhi = TMath::ATan((TMath::Cos(degrees)*detectorSideLength)/(2*scatteringDistance));
 		/*
 		* From Gunzert-marx. Solid angle of annulus with rmin trmax, 
 		* a bit of an aproximation especially at small phi.
