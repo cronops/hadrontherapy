@@ -37,7 +37,7 @@ label=listing:boundary}}
 \usepackage[utf8]{inputenc} % look here if scands are broken
 \usepackage{wrapfig}
 %\usepackage{makeidx}
-\usepackage{subfig}
+%\usepackage{subfig}
 \usepackage{fancyhdr}
 %\usepackage{asymptote}
 \usepackage{amsmath}
@@ -58,6 +58,8 @@ label=listing:boundary}}
 
 %% Matematiikan fontteja, symboleja ja muotoiluja lisää, näitä tarvitaan usein 
 \usepackage{amsfonts,amssymb,amsbsy}  
+%% paketti että saa ladottua monta kuvaa samalle sivulle.
+\usepackage{subfigure}
 
 %% Käytä seuraavaa pakettia jos haluat
 %% Times-fontit LaTeX:n normaalien Computer Modern-fonttien sijaan.
@@ -320,7 +322,7 @@ The 3-dimensional nucleus model in the binary cascade assumes a isotropic spheri
 
 The nucleons are then randomly distributed from these probability densitydistributions. The Fermi-momentum for a nucleon is then decided according to the Thomas-Fermi approximation $p^{max}_F(r) = \hbar c (3 \pi^2 \rho(r))^\frac{1}{3}$. $A-1$ nucleons are then given a momentum between zero and the Fermi momentum. The last momentum is choosen so that all momentums even out by picking the negative sum of all other momentums. If this momentumn happends to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
 
-The binary cascade transportation algorithm starts by picking randomly the impact parameter from a disc which is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the stochastically generated nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\siqma_i$ with all target based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed accoring to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths in the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_i+1$. The equations of motion are solved in the nuclear field by integration with Runge-Kutta approximation. If no collision between the primary and any nucleon is found a new nucleus and impact parameter is picked.
+The binary cascade transportation algorithm starts by picking randomly the impact parameter from a disc which is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the stochastically generated nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\sigma_i$ with all target based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed accoring to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths in the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_i+1$. The equations of motion are solved in the nuclear field by integration with Runge-Kutta approximation. If no collision between the primary and any nucleon is found a new nucleus and impact parameter is picked.
 %fixme, below could be better formulated
 Nucleon-nucleon interactions are then based on experimental data and phenomenology. After collisions secondaries of the collision that are Pauli allowed and above the Fermi momentum $p_F$ are traversed as new primaries. The Binary cascade does however not consider collisions inbetween participants.
 %humm, why do we care about this if they are below fermi mometum anyway? or do we mean the different primaries?
@@ -410,7 +412,16 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 %fixme add another ABLAsource
 
 \section{Simulation setup} %practical aspects of simulation
-The simulation is performed with the latest versions of the binary-cascade and ABLA code that is a part of the Geant4 suite version 4.9.3b.
+The simulation is performed with the latest versions of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
+
+The simulation setup was based around the hadrontherapy simulation produced by INFN catania (insert names of italians here). The aim was that that this IAEA benchmark simulation could be distributed alongside the hadrontherapy example. However, this required rewriting the code at various places. Major changes in the code included
+
+Analysis was to be done in ROOT bypassing AIDA that is used by the hadrontherapy example.
+
+The geometry had to be rewritten, but in such a way that it may be interchangeable through macro commands. Reqriting the geometry also meant having to rewrite some of the detection code.
+
+Multiple runs needed to be able to be run.
+
 
 \begin{figure}[ht] 
 \begin{center}
@@ -510,7 +521,7 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 %0.2^2/(3+0.279/2)^2
 
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{fig:haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
 
 Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
 
@@ -651,7 +662,7 @@ Results were normalized to the amount of events and divided by the solid angle o
 
 A square detector at 0 degree angle forms the base of the pyramid where the beam source is at the top and the principal beam axis runs along the apex. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{s^2}{(4d^2+s^2)}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 with side-length s at distance d from the beam-source.
 
-The annulus of a circle subtends the solid angle $\Omega_{annulus} = 2 \pi (\cos(\theta_{min}) - \cos(\theta_{max}))$. in this formula $\theta_{min}$ and $\theta_{max}$ corresponds to the angle that $r_{min}$ respectively $r_{max}$ are seen at in the middle of the water-phantom. The magnitude of these two angles can be trigonometrically determined with the knowledge of the measurement angle $\theta$ and the annulus width, which is chosen to be the same as the detector side length.
+The annulus of a circle subtends the solid angle $\Omega_{annulus} = 2 \pi (\cos(\theta_{min}) - \cos(\theta_{max}))$. in this formula $\theta_{min}$ and $\theta_{max}$ corresponds to the angle that $r_{min}$ respectively $r_{max}$ are seen at in the middle of the water-phantom. The magnitude of these two angles can be trigonometrically determined with the knowledge of the measurement angle $\theta$ and the annulus width, which is chosen to be such that it shares a similar viewed width from the scattering source as the tilted detector at the correspondng angle in the experiment, ie. a width very close to 40mm for small angles.
 
 \subsection{Angular energy distribution of fragments}
 
@@ -671,6 +682,143 @@ The angular energy plots were normalized for solid angle, number of events and b
 \end{itemize}
 
 \section{Appendices}
+
+\subsection{Hydrogen}
+\begin{figure}[ht]
+\centering
+\subfigure[5.9cm, very much differing yields.]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_1_N.png}
+\label{fig:AD_5.9_1_N}
+}
+\subfigure[15.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_159_1_N.png}
+\label{fig:AD_15.9_1_N}
+}
+\subfigure[27.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_1_N.png}
+\label{fig:AD_27.9_1_N}
+}
+\subfigure[31.2cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_1_N.png}
+\label{fig:D_31.2_1_N}
+}
+\subfigure[34.7cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_1_N.png}
+\label{fig:D_34.7_1_N}
+}
+\label{fig:subfigureExample}
+\caption[Optional caption for list of figures]{the worst correlation is for \subref{fig:AD_5.9_1_N}}
+\end{figure}
+
+\subsection{Helium}
+\begin{figure}[ht]
+\centering
+\subfigure[5.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_2_N.png}
+\label{fig:AD_5.9_2_N}
+}
+\subfigure[15.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_159_2_N.png}
+\label{fig:AD_15.9_2_N}
+}
+\subfigure[27.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_2_N.png}
+\label{fig:AD_27.9_2_N}
+}
+\subfigure[31.2cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_2_N.png}
+\label{fig:D_31.2_2_N}
+}
+\subfigure[34.7cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_2_N.png}
+\label{fig:D_34.7_2_N}
+}
+\label{fig:subfigureExample}
+\caption[Optional caption for list of figures]{the worst correlation is for \subref{fig:AD_5.9_1_N}}
+\end{figure}
+
+\subsection{Lithium}
+\begin{figure}[ht]
+\centering
+\subfigure[5.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_3_N.png}
+\label{fig:AD_5.9_3_N}
+}
+\subfigure[15.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_159_3_N.png}
+\label{fig:AD_15.9_3_N}
+}
+\subfigure[27.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_3_N.png}
+\label{fig:AD_27.9_3_N}
+}
+\subfigure[31.2cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_3_N.png}
+\label{fig:D_31.2_3_N}
+}
+\subfigure[34.7cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_3_N.png}
+\label{fig:D_34.7_3_N}
+}
+\label{fig:subfigureExample}
+\caption[Optional caption for list of figures]{the worst correlation is for \subref{fig:AD_5.9_1_N}}
+\end{figure}
+
+\subsection{Beryllium}
+\subsection{Beryllium}
+\begin{figure}[ht]
+\centering
+\subfigure[5.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_4_N.png}
+\label{fig:AD_5.9_4_N}
+}
+\subfigure[15.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_159_4_N.png}
+\label{fig:AD_15.9_4_N}
+}
+\subfigure[27.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_4_N.png}
+\label{fig:AD_27.9_4_N}
+}
+\subfigure[41.2cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_4_N.png}
+\label{fig:D_41.2_4_N}
+}
+\subfigure[44.7cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_4_N.png}
+\label{fig:D_43.7_4_N}
+}
+\label{fig:subfigureExample}
+\caption[Optional caption for list of figures]{}
+\end{figure}
+
+\subsection{Boron}
+\begin{figure}[ht]
+\centering
+\subfigure[5.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_5_N.png}
+\label{fig:AD_5.9_5_N}
+}
+\subfigure[15.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_159_5_N.png}
+\label{fig:AD_15.9_5_N}
+}
+\subfigure[27.9cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_5_N.png}
+\label{fig:AD_27.9_5_N}
+}
+\subfigure[51.2cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_5_N.png}
+\label{fig:D_51.2_5_N}
+}
+\subfigure[55.7cm]{
+\includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_5_N.png}
+\label{fig:D_53.7_5_N}
+}
+\label{fig:BoronAD}
+\caption[Optional caption for list of figures]{}
+\end{figure}
+
 \begin{itemize}
 \item angular distribution plots
 \item code examples
