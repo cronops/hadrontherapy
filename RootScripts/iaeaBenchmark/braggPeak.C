@@ -13,16 +13,8 @@
 #include "TMath.h"
 
 /***************************
- * Root script that produces a graph of the angular distribution of
- * a certain type of charged fragment (default Z=1).
- * 
- * Results are not stored in a histogram.
- * 
- * This can be compared to measurements made with a square 
- * detector that is being moved around. Such as that of E.Haettner[1].
- * 
- * Results are normalized to the 0-angle because documentation on E.Haettner's 
- * normalization is not found.
+ * Root script that produces comparison between hadrontherapy
+ * mc-simulation data and E.Haettner's experimental data.
  * 
  * @author Gillis Danielsen
  * **************************/
@@ -31,7 +23,8 @@
 void braggPeak() {
 
 	//TCanvas *c1 = new TCanvas("BraggPeaks", "Energy depositions along x-axis in phantom");
-	
+	gStyle->SetOptStat(0000000000); //remove the for this graphs totally redundant statbox
+
 //   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
@@ -63,7 +56,7 @@ void braggPeak() {
    }   
    
    //Let's pull in the simulation data
-   TFile* simulation = TFile::Open("IAEA.root");
+   TFile* simulation = TFile::Open("IAEA_braggPeak.root");
    TH1F* simBragg = (TH1F*) simulation->Get("braggPeak");
 
    //Block bellow pulls out the simulation's metadata from the metadata ntuple.

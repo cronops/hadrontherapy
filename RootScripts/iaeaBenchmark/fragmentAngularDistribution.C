@@ -152,10 +152,7 @@ void fragmentAngularDistribution() {
 		//now the "detector is rotated around all possible perpendicularlynangle values to beamline".
 		//This forms an annulus with rMin and Rmax as outer and inner radiuses
 		//this will give a bit of approximation at small angles and at 0 degrees this gives a completely round sensor.
-		rMin = TMath::Max(0.0,r - (detectorSideLength/2));
-		rMax = r + (detectorSideLength/2);
-		rMinString = Form("%f", rMin);
-		rMaxString = Form("%f", rMax);
+
 		
 		/*
 		 * deltaPhi calculated so that phi+deltaphi points to one side of the detector and phi-deltaphi the other side
@@ -165,8 +162,17 @@ void fragmentAngularDistribution() {
 		 * 
 		 * The difference in results is very minute though. (3% at largest angles)
 		 */
+		//Alternative 1
 		//Double_t deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - (detectorSideLength/(2*scatteringDistance)));
+		//rMin = TMath::Max(0.0,r - (detectorSideLength/2));
+		//rMax = r + (detectorSideLength/2);
+		//Alternative 2
 		Double_t deltaPhi = TMath::ATan((TMath::Cos(degrees)*detectorSideLength)/(2*scatteringDistance));
+		rMin = TMath::Max(0.0,r - (detectorSideLength/(2*TMath::Cos(degrees))));
+		rMax = rMin + ((detectorSideLength*TMath::Sin(degrees))/TMath::Tan((TMath::Pi()/2) - degrees - deltaPhi)) + (detectorSideLength*TMath::Cos(degrees));
+		std::cout << rMax - rMin << endl;
+		rMinString = Form("%f", rMin);
+		rMaxString = Form("%f", rMax);
 		/*
 		* From Gunzert-marx. Solid angle of annulus with rmin trmax, 
 		* a bit of an aproximation especially at small phi.

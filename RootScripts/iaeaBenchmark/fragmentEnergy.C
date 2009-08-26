@@ -25,7 +25,7 @@ void fragmentEnergy() {
    dir.ReplaceAll("fragmentEnergy.C","");
    dir.ReplaceAll("/./","/");
 
-gStyle->SetOptStat(0000000000); //remove the redundant statbox
+gStyle->SetOptStat(0000000000); //remove the for this graphs totally redundant statbox
 
 
 TString macroPath(gROOT->GetMacroPath());
@@ -64,7 +64,7 @@ gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
    
    //Let's pull in the monte carlo simulation results
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA.root");
+   TFile *MCData = TFile::Open("IAEA_200000.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 //scale and plot
