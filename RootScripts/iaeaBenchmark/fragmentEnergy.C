@@ -33,38 +33,47 @@ gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
 //gROOT->LoadMacro("rootlogon.C");
 //gROOT->SetStyle("clearRetro"); //For stylesheet
 
-   ifstream in;
-   in.open(Form("experimentalData/iaeaBenchmark/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
-   Float_t f1,f2,f3, f4,f5,f6;
-   Int_t nlines = 0;
-   TFile *f = new TFile("fragmentEnergy.root","RECREATE");
+   TString pDepth;
+   cout << "Enter phantom depth (eg. 27.9, see experimentalData directory for choices): " << endl;
+   cout << "Entering 27.9 will make script look for IAEA_27.9.root:";
+   cin >> pDepth;
+
+   TString simulationDataPath = "IAEA_" + pDepth + ".root";
    TNtuple *ntuple = new TNtuple("ntuple","Data from ascii file","Energy:He:B:H:Li:Be");
- 
-   Char_t DATAFLAG[4];
-   Int_t NDATA;
-   Char_t n1[6], n2[2], n3[2], n4[2], n5[2], n6[2];
-   in >> DATAFLAG >> NDATA ; // Read EXFOR line: 'DATA 6'
-   in >> n1 >> n2 >> n3 >> n4 >> n5 >> n6; // Read column titles: 'Energy He B [...]'
- 
-   cout <<n1<<" "<<n2<<" "<<n3<<" "<<n4<<" "<<n5<<" "<<n6<<"\n";
-   while (1) {
-      in >> f1 >> f2 >> f3 >>f4 >> f5 >> f6;
-      if (!in.good()) break;
-      if (nlines < 500 ) printf("%f %0.2f %0.2f %0.2f %0.2f %0.2f \n",f1,f2,f3,f4,f5,f6);
-      ntuple->Fill(f1,f2,f3,f4,f5,f6);
-      nlines++;
-   }
-   ntuple->SetMarkerStyle(5);
-   ntuple->Draw("He:Energy","","l");
-   ntuple->Draw("B:Energy","","l,Same");
-   ntuple->Draw("H:Energy","","l,Same");
-   ntuple->Draw("Li:Energy","","l,Same");
-   ntuple->Draw("Be:Energy","","l,Same");
-   printf(" found %d points\n",nlines);
-   
+	if(pDepth == "27.9"){
+	//there is only hand.read data for this depth, fixme, is ugly
+	   ifstream in;
+	   in.open(Form("experimentalData/iaeaBenchmark/fragmentEnergySpctra279mmWater0deg.dat",dir.Data()));
+	   Float_t f1,f2,f3, f4,f5,f6;
+	   Int_t nlines = 0;
+	   TFile *f = new TFile("fragmentEnergy.root","RECREATE");
+	 
+	   Char_t DATAFLAG[4];
+	   Int_t NDATA;
+	   Char_t n1[6], n2[2], n3[2], n4[2], n5[2], n6[2];
+	   in >> DATAFLAG >> NDATA ; // Read EXFOR line: 'DATA 6'
+	   in >> n1 >> n2 >> n3 >> n4 >> n5 >> n6; // Read column titles: 'Energy He B [...]'
+	 
+	   cout <<n1<<" "<<n2<<" "<<n3<<" "<<n4<<" "<<n5<<" "<<n6<<"\n";
+	   while (1) {
+		  in >> f1 >> f2 >> f3 >>f4 >> f5 >> f6;
+		  if (!in.good()) break;
+		  if (nlines < 500 ) printf("%f %0.2f %0.2f %0.2f %0.2f %0.2f \n",f1,f2,f3,f4,f5,f6);
+		  ntuple->Fill(f1,f2,f3,f4,f5,f6);
+		  nlines++;
+	   }
+	   ntuple->SetMarkerStyle(5);
+	   ntuple->Draw("He:Energy","","l");
+	   ntuple->Draw("B:Energy","","l,Same");
+	   ntuple->Draw("H:Energy","","l,Same");
+	   ntuple->Draw("Li:Energy","","l,Same");
+	   ntuple->Draw("Be:Energy","","l,Same");
+	   printf(" found %d points\n",nlines);
+	}
+
    //Let's pull in the monte carlo simulation results
    TCanvas *mc = new TCanvas("mc", "Simulation");
-   TFile *MCData = TFile::Open("IAEA_200000.root");
+   TFile *MCData = TFile::Open(simulationDataPath);
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 //scale and plot

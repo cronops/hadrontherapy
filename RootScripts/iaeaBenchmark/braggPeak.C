@@ -21,6 +21,7 @@
 
 
 void braggPeak() {
+	TCanvas *c1 = new TCanvas("Bragg curve", "Bragg curve comparison");
 
 	//TCanvas *c1 = new TCanvas("BraggPeaks", "Energy depositions along x-axis in phantom");
 	gStyle->SetOptStat(0000000000); //remove the for this graphs totally redundant statbox
@@ -72,35 +73,22 @@ void braggPeak() {
    
 	//good to keep for ref. G4 might give weird units due to change.
 	metadata->Scan();
-	//let's project the experimental data.
-   //TH1F* expBragg = new TH1F("ExperimentalBragg", 400, 0, waterThickness);
 
+	simBragg->GetXaxis()->SetLimits(0.0, waterThickness);
 	simBragg->SetLineColor(kBlue);
 	//simBragg->GetXaxis()->SetName("test");
-	simBragg->SetXTitle("Depth (cm)");
+	simBragg->SetXTitle("Depth in phantom (cm)");
 	simBragg->SetYTitle("Ionization (MeV/m)");
 	//simBragg->GetXaxis()->SetTitleOffset(1);
 	simBragg->GetYaxis()->SetTitleOffset(1.5);
-	std::cout << "Maximum (Bragg peak) for simulation data is at: " << simBragg->GetBinCenter(simBragg->GetMaximumBin()) << endl;
+	std::cout << "Maximum (Bragg peak) for simulation data is at: " << simBragg->GetBinCenter(simBragg->GetMaximumBin()) + 0.478/2 + 0.027 + 0.073 << endl;
 	std::cout << "Bin width is " << simBragg->GetBinWidth(simBragg->GetMaximumBin()) << endl;
-	simBragg->Scale(1.0/(100*events*simBragg->GetBinWidth(0)));
+	simBragg->Scale(1.0/(100*events*simBragg->GetBinWidth(0))); // 100 for converting to MeV/m
+	//simBragg->ShowPeaks();
 	simBragg->Draw();
 	ntuple->SetMarkerColor(kRed);
 	ntuple->SetMarkerStyle(22);
 	std::cout << ntuple->GetEntries() << endl;
-	ntuple->Draw("i:d-(0.478/2)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
-	/*
-	TH1F combinedBragg("Bragg peaks","slice, energy", 400, 0., 400);
-	
-	for(int bin = 0; bin <= hist1->GetNbinsX(); bin++){
-		value = hist1->GetBinContent(bin); //the incident-particle normalized amount of hits
-		width = hist1->GetBinWidth(bin); //so this is degrees/radians
-		degrees = hist1->GetBinCenter(bin);
-		deltaPhi = width/2;
-		binNormalization = 2*TMath::Pi()*(TMath::Cos(TMath::DegToRad()*(degrees-deltaPhi)) - TMath::Cos(TMath::DegToRad()*(degrees+deltaPhi))); //Gunzer-marx uses this , which is a tad of an approximation
-		std::cout << bin << "\t(" << hist1->GetNbinsX()-bin << ")" << value << "\t" << binNormalization << endl;
-		symmetricHist->SetBinContent(bin+hist1->GetNbinsX(), value/(binNormalization*events)); //Solid angle and amount of events
-		symmetricHist->SetBinContent(hist1->GetNbinsX()-bin+1, value/(binNormalization*events)); //Solid angle and amount of events
-	  }
-	  */
+	ntuple->Draw("i:d-((0.478/2)+0.027+0.073)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
+	c1->SaveAs("braggPeakComparisonToData.png");
 }

@@ -560,7 +560,7 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
  \end{figure}
 
 \subsection{Analysis}
-The simulation setup generates relatively little data. Thus a n approach with separate analysis was chosen. All events hitting the detectors were recorded and suitable ones were chosen in ROOT. This section covers the analysis of the recorded events.
+The simulation setup generates relatively little data. Thus an approach with separate analysis was chosen. All events hitting the detectors were recorded and suitable ones were chosen in ROOT. This section covers the analysis of the recorded events.
 
 \section{Results and comparison to GSI data and other simulation models}
 
@@ -591,7 +591,7 @@ The same data was acquired through simulation. The below table summarizes the re
 \subsection{Energy distribution of fragments}
 Events with energy greater than 45 MeV were picked as experimental data was unavailable at smaller energies. The data was normalized for bin-width (9MeV) and the solid angle of the square H1 detector with middlepoint at 0 degree angle from the mean direction of the beam.
 
-The shape of the results are mostly in line with the experimental data. However, the yields of surviving carbon ions clearly is smaller than that of experimental results. This pheomena is repeated also in other water-depths. Further results are listed in the appendices.
+The shape of the results are mostly in line with the experimental data. However, the yields of helium is clearly smaller than that of experimental results. This pheomena is repeated also in other water-depths. Further results are listed in the appendices.
 
 \begin{figure}[h] 
 \begin{center}
@@ -601,14 +601,22 @@ The shape of the results are mostly in line with the experimental data. However,
 \end{figure}
 \begin{figure}[!h] 
 \begin{center}
-\includegraphics[width=0.50\textwidth]{images/annulus.png}  
+\includegraphics[width=0.6\textwidth]{images/annulus.png}  
 \caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. Zero degrees is read out from a square detector while larger than zero degree angles are read out with consecutive largening circle annuluses where the middle radius corresponds to that scattering angle. The Annulus width is determined trigonometrically for each angle of analysis, but is close to the width od the H1 detector (40mm).}
 \end{center}
 \end{figure}
 \subsection{Angulara distribution of fragments}
-The angular distributions of the data were simulated for a number of phantom-depths before and after the Bragg peak at about 27cm. Results were normalized per number of incident ions and solid angle. The results we're plotted against E. Haettners data and are viewble in the appendices \cite{AngularDistributionAppendix}.
+\begin{figure}[!h] 
+\begin{center}
+\includegraphics[width=0.5\textwidth]{images/plots/angularDistributions/equlBinnedHydrogen279.png}  
+\caption{\label{fig:binnedHydrogen} Hydrogen scattering angles binned with equal bin lengths. Gaussian and exponential dit applied.}
+ \end{center}
+ \end{figure}
+The angular distributions of the data were simulated for a number of phantom-depths before and after the Bragg peak at about 27cm. Results were normalized per number of incident ions and solid angle. The results we're plotted against E. Haettners data and are viewble in the appendices~\cite{AngularDistributionAppendix}.
 
 The obvious difference to the experimental data is the clearly lower yields at low angles. This relation is apparent for almost all depths and fragments that were analyzed. The difference seems to be accentuated for the lighter fragments.  As beam attenuation data matches well the lack of straight-forwrd yield may indicate that the simulation models scattering of fragments is too isotropic.
+
+In figure~\ref{fig:binnedHydrogen} the angular distributions were recorded so that all fragments were binned in an equal angle bin histogram. This exemplifies well how the distribution is at small angles best described by a Gaussian shape while at larger angles an exponential function is a better fit. The need for a two-component model has been observed by several authors (Haettner~\cite{ehaettner}, Gunzert-Marx~\cite{gunzert-marx}, Golovkov~\cite{golovkov}). However as this approach differs from the one used by E. Haettner this graph is not comparable to her results. The results in the appendices mimic that approach by having variable size bins.
 
 All in all the results seem fair for a hadronic Monte-Carlo model.
 
@@ -634,9 +642,9 @@ data-files for this distribution not being available to the author at the time o
 \end{figure}
 
 \subsection{Bragg curve}
-The Bragg peak was measured from the simulation data to be located at 26.82 which is a very good match with experimental results.
+The Bragg peak was measured from the simulation data to be located at $27.15 \pm 0.05 cm$ which is a rather good match with experimental result of 27.46cm.
 
-The greatest difference is the average ioniztion per meter in water, which is about 50 percent larger in the experimental data.
+The greatest difference is the average ionization per meter in water, which is about 50 percent larger in the experimental data.
 
 \begin{figure}[h] 
 \begin{center}
