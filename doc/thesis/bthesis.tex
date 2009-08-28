@@ -329,9 +329,24 @@ Nucleon-nucleon interactions are then based on experimental data and phenomenolo
 
 The Binary cascade model proceeds as long as there are still particles above the kinetic energy threshold  of 75 MeV. The cscade model is also stopped if the mean kinetic energy of the participants has dropped below a second threshold (15 MeV). Once this phase is reached the nucleus is handed to the evaporation model.
 
-\subsubsection{Fermi break-up and fission models}
+\subsubsection{Fermi break-up}
 
 For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. It is applied to all nucleuses with $A < 17$ that have suitable excitation. %fixme: phase space should be mentioned
+
+\subsubsection{Fission model}
+
+At the core of the Geant4 fission model is the empirically found relation that the distribution of fragments from a fission process has both a syummetric and and antisymmetric component, defining the total fission output as.
+\begin{equation}
+ F(A_f) = F_{sym}(A_f) + \omega(U,A,Z) F_{asymm}(A_f) 
+\label{fissionSymmetricAsymmetric}
+\end{equation}
+Where $\omega$ defines the relative contribution of each component and is a function of the excitation energy U, and the atomic numbers of the fissioning nucleus.
+
+From experimental data it has been found that good approximations for the functions $F_{sym}$ and $F_{asym}$ can be acquired with exponential fits on $A$ and $A_f$ as variables.
+
+At given mass of fragment $A_f$ the experimental data on the charge $Z_f$ was found to be well described by a Gaussian fit. The average kinetic energy is described through the empirical relation $<T_{kin}>=0.1178Z^2/A^\frac{1}{3} + 5.8$. However, it is also known and accoutned for that the kinetic energy distribution of the asymmetrically scattered fission products are larger than that of the symmetrically distributed ones. 
+
+For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite[Chap 31.]{physicsManual}.
 
 \subsubsection{Geant4 evaporation model}
 
@@ -374,20 +389,44 @@ Multiple runs needed to be able to be run.
 \subsection{Characterization of the primary beam and experimental setup for the
 IAEA benchmark}
 
-Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below.
+Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below. Haettner used two different setups for the measurements made with the H1 detector and the MWPC detector used for calculating the Bragg-curve.
+
+\subsubsection{H1 measurements}
+
+The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements. This setup was recreated as well as possible  in the simulation environment. The major differences being:
+\begin{itemize}
+\item the pipe in the water-phantom was by inspection of photograph \cite{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe.
+\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
+\item the detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analysed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs.
+\end{itemize}
+
+\subsubsection{Bragg-Curve measurements}
+In this paper the bragg-curve is counted by imaginary voxel-layers in the phantom, and therefore is only for interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
+
+This means that data acquired through the simulation technique used should be augmented by a water-equivalent of the experiments parts behind the water-phantom. This sums up to the phantoms back-window (WE 0.239cm) and the air up until the detector.
+
+
 
 \subsection{Geometry}
 
 \begin{figure}[!h] 
 \begin{center}
+\includegraphics[width=0.9\textwidth]{images/haetnersetup3.png}[h]  
+\caption{\label{fig:haettnersetup3} E.Haettner's experimental setup for measurements made with the H1 detector. In this paper and the simulation-code the angle denoted by Haettner with $\theta$ is denoted $\phi$.}
+ \end{center}
+ \end{figure}
+
+
+\begin{figure}[!h] 
+\begin{center}
 \includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}[h]  
-\caption{\label{fig:haettnersetup} E.Haettner's experimental setup. The beam arrives at the experimental setup after traveling 10m from the last focuing magnets, thus it may be considered paralell at the time of entering the first detector.}
+\caption{\label{fig:haettnersetup} E.Haettner's experimental setup for calculation of Bragg peak.}
  \end{center}
  \end{figure}
 \begin{figure}[ht] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/haettnersetup.png}[h]  
-\caption{\label{fig:haettnersetup2} E.Haettner's experimental setup. At the beam source the beam is assumed to be paralell and have an symmetric FWHM of 4mm. The beam first passes two detectors, then a water phantom and its cotnainer on both sides before reaching the last detector.}
+\caption{\label{fig:haettnersetup2} E.Haettner's experimental setup photographed.}
  \end{center}
  \end{figure}
 
@@ -401,16 +440,16 @@ Reference data for the measurements involved in this paper have been acquired fr
 5&Container back-window &\textbf{Plexiglas}&2mm&2mm\\
 6&Ionization chamber 2&\textbf{Air-equivalent}&3.7cm& 3.7cm\\
 \end{tabular} 
-\caption{\label{fig:SimSetup} The 1-d thicknesses of materials in the beam'a path. The experimental setup can not be recreated to account for the effects of the true 3-d structures in the experiment.}
+\caption{\label{fig:SimSetup} The 1-d thicknesses of materials in the beam'a path. The experimental setup was deemed impossible to recreate as to account for the effects of the true 3-d structures in the experiment.}
 \end{table}
 
 
-\begin{figure}[ht] 
-\begin{center}
-\includegraphics[width=0.9\textwidth]{images/SimSetup.png}[h]  
-\caption{\label{fig:SimSetupIncscape} A simplified illustration of the simulation-setup. A beam passes an adjustable water-target and scatters. The scattering is measured by a simulated MWPC-detector.}
- \end{center}
- \end{figure}
+%\begin{figure}[ht] 
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{images/SimSetup.png}[h]  
+%\caption{\label{fig:SimSetupIncscape} A simplified illustration of the simulation-setup. A beam passes an %adjustable water-target and scatters. The scattering is measured by a simulated MWPC-detector.}
+ %\end{center}
+ %\end{figure}
 
 %\begin{table}[h]
 %\begin{tabular}{lllllll}
@@ -467,6 +506,9 @@ The beam width however has a distribution with an FWHM of 4mm which needs to be 
 Furthermore, in this paper the scattering in air by a paralell beam could not be fullfillingly reproduced with the models used. Thus, a small gaussian deviation in the beams direction vectors z and y components were introduced (see \cite{beamShapeAnalysis}).
 
 E.Haettner proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}.
+
+\subsubsection{Water tank}
+
 
 \subsubsection{Beam attenuation}
 
@@ -876,7 +918,7 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 A further discussion of the theoretical basis of the ABLA code is available in references ~\cite{ablatalk,iia}.
 %fixme add another ABLAsource
 
-
+\clearpage
 
 
 \bibliographystyle{plain} \bibliography{refs.bib} 

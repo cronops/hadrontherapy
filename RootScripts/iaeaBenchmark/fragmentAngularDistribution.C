@@ -157,7 +157,7 @@ void fragmentAngularDistribution() {
 		/*
 		 * deltaPhi calculated so that phi+deltaphi points to one side of the detector and phi-deltaphi the other side
 		 * 
-		 * Alternative 1: detector is moved but the normal is not pointed towards the scattering source. (Gunzert-Marx ?) 
+		 * Alternative 1: detector is moved but the normal is not pointed towards the scattering source.
 		 * Alternative 2: detector is moved and pointed towards scattering source. (E.Haettner seems to use this)
 		 * 
 		 * The difference in results is very minute though. (3% at largest angles)
