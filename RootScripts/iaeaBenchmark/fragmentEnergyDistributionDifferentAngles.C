@@ -164,6 +164,16 @@ for(int k = 1; k <= 6; k++){
 		//hist9->SetLineColor(kRed);
 		//hist9->Draw("same");
 
+   // Legends for the data
+   leg = new TLegend(0.8,0.5,1,1);  //coordinates are fractions
+   leg->SetHeader("Fragments");
+   leg->AddEntry(histH,"Hydrogen","l");
+   leg->AddEntry(histHe,"Helium","l");
+   leg->AddEntry(histLi,"Lithium","l");
+   leg->AddEntry(histBe,"Beryllium","l");
+   leg->AddEntry(histB,"Boron","l");
+   leg->Draw();
+
    c3->SaveAs("AEDistrib" + Znum + ".png");
 }
 

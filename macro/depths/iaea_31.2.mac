@@ -161,7 +161,7 @@
 # Batch run of different depths for fragmentation-depths
 
 
-/run/beamOn 50000
+/run/beamOn 100000
 
 #/analysis/setAnalysisFile IAEA_34.7.root
 #/iaea/waterPhantomThickness 34.7 cm

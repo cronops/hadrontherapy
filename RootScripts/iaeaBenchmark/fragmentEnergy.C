@@ -120,8 +120,7 @@ Double_t steradians = 4 * TMath::ASin(pow(detectorSideLength,2.0) / (4*pow(scatt
  
    fragments->SetLineColor(kRed);
    fragments->SetMarkerStyle(22);
-   
-   fragments->Draw("posY:posZ", "abs(posZ) < 2 && abs(posY) < 2");
+
  
 TString halfSideLengthString(Form("%f", detectorSideLength/2));
  
@@ -134,12 +133,8 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    fragments->Project("histBe", "energy", "(Z == 4 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
    fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
  
-   histH->Draw("");
    histH->SetMaximum(0.3);
-   histHe->Draw("same");
-   histLi->Draw("same");
-   histBe->Draw("same");
-   histB->Draw("same");
+
  
 /*
 * This is cludgy but the previous plots can't contain <45MeV stuff but hte following calcualtions need them
@@ -153,8 +148,9 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    fragments->Project("histBe", "energy", "(Z == 4 && energy > 0 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
    fragments->Project("histB", "energy", "(Z == 5 && energy > 0 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization, "same");
  
- 
- 
+    histH->SetXTitle("Energy per nucleon (MeV/u)");
+    histH->SetYTitle("(N/N0) [1/(MeV*sr)]");
+  
    TCanvas *c3 = new TCanvas("histograms", "Energy distribution of charged fragments");
    Int_t nEve = events; //redundant
  
@@ -173,7 +169,16 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    
    cout <<"B : " << histB->GetEntries() / nEve << endl;
    histB->Draw("same");
- 
+  
+   // Legends for the data
+   leg = new TLegend(0.8,0.5,1,1);  //coordinates are fractions
+   leg->SetHeader("Fragments");
+   leg->AddEntry(histH,"Hydrogen","l");
+   leg->AddEntry(histHe,"Helium","l");
+   leg->AddEntry(histLi,"Lithium","l");
+   leg->AddEntry(histBe,"Beryllium","l");
+   leg->AddEntry(histB,"Boron","l");
+   leg->Draw();
  
    ntuple->SetMarkerStyle(22);
    ntuple->Draw("H:Energy","","p,same");

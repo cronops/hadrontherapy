@@ -116,7 +116,7 @@
        y="164.50504"
        id="text3217"><tspan
          sodipodi:role="line"
-         id="tspan3219"></tspan></text>
+         id="tspan3219" /></text>
     <path
        sodipodi:type="arc"
        style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:0.53969049;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.18852461"
@@ -126,7 +126,10 @@
        sodipodi:rx="73.571426"
        sodipodi:ry="69.285713"
        d="M 388.57143,165.21933 A 73.571426,69.285713 0 1 1 241.42857,165.21933 A 73.571426,69.285713 0 1 1 388.57143,165.21933 z"
-       transform="matrix(2.8907783,-0.1568538,0.1454509,2.9920799,-457.84075,-186.50691)" />
+       transform="matrix(2.8907783,-0.1568538,0.1454509,2.9920799,-457.84075,-186.50691)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <path
        sodipodi:type="arc"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.00017893;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.18852461"
@@ -136,20 +139,29 @@
        sodipodi:rx="73.571426"
        sodipodi:ry="69.285713"
        d="M 388.57143,165.21933 A 73.571426,69.285713 0 1 1 241.42857,165.21933 A 73.571426,69.285713 0 1 1 388.57143,165.21933 z"
-       transform="matrix(1.8530439,0,0,1.967664,-109.78015,-64.519642)" />
+       transform="matrix(1.8530439,0,0,1.967664,-109.78015,-64.519642)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <rect
        style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-opacity:0.29098361000000000"
        id="rect3183"
        width="74.285713"
        height="70"
        x="441.42859"
-       y="230.21931" />
+       y="230.21931"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="462.14288"
        y="280.93359"
-       id="text3221"><tspan
+       id="text3221"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan3223"
          x="462.14288"
@@ -159,7 +171,10 @@
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="628.57147"
        y="280.93362"
-       id="text4677"><tspan
+       id="text4677"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan4679"
          x="628.57147"
@@ -173,36 +188,54 @@
        sodipodi:rx="202.5"
        sodipodi:ry="194.64285"
        d="M 711.42856,282.00504 A 202.5,194.64285 0 1 1 306.42856,282.00504 A 202.5,194.64285 0 1 1 711.42856,282.00504 z"
-       transform="matrix(0.8611755,0,0,0.8830947,37.43741,10.825046)" />
+       transform="matrix(0.8611755,0,0,0.8830947,37.43741,10.825046)"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:tb-rl;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
-       x="283.57144"
-       y="267.36218"
-       id="text4683"><tspan
+       x="301.42859"
+       y="241.6479"
+       id="text4683"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan4685"
-         x="267.36218"
-         y="283.57144"
-         style="font-size:16;writing-mode:lr">40mm</tspan></text>
+         x="301.42859"
+         y="241.6479"
+         style="font-size:16px;writing-mode:lr-tb">a</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);marker-end:url(#Arrow2Lend)"
        d="M 268.57143,247.36218 L 331.42857,250.21932"
-       id="path4691" />
+       id="path4691"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);marker-end:url(#Arrow2Lend)"
        d="M 443.57143,223.79075 L 511.42857,223.79075"
-       id="path7046" />
+       id="path7046"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lstart);marker-end:url(#Arrow2Lend)"
        d="M 432.14286,230.21932 L 432.85714,298.07647"
-       id="path9156" />
+       id="path9156"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="457.14285"
        y="218.07646"
-       id="text10212"><tspan
+       id="text10212"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan10214"
          x="457.14285"
@@ -210,17 +243,26 @@
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.39215687;marker-end:url(#Arrow2Lend);marker-start:url(#Arrow2Lstart)"
        d="M 503.57143,392.36218 L 474.28571,265.93361 L 567.14286,404.50504"
-       id="path10218" />
+       id="path10218"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.39215687;marker-start:none;marker-end:url(#Arrow2Lend)"
        d="M 473.57143,267.36218 L 629.28571,400.93361"
-       id="path10220" />
+       id="path10220"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:tb-rl;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="550"
        y="313.79074"
-       id="text14965"><tspan
+       id="text14965"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan14967"
          x="313.79074"
@@ -231,7 +273,10 @@
        style="font-size:14;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="528.57141"
        y="350.21933"
-       id="text14969"><tspan
+       id="text14969"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan14971"
          x="528.57141"
@@ -241,7 +286,10 @@
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="489.28571"
        y="358.79074"
-       id="text14973"><tspan
+       id="text14973"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan14975"
          x="489.28571"
@@ -251,7 +299,10 @@
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="550.71429"
        y="332.36218"
-       id="text14977"><tspan
+       id="text14977"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan14979"
          x="550.71429"
@@ -261,7 +312,10 @@
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"
        x="493.57141"
        y="364.50504"
-       id="text14981"><tspan
+       id="text14981"
+       inkscape:export-filename="/home/gillis/Desktop/github/hadrontherapy/doc/thesis/images/annulus.png"
+       inkscape:export-xdpi="252.60376"
+       inkscape:export-ydpi="252.60376"><tspan
          sodipodi:role="line"
          id="tspan14983"
          x="493.57141"

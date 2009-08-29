@@ -30,8 +30,7 @@
 
 void fragmentAngularDistribution() {
 
-	TCanvas *c1 = new TCanvas("AngularDistribution", "Angular distribution with discrete measurement annuluses");
-	
+  gStyle->SetOptStat(0000000000); //remove the for this graphs totally redundant statbox
   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
@@ -51,6 +50,8 @@ void fragmentAngularDistribution() {
 
    TString experimentalDataPath = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + "" + pDepth +".dat";
    TString simulationDataPath = "IAEA_" + pDepth + ".root";
+
+   TCanvas *c1 = new TCanvas("AngularDistribution", "Angular distribution with discrete measurement annuluses");
 
    //Pull in ascii/exfor-style data
    in.open(experimentalDataPath);
@@ -103,8 +104,7 @@ void fragmentAngularDistribution() {
 	Double_t degrees;
 	Double_t rMin;
 	Double_t rMax;
-	TString rMinString;
-	TString rMaxString;
+	TString rMinString, rMaxString, experimentalNorm;
 	Double_t maxValue = 0.0; //When normalizing to 1 this will allways end up being 1)
 	
 	int i = 0; //so that the degree steps can be varied to unevenly spaced values separate counter is used
@@ -170,7 +170,6 @@ void fragmentAngularDistribution() {
 		Double_t deltaPhi = TMath::ATan((TMath::Cos(degrees)*detectorSideLength)/(2*scatteringDistance));
 		rMin = TMath::Max(0.0,r - (detectorSideLength/(2*TMath::Cos(degrees))));
 		rMax = rMin + ((detectorSideLength*TMath::Sin(degrees))/TMath::Tan((TMath::Pi()/2) - degrees - deltaPhi)) + (detectorSideLength*TMath::Cos(degrees));
-		std::cout << rMax - rMin << endl;
 		rMinString = Form("%f", rMin);
 		rMaxString = Form("%f", rMax);
 		/*
@@ -187,7 +186,13 @@ void fragmentAngularDistribution() {
 	distrib->SetMarkerColor(kBlue);
 	ntuple->SetMarkerStyle(22); //triangle
     ntuple->SetMarkerColor(kRed);
+	
+	TH1F* dummHisto = new TH1F("dummyHisto", fragment + ", " + Form("%.1f", waterThickness) + " cm",100, -3.0,14); //Dummyhisto fix for missing TNtuple methods.
+	dummyHisto->SetXTitle("Angle (degrees)");
+	dummyHisto->SetYTitle("(N/N0) [sr^-1]");
 	if(normToOneAtZeroAngle == "Y"){
+		dummyHisto->SetMaximum(1.1);
+		dummyHisto->SetYTitle("[sr^-1]");
 		Float_t zeroPosData; //This is where we store what we norm the experimental data with
 		Float_t zeroPosAngle; //okay, so this should be zero, but regrettably is not allways that
 		ntuple->SetBranchAddress("y",&zeroPosData);
@@ -204,12 +209,14 @@ void fragmentAngularDistribution() {
 			}
 		
 		std::cout << "For zero-position of experimental data using angle " << zeroPosAngle << " with amount " << zeroPosData << " on row " << row << endl;
-		TString experimentalNorm = Form("(1/%f)*", zeroPosData);
-		ntuple->Draw(experimentalNorm + "y:x","","p");
+		experimentalNorm = Form("(1/%f)*", zeroPosData);
     }else{
 		//nor normalization to 1 of data
-		ntuple->Draw("y:x","","p");
+		dummyHisto->SetMaximum(ntuple->GetMaximum("y")+ ntuple->GetMaximum("y")*.1);
+		experimentalNorm = ""; //no norming of experimental resilts
 	}
+	dummyHisto->Draw();
+	ntuple->Draw(experimentalNorm + "y:x","","p,same");
 	distrib->Draw("normalized:angle","angle > -3 && angle < 14","p,same"); //similar axises to e.haettner
 
 	//Calculate closest-point-FWHM.
@@ -224,7 +231,7 @@ void fragmentAngularDistribution() {
 			}else{
 				}
 		}
-		std::cout << "Calculated (closest point) FWHM of Monte-Carlo simulation to be: " << fwhm << " degrees" << endl; 
+	std::cout << "Calculated (closest point) FWHM of Monte-Carlo simulation to be: " << fwhm << " degrees" << endl; 
 	
 	/*
 	 * This code is left here because it allows to calcualte the values without using annuluses

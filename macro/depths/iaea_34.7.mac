@@ -161,4 +161,4 @@
 # Batch run of different depths for fragmentation-depths
 
 
-/run/beamOn 50000
+/run/beamOn 100000
