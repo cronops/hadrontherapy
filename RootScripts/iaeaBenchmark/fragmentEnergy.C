@@ -133,7 +133,7 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    fragments->Project("histBe", "energy", "(Z == 4 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
    fragments->Project("histB", "energy", "(Z == 5 && energy > 45 && abs(posY) < " + halfSideLengthString + " && abs(posZ) < " + halfSideLengthString + " )" + normalization);
  
-   histH->SetMaximum(0.3);
+   histH->SetMaximum(0.27);
 
  
 /*
@@ -191,7 +191,7 @@ TString halfSideLengthString(Form("%f", detectorSideLength/2));
    ntuple->SetMarkerColor(kYellow);
    ntuple->Draw("B:Energy","","p,same");
  
-   c3->SaveAs("fig520.png");
+   c3->SaveAs("fragmentEnergyDistr.png");
  
    in.close();
  

@@ -89,6 +89,6 @@ void braggPeak() {
 	ntuple->SetMarkerColor(kRed);
 	ntuple->SetMarkerStyle(22);
 	std::cout << ntuple->GetEntries() << endl;
-	ntuple->Draw("i:d-((0.478/2)+0.027+0.073)","","p,same"); // .478/2 comes from half plexi glas water equivalent.
+	ntuple->Draw("i:d-(0.478+0.027+0.073)","","p,same"); // the minuses are the WE's, here only real water depth is plotted.
 	c1->SaveAs("braggPeakComparisonToData.png");
 }
