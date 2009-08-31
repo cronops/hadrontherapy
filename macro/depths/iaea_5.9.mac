@@ -161,24 +161,4 @@
 
 # Batch run of different depths for fragmentation-depths
 
-/run/beamOn 50000
-
-#/analysis/setAnalysisFile IAEA_15.9.root
-#/iaea/waterPhantomThickness 15.9 cm
-#/run/beamOn 50000
-
-#/analysis/setAnalysisFile IAEA_25.8.root
-#/iaea/waterPhantomThickness 25.8 cm
-#/run/beamOn 50000
-
-#/analysis/setAnalysisFile IAEA_27.9.root
-#/iaea/waterPhantomThickness 27.9 cm
-#/run/beamOn 50000
-
-#/analysis/setAnalysisFile IAEA_31.2.root
-#/iaea/waterPhantomThickness 31.2 cm
-#/run/beamOn 50000
-
-#/analysis/setAnalysisFile IAEA_34.7.root
-#/iaea/waterPhantomThickness 34.7 cm
-#/run/beamOn 50000
+/run/beamOn 100000

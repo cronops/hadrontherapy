@@ -141,7 +141,7 @@ for(int k = 1; k <= 6; k++){
 		hist1->Draw();
 		//1 degree
 		hist2->SetLineColor(kGreen);
-		hist2->Draw("same"); //add "same when also plotting 0 degrees
+		hist2->Draw("same"); //add "same" when also plotting 0 degrees
 		//2 degrees
 		hist3->SetLineColor(kRed);
 		hist3->Draw("same");
@@ -163,6 +163,16 @@ for(int k = 1; k <= 6; k++){
 		//8 degrees
 		//hist9->SetLineColor(kRed);
 		//hist9->Draw("same");
+
+   // Legends for the data
+   leg = new TLegend(0.9,0.7,1,1);  //coordinates are fractions
+   leg->SetHeader("Angles");
+   leg->AddEntry(hist1,"0","l");
+   leg->AddEntry(hist2,"1","l");
+   leg->AddEntry(hist3,"2","l");
+   leg->AddEntry(hist5,"4","l");
+   leg->AddEntry(hist7,"6","l");
+   leg->Draw();
 
    c3->SaveAs("AEDistrib" + Znum + ".png");
 }

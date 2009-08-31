@@ -32,7 +32,7 @@ void fragmentAngularDistributionGM() {
 
 	TCanvas *c1 = new TCanvas("AngularDistribution", "Angular distribution with discrete measurement annuluses");
 	
-//   gROOT->SetStyle("clearRetro");
+  gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    ifstream in;
@@ -40,10 +40,10 @@ void fragmentAngularDistributionGM() {
    //Settings for analysis
    TString pDepth = "5.9"; //set ehre what depth to analyse, requries suitable root file and data file
    TString fragment = "H"; //string of what fragment is being looked at H, He, Li ...
-   TString Anum = "4"; //set here what will be put in the selection for z, does not automatically change imoprted data.
+   TString Anum = "1"; //set here what will be put in the selection for z, does not automatically change imoprted data.
    //TString experimentalDataFile = "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat";
    //in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat",dir.Data()));
-   in.open(Form("experimentalData/iaeaBenchmark/angularDistributions/27.9/H27.9.dat",dir.Data())); //fixme: redundant dir.data()
+   in.open(Form("experimentalData/iaeaBenchmark/alternativeGMBeamAD.dat",dir.Data())); //fixme: redundant dir.data()
    std::cout << "experimentalData/iaeaBenchmark/angularDistributions/" + pDepth + "/" + fragment + pDepth + ".dat" << endl;
    std::cout << "didata" << dir.Data() << endl;
    Float_t f1,f2;
@@ -137,19 +137,16 @@ void fragmentAngularDistributionGM() {
 		//now the "detector is rotated around all possible perpendicularlynangle values to beamline".
 		//This forms an annulus with rMin and Rmax as outer and inner radiuses
 		//this will give a bit of approximation at small angles and at 0 degrees this gives a completely round sensor.
-		rMin = TMath::Max(0.0,r - (detectorSideLength/2));
-		rMax = r + (detectorSideLength/2);
+		Double_t deltaPhi = TMath::ATan((TMath::Cos(degrees)*detectorSideLength)/(2*scatteringDistance));
+		rMin = TMath::Max(0.0,r - (detectorSideLength/(2*TMath::Cos(degrees))));
+		rMax = rMin + ((detectorSideLength*TMath::Sin(degrees))/TMath::Tan((TMath::Pi()/2) - degrees - deltaPhi)) + (detectorSideLength*TMath::Cos(degrees));
 		rMinString = Form("%f", rMin);
-		rMaxString = Form("%f", rMax);
-		
-		//deltaPhi calculated so that phi+deltaphi points to one side of the detector and phi-deltaphi the other side
-		Double_t deltaPhi = degrees - TMath::ATan(TMath::Tan(degrees) - (detectorSideLength/(2*scatteringDistance)));
-		/*
+		rMaxString = Form("%f", rMax);		/*
 		* From Gunzert-marx. Solid angle of annulus with rmin trmax, 
 		* a bit of an aproximation especially at small phi.
 		*/
 		Double_t deltaOmega = 2*TMath::Pi()*(TMath::Cos(TMath::Max(0.0,degrees-deltaPhi)) - TMath::Cos(degrees+deltaPhi));
-		int numEntries = fragments->GetEntries("(A == " + Anum + "  && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
+		int numEntries = fragments->GetEntries("(A == " + Anum + " && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")");
 		//distrib->Fill(j,numEntries,numEntries/(deltaOmega * events * zeroNorm)); //< degrees, entyamount, normalized result for graph
 		distrib->Fill(j,numEntries,numEntries/(deltaOmega * events));
 		//distrib->Fill(-j,numEntries,numEntries/(deltaOmega * events * zeroNorm)); //< To get gaussian shape better visible
@@ -210,7 +207,7 @@ void fragmentAngularDistributionGM() {
 		*/
 	
 	
-	c1->SaveAs("angularDistrib_for_Z_" + Anum + "_ComparedToEHaettner.png");
+	c1->SaveAs("AD_for_Z_" + Anum + "_ComparedToGM.png");
 	in.close();
 	f->Write();
 }
