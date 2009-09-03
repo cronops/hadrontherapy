@@ -310,12 +310,16 @@ In this model the nucleons are described as gaussian wave packages, a nucleus is
 \end{equation}
 
 
-The 3-dimensional nucleus model in the binary cascade assumes a isotropic spherical nucleus. The nucleus density is then describedby a Woods-Saxon potential for heavy Ions. Lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light by this definition. These distributions are sumarized below.
+The 3-dimensional nucleus model in the binary cascade assumes a isotropic spherical nucleus. The nucleus density is then describedby a Woods-Saxon potential for heavy Ions. Lighter ions are described through a harmonic oscillator nuclear shell model. Almost all ions involved in the simulation in this paper are considered light by this definition. These distributions are 
 
 \begin{equation}
-\rho(r) = \begin{cases}
-(\pi R^2)^{\frac{3}{2}}exp(-r^2/R^2) & \text{A}<16 \text{(Woods-saxon model)}\\
-\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & \text{A}>16 \text{(Harmonic oscillator model)}
+\rho(r) = 
+\begin{cases}
+\begin{cases}
+(\pi R^2)^{\frac{3}{2}}exp(-r^2/R^2) & \text{A}<16 \text{ (Harmonic oscillator)}\\
+\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & \text{A}>16 \text{ (Woods-saxon)}
+\end{cases} & r < R_{max} \\
+0 & r > R_{max} \\
 \end{cases}
 \label{binaryCascadePotential}
 \end{equation}
@@ -329,13 +333,22 @@ Nucleon-nucleon interactions are then based on experimental data and phenomenolo
 
 The Binary cascade model proceeds as long as there are still particles above the kinetic energy threshold  of 75 MeV. The cscade model is also stopped if the mean kinetic energy of the participants has dropped below a second threshold (15 MeV). Once this phase is reached the nucleus is handed to the evaporation model.
 
+\subsubsection{Geant4 evaporation model}
+
+Once the cascade model has reached one of its cut-off criteria the remaining excited nucleus is passed on to the evaporation model which is a more statistical model based originally on the work of Weisskopf \ref{Weisskopf}. In this model the nucleus is assumed to be in an equilibrium state.
+
+For light-nucleons a Fermi-break-up is possible if the nucleus type satisfies $A < 12$ and $3(A - Z) < Z < 6$ and furthermore has an excitation energy three times as large as its binding energy.
+
+The evaporation model takes the nucleuses parameters as input. On the basis of this data statistical distribution is served and monte-carlo picked events are decided.
+
+
 \subsubsection{Fermi break-up}
 
 For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. It is applied to all nucleuses with $A < 17$ that have suitable excitation. %fixme: phase space should be mentioned
 
 \subsubsection{Fission model}
 
-At the core of the Geant4 fission model is the empirically found relation that the distribution of fragments from a fission process has both a syummetric and and antisymmetric component, defining the total fission output as.
+The Geant4 fission model utilizes the empirically found relation that the distribution of fragments from a fission process has both a syummetric and an antisymmetric component, defining the total fission output as.
 \begin{equation}
  F(A_f) = F_{sym}(A_f) + \omega(U,A,Z) F_{asymm}(A_f) 
 \label{fissionSymmetricAsymmetric}
@@ -347,17 +360,6 @@ From experimental data it has been found that good approximations for the functi
 At given mass of fragment $A_f$ the experimental data on the charge $Z_f$ was found to be well described by a Gaussian fit. The average kinetic energy is described through the empirical relation $<T_{kin}>=0.1178Z^2/A^\frac{1}{3} + 5.8$. However, it is also known and accoutned for that the kinetic energy distribution of the asymmetrically scattered fission products are larger than that of the symmetrically distributed ones. 
 
 For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite[Chap 31.]{physicsManual}.
-
-\subsubsection{Geant4 evaporation model}
-
-Once the cascade model has reached one of its cut-off criteria the remaining excited nucleus is passed on to the evaporation model which is a more statistical model based originally on the work of Weisskopf \ref{Weisskopf}. In this model the nucleus is assumed to be in an equilibrium state.
-
-For light-nucleons a Fermi-break-up is possible if the nucleus type satisfies $A < 12$ and $3(A - Z) < Z < 6$ and furthermore has an excitation energy three times as large as its binding energy.
-
-The evaporation model takes the nucleuses parameters as input. On the basis of this data statistical distribution is served and monte-carlo picked events are decided.
-
-
-
 
 \section{Simulation setup} %practical aspects of simulation
 The simulation is performed with the latest versions of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
@@ -381,7 +383,7 @@ Multiple runs needed to be able to be run.
 \begin{figure}[ht] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/twentyEvents.png}  
-\caption{\label{fig:twentyEvents} OpenGL visualized view from one side of the experiment with the tracks generated from 23 incident events. This clearly visualizes the yield of fragments has a clear forward directed distribution.}
+\caption{\label{fig:twentyEvents} OpenGL visualized profile view of the simulation with the tracks recorded from 23 incident events. This clearly visualizes the yield of fragments has a clear forward directed distribution.}
 \end{center}
 \end{figure}
 
@@ -397,13 +399,13 @@ The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angula
 \begin{itemize}
 \item the pipe in the water-phantom was by inspection of photograph \cite{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe.
 \item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
-\item the detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analysed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs.
+\item the detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analysed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetric fragmentation.
 \end{itemize}
 
 \subsubsection{Bragg-Curve measurements}
 In this paper the bragg-curve is counted by imaginary voxel-layers in the phantom, and therefore is only for interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
-This means that data acquired through the simulation technique used should be augmented by a water-equivalent of the experiments parts behind the water-phantom. This sums up to the phantoms back-window (WE 0.239cm) and the air up until the detector.
+This means that data acquired through the simulation technique used should be augmented by a water-equivalents approximated by haettner in~\cite[table 4.2]{ehaettner}. The sum of which is an water-equivalent of 2.80 cm.
 
 
 
@@ -486,7 +488,7 @@ This means that data acquired through the simulation technique used should be au
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/haettner48.png}[h]  
+\includegraphics[width=0.9\textwidth]{images/haettner48.png}  
 \caption{\label{fig:haettner48} Haettner's experimental measurements of the relation between the depth in water and FWHM of different nucleons.}
  \end{center}
  \end{figure}
@@ -495,7 +497,7 @@ This means that data acquired through the simulation technique used should be au
 
 %0.2^2/(3+0.279/2)^2
 
-The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{fig:haettner48} for the depth in water and the FWHM of the beam. This relation has first to be verified in order to give further simulations credibility.
+The beam is considered a pen-shaped beam. Haettner has performed several measurments to characterize the beam's accuracy. These results have to be reproduced in the simulated beamline correctly, and are thus evaluated in the thin-target experiment. Haettner produced the relation ~\ref{fig:haettner48} for the depth in water and the FWHM of the beam.
 
 Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
 
@@ -566,49 +568,7 @@ The annulus of a circle subtends the solid angle $\Omega_{annulus} = 2 \pi (\cos
 \item Implementation details
 \end{itemize}
 
-\subsection{Improving usability through messenger macro commands}
-The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
 
-Macro commands are itnerpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
-\begin{itemize}
- \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
-\item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to acustom the new phantom.
-\item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
-\end{itemize}
-
-
-So as aen example the user can give a command according to the following syntax.
-\scriptsize
-\begin{verbatim}
-/analysis/setFileName <user-defined name>.root
-\end{verbatim}
-\normalsize
-
-The implementation was done by creating an analysismessenger inheriting functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
-
-
-\scriptsize
-\begin{verbatim}
-class HadrontherapyAnalysisFileMessenger: public G4UImessenger
-{
-  public:
-    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
-   ~HadrontherapyAnalysisFileMessenger();
-    
-    void SetNewValue(G4UIcommand*, G4String);
-    
-  private:
-    HadrontherapyAnalysisManager* AnalysisManager;
-\end{verbatim}
-\normalsize
-\begin{figure}[h] 
-\begin{center}
-\includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
-\includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
-\caption{\label{fig:messengerUML} UML diagrams for messen ger class}
- 
- \end{center}
- \end{figure}
 
 \subsection{Analysis}
 The simulation setup generates relatively little data. Thus an approach with separate analysis was chosen. All events hitting the detectors were recorded and suitable ones were chosen in ROOT. This section covers the analysis of the recorded events.
@@ -712,16 +672,17 @@ The experimental data pool of carbon beams is rather limited, and the paper by E
 
 The author hopes by this paper to provide a contribution to the pool of carbon treatment related simulation analysises, and ease the development of models.
 
+The author also studied others models for ahdronic simulations. The original intent of this paper was t operform the simulations with INCL and ABLA code. However, the newest release of the INCL code was not released at the time of writing and thus support for light nucleus interactions was not included. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical basis of INCL and ABLA is also described in appendix \refname{appendixincltheory}
 
-\clearpage
+
 \bibliographystyle{plain} \bibliography{refs.bib} 
 
 %%%%% Liitteet 
 \appendix 
 
 \clearpage
-\addcontentsline{toc}{section}{Appendix A}
-\section*{Appendix A \label{AppendixA}}
+\addcontentsline{toc}{section}{Appendix A: Angular Distributions of charged fragments.}
+\section*{Appendix A \label{AppendixA}: Angular Distributions of charged fragments.\label{AngularDistributionAppendix}}
 
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{A\arabic{equation}}
@@ -730,10 +691,11 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \setcounter{figure}{0}
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{table}{0}
+\renewcommand\thesection{A}
+\setcounter{section}{1}
 
-\subsection{Angular Distributions of charged fragments.\label{AngularDistributionAppendix}}
-\subsubsection{Hydrogen}
-\begin{figure}[!ht]
+\subsection{Hydrogen}
+\begin{figure}[!h]
 \centering
 \subfigure[5.9cm, very much differing yields. However Haettner gives large uncertainty for values due to carbon ion interference in data.]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_59_1_N.png}
@@ -756,10 +718,10 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \label{fig:D_34.7_1_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{he angular distribution plots as described in \cite{AngularDistributionText}. The red triangles represent data from E. Haettner \cite{ehaettner}, and the blue crosses are calculated through the described monte carlo simulation. The worst correlation is for \subref{fig:AD_5.9_1_N}, however E.Haettner notes big uncertainty at shallow phantom depth due to carbon ion interference.}
+\caption[Optional caption for list of figures]{he angular distribution plots as described in \cite{AngularDistributionText}. The red triangles represent data from E. Haettner \cite{ehaettner}, and the blue crosses are calculated through the described monte carlo simulation.}
 \end{figure}
 \clearpage
-\subsubsection{Helium}
+\subsection{Helium}
 \begin{figure}[!ht]
 \centering
 \subfigure[5.9cm]{
@@ -786,7 +748,7 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \caption[Optional caption for list of figures]{the worst correlation is for \subref{fig:AD_5.9_1_N}}
 \end{figure}
 \clearpage
-\subsubsection{Lithium}
+\subsection{Lithium}
 \begin{figure}[!ht]
 \centering
 \subfigure[5.9cm]{
@@ -813,7 +775,7 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \caption[Optional caption for list of figures]{}
 \end{figure}
 \clearpage
-\subsubsection{Beryllium}
+\subsection{Beryllium}
 \begin{figure}[!ht]
 \centering
 \subfigure[5.9cm]{
@@ -828,11 +790,11 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_4_N.png}
 \label{fig:AD_27.9_4_N}
 }
-\subfigure[41.2cm]{
+\subfigure[31.2cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_4_N.png}
 \label{fig:D_41.2_4_N}
 }
-\subfigure[44.7cm]{
+\subfigure[34.7cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_4_N.png}
 \label{fig:D_43.7_4_N}
 }
@@ -840,7 +802,7 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \caption[Optional caption for list of figures]{}
 \end{figure}
 \clearpage
-\subsubsection{Boron}
+\subsection{Boron}
 \begin{figure}[!ht]
 \centering
 \subfigure[5.9cm]{
@@ -857,11 +819,11 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 }
 \subfigure[31.2cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_5_N.png}
-\label{fig:D_51.2_5_N}
+\label{fig:D_31.2_5_N}
 }
 \subfigure[34.7cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_5_N.png}
-\label{fig:D_53.7_5_N}
+\label{fig:D_34.7_5_N}
 }
 \label{fig:BoronAD}
 \caption[Optional caption for list of figures]{}
@@ -873,8 +835,21 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 \item runtime log
 \end{itemize}
 \clearpage
-\subsection{Theory of proposed alternative simulation models}
-\subsubsection{INCL}
+
+\addcontentsline{toc}{section}{Appendix B: Theory of proposed alternative simulation models}
+\section*{Appendix B \label{AppendixB}: Theory of proposed alternative simulation models}
+
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+\renewcommand{\theequation}{B\arabic{equation}}
+\setcounter{equation}{0}  
+\renewcommand{\thefigure}{B\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{B\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\thesection}{B}
+\setcounter{section}{1}
+\section*{Theory of proposed alternative simulation models \label{appendixincltheory}}
+\subsection{INCL}
 
 INCL is a implementation of the Liège INC model. It is designed for use in the 200MeV-2GeV region where standard cross-section libraries no longer are sufficient. Containing only few free parameters INCL has proven predictive power.
 
@@ -909,7 +884,7 @@ A further discussion of the theoretical basis of the Liège INC model and INCL c
  \end{figure}
 
 
-\subsubsection{ABLA}
+\subsection{ABLA}
 
 The ABLA code has been developed at the GSI facility in Darmstadt, Germany. Its principal developers being K-H.~Schmidt and A.~Kelic. It is a Monte-Carlo code based on a data-set {\tt G4ABLADATA} distributed alongside the code. ABLA takes as input nucleus parameters, excitation energy, mass number, charge number and nucleus spin. It then calculates on the basis of this data the probabilities for different fission or evaporation events taking place according to statistical distributions obtained from experiments and phenomenology.
 
@@ -943,6 +918,65 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 A further discussion of the theoretical basis of the ABLA code is available in references ~\cite{ablatalk,iia}.
 %fixme add another ABLAsource
 
+\clearpage
+
+\addcontentsline{toc}{section}{Appendix C: Log of work}
+\section*{Appendix C \label{AppendixC}: Log of work}
+
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+\renewcommand{\theequation}{C\arabic{equation}}
+\setcounter{equation}{0}  
+\renewcommand{\thefigure}{C\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\thesection}{C}
+\setcounter{section}{1}
+\section*{Log of work \label{logofwork}}
+
+\subsection{Improving usability through messenger macro commands}
+The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
+
+Macro commands are itnerpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
+\begin{itemize}
+ \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
+\item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to acustom the new phantom.
+\item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
+\end{itemize}
+
+
+So as aen example the user can give a command according to the following syntax.
+\scriptsize
+\begin{verbatim}
+/analysis/setFileName <user-defined name>.root
+\end{verbatim}
+\normalsize
+
+The implementation was done by creating an analysismessenger inheriting functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
+
+
+\scriptsize
+\begin{verbatim}
+class HadrontherapyAnalysisFileMessenger: public G4UImessenger
+{
+  public:
+    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
+   ~HadrontherapyAnalysisFileMessenger();
+    
+    void SetNewValue(G4UIcommand*, G4String);
+    
+  private:
+    HadrontherapyAnalysisManager* AnalysisManager;
+\end{verbatim}
+\normalsize
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
+\includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
+\caption{\label{fig:messengerUML} UML diagrams for messen ger class}
+ 
+ \end{center}
+ \end{figure}
 
 \end{document}
 
