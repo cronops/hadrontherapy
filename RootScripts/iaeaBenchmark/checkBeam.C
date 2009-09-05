@@ -55,7 +55,7 @@ gROOT->SetMacroPath(macroPath + ":RootScripts/iaeaBenchmark");
    printf(" found %d points\n",nlines);
    
    //Let's pull in the monte carlo simulation results
-   TFile *MCData = TFile::Open("IAEA_nophantom.root");
+   TFile *MCData = TFile::Open("IAEA_15.9.root");
    TH1F* MC_helium = (TH1F*)MCData->Get("heliumEnergyAfterPhantom");
    TH1F* MC_hydrogen = (TH1F*)MCData->Get("hydrogenEnergyAfterPhantom");
 //scale and plot
@@ -87,8 +87,8 @@ metadata->Scan();
 	TH1F* posZHisto = new TH1F("horizontal","horizontal distribution of beam",200,-2.,2.);
 	TH2F* posHisto = new TH2F("posHisto","Distribution of beam",200,-2.,2.,200,-2.,2.);
 	//fragments->Project("posHisto","posY:posZ","abs(posZ) < 2 && abs(posY) < 2");
-	fragments->Project("vertical","posZ","abs(posZ) < 2 && abs(posY) < 2");
-	fragments->Project("horizontal","posZ","abs(posZ) < 2 && abs(posY) < 2");
+	fragments->Project("vertical","posZ","abs(posZ) < 2 && abs(posY) < 2 && Z == 6");
+	fragments->Project("horizontal","posY","abs(posZ) < 2 && abs(posY) < 2 && Z == 6");
 	Float_t maxVal = posYHisto->GetMaximum();
 	std::cout << "maximum: " << maxVal << endl;
 	//fragments->Scan("posY:posZ","abs(posZ) < 2 && abs(posY) < 2");
