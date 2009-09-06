@@ -38,13 +38,17 @@ void fragmentAngularDistribution() {
    dir.ReplaceAll("/./","/");
    ifstream in;
 
+   int ZnumInt;
    TString pDepth, fragment, Znum, normToOneAtZeroAngle;
    cout << "Enter phantom depth (eg. 27.9, see experimentalData directory for choices): ";
    cin >> pDepth;
    cout << "Enter fragment Z-number (eg. 1): ";
-   cin >> Znum;
-   cout << "Enter fragment name (Znum 1 -> H,Znum 2->He...): ";
-   cin >> fragment;
+   cin >> ZnumInt;
+   //cout << "Enter fragment name (Znum 1 -> H,Znum 2->He...): ";
+   //cin >> fragment;
+   TString fragmentNameChoices[6] = {"H","He","Li","Be","B","C"};
+   TString fragment = fragmentNameChoices[ZnumInt - 1];
+   Znum = Form("%i",ZnumInt);
    cout << "Normalize to 1 at zero angle? (Y/N): ";
    cin >> normToOneAtZeroAngle;   
 
