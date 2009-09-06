@@ -405,7 +405,7 @@ The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angula
 \subsubsection{Bragg-Curve measurements}
 In this paper the bragg-curve is counted by imaginary voxel-layers in the phantom, and therefore is only for interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
-This means that data acquired through the simulation technique used should be augmented by a water-equivalents approximated by haettner in~\cite[table 4.2]{ehaettner}. The sum of which is an water-equivalent of 2.80 cm.
+This means that data acquired through the simulation technique used should be augmented by a water-equivalents for the non-water elements approximated by haettner in~\cite[table 4.1]{ehaettner}. The sum of which is an water-equivalent of 0.578 cm.
 
 
 
@@ -510,7 +510,7 @@ Furthermore, in this paper the scattering in air by a paralell beam could not be
 E.Haettner proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}.
 
 \subsubsection{Water tank}
-The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects with high precission.
+The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects with high precision.
 
 \subsubsection{Beam attenuation}
 
@@ -526,7 +526,7 @@ In order to calculate the Bragg Curve of the beam the previous experiment a set-
 \begin{figure}[!h] 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{images/annulus.png}  
-\caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. Zero degrees is read out from a square detector while larger than zero degree angles are read out with consecutive largening circle annuluses where the middle radius corresponds to that scattering angle. The Annulus width is determined trigonometrically for each angle of analysis, but is close to the width od the H1 detector (40mm).}
+\caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. Zero degrees is read out from a square detector while larger than zero degree angles are read out with consecutive largening circle annuluses where the middle radius $r$ is seen t tht scattering angle from the middle of the water phantom. The Annulus width is determined trigonometrically for each angle of analysis in order to correspond to the solid angle covered by H1.}
 \end{center}
 \end{figure}
 
@@ -617,10 +617,10 @@ The shape of the results are mostly in line with the experimental data. However,
 \begin{figure}[!h] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/plots/angularDistributions/equlBinnedHydrogen279.png}  
-\caption{\label{fig:binnedHydrogen} Hydrogen scattering angles binned with equal bin lengths. Gaussian and exponential dit applied.}
+\caption{\label{fig:binnedHydrogen} Hydrogen scattering angles binned with equal bin lengths. Gaussian and exponential fit applied.}
  \end{center}
  \end{figure}
-The angular distributions of the data were simulated for a number of phantom-depths before and after the Bragg peak at about 27cm. Results were normalized per number of incident ions and solid angle. The results we're plotted against E. Haettners data and are viewble in the appendices~\cite{AppendixA}. Results for $\phi \in [0,.5]$ 
+The angular distributions of the data were simulated for a number of phantom-depths before and after the Bragg peak at about 27cm. Results were normalized per number of incident ions and solid angle. The results we're plotted against E. Haettners data and are viewble in the appendices~\cite{AppendixA}. Results for $\phi \in [0,\arctan(\frac{\text{Detector sidelength}}{2 \times \text{Scattering distance}}) \approx 0.4]$ were discarded in the plots due to their ambiguous nature, due to the annulus-based read-out angle aproximation being misleading at angles where $r_{min} = 0$.
 
 The obvious difference to the experimental data is the clearly lower yields at low angles. This relation is apparent for almost all depths and fragments that were analyzed. The difference seems to be accentuated for the lighter fragments.  As beam attenuation data matches well the lack of forward yield may indicate that the simulation models scattering of fragments is too isotropic.
 
@@ -649,9 +649,11 @@ Data for the energy distributions can here only be compared to a copy directly f
 \end{figure}
 
 \subsection{Bragg curve}
-The Bragg peak was measured from the simulation data to be located at $27.15 \pm 0.05 cm$ which is a rather good match with experimental result of 27.46cm.
+The Bragg peak was measured from the simulation data to be located at $27.16 \pm 0.05 cm$ which is a rather good match with experimental result of 27.46cm. This difference alone was not deemed as sufficient to explain the missing forward-yield.
 
-The greatest difference is the average ionization per meter in water, which is about 50 percent larger in the experimental data.
+The greatest difference is the average ionization per meter in water, which is about 50 percent larger in the experimental data. %fixme, is this really so
+
+It is also notable the results are very similar to those acquired with the FLUKA code by 
 
 \begin{figure}[h] 
 \begin{center}
@@ -672,7 +674,7 @@ The experimental data pool of carbon beams is rather limited, and the paper by E
 
 The author hopes by this paper to provide a contribution to the pool of carbon treatment related simulation analysises, and ease the development of models.
 
-The author also studied others models for ahdronic simulations. The original intent of this paper was t operform the simulations with INCL and ABLA code. However, the newest release of the INCL code was not released at the time of writing and thus support for light nucleus interactions was not included. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical basis of INCL and ABLA is also described in appendix \refname{appendixincltheory}
+The author also studied others models for hadronic simulations. The original intent of this paper was t operform the simulations with INCL and ABLA code. However, the newest release of the INCL code was not released at the time of writing and thus support for light nucleus interactions was not included. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical basis of INCL and ABLA is also described in appendix \refname{appendixincltheory}
 
 
 \bibliographystyle{plain} \bibliography{refs.bib} 
