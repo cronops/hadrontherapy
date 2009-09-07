@@ -586,10 +586,8 @@ The simulation setup generates relatively little data. Thus an approach with sep
 This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape\label{beamShapeAnalysis}}
-The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error was introduced in the beam's momentum vector. This error was symmetrical in y and z and had the magnitude of $.1 \%$ of the x-component. This error was empirically chosen. The results are summarized in the table below.
- %permille sign, fix 
 \begin{center}
- \begin{table}[h]
+ \begin{table}[!h]
 \begin{tabular}{cccc} %fixme:
 \textbf{Distance} & \textbf{E.Haettner (hxv)} & \textbf{Straight incident beam} & \textbf{Added scattering} \\
 0m &4x4 mm& 3.9 mm & 3.9 mm\\
@@ -599,11 +597,13 @@ The particle guns beam shape was set so that E.Haettner's measured 0 cm distance
 \caption{\label{fig:beamFWHMtable} The beam FWHM as measured in experiment and reproduced in simulation and modified simulation.}
 \end{table}
 \end{center}
+The particle guns beam shape was set so that E.Haettner's measured 0 cm distance scattering of 4mm fwhm was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of E.haettner. It was assumed further scattering not accounted for in the beam-source must have taken place. To compensate this a gaussian shaped stochastical error was introduced in the beam's momentum vector. This error was symmetrical in y and z and had the magnitude of $.1 \%$ of the x-component. This error was empirically chosen. The results are summarized in table~\ref{fig:beamFWHMtable}.
+
 
 \subsection{Yields (0$^\circ$-10$^\circ$)}
-E. Haettner has provided estimates for the yields inside 10 degrees angle. This estimate is based on fitting the angular distributions with a normal distribution to low angles of the angular distribution and an exponential function to the larger angles. This yielded relatively large error margins for Haettner's results. Comparable results should be producable by picking all events within a circle with radius $r = \text{Scattering distance} \times \tan(10^(\circ) \text{degrees}) $ of the center of the scoring plane.
+E. Haettner has provided estimates for the yields inside 10 degrees angle. This estimate is based on fitting the angular distributions with a normal distribution to low angles of the angular distribution and an exponential function to the larger angles. This yielded relatively large error margins for Haettner's results. Comparable results should be producable by picking all events within a circle with radius $r = \text{Scattering distance} \times \tan(10^{\circ} \text{degrees}) $ of the center of the scoring plane.
 
-The results are gathered in Appendix C~\ref{fig:fragmentYieldsZeroToTenDegrees}. It is apaprent the match is rather good for most fragments, while outside all margins of error for both Lithium and Helium for almost all phantom depths.
+The results are gathered in Appendix B~\ref{AppendixB}. It is aparent the match is rather good for most fragments, while outside all margins of error for both Lithium and Helium for almost all phantom depths.
 
 
 
