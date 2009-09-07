@@ -601,9 +601,9 @@ The particle guns beam shape was set so that E.Haettner's measured 0 cm distance
 \end{center}
 
 \subsection{Yields (0$^\circ$-10$^\circ$)}
-E. Haettner has provided estimates for the yields inside 10 degrees angle. This estimate is based on fitting a normal distribution to low angles of the angular distribution and an exponential function to the larger angles. Thus numbers arep roduced for the total yield of each fragment in the 0$^\circ$-10$^\circ$ directions per incident carbon nucleon.
+E. Haettner has provided estimates for the yields inside 10 degrees angle. This estimate is based on fitting the angular distributions with a normal distribution to low angles of the angular distribution and an exponential function to the larger angles. This yielded relatively large error margins for Haettner's results. Comparable results should be producable by picking all events within a circle with radius $r = \text{Scattering distance} \times \tan(10^(\circ) \text{degrees}) $ of the center of the scoring plane.
 
-The same data was acquired through simulation. The below table summarizes the results.
+The results are gathered in Appendix C~\ref{fig:fragmentYieldsZeroToTenDegrees}. It is apaprent the match is rather good for most fragments, while outside all margins of error for both Lithium and Helium for almost all phantom depths.
 
 
 
@@ -831,15 +831,9 @@ The author also studied others models for hadronic simulations. The original int
 \caption[Optional caption for list of figures]{}
 \end{figure}
 \clearpage
-\begin{itemize}
-\item angular distribution plots
-\item code examples
-\item runtime log
-\end{itemize}
-\clearpage
 
-\addcontentsline{toc}{section}{Appendix B: Theory of proposed alternative simulation models}
-\section*{Appendix B \label{AppendixB}: Theory of proposed alternative simulation models}
+\addcontentsline{toc}{section}{Appendix B: Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles}
+\section*{Appendix B \label{AppendixB}: Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles}
 
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{B\arabic{equation}}
@@ -848,7 +842,70 @@ The author also studied others models for hadronic simulations. The original int
 \setcounter{figure}{0}
 \renewcommand{\thetable}{B\arabic{table}}
 \setcounter{table}{0}
-\renewcommand{\thesection}{B}
+\renewcommand\thesection{B}
+\setcounter{section}{1}
+
+\subsection{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles}
+\begin{figure}[!ht]
+\centering
+\subfigure[Hydrogen]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForH.png}
+\label{fig:fragmentYieldsForH}
+}
+\subfigure[Helium]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForHe.png}
+\label{fig:fragmentYieldsForHe}
+}
+\subfigure[Lithium]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForLi.png}
+\label{fig:fragmentYieldsForLi}
+}
+\subfigure[Beryllium]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForBe.png}
+\label{fig:fragmentYieldsForBe}
+}
+\subfigure[Boron]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForB.png}
+\label{fig:fragmentYieldsForB}
+}
+\subfigure[Carbon]{
+\includegraphics[width=0.45\textwidth]{images/plots/yields/fragmentYieldsForC.png}
+\label{fig:fragmentYieldsForC}
+}
+\label{fig:fragmentYieldsZeroToTenDegrees}
+\caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles. Hydrogen, Helium, Beryllium and Boron are matching experimental data quite well. However, Lithium and Beryllium can not be said to be within any logical margin of error from experimental data.}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\section*{Appendix C \label{AppendixC}: Theory of proposed alternative simulation models}
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+\renewcommand{\theequation}{C\arabic{equation}}
+\setcounter{equation}{0}  
+\renewcommand{\thefigure}{C\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\thesection}{C}
 \setcounter{section}{1}
 \section*{Theory of proposed alternative simulation models \label{appendixincltheory}}
 \subsection{INCL}
@@ -922,17 +979,17 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 
 \clearpage
 
-\addcontentsline{toc}{section}{Appendix C: Log of work}
-\section*{Appendix C \label{AppendixC}: Log of work}
+\addcontentsline{toc}{section}{Appendix D: Log of work}
+\section*{Appendix D \label{AppendixD}: Log of work}
 
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
-\renewcommand{\theequation}{C\arabic{equation}}
+\renewcommand{\theequation}{D\arabic{equation}}
 \setcounter{equation}{0}  
-\renewcommand{\thefigure}{C\arabic{figure}}
+\renewcommand{\thefigure}{D\arabic{figure}}
 \setcounter{figure}{0}
-\renewcommand{\thetable}{C\arabic{table}}
+\renewcommand{\thetable}{D\arabic{table}}
 \setcounter{table}{0}
-\renewcommand{\thesection}{C}
+\renewcommand{\thesection}{D}
 \setcounter{section}{1}
 \section*{Log of work \label{logofwork}}
 

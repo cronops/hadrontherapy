@@ -33,7 +33,7 @@ void fragmentYieldsPlot() {
    
    TString fragmentNameChoices[6] = {"H","He","Li","Be","B","C"};
    
-   TString fragmentName = fragmentNameChoices[ZNumGiven];  
+   TString fragmentName = fragmentNameChoices[ZNumGiven-1];  
    
    std::cout << fragmentName << endl;
    
@@ -82,7 +82,7 @@ void fragmentYieldsPlot() {
    dir.ReplaceAll("/./","/");
    ifstream in;
    simData->Fill(0.0,0.0,0.0,0.0,0.0,0.0,1.0);
-for(int j = 4; j <= 31;j=j+3){
+for(int j = 1; j <= 40;j=j=j+1){
    TString pDepth, fragment, Znum, normToOneAtZeroAngle;
    pDepth = Form("%i",j);
 /*
@@ -124,7 +124,7 @@ for(int j = 4; j <= 31;j=j+3){
 		Double_t Be = ((Double_t*) fragments->GetEntries("(Z == " + TString::Format("%i",4) + "  && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")")) / norming;
 		Double_t B = ((Double_t*) fragments->GetEntries("(Z == " + TString::Format("%i",5) + "  && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")")) / norming;
 		Double_t C = ((Double_t*) fragments->GetEntries("(Z == " + TString::Format("%i",6) + "  && sqrt(posY^2 + posZ^2) < " + rMaxString + "&& sqrt(posY*posY + posZ*posZ) > " + rMinString + ")")) / norming;
-		simData->Fill(j,H,He,Li,Be,B,C);
+		simData->Fill(waterThickness,H,He,Li,Be,B,C);
 
 	}
 	simData->Scan();
@@ -136,6 +136,7 @@ for(int j = 4; j <= 31;j=j+3){
 	dummyHisto->Draw();
 	
 	simData->Draw(fragmentName + ":depth","","p,same");
+
 	ntuple->SetMarkerStyle(22); //triangle
     ntuple->SetMarkerColor(kRed);
 	ntuple->Draw("y:x","","p,same");
