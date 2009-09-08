@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.7 2009/06/27 00:45:04 kaitanie Exp $
+# $Id: GNUmakefile,v 1.12 2009/08/13 20:48:04 kaitanie Exp $
 # --------------------------------------------------------------
 # GNUmakefile for examples module.  Gabriele Cosmo, 06/04/98.
 # --------------------------------------------------------------
