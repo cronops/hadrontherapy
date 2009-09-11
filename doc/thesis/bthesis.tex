@@ -125,42 +125,19 @@ label=listing:boundary}}
 %%\date{22.1.2008}
 
 %% Kandidaattiseminaarin vastuuopettaja
-\supervisor{Ph.D. Veikko Karimäki, Prof. Harri Ehtamo}{}
+\supervisor{Prof. Harri Ehtamo, Ph.D Veikko Karimäki}{}
 
 %% Kandidaatintyön ohjaaja
-\instructor{Aatos Heikkinen}{}
+\instructor{Ph.D Aatos Heikkinen}{}
 
 %% Tehdään kansilehti
 \makecoverpage
 
-\begin{comment}
-\title{Simulating carbon beam fragmentation on water phantom with the Geant4 INCL/ABLA models}
-
-\begin{titlepage}
-\pagestyle{empty}
-\begin{center}
-rev. 001-2009\\
-\vspace{7.5 cm}
-\Huge
-Simulating carbon beam fragmentation on water phantom with Geant4\\
-
-\vspace{5cm}
-
-\Large
-Gillis Danielsen, Bachelor's Thesis\\
-Helsinki University of Technology\\
-
-    \vspace{0,2cm}
-  \end{center}
-
-\end{titlepage}
-\end{comment}
-
 %% Tiivistelmän avainsanat 
-\keywords{Geant4, Binary cascade, ABLA, CERN, IAEA, Hadrontherapy, Bragg peak, fragment buildup}
+\keywords{Geant4, Binary cascade, CERN, IAEA evaluation, Hadrontherapy, Bragg peak, fragment buildup}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[english]
-This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code as a medical application. Geant4 is a multi-purpose physics simulation package developed at CERN, Switzerland. Geant4 currently hosts multiple models suitable for the experiment, however, this paper will focus on the binary and ABLA models developed as a collaboration of scientists at CERN and many other research institutions worldwide. Results will be compared to experimental data made available by the GSI Darmstadt/E.Haettner. This work is part of the International Atomic Energy Agency(IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte-Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example, using our modelling we estimate particularly the magnitude distribution of fragment build-up at the end of the Bragg-curve.
+This paper focuses on the simulation of carbon beams in a water phantom using Geant4 code. Our intent is to provide research into the feasability of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice out of multiple models suitable for the experiment, however, this paper will focus on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results will be compared to experimental data made available at GSI Darmstadt by E.Haettner in 2006. This work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. This work introduced extensions to the Geant4 Hadrontherapy-example. Our intent is to model and estimate especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
 
 %% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
@@ -178,15 +155,15 @@ This paper focuses on the simulation of carbon beams in a water phantom using Ge
 
 
 %% Symbolit ja lyhenteet
-\mysection{Symbols and legends}
-
-\begin{tabular}{ll}
-CERN         & Organisation europeenne pour la researche nucleare \\
-INCL      & intranuclear cascade, liege\\
-ABLA        & Abla \\tion Abration model\\
-IAEA         & International Atomic Energy Association \\
-HIP        & Helsinki Institute of Physics
-\end{tabular}
+%\mysection{Symbols and legends}
+%
+%\begin{tabular}{ll}
+%CERN         & Organisation europeenne pour la researche nucleare \\
+%INCL      & intranuclear cascade, liege\\
+%ABLA        & Abla \\tion Abration model\\
+%IAEA         & International Atomic Energy Association \\
+%HIP        & Helsinki Institute of Physics
+%\end{tabular}
 
 
 %% Sivulaskurin viilausta opinnäytteen vaatimusten mukaan:
@@ -217,12 +194,12 @@ will suffer from a high dose. By replacing the x-rays with high energy photons, 
 maximum is shifted a few centimeters deeper and the exponential decrease is more shallow,
 which improves the ratio between dose in the tumors and in the normal tissue. Although very sophisticated variations of the photon treatments have been perfected over time, photon therapies still produce considerable harm to the surrounding tissue. 
 
-A much younger and less widely used technology are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavyer-ions are charged particles and therefore interact with tissue in a much different way to photons. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the Bragg-peak, and was first discovered by William Henry Bragg in 1903.
+Much younger and less widely used technologies are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavyer ions are charged particles and therefore interact with tissue in a much different way to photons. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the Bragg-peak, and was first discovered by William Henry Bragg in 1903.
 
 The field of hadron treatments was pioneered at the Lawrence Berkeley Laboratory (LBL). Based on research done at the Berkeley cyclotron J.~Wilson first recomended the use of protons as a treatment method in a 1946 paper~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are a number of proton-based therapies in clinical use all around the world, for example in Harvard General Hospital (see fig). %fixme
 \begin{figure}[h]
 \begin{center}
-\includegraphics[height=9cm]{images/HarvardHadronTreatment.png}  
+\includegraphics[width=0.8\textwidth]{images/HarvardHadronTreatment.png}  
 \caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment simulation visualized.} 
 \end{center}
 \end{figure} 
@@ -230,7 +207,11 @@ Heavy-ion therapies have remained considerably less common and have remained on 
 
 The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionisation-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair. In a 2008 article O.~Jäkel~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 in comparison to proton treatment depending on the application. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile. One of the main motivations of the work is to study this ''tail'' for the ``worst case scenario'' of 400 MeV - an upper limit in medical applications.
 
-A number of data-sets are available for carbon beams. This paper will be compare data to beam-measurments by E.~Haettner as a part of her master's thesis~\cite{ehaettner}  at the GSI facility in Darmstadt, Germany. This paper reproduces the experimental setup used by E.Haettner as a computer simulation model. The aim of this paper is to provide good reference data for the standardization work involved in hadron treatment. Furthermore, this paper evaluates the feasibility of the Geant4 models for such simulations by comparison to experimental data. This benchmarking is part of IAEA's INDC International Nuclear Data Committee and Heavy Charged-Particle Interaction Data For Radiotherapy project which compares different Monte-Carlo codes~\cite{SummaryReport}.\footnote{Bachelor's thesis produced in the framework of the Finnish CERN Summer Training 2009. Supervisors A.~Heikkinen and V.~Karimäki from Helsinki Institute of Physics and H.~Ehtamo of Helsinki University of Technology} %fixme footnote
+A number of data-sets are available for carbon beams. For this paper it was chosen to use experimental data made available by E.~Haettner as a part of her master's thesis~\cite{ehaettner} at the GSI facility in Darmstadt, Germany. This paper reproduces the experimental setup used by E.Haettner as a computer simulation model. The aim of this paper is to provide good reference data for the standardization work involved in hadron treatment. Furthermore, this paper evaluates the feasibility of the Geant4 models for such simulations by comparison to experimental data. This benchmarking is part of IAEA's INDC International Nuclear Data Committee and Heavy Charged-Particle Interaction Data For Radiotherapy project which compares different Monte-Carlo codes~\cite{SummaryReport}.
+
+%footnotta förkortningar?
+
+%\footnote{Bachelor's thesis produced in the framework of the Finnish CERN Summer Training 2009. Supervisors A.~Heikkinen and V.~Karimäki from Helsinki Institute of Physics and H.~Ehtamo of Helsinki University of Technology} %fixme footnote
 
 %% Opinnäytteessä jokainen osa alkaa uudelta sivulta, joten clearpage
 \clearpage
@@ -239,9 +220,8 @@ A number of data-sets are available for carbon beams. This paper will be compare
 \subsection{Electromagnetic physics of Bragg-curve}
 As charged particles penetrate tissue they interact with the tissue through elastic and inellastic collisions with the electrons and nuclei, eventually loosing all of their energy. The most typical interaction is that of inelastic collisions with electrons, contributing as much as 99\% of the total energy loss.
 
-The beam's energy loss $dE/dx$ as a function of depth results is described by the Bragg curve (see fig). %fixme
- Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch53}  and is commonly known as "Bethe's stopping power formula". The Bethe stopping power formula is considered a good model for most fast (E>...) %fixme larger than something
-charged particles, with the exception of electrons.
+The beam's energy loss $\frac{dE}{dx}$ as a function of depth is described by the Bragg curve (see fig). %fixme
+ Theoretical estimates for this relation have existed since the first classical treatment by Bohr in 1913~\cite{bohr13}. The currently used quantum model was derived by Bethe and Bloch in 1953~\cite{bethebloch53}  and is commonly known as "Bethe's stopping power formula". The Bethe stopping power formula is considered a good model for most fast charged particles, with the exception of electrons.
 
 \begin{equation}
  \frac{dE}{dx} = \frac{4 \pi}{m_e c^2} \cdot \frac{nZ^2}{\beta^2} \cdot \left(\frac{e^2}{4\pi\varepsilon_0}\right)^2 \cdot \left[\ln \left(\frac{2m_e c^2 \beta^2}{I \cdot (1-\beta^2)}\right) - \beta^2\right],
@@ -274,8 +254,7 @@ In this theoretical model the form of the Bragg-peak can be visualized as the $1
 Particles penetrating matter do not only deposit energy through inelastic electron collisions, they might as well be involved in nuclear reactions and fragmented. A common simple model for explaining this is called the abrasion-ablation model. In this model high energy projectiles can be described as particles that move on straight lines through the
 target. From time to time a target nuclea lie on this line, thus causing a collision. Bullet
 and target nucleons which overlap eachother in this model (see fig~\ref{fig:ablationabration}) are called participants. The remaining parts of the projectile and target nucleus are called spectators. The momentum of the spectators in the projectile and target are only slightly affected by the collision. The participant nucleons form an excited entity, ``a fireball'', which fragments into separate light ions or single nucleons.
-The Wilson-model %fixme physics reference manual reference here
-that also provided in Geant4 features a physics model more reminiscient to this approach. This kind of a model is however not directly comparable to the model used in this paper through INCL and ABLA.
+The Wilson-model\cite[Chapter 27]{physicsManual} that is also provided in Geant4 features a physics model more reminiscient to this approach. This kind of a model is however not directly comparable to the cascade model used in this paper, but serves well for illustration purposes.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/ablationabration.png}  
@@ -286,9 +265,13 @@ that also provided in Geant4 features a physics model more reminiscient to this 
 
 
 
-\subsection{Intranuclear cascade and fission/evaporation} %theory, no practical aspects
+\subsection{Theory of used models} %theory, no practical aspects
 
-INCL4 is a Monte-Carlo type Intranuclear Cascade Model, whereas ABLA is the the complementing Monte-Carlo evaporation/fission model. In practice this means INCL is used to determine what happends just after the the projectile particle hits the target nucleus, while ABLA is used to determine what nuclear process is caused through the following excitation of the target due to the collision event. It is notable that the time-frame for evaporation and fission events are orders of magnitude greater compared to the events modelled by INCL.
+For this paper the models of interest are those involved in intranuclear interaction and thus in the production of new fragments. Geant4 moves particles around its geometry and according to defined stochastic relations determines when certain events take place by calling the appropriate models.
+
+When a spallation process between two nuclei is determined to take place the Binary cascade model is called into action. The cascade model provides insight into the intranuclear processes that take place in the very short timeframe from the incident particle hitting the target particle. Once the immediate intranuclear interaction has taken place a much slower phase of evaporation and/or fissioning takes place. 
+
+The evaporation phase is calculated by separate models that only need the excitation parameters of the nuclea left after the short cascading process.
 
 \begin{figure} 
 \begin{center}
@@ -341,11 +324,6 @@ For light-nucleons a Fermi-break-up is possible if the nucleus type satisfies $A
 
 The evaporation model takes the nucleuses parameters as input. On the basis of this data statistical distribution is served and monte-carlo picked events are decided.
 
-
-\subsubsection{Fermi break-up}
-
-For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. It is applied to all nucleuses with $A < 17$ that have suitable excitation. %fixme: phase space should be mentioned
-
 \subsubsection{Fission model}
 
 The Geant4 fission model utilizes the empirically found relation that the distribution of fragments from a fission process has both a syummetric and an antisymmetric component, defining the total fission output as.
@@ -359,51 +337,53 @@ From experimental data it has been found that good approximations for the functi
 
 At given mass of fragment $A_f$ the experimental data on the charge $Z_f$ was found to be well described by a Gaussian fit. The average kinetic energy is described through the empirical relation $<T_{kin}>=0.1178Z^2/A^\frac{1}{3} + 5.8$. However, it is also known and accoutned for that the kinetic energy distribution of the asymmetrically scattered fission products are larger than that of the symmetrically distributed ones. 
 
-For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite[Chap 31.]{physicsManual}.
+For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite[Chapter 31.]{physicsManual}.
 
+\subsubsection{Fermi break-up}
+
+For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. It is applied to all nucleuses with $A < 17$ that have a high enough excitation energy. Fermi break-up can be seen as a extreme case of fissioning in the nucleus where the nucleus compeltely ``explodes``. %fixme: phase space should be mentioned
+\clearpage
 \section{Simulation setup} %practical aspects of simulation
 The simulation is performed with the latest versions of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
 
 The simulation code was based around the hadrontherapy simulation produced by G.A.P. Cirrone, F. Di Rosa, S. Guatelli and  G. Russo of INFN Genova and Catania. The aim was that that this IAEA benchmark simulation could be distributed alongside the hadrontherapy example. This however required rewriting the code at various places. Major changes in the code included.
+\begin{itemize}
+\item Analysis was to be done in ROOT bypassing AIDA that is used by the hadrontherapy example.
+\item The geometry had to be rewritten, but in such a way that it may be interchangeable through macro commands. Reqriting the geometry also meant having to rewrite some of the detection code.
+\item Multiple runs needed to be able to be run.
+\item Means of documenting the now more complicated code through doxygen were implemented.
+\end{itemize}
 
-Analysis was to be done in ROOT bypassing AIDA that is used by the hadrontherapy example.
 
-The geometry had to be rewritten, but in such a way that it may be interchangeable through macro commands. Reqriting the geometry also meant having to rewrite some of the detection code.
-
-Multiple runs needed to be able to be run.
-
-
-\begin{figure}[ht] 
+\begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/oneEvent.png}  
 \caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water-phantom.}
 \end{center}
 \end{figure}
 
-\begin{figure}[ht] 
+\begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/twentyEvents.png}  
 \caption{\label{fig:twentyEvents} OpenGL visualized profile view of the simulation with the tracks recorded from 23 incident events. This clearly visualizes the yield of fragments has a clear forward directed distribution.}
 \end{center}
 \end{figure}
 
-
-\subsection{Characterization of the primary beam and experimental setup for the
-IAEA benchmark}
-
-Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner's experimental setup is presented below. Haettner used two different setups for the measurements made with the H1 detector and the MWPC detector used for calculating the Bragg-curve.
+Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner used two different setups for the measurements made with the H1 detector and the MWPC detector used for calculating the Bragg-curve. In the following parts of this paper we will discuss approaches to reproduce these results through simulation.
 
 \subsubsection{H1 measurements}
 
-The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements. This setup was recreated as well as possible  in the simulation environment. The major differences being:
+The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. These ''H1 measurement`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
-\item the pipe in the water-phantom was by inspection of photograph \cite{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe.
+\item the pipe in the water-phantom was by inspection of photograph \cite{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
 \item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
 \item the detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analysed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetric fragmentation.
 \end{itemize}
 
+Through personal correspondence with E.Haettner it was found out that the . Thus the measurement points for the thickness of the water-phantom had to be reduced by ... as per ~\cite[...]{ehaettner}. Further ehaettner had treated the data with a constant at the magnitude of... however the reason for this was unknown.
+
 \subsubsection{Bragg-Curve measurements}
-In this paper the bragg-curve is counted by imaginary voxel-layers in the phantom, and therefore is only for interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
+In this paper the bragg-curve is calculated by imaginary voxel-layers in the phantom, and therefore is only for interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
 This means that data acquired through the simulation technique used should be augmented by a water-equivalents for the non-water elements approximated by haettner in~\cite[table 4.1]{ehaettner}. The sum of which is an water-equivalent of 0.578 cm.
 
@@ -501,7 +481,7 @@ The beam is considered a pen-shaped beam. Haettner has performed several measurm
 
 Haettner evaluates the accuracy of the beam's energy to be $\frac{\Delta E}{E}\approx5*10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1 meV/u and 2MeV/u for the 200 respectively 400 MeV Beams.
 
-In this simulation the beam is reproduced at the beam source (see ~\cite[1]{fig:SimSetup}) as measured by Haettner with no phantom and zero distance from start detector to the last detector. The beam is measured right after the beam-source window. The beam-source itself is assumed to produce a paralell beam. The first source of scattering the beam is the aluminium window of the beam-source, but as this measurement is made right after the window it can be used to characterize the paralell beams width. However inspecting further measurements at 1 and 3 meters show the effects of scattering in the aluminium, detectors and air as a broadening beam. The scattering of the beam is considerably different depending on the energy of the beam.
+In this simulation the beam is reproduced at the beam source as measured by Haettner with no phantom and zero distance from start detector to the last detector. The beam is measured right after the beam-source window. The beam-source itself is assumed to produce a paralell beam. The first source of scattering the beam is the aluminium window of the beam-source, but as this measurement is made right after the window it can be used to characterize the paralell beams width. However inspecting further measurements at 1 and 3 meters show the effects of scattering in the aluminium, detectors and air as a broadening beam. The scattering of the beam is considerably different depending on the energy of the beam.
 
 The beam width however has a distribution with an FWHM of 4mm which needs to be accounted for. Assuimng a normal distribution this meant adding a standard deviation of 1.7mm according to the relation $\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$.
 
@@ -560,27 +540,19 @@ The annulus of a circle subtends the solid angle $\Omega_{annulus} = 2 \pi (\cos
 %images/haettnersetup.png
 %\end{comment}
 
-\begin{itemize}
-\item Experiment data from GSI
-\item target description
-\item Characterization and simulation of the beam (will be ignored, gaussian shape half-width fullheight HWFH assumed narrow pen beam - randomly pick in a small gaussian beam error perhaps - g4uniformrand-gaussian or check )
-\item Simulation of detectors
-\item Implementation details
-\end{itemize}
-
-
-
 \subsection{Analysis}
 The simulation setup generates relatively little data. Thus an approach with separate analysis was chosen. All events hitting the detectors were recorded and suitable ones were chosen in ROOT. This section covers the analysis of the recorded events.
 
-\subsection{Used parameters for runs.}
+\subsection{Simulation parameters}
+%tarvitaanko?
+The following table gives an impression of the amount of events used for each
 \begin{itemize}
  \item Fragment energydistribution: 500 000 events, cuts 0.4
  \item Angular distributions: one run per depth (5.9,15.9,27.9,31.2,31.4), 100 000 events.
  \item Beam shape, 10 000 events, reiterated until empirically the best fit was found
 \end{itemize}
 
-
+\clearpage
 \section{Results and comparison to GSI data and other simulation models}
 
 This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analysing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
@@ -590,7 +562,7 @@ This work focused much on the fragments generated in the water phantom. Thus, mu
  \begin{table}[!h]
 \begin{tabular}{cccc} %fixme:
 \textbf{Distance} & \textbf{E.Haettner (hxv)} & \textbf{Straight incident beam} & \textbf{Added scattering} \\
-0m &4x4 mm& 3.9 mm & 3.9 mm\\
+0m &4x4 mm& 3.9 mm & 3http://www.peppar.fi/.9 mm\\
 1m &5x4 mm & 4.2 mm & 4.8 mm\\
 3m &11x9mm& 5.2 mm & 9.0 mm\\
 \end{tabular} 
@@ -662,7 +634,7 @@ It is also notable the results are very similar to those acquired with the FLUKA
  \end{center}
  \end{figure}
 
-
+\clearpage
 \section{Conclusion and outlook}
 Considering the relative quality of Monte Carlo models for hadronic physics it may be concluded that results all in all were pretty well in line with the experimental data. However, it is clear that there are certain discrepancies are viewable in the results which are not within the error-margins of the experimental work.
 
@@ -907,7 +879,10 @@ The author also studied others models for hadronic simulations. The original int
 \setcounter{table}{0}
 \renewcommand{\thesection}{C}
 \setcounter{section}{1}
-\section*{Theory of proposed alternative simulation models \label{appendixincltheory}}
+\section*{Future work with alternative simulation models \label{appendixincltheory}}
+
+INCL4 is a Monte-Carlo type Intranuclear Cascade Model, whereas ABLA is the the complementing Monte-Carlo evaporation/fission model. In practice this means INCL is used to determine what happends just after the the projectile particle hits the target nucleus, while ABLA is used to determine what nuclear process is caused through the following excitation of the target due to the collision event. It is notable that the time-frame for evaporation and fission events are orders of magnitude greater compared to the events modelled by INCL.
+
 \subsection{INCL}
 
 INCL is a implementation of the Liège INC model. It is designed for use in the 200MeV-2GeV region where standard cross-section libraries no longer are sufficient. Containing only few free parameters INCL has proven predictive power.
@@ -991,9 +966,8 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 \setcounter{table}{0}
 \renewcommand{\thesection}{D}
 \setcounter{section}{1}
-\section*{Log of work \label{logofwork}}
+\section*{Improving usability through messenger macro commands \label{logofwork}}
 
-\subsection{Improving usability through messenger macro commands}
 The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
 
 Macro commands are itnerpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
