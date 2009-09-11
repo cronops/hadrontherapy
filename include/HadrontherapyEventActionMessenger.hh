@@ -23,48 +23,48 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: HadrontherapyDetectorMessenger.hh; May 2005
+// $Id: HadrontherapyEventActionMessenger.cc;
+//
+// See more at: http://workgroup.lngs.infn.it/geant4lns
+//
 // ----------------------------------------------------------------------------
 //                 GEANT 4 - Hadrontherapy example
 // ----------------------------------------------------------------------------
 // Code developed by:
 //
-// G.A.P. Cirrone(a)*, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
+// G.A.P. Cirrone(a)*, G. Candiano, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
 // 
 // (a) Laboratori Nazionali del Sud 
-//     of the INFN, Catania, Italy
-// (b) INFN Section of Genova, Genova, Italy
+//     of the National Institute for Nuclear Physics, Catania, Italy
+// (b) National Institute for Nuclear Physics Section of Genova, genova, Italy
 // 
 // * cirrone@lns.infn.it
-// ----------------------------------------------------------------------------
+// --------------------------------------------------------------
 
-// ==============================
-// PHYSICS PROCESSES:
-// ==============================
-//  Decay process for:
-//      all considered, unstable particles
-//     
-// 
-// ==============================
-// COMMENTS:
-// ==============================
-//  No comments
-//
+#ifndef HadrontherapyEventActionMessenger_h
+#define HadrontherapyEventActionMessenger_h 1
 
-#ifndef DECAY_H
-#define DECAY_H 1
-
-#include "G4VPhysicsConstructor.hh"
 #include "globals.hh"
+#include "G4UImessenger.hh"
 
-class Decay : public G4VPhysicsConstructor 
+class HadrontherapyEventAction;
+class G4UIdirectory;
+class G4UIcmdWithAString;
+class G4UIcmdWithAnInteger;
+
+class HadrontherapyEventActionMessenger: public G4UImessenger
 {
- public: 
-  Decay(const G4String& name = "UnstableParticles-Decay");
-  virtual ~Decay();
-  
-  virtual void ConstructParticle() {};
-  virtual void ConstructProcess();  
+  public:
+    HadrontherapyEventActionMessenger(HadrontherapyEventAction*);
+   ~HadrontherapyEventActionMessenger();
+    
+    void SetNewValue(G4UIcommand*, G4String);
+    
+  private:
+    HadrontherapyEventAction*          eventAction;
+    G4UIdirectory*        eventDir;        
+    G4UIcmdWithAString*   DrawCmd;
+    G4UIcmdWithAnInteger* PrintCmd;    
 };
-#endif
 
+#endif
