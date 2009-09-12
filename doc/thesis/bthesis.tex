@@ -372,9 +372,11 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 
 Reference data for the measurements involved in this paper have been acquired from E. Haettner ~\cite{ehaettner}  Haettner performed these measurements at the GSI facility in Darmstadt, Germany. Haettner used two different setups for the measurements made with the H1 scintillation detector and the MWPC detector used for calculating the Bragg-curve. In the following parts of this paper we will discuss approaches to reproduce these results through simulation. %fixme this is just wrong.
 
-\subsection{H1 measurements}
+\subsection{Geometries}
 
-The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. These ''H1 measurement`` setup was recreated in the simulation environment. The major differences being:
+\subsubsection{H1 measurements}
+
+The figure ~\ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. These ''H1 measurement`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
 \item The pipe in the water-phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
 \item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
@@ -383,17 +385,10 @@ The figure ~\cite{fig:haettnersetup3} shows the geometry Haettner used in angula
 
 Through personal correspondence with E.Haettner it was confirmed that the indicated water-thicknesses in the data are the actual phantom thicknesses augemented by the water-equivalents of the other parts of the experiment. Data recorded through the simulation should be compared to the actual water-thicknesses because the effects of these other elements are simulated as well. During the July H1 measurements the water-equivalents were approximated to be 8mm. Thus, the water-thickness to be used in the simulation of a experimental datapoint is that depth subtracted by 8mm. %should be noted unknown constant in haettner's data of small magnitude. Also in februry there was apparently more WE, but how much?
 
-\subsection{Bragg-Curve measurements}
+\subsubsection{Bragg-Curve measurements}
 In this paper the bragg-curve is calculated by imaginary voxel-layers in the phantom, and therefore is only of interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
 This means that data acquired through the simulation technique used should be compared to values with the water-equivalents subtracted. Haettner's eperimental setup for the Bragg-curve had an WE of 0.578 cm according to~\cite[table 4.1]{ehaettner}.
-
-
-
-\subsection{Geometry}
-
-
-
 
 
 \begin{figure}[!ht]
@@ -404,6 +399,7 @@ This means that data acquired through the simulation technique used should be co
 }
 \subfigure[Close-up with important measurements]{
 \includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}[h]
+\label{fig:haettnersetup2}
 }
 \label{fig:EHaettnerDataForAEDistrib1}
 \subtable[Legends]{
@@ -482,17 +478,14 @@ E.Haettner proceeds to analyze the scattering of the beam with variable water th
 %\subsection{Water tank}
 %The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
 
-\subsection{Beam attenuation}
+\subsection{Detection}
+
+\subsubsection{Beam attenuation}
 
 In order to calculate the Bragg Curve of the beam the previous experiment a set-length water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 1x1x400 primitive scoring voxels. This in effect means the water-phantom was presented as 400 ``slices`` placed perpendicularily to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic bragg-curve appears.
 
-\subsection{Angulara distribution of fragments\label{AngularDistributionText}}
-\begin{figure}[h] 
-\begin{center}
-\includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated. Water phantom thickness was 27.9cm (slightly beyond the Bragg-peak)}
-\end{center}
-\end{figure}
+\subsubsection{Angulara distribution of fragments\label{AngularDistributionText}}
+
 \begin{figure}[!h] 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{images/annulus.png}  
@@ -592,7 +585,12 @@ In figure~\ref{fig:binnedHydrogen} the angular distributions were recorded so th
 All in all the results seem fair for a hadronic Monte-Carlo model.
 
 \subsection{Angular energy distribution of fragments}
-
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles from experimental data, solid bars simulated. Water phantom thickness was 27.9cm (slightly beyond the Bragg-peak)}
+\end{center}
+\end{figure}
 The angular energy plots were normalized for solid angle, number of events and bin-width. Although also here it is obvious the yields are too small at small angles, the shape of the distribution seems a satisfactory match. Similar indications were obtained with other fragments and depths as well. However, this graph verifies the missing forward-yield's energy is equally distributed to the rest of the detected fragments.
 
 Data for the energy distributions can here only be compared to a copy directly from the publication due to data-files for this distribution not being available to the author at the time of writing.
@@ -607,7 +605,7 @@ Data for the energy distributions can here only be compared to a copy directly f
 \includegraphics[width=0.45\textwidth]{images/plots/angularEnergyDistributions/AEDistrib2.png}
 \label{fig:AEDistrib1}
 }
-\label{fig:subfigureExample}
+\label{fig:AngularEnergyDistribution}
 \caption[Optional caption for list of figures]{The angular energy distributions with a 27.9cm water phantom. Although the yields at small angles seems to be clearly smaller in simulations than in experiments the distribution of energies is a fair match.}
 \end{figure}
 
@@ -639,6 +637,7 @@ The author hopes by this paper to provide a contribution to the pool of carbon t
 
 The author also studied others models for hadronic simulations. The original intent of this paper was to perform the simulations with INCL and ABLA code. However, the anticipated release of the INCL code supporting light-nucleus interactions has not been released at the time of writing. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical basis of INCL and ABLA is also described in appendix \ref{appendixincltheory}.
 
+\clearpage
 
 \bibliographystyle{plain} \bibliography{refs.bib} 
 
@@ -683,7 +682,7 @@ The author also studied others models for hadronic simulations. The original int
 \label{fig:D_34.7_1_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{he angular distribution plots as described in \cite{AngularDistributionText}. The red triangles represent data from E. Haettner \cite{ehaettner}, and the blue crosses are calculated through the described monte carlo simulation.}
+\caption[Optional caption for list of figures]{Angular distribution plots as described in \cite{AngularDistributionText}. The red triangles represent data from E. Haettner \cite{ehaettner}, and the blue crosses are calculated through the described monte carlo simulation.}
 \end{figure}
 \clearpage
 \subsection{Helium}
@@ -840,28 +839,9 @@ The author also studied others models for hadronic simulations. The original int
 \caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles. Hydrogen, Helium, Beryllium and Boron are matching experimental data quite well. However, Lithium and Beryllium can not be said to be within any logical margin of error from experimental data.}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \clearpage
-\section*{Appendix C \label{AppendixC}: Theory of proposed alternative simulation models}
+\addcontentsline{toc}{section}{Appendix C: Future work with alternative simulation models}
+\section*{Appendix C \label{AppendixC}: Future work with alternative simulation models}
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{C\arabic{equation}}
 \setcounter{equation}{0}  
@@ -888,7 +868,7 @@ In the Liège INC model particles move in straight deterministic trajectories, w
 
 \begin{equation}
 \rho(r) = \begin{cases}
-\frac{\rho_{0}}{1+\exp({\frac{r-R_{0}}{a}})} & 0 < r < R_{max} \\
+\frac{\rho_{0}}{1+\exp({\frac{r-R}{a}})} & 0 < r < R_{max} \\
 0 & \text{otherwise}
 \end{cases}
 \label{WoodsSaxon2}
@@ -947,8 +927,8 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 
 \clearpage
 
-\addcontentsline{toc}{section}{Appendix D: Log of work}
-\section*{Appendix D \label{AppendixD}: Log of work}
+\addcontentsline{toc}{section}{Appendix D: Improving usability through messenger macro commands}
+\section*{Appendix D \label{AppendixD}: Improving usability through messenger macro commands}
 
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{D\arabic{equation}}
