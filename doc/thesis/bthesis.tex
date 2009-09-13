@@ -359,7 +359,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/oneEvent.png}  
-\caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water-phantom.}
+\caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water phantom.}
 \end{center}
 \end{figure}
 
@@ -378,8 +378,8 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 The figure ~\ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. These ''H1 measurement`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
-\item The pipe in the water-phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
-\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
+\item The pipe in the water phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
+\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32cm in the y-z plane. 
 \item The detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analyzed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetric fragmentation.
 \end{itemize}
 
@@ -435,13 +435,13 @@ Secondly, Haettner further characterizes the beam by measuring it in air at thre
 E.Haettner proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}. However due to the dubious nature of the fragment scattering results these results could not be reproduced in this paper.
 
 %\subsection{Water tank}
-%The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
+%The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
 
 \subsection{Detection}
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg Curve of the beam the previous experiment water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water-phantom was presented as 400 ``slices`` placed perpendicularly to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic Bragg-curve for the beam appears.
+In order to calculate the Bragg Curve of the beam the previous experiment water phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 ``slices`` placed perpendicularly to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic Bragg-curve for the beam appears.
 
 \subsubsection{Angular distribution of fragments\label{AngularDistributionText}}
 
@@ -458,7 +458,7 @@ The annulus width $a$ was determined so that it covered all of the solid angle t
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water-phantom.
+The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles $\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$.
 
@@ -497,7 +497,7 @@ The following table gives an impression of the amount of events used for each
 \clearpage
 \section{Results and comparison to GSI data and other simulation models}
 
-This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analyzing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
+This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analyzing the different distributions of these fragments as they leave the water phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape\label{beamShapeAnalysis}}
 \begin{center}
