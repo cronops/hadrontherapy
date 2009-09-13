@@ -448,19 +448,19 @@ In order to calculate the Bragg Curve of the beam the previous experiment water-
 \begin{figure}[!h] 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{images/annulus.png}  
-\caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. Zero degrees is read out from a square detector while larger than zero degree angles are read out with consecutive circle annuluses where $r$ is seen at the given angle from the middle of the water phantom. The Annulus width is determined trigonometrically for each angle of analysis in order to correspond to the solid angle covered by H1.}
+\caption{\label{fig:annulusesExplained} Schematic picture of read-out area for charged fragments. The zero degree angle is read out from a square detector while larger than zero degree angles are read out with consecutive circle annuluses where $r$ is seen at the given angle from the middle of the water phantom. The Annulus width is determined trigonometrically for each angle of analysis in order to correspond to the solid angle covered by H1.}
 \end{center}
 \end{figure}
 
-A detector distance of 298.5cm was used as described by Haettner \ref{fig:haettnersetup3}. In the original experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectiveness of the simulation circle annuluses were used as read-out areas at angles greater than zero. For the events recorded at 0 degrees angle a square detection area was used. This approach is a slight approximation when it comes to small nonzero angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
+A detector distance of 298.5cm was used as described by Haettner \ref{fig:haettnersetup3}. In the original experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectiveness of the simulation circle annuluses were used as read-out areas at angles greater than zero. For the events recorded at 0 degree angle a square detection area was used. This approach is a slight approximation when it comes to small nonzero angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
 
-The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ according to the relation $a(\phi) = \text{H1 Sidelength} \times (\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi))$ where $\Delta\phi = \arctan(\frac{2 \times \text{Scattering distance}}{\cos(\phi) \times \text{H1 Sidelength}})$ is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
+The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ according to the relation $a(\phi) = \text{H1 Sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)]$ where $\Delta\phi = \arctan(\frac{2 \times \text{Scattering distance}}{\cos(\phi) \times \text{H1 Sidelength}})$ is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
 The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{(4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water-phantom.
 
-The circle annuluses used as read-out areas subtend the solid angles $\Omega_{annulus} = 2 \pi [\cos{\phi - \Delta\phi} - \cos{\phi + \Delta\phi}]$. When $\phi \le \Delta\Phi$ the read-out area reduces to a circle with the solid angle $\Omega_{circle} = 2 \pi [1 - \cos{\phi + \Delta\phi}]$.
+The circle annuluses used as read-out areas subtend the solid angles $\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$.
 
 %\begin{comment}
 %Koska lupasin koordinoida speksien määärittelyn.
@@ -515,7 +515,7 @@ The particle guns beam shape was set so that E.Haettner's measured 0 cm distance
 
 
 \subsection{Yields (0$^\circ$-10$^\circ$)}
-E. Haettner has provided estimates for the yields inside 10 degrees angle. This estimate is based on numerically integrating the angular distribution through a fitted normal distribution on low angles and a exponential fit at the larger angles. This yielded relatively large error margins for Haettner's results, especially for the larger fragments. Comparable results were produced by picking all events within a circle with the radius $r = \text{Scattering distance} \times \tan(10^{\circ} \text{degrees})$ around the zero degree position.
+E. Haettner has provided estimates for the yields inside 10 degree angle. This estimate is based on numerically integrating the angular distribution through a fitted normal distribution on low angles and a exponential fit at the larger angles. This yielded relatively large error margins for Haettner's results, especially for the larger fragments. Comparable results were produced by picking all events within a circle with the radius $r = \text{Scattering distance} \times \tan(10^{\circ})$ around the zero degree position.
 
 The results are gathered in Appendix B~\ref{AppendixB}. It is apparent the match is inbetween acceptable and rather good for most fragments, while outside all margins of error for both Lithium and Helium at almost all phantom depths.
 
