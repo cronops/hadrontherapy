@@ -394,11 +394,11 @@ This means that data acquired through the simulation technique used should be co
 \begin{figure}[!ht]
 \centering
 \subfigure[E.Haettner's experimental setup for measurements made with the H1 detector. In this paper and the simulation-code the angle denoted by Haettner with $\theta$ is denoted $\phi$.]{
-\includegraphics[width=0.9\textwidth]{images/haettnersetup3.png}[h]
+\includegraphics[width=0.9\textwidth]{images/haettnersetup3.png}
 \label{fig:haettnersetup3}
 }
-\subfigure[Geometry and position of phantom in relation to beam source.]{
-\includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}[h]
+\subfigure[Geometry and elements in water phantom]{
+\includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}
 \label{fig:haettnersetup2}
 }
 \label{fig:EHaettnerDataForAEDistrib1}
@@ -458,7 +458,7 @@ The annulus width $a$ was determined so that it covered all of the solid angle t
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{(4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water-phantom.
+The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water-phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles $\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$.
 
@@ -870,14 +870,14 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.6\textwidth]{images/AblaTable.png}[h]  
+\includegraphics[width=0.6\textwidth]{images/AblaTable.png}  
 \caption{\label{fig:ablatable} General flow of ABLA submodels.}
  
  \end{center}
  \end{figure}
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}[h]  
+\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}  
 \caption{\label{fig:ablahumps} ABLA symmetric (solid line) and antisymmetric (dashed line) fission plots.}
  
  \end{center}
