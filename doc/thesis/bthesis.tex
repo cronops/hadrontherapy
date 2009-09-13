@@ -247,7 +247,7 @@ $I$  is the
 mean excitation potential of the target.
 
 
-However, as the speed of the particle has decreased to the order of magnitude of the Bohr velocity the nuclear charge $Z$ will no longer remain constant and has to be approximated by the effective charge, given by the Barkas formula. $$Z_{eff} = Z(1-e^{-125\beta_{P}Z})$$
+However, as the speed of the particle has decreased to the order of magnitude of the Bohr velocity the nuclear charge $Z$ will no longer remain constant and has to be approximated by the effective charge, given by the Barkas formula $$Z_{eff} = Z(1-e^{-125\beta_{P}Z})$$.
 
 In this theoretical model the form of the Bragg-peak can be visualized as the $1/v_{p}^2$ relation increases the energy-loss as speed decreases. However, the effective charge will decrease at an exponential rate, thus, converging the Bragg-curve.
 
@@ -307,7 +307,7 @@ The 3-dimensional nucleus model in the binary cascade assumes a isotropic spheri
 \label{binaryCascadePotential}
 \end{equation}
 
-Firstly, the participating nuclei are generated. The positions of the nucleons are randomly picked from these probability distributions. The Fermi-momentum for every nucleon is decided according to the Thomas-Fermi approximation $p^{max}_F(r) = \hbar c (3 \pi^2 \rho(r))^\frac{1}{3}$. $A-1$ nucleons are given a momentum between zero and the Fermi momentum. The last momentum is chosen so that all momentums even out by picking the negative sum of all other momentums. If the absolute value of the momentum happens to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
+Firstly, the participating nuclei are generated. The positions of the nucleons are randomly picked from these probability distributions. The Fermi-momentum for every nucleon is decided according to the Thomas-Fermi approximation $p^{max}_F(r) = \hbar c [3 \pi^2 \rho(r)]^\frac{1}{3}$. $A-1$ nucleons are given a momentum between zero and the Fermi momentum. The last momentum is chosen so that all momentums even out by picking the negative sum of all other momentums. If the absolute value of the momentum happens to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
 
 The Binary cascade transportation algorithm starts by picking randomly the impact parameter from the disc that is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\sigma_i$ with all target nucleons based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed according to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths of the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_i+1$. The equations of motion are solved in the nuclear field by means of Runge-Kutta integration. If no collision is found a new nucleus and impact parameter is picked.
 %fixme, below could be better formulated
@@ -385,7 +385,7 @@ The figure ~\ref{fig:haettnersetup3} shows the geometry Haettner used in angular
 
 Through personal correspondence with E.Haettner it was confirmed that the indicated water-thicknesses in the data are the actual phantom thicknesses augmented by the water-equivalents of the other parts of the experiment. Data recorded through the simulation should be compared to the actual water-thicknesses because the effects of these other elements are simulated as well. During the July H1 measurements the water-equivalents were approximated to be 8mm. Thus, the water-thickness to be used in the simulation of a experimental datapoint is that depth subtracted by 8mm. %should be noted unknown constant in haettner's data of small magnitude. Also in February there was apparently more WE, but how much?
 
-\subsubsection{Bragg-Curve measurements}
+\subsubsection{Bragg-curve measurements}
 In this paper the Bragg-curve is calculated by imaginary voxel-layers in the phantom, and therefore is only of interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
 This means that data acquired through the simulation technique used should be compared to values with the water-equivalents subtracted. Haettner's experimental setup for the Bragg-curve had an WE of 0.578 cm according to~\cite[table 4.1]{ehaettner}.
@@ -414,46 +414,6 @@ This means that data acquired through the simulation technique used should be co
 }
 \label{fig:ShouldGiveTableAndFigure}
 \end{figure}
-
-%\begin{figure}[ht] 
-%\begin{center}
-%\includegraphics[width=0.9\textwidth]{images/SimSetup.png}[h]  
-%\caption{\label{fig:SimSetupIncscape} A simplified illustration of the simulation-setup. A beam passes an %adjustable water-target and scatters. The scattering is measured by a simulated MWPC-detector.}
- %\end{center}
- %\end{figure}
-
-%\begin{table}[h]
-%\begin{tabular}{lllllll}
-% & \textbf{200MeV} & & \textbf{400 MeV} & & \\
-% &\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE}&\textbf{thickness}&\textbf{mass / a.u.}&\textbf{WE} \\
-%\textbf{Aluminium}&0.1mm&0.027 $g/cm^2$& 0.027cm& 0.1mm&0.027 $g/cm^2$&0.027cm\\
-%\textbf{Air and IC}&72cm &0.073 $g/cm^2$& 0.073cm& 91cm&0.109 $g/cm^2$&0.092cm\\
-%\textbf{Plexiglas}&4mm&0.478 $g/cm^2$& 0.478cm& 4mm&0.476 $g/cm^2$&0.478cm\\
-%\textbf{Water}&26.89cm&26.89 $g/cm^2$& 26.89cm& 8.04cm&8.04 $g/cm^2$&8.04cm\\
-%\textbf{TOTAL}& &27.47 $g/cm^2$& 27.46 cm& &8.65 $g/cm^2$&8.64cm\\
-%\end{tabular} 
-%\caption{\label{fig:SimSetup} The 1-d thicknesses of materials in the beams path, ignoring effects induced by the true 3d-structure.}
-%\end{table}
-
-
-%\begin{center}
-% \begin{table}[h]
-%\begin{tabular}{llll} %fixme:
-%& & \textbf{200MeV} & \textbf{400 MeV} \\
-%Beam source window &\textbf{Aluminium}&0.1mm& 0.1mm\\
-%Lab and IC's &\textbf{Air}&72cm& 91cm\\
-%Water-container &\textbf{Plexiglas}&4mm& 4mm\\
-%Phantom &\textbf{Water}&26.89cm& 8.04cm\\
-%Beam source window &\textbf{Aluminium}&0.1mm& 0.1mm\\
-%Lab and IC's &\textbf{Air}&72cm& 91cm\\
-%Water-container &\textbf{Plexiglas}&4mm& 4mm\\
-%Phantom &\textbf{Water}&26.89cm& 8.04cm\\
-%\end{tabular} 
-%\caption{\label{fig:SimSetup} The 1-d thicknesses of materials in the two beams' paths at the Bragg-peak. This presentation ignores %effects induced by the true 3d-structure.}
-%\end{table}
-%\end{center}
-
-
 
 \begin{figure}[h] 
 \begin{center}
