@@ -247,9 +247,9 @@ $I$  is the
 mean excitation potential of the target.
 
 
-However, as the speed of the particle has decreased to the order of magnitude of the Bohr velocity the nuclear charge $Z$ will no longer remain constant and has to be approximated by the effective charge, given by the Barkas formula $$Z_{eff} = Z(1-e^{-125\beta_{P}Z})$$.
+However, as the speed of the particle has decreased to the order of magnitude of the Bohr velocity the nuclear charge $Z$ will no longer remain constant and has to be approximated by the effective charge, given by the Barkas formula $$Z_{eff} = Z(1-e^{-125 \beta Z})$$.
 
-In this theoretical model the form of the Bragg-peak can be visualized as the $1/v_{p}^2$ relation increases the energy-loss as speed decreases. However, the effective charge will decrease at an exponential rate, thus, converging the Bragg-curve.
+In this theoretical model the form of the Bragg-peak can be visualized as the $1/v^2$ relation increases the energy-loss as speed decreases. However, the effective charge will decrease at an exponential rate, thus, converging the Bragg-curve.
 
 Particles penetrating matter do not only deposit energy through inelastic electron collisions, they might as well be involved in nuclear reactions and fragmented. A common simple model for explaining this is called the abrasion-ablation model. In this model high energy projectiles can be described as particles that move on straight lines through the
 target. From time to time a target nucleus lie on this line, thus causing a collision. Bullet
@@ -309,7 +309,7 @@ The 3-dimensional nucleus model in the binary cascade assumes a isotropic spheri
 
 Firstly, the participating nuclei are generated. The positions of the nucleons are randomly picked from these probability distributions. The Fermi-momentum for every nucleon is decided according to the Thomas-Fermi approximation $p^{max}_F(r) = \hbar c [3 \pi^2 \rho(r)]^\frac{1}{3}$. $A-1$ nucleons are given a momentum between zero and the Fermi momentum. The last momentum is chosen so that all momentums even out by picking the negative sum of all other momentums. If the absolute value of the momentum happens to be above the Fermi momentum other momentums are repicked randomly until a satisfactory configuration is available.
 
-The Binary cascade transportation algorithm starts by picking randomly the impact parameter from the disc that is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\sigma_i$ with all target nucleons based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed according to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths of the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_i+1$. The equations of motion are solved in the nuclear field by means of Runge-Kutta integration. If no collision is found a new nucleus and impact parameter is picked.
+The Binary cascade transportation algorithm starts by picking randomly the impact parameter from the disc that is perpendicular to the distance vector inbetween the center of the disc and the middle of the nucleus. The closest distance $d^{min}_{i}$ by straight-line trajectories are calculated for each nucleon in the nucleus. The binary cascade then proceeds to calculate the interaction cross-sections $\sigma_i$ with all target nucleons based on the momenta of the nucleon in the nucleus, and the projectile momentum. Nucleons that have a smaller interaction radius than their distance $d^{min}_{i}$ are considered as plausible interaction targets. The plausible interaction targets are listed according to their individual time-of-flight by straight-line trajectory $t^{tof}_i$. The primary particle is then transported in the nuclear field with steplengths of the magnitude of the difference between the different times of flight $t_{step} = t^{tof}_i - t^{tof}_{i+1}$. The equations of motion are solved in the nuclear field by means of Runge-Kutta integration. If no collision is found a new nucleus and impact parameter is picked.
 %fixme, below could be better formulated
 Nucleon-nucleon interactions are based on experimental data and phenomenology. After collisions secondaries of the collision that are Pauli allowed and above the Fermi momentum $p_F$ are traversed as new primaries. The Binary cascade does however not consider collisions inbetween participants.
 %humm, why do we care about this if they are below fermi mometum anyway? or do we mean the different primaries?
@@ -359,7 +359,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{images/oneEvent.png}  
-\caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water-phantom.}
+\caption{\label{fig:oneEvent} OpenGL visualization of one event with 27.9cm thick water phantom.}
 \end{center}
 \end{figure}
 
@@ -378,8 +378,8 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 The figure ~\ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. These ''H1 measurement`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
-\item The pipe in the water-phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
-\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of 32x32cm in the y-z plane. 
+\item The pipe in the water phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
+\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32cm in the y-z plane. 
 \item The detector itself was changed into a large scoring plane registering all incoming particles. The measurements themselves were then analyzed through this data in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetric fragmentation.
 \end{itemize}
 
@@ -394,11 +394,11 @@ This means that data acquired through the simulation technique used should be co
 \begin{figure}[!ht]
 \centering
 \subfigure[E.Haettner's experimental setup for measurements made with the H1 detector. In this paper and the simulation-code the angle denoted by Haettner with $\theta$ is denoted $\phi$.]{
-\includegraphics[width=0.9\textwidth]{images/haettnersetup3.png}[h]
+\includegraphics[width=0.9\textwidth]{images/haettnersetup3.png}
 \label{fig:haettnersetup3}
 }
-\subfigure[Geometry and position of phantom in relation to beam source.]{
-\includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}[h]
+\subfigure[Geometry and elements in water phantom]{
+\includegraphics[width=0.9\textwidth]{images/haetnnersetup2.png}
 \label{fig:haettnersetup2}
 }
 \label{fig:EHaettnerDataForAEDistrib1}
@@ -435,13 +435,13 @@ Secondly, Haettner further characterizes the beam by measuring it in air at thre
 E.Haettner proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}. However due to the dubious nature of the fragment scattering results these results could not be reproduced in this paper.
 
 %\subsection{Water tank}
-%The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water-phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
+%The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
 
 \subsection{Detection}
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg Curve of the beam the previous experiment water-phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water-phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water-phantom was presented as 400 ``slices`` placed perpendicularly to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic Bragg-curve for the beam appears.
+In order to calculate the Bragg Curve of the beam the previous experiment water phantom of 40 cm was placed in the path of the beam as illustrated. The amount of water was approximated on the basis of E.Haettner's work so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 ``slices`` placed perpendicularly to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice at all times. Thus a histogram presenting a characteristic Bragg-curve for the beam appears.
 
 \subsubsection{Angular distribution of fragments\label{AngularDistributionText}}
 
@@ -458,7 +458,7 @@ The annulus width $a$ was determined so that it covered all of the solid angle t
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{(4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water-phantom.
+The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin{\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2}}$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{Scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles $\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$.
 
@@ -497,7 +497,7 @@ The following table gives an impression of the amount of events used for each
 \clearpage
 \section{Results and comparison to GSI data and other simulation models}
 
-This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analyzing the different distributions of these fragments as they leave the water-phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
+This work focused much on the fragments generated in the water phantom. Thus, much of the work has been put into analyzing the different distributions of these fragments as they leave the water phantom. In this section angular both angular and energy distributions will be presented for different water phantom thicknesses and they will be compared to data from E.Haettner. The thicknesses are chosen so that the distributions can be viewed for the beam both ahead and behind the Bragg peak.
 
 \subsection{Beam shape\label{beamShapeAnalysis}}
 \begin{center}
@@ -870,14 +870,14 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.6\textwidth]{images/AblaTable.png}[h]  
+\includegraphics[width=0.6\textwidth]{images/AblaTable.png}  
 \caption{\label{fig:ablatable} General flow of ABLA submodels.}
  
  \end{center}
  \end{figure}
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}[h]  
+\includegraphics[width=0.3\textwidth]{images/AblaHumps.png}  
 \caption{\label{fig:ablahumps} ABLA symmetric (solid line) and antisymmetric (dashed line) fission plots.}
  
  \end{center}
