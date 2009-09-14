@@ -26,7 +26,7 @@
 ##########################
 /geometrySetup/selectGeometry IAEA  # Select the IAEA geometry
 /analysis/setAnalysisFile IAEA_27.9.root
-/iaea/waterPhantomThickness 27.9 cm
+/iaea/waterPhantomThickness 27.1 cm
 #############################
 #    Beam energy detection  #
 #############################
@@ -159,7 +159,7 @@
 # Batch run of different depths for fragmentation-depths
 
 
-/run/beamOn 100000
+/run/beamOn 75000
 
 #/analysis/setAnalysisFile IAEA_31.2.root
 #/iaea/waterPhantomThickness 31.2 cm
