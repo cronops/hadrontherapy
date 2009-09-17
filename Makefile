@@ -54,9 +54,16 @@ pushGD:
 addPK:
 	git remote add pekka git://github.com/kaitanie/hadrontherapy.git
 
+addGD:
+	git remote add gillis git://github.com/Gillis/hadrontherapy.git
+
 getPK:
 	git fetch pekka
 	git merge pekka/master
+
+getGD:
+	git fetch gillis
+	git merge gillis/master
 
 run:
 	$(G4WORKDIR)/bin/$(G4SYSTEM)/Hadrontherapy defaultMacro.mac
