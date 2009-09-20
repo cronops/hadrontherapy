@@ -47,7 +47,6 @@
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
 #include "HadrontherapyEventAction.hh"
-#include "HadrontherapyDetectorConstruction.hh"
 #include "HadrontherapyPhysicsList.hh"
 #include "HadrontherapyDetectorSD.hh"
 #include "HadrontherapyPrimaryGeneratorAction.hh"
@@ -59,9 +58,7 @@
 #include "G4UImessenger.hh"
 #include "globals.hh"
 #include "HadrontherapySteppingAction.hh"
-#include "HadrontherapyInteractionParameters.hh"
 #include "HadrontherapyAnalysisManager.hh"
-#include "IAEADetectorConstruction.hh"
 #include "HadrontherapyGeometryController.hh"
 #include "HadrontherapyGeometryMessenger.hh"
 #include "G4ScoringManager.hh"
@@ -98,17 +95,17 @@ int main(int argc ,char ** argv)
   HadrontherapyAnalysisManager* analysis = HadrontherapyAnalysisManager::getInstance();
   analysis -> book();
 #endif
-
-  // Initialize the geometry user interface and scoringmanager
+  // Geometry controller is responsible for instantiating the
+  // geometries. All geometry specific setup tasks are now in class
+  // HadrontherapyGeometryController.
   HadrontherapyGeometryController *geometryController = new HadrontherapyGeometryController();
+
+  // Connect the geometry controller to the G4 user interface
   HadrontherapyGeometryMessenger *geometryMessenger = new HadrontherapyGeometryMessenger(geometryController);
+
   G4ScoringManager *scoringManager = G4ScoringManager::GetScoringManager();
   scoringManager->SetVerboseLevel(1);
   scoringManager->SetScoreWriter(new IAEAScoreWriter());
-
-  // Initialize the geometry
-  HadrontherapyDetectorConstruction* pDetect = new HadrontherapyDetectorConstruction();
-  runManager -> SetUserInitialization(pDetect);
 
   // Initialize the default Hadrontherapy geometry
   geometryController->SetGeometry("default");
@@ -136,9 +133,6 @@ int main(int argc ,char ** argv)
 
   HadrontherapySteppingAction* steppingAction = new HadrontherapySteppingAction(pRunAction); 
   runManager -> SetUserAction(steppingAction);    
-
-  // Interaction data
-  new HadrontherapyInteractionParameters(pDetect);
 
 #ifdef G4VIS_USE
   // Visualization manager
