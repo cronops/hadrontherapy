@@ -141,6 +141,23 @@ label=listing:boundary}}
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
 
+\mysection{Acknowledgement}
+
+I wrote this paper as a part of the Helsinki Institute of Physics (HIP) summer student program at the European Organization for Nuclear Research (CERN) in the summer of 2009. I would like to thank both CERN and HIP for this incredible summer in a very scientific and innovative environment. Furthermore, I would also specifically like to thank the following persons for providing me with the help and support needed to accomplish this paper.
+
+Firstly, I would like to thank my supervisor Aatos Heikkinen for tireless efforts within his tight schedule to make my stay at CERN as productive and enjoyable as possible.
+
+Secondly, Pekka Kaitaniemi of CEA Saclay was of great technical expertise and provided me with valuable answers to many of my questions.
+
+I also greatly appreciate all the time Emma Haettner took to clarify through personal correspondence the unclear details involved in the data sets received from GSI that were used in this paper.
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+- Gillis Danielsen 04.10 2009
 %% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
 %% mahdollinen suomenkielinen ja englanninkielinen tiivistelmä
 %% eivät tule vahingossakaan samalle sivulle
@@ -175,17 +192,6 @@ This thesis focuses on the simulation of carbon beams in a water phantom using G
 %% uudelta sivulta clearpage-komennolla. 
 %% clearpage on melkein samanlainen kuin newpage, mutta 
 %% flushaa myös LaTeX:n floatit 
-\clearpage
-\section{Acknowledgement}
-
-This work was made as a part of the HIP summer student program at CERN in 2009. I would like to thank CERN and HIP for this incredible summer in a very scientific and innovative ambiance. I would also specifically like to thank the following persons for providing me with the help and support needed to accomplish this paper.
-
-Firstly, I would like to thank my supervisor Ph.D Aatos Heikkinen for tireless efforts to make my stay at cern as productive and enjoyable as possible.
-
-Ph.D Pekka Kaitaniemi of CEA was of great technical expertise and allways very helpfull in all issues.
-
-I also greatly appreciate all the time M.Sc. Emma Haettner took to clarify through personal correspondance the unclear details involved in the data-sets recieved from GSI.
-
 \cleardoublepage
 \storeinipagenumber
 \pagenumbering{arabic}
@@ -359,9 +365,9 @@ The simulation is performed with the latest version of the Geant4 suite version 
 The simulation code is based around the hadrontherapy simulation produced by G.A.P. Cirrone, F. Di Rosa, S. Guatelli and  G. Russo of INFN Genova and Catania. This IAEA benchmark simulation is be distributed alongside the hadrontherapy example. This required varoius major changes in the code, including:
 \begin{itemize}
 \item The geometry, beam and beamline had to be rewritten to correspond to the experimental setup at GSI~\cite{ehaettner}, but in such a way that the geometries may be interchanged through macro commands. Rewriting the geometry also meant having to rewrite the detection code, which defines what is recorded and where.
-\item Analysis was to be done in ROOT bypassing AIDA that is used by the hadrontherapy example.
-\item One macro had to be able to perform multiple runs with different parameters.
-\item Means of documenting the code through doxygen were implemented.
+\item Analysis was done in ROOT. Bypassing AIDA that was default in the hadrontherapy example.
+\item The possibility for multiple runs with different parameters per macro through messenger macro command was implemeneted. Example in appendix ~\ref{AppendixD}.
+\item The code was documented through DOXYGEN.
 \end{itemize}
 
 
@@ -387,12 +393,19 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 \ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. This ''H1 measurements`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
-\item The pipe in the water phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
+\item The pipe in the water phantom was by inspection of photograph~\ref{fig:ehaettnerSetupPhotograph} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
 \item The water phantom had the cross-section of 50x60~cm. However, the beam exit-window had only an area of 32x8~cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32~cm in the y-z plane. 
-\item The detector itself was a large scoring plane registering all incoming particles. The measurements were analyzed in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetry.
+\item The detector was a large scoring plane registering all incoming particles. The measurements were analyzed in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetry.
 \end{itemize}
 
 Through personal correspondence with E.Haettner it was confirmed that the indicated water-thicknesses in the data are the actual phantom thicknesses augmented by the water-equivalents of the other parts of the experiment. Data recorded through the simulation should be compared to the actual water-thicknesses because the effects of these other elements are simulated as well. During the July H1 measurements the water-equivalents were approximated to be 8mm. Thus, the water-thickness to be used in the simulation of a experimental datapoint is that depth subtracted by 8mm. %should be noted unknown constant in haettner's data of small magnitude. Also in February there was apparently more WE, but how much?
+
+\begin{figure}[!h] 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/haettnersetup.png}  
+\caption{\label{fig:ehaettnerSetupPhotograph}Photograph of water phantom in GSI experimental setup.}
+\end{center}
+\end{figure}
 
 \subsubsection{Bragg-curve measurements}
 In this paper the Bragg-curve is calculated by imaginary voxel-layers in the phantom, and therefore is only of interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
@@ -415,7 +428,7 @@ This means that data acquired through the simulation technique used should be co
 \begin{tabular}{llll} %fixme: this should be more of a caption
 & & \textbf{Material} & \textbf{Thickness} \\
 1&Beam source window &Aluminum&0.1~mm\\
-2&Ionization Chamber 1 &Air-equivalent&1.4~cm\\
+2&Ionization Chamber &Air-equivalent&1.4~cm\\
 3&Adjustable tube window &Plexiglas&2~mm\\
 4&Phantom &Water& 0-40~cm\\
 5&Container back-window &Plexiglas&2~mm\\
@@ -468,7 +481,7 @@ The annulus width $a$ was determined so that it covered all of the solid angle t
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume a square detector pointed towards the source at distance $s$ solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2})$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
+The volume the solid angle of a square detector pointed towards the source at distance $s$ fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2})$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles $$\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $$\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$$.
 
@@ -534,7 +547,7 @@ The results and comparison are gathered in appendix~\ref{AppendixB}. The agreeme
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.9~cm (slightly beyond the Bragg-peak)}
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.1~cm (slightly beyond the bragg-peak)}
 \end{center}
 \end{figure}
 The data was normalized for bin-width (9~MeV) and the solid angle of the square H1 detector centered at $0^{\circ}$ angle from the mean direction of the beam.
