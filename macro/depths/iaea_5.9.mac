@@ -58,7 +58,7 @@
 #/score/close
 
 /analysis/setAnalysisFile IAEA_5.9.root
-/iaea/waterPhantomThickness 5.9 cm
+/iaea/waterPhantomThickness 5.1 cm
 
 ############################
 # Initialisation procedure #
@@ -161,4 +161,4 @@
 
 # Batch run of different depths for fragmentation-depths
 
-/run/beamOn 100000
+/run/beamOn 75000

@@ -21,12 +21,16 @@
 
 
 void braggPeak() {
+	TString normToZeroPos;
+	cout << "Normalize to first bin? (Y/N):";
+    cin >> normToZeroPos;
+	
 	TCanvas *c1 = new TCanvas("Bragg curve", "Bragg curve comparison");
 
 	//TCanvas *c1 = new TCanvas("BraggPeaks", "Energy depositions along x-axis in phantom");
 	gStyle->SetOptStat(0000000000); //remove the for this graphs totally redundant statbox
 
-//   gROOT->SetStyle("clearRetro");
+   gROOT->SetStyle("clearRetro");
  //this will be used as base for pulling the experimental data
    TString dir = gSystem->UnixPathName(gInterpreter->GetCurrentMacroName());
    dir.ReplaceAll("basic.C","");
@@ -76,19 +80,27 @@ void braggPeak() {
 
 	simBragg->GetXaxis()->SetLimits(0.0, waterThickness);
 	simBragg->SetLineColor(kBlue);
-	//simBragg->GetXaxis()->SetName("test");
 	simBragg->SetXTitle("Depth in phantom (cm)");
 	simBragg->SetYTitle("Ionization (MeV/m)");
 	//simBragg->GetXaxis()->SetTitleOffset(1);
 	simBragg->GetYaxis()->SetTitleOffset(1.5);
 	std::cout << "Maximum (Bragg peak) for simulation data is at: " << simBragg->GetBinCenter(simBragg->GetMaximumBin()) + 0.478/2 + 0.027 + 0.073 << endl;
 	std::cout << "Bin width is " << simBragg->GetBinWidth(simBragg->GetMaximumBin()) << endl;
+	
+	if(normToZeroPos == "Y"){
+	Float_t normElement;
+	ntuple->SetBranchAddress("i",&normElement);
+	ntuple->GetEntry(0);
+	simBragg->Scale(normElement/simBragg->GetBinContent(0));
+	}else{
 	simBragg->Scale(1.0/(100*events*simBragg->GetBinWidth(0))); // 100 for converting to MeV/m
-	//simBragg->ShowPeaks();
+	}
+
+	//simBragg->ShowPeaks(); //Can be used to mark out bragg peaks specificly.
 	simBragg->Draw();
 	ntuple->SetMarkerColor(kRed);
 	ntuple->SetMarkerStyle(22);
 	std::cout << ntuple->GetEntries() << endl;
 	ntuple->Draw("i:d-(0.478+0.027+0.073)","","p,same"); // the minuses are the WE's, here only real water depth is plotted.
-	c1->SaveAs("braggPeakComparisonToData.png");
+	c1->SaveAs("braggPeakComparisonToData_norm_" + normToZeroPos + ".png");
 }
