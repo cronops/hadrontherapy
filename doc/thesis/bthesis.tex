@@ -45,6 +45,7 @@ label=listing:boundary}}
 \usepackage{eurosym} 
 \usepackage{color} % for definecolor
 \usepackage[colorlinks,bookmarks=true]{hyperref}
+\usepackage{wasysym} %provides permille sign
 
 %% Saat pdf-tiedoston viittaukset ja linkit kuntoon seuraavalla paketilla.
 %% Paketti toimii erityisen hyvin pdflatexin kanssa. 
@@ -174,6 +175,15 @@ This thesis focuses on the simulation of carbon beams in a water phantom using G
 %% uudelta sivulta clearpage-komennolla. 
 %% clearpage on melkein samanlainen kuin newpage, mutta 
 %% flushaa myös LaTeX:n floatit 
+\clearpage
+\section{Acknowledgement}
+
+This work was made as a part of the HIP summer student program at CERN in 2009. I would like to thank CERN and HIP for this incredible summer in a very scientific and innovative ambiance. I would also specifically like to thank the following persons for providing me with the help and support needed to accomplish this paper.
+
+Firstly, I would like to thank my supervisor Ph.D Aatos Heikkinen for tireless efforts to make my stay at cern as productive and enjoyable as possible.
+
+I also greatly appreciate all the time M.Sc. Emma Haettner took to clarify through personal correspondance the unclear details involved in the data-sets recieved from GSI.
+
 \cleardoublepage
 \storeinipagenumber
 \pagenumbering{arabic}
@@ -207,7 +217,7 @@ Heavy-ion therapies have remained considerably less common and have remained on 
 
 The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionization-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair. In a 2008 article O.~Jäkel~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 in comparison to proton treatment depending on the application. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile. One of the main motivations of the work is to study this ''tail'' for the ``worst case scenario'' of 400~MeV, which is an upper limit in medical applications.
 
-A number of data-sets are available for carbon beams. For this paper we choose to use experimental data made available by E.~Haettner as a part of her master's thesis~\cite{ehaettner} at the Gesellschaft für Schwerionenforschung (GSI) facility in Darmstadt, Germany. This works reproduces the experimental setup used by E.Haettner as modelled in a simulation. The aim of this paper is to provide good reference data for the standardization work involved in hadron treatment. Furthermore, this paper evaluates the feasibility of the Geant4 models for such simulations by comparison to experimental data. This benchmarking is part of IAEA's INDC International Nuclear Data Committee and Heavy Charged-Particle Interaction Data For Radiotherapy project which compares different Monte Carlo codes~\cite{SummaryReport}.
+A number of data-sets are available for carbon beams. For this paper we choose to use experimental data made available by E.~Haettner as a part of her Master's thesis~\cite{ehaettner} at the Gesellschaft für Schwerionenforschung (GSI) facility in Darmstadt, Germany. This works reproduces the experimental setup used by E.Haettner as modelled in a simulation. The aim of this paper is to provide good reference data for the standardization work involved in hadron treatment. Furthermore, this paper evaluates the feasibility of the Geant4 models for such simulations by comparison to experimental data. This benchmarking is part of IAEA's INDC International Nuclear Data Committee and Heavy Charged-Particle Interaction Data For Radiotherapy project which compares different Monte Carlo codes~\cite{SummaryReport}.
 
 %footnotta förkortningar?
 
@@ -367,7 +377,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \end{center}
 \end{figure}
 
-Reference data for the measurements involved in this paper have been acquired from GSI and were made by E. Haettner in 2006 as a part of her master's thesis~\cite{ehaettner}. Haettner used two different setups for the measurements; measurements made with the H1 scintillation detector and attenuation measurements made at a shorter distance for calculating the Bragg-curve. In the following parts of this paper recreating these measurements through simulation is discussed. Firstly the required geometries are discussed, and secondly the used methods of picking and analyzing events are presented.
+Reference data for the measurements involved in this paper have been acquired from GSI and were measured by E. Haettner in 2006 as part of her Master's thesis~\cite{ehaettner}. Haettner used two different setups for the measurements; measurements made with the H1 scintillation detector and attenuation measurements made at a shorter distance for calculating the Bragg-curve. In the following parts of this paper recreating these measurements through simulation is discussed. Firstly the required geometries are discussed, and secondly the used methods of picking and analyzing events are presented.
 
 \subsection{Geometries}
 
@@ -376,7 +386,7 @@ Reference data for the measurements involved in this paper have been acquired fr
 \ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. This ''H1 measurements`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
 \item The pipe in the water phantom was by inspection of photograph~\ref{fig:haettnersetup2} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
-\item The water phantom had the cross-section of 50x60cm. However, the beam exit-window had only an area of 32x8 cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32cm in the y-z plane. 
+\item The water phantom had the cross-section of 50x60~cm. However, the beam exit-window had only an area of 32x8~cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32~cm in the y-z plane. 
 \item The detector itself was a large scoring plane registering all incoming particles. The measurements were analyzed in ROOT. This allowed to minimize the amount of time-consuming simulation-runs by assuming symmetry.
 \end{itemize}
 
@@ -385,7 +395,7 @@ Through personal correspondence with E.Haettner it was confirmed that the indica
 \subsubsection{Bragg-curve measurements}
 In this paper the Bragg-curve is calculated by imaginary voxel-layers in the phantom, and therefore is only of interest in compensating the water equivalents added by Haettner into the results for the different parts of the experiment.
 
-This means that data acquired through the simulation technique used should be compared to values with the water-equivalents subtracted. Haettner's experimental setup for the Bragg-curve had an WE of 0.578 cm according to~\cite[table 4.1]{ehaettner}.
+This means that data acquired through the simulation technique used should be compared to values with the water-equivalents subtracted. Haettner's GSI experimental setup for the Bragg-curve had an WE of 0.578~cm according to~\cite[table 4.1]{ehaettner}.
 
 
 \begin{figure}[!ht]
@@ -399,17 +409,17 @@ This means that data acquired through the simulation technique used should be co
 \label{fig:haettnersetup2}
 }
 \label{fig:EHaettnerDataForAEDistrib1}
-\subtable[Thicknesses]{
+\subtable[]{
 \begin{tabular}{llll} %fixme: this should be more of a caption
 & & \textbf{Material} & \textbf{Thickness} \\
-1&Beam source window &Aluminum& 0.1mm\\
-2&Ionization Chamber 1 &Air-equivalent& 1.4cm\\
-3&Adjustable tube window &Plexiglas&2mm\\
-4&Phantom &Water& 0-40cm\\
-5&Container back-window &Plexiglas&2mm\\
+1&Beam source window &Aluminum&0.1~mm\\
+2&Ionization Chamber 1 &Air-equivalent&1.4~cm\\
+3&Adjustable tube window &Plexiglas&2~mm\\
+4&Phantom &Water& 0-40~cm\\
+5&Container back-window &Plexiglas&2~mm\\
 \end{tabular} 
 }
-\caption[Optional caption for list of figures]{(a) experimental setup for measurements made with the H1 detector. In this paper and the simulation-code the angle denoted by Haettner with $\theta$ is denoted $\phi$. (b) Geometry and elements in water phantom. (c) Legends.}
+\caption[Optional caption for list of figures]{(a) experimental setup for measurements made with the H1 detector. In this paper and the simulation-code the angle denoted by Haettner with $\theta$ is denoted $\phi$. (b) Geometry and elements in water phantom. (c) Materials and thicknesses along beam path. Images courtesy of E.Haettner~\cite{ehaettner}.}
 \label{fig:ShouldGiveTableAndFigure}
 \end{figure}
 
@@ -428,9 +438,9 @@ The beam is considered a pen-shaped beam. Haettner has performed measurements to
 
 Firstly, Haettner evaluates the accuracy of the beam's energy to be $\Delta E/E\approx5\times10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1~MeV/u and 2~MeV/u for the 200 respectively 400~MeV Beams.
 
-Secondly, Haettner further characterizes the beam by measuring it in air at three distances (0m,1m and 3m). The incident beam was assumed to be parallel before leaving the vacuum tube window, thus assuming recorded enlargement of the beam's FWHM is explainable simply by the scattering from the exit-window and air. However, in this paper these results could not be verified and thus a very small deviation in the beam's angular distribution was introduced (chapter ~\ref{beamShapeAnalysis}). The initial width of the beam was assumed normally distributed and thus the original 4~mm FWHM of the beam width was reproduced by picking beam $y$ and $z$ deviations from a normal distribution with $\sigma = 1.7$~mm according to the relation $$\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$$
+Secondly, Haettner further characterizes the beam by measuring it in air at three distances (0~m,1~m and 3~m). The incident beam was assumed to be parallel before leaving the vacuum tube window, thus assuming recorded enlargement of the beam's FWHM is explainable simply by the scattering from the exit-window and air. However, in this paper these results could not be verified and thus a very small deviation in the beam's angular distribution was introduced (chapter ~\ref{beamShapeAnalysis}). The initial width of the beam was assumed normally distributed and thus the original 4~mm FWHM of the beam width was reproduced by picking beam $y$ and $z$ deviations from a normal distribution with $\sigma = 1.7$~mm according to the relation $$\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$$
 
-In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}. However, even though the overall distribution produced in our results~\ref{AppendixA} was in line with experimental data the FWHM measure was not good for comparison due to missing forward peak-yields.
+In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}. However, even though the overall distribution produced in our results(Appendix~\ref{AppendixA}) was in line with experimental data the FWHM measure was not good for comparison due to the missing height of the forward peak.
 
 %\subsection{Water tank}
 %The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
@@ -439,7 +449,7 @@ In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the 
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg curve of the beam a water phantom of 40 cm was placed in the path of the beam. The amount of water was approximated on the basis of E.Haettner's work so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 water-slices placed perpendicular to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice. Thus a histogram of a characteristic Bragg-curve is recorded.
+In order to calculate the Bragg curve of the beam a water phantom of 40~cm was placed in the path of the beam. The amount of water was approximated on the basis of GSI data so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 water-slices placed perpendicular to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice. Thus a histogram of a characteristic Bragg-curve is recorded.
 
 \subsubsection{Definition of angular values\label{AngularDistributionText}}
 
@@ -452,11 +462,11 @@ In order to calculate the Bragg curve of the beam a water phantom of 40 cm was p
 
 A detector distance of 298.5~cm is used as described in fig \ref{fig:haettnersetup3}. In the original experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectiveness of the simulation circle annuluses were used as read-out areas at angles greater than zero. For the events recorded at 0 degree angle a square detection area was used. This approach is a slight approximation when it comes to small non-zero angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
 
-The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ according to the relation $$a(\phi) = \text{H1 Sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)]$$ where $$\Delta\phi = \arctan(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 Sidelength}})$$ is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
+The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ according to the relation $$a(\phi) = \text{H1 sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)],$$where $$\Delta\phi = \arctan(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 sidelength}})$$ is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume a square detector pointed towards the source at distance s solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2})$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
+The volume a square detector pointed towards the source at distance $s$ solid angle fills up is a pyramid. Thus, the formula $\Omega_{square} = 4 \arcsin(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2})$ for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance $d = \frac{\text{scattering distance}}{\cos(\phi)}$ from the middle of the water phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles $$\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)]$$. When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle $$\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)]$$.
 
@@ -503,20 +513,20 @@ This work focused much on the fragments generated in the water phantom. Thus, mu
  \begin{table}[!h]
 \begin{tabular}{cccc} %fixme:
 \textbf{Distance} & \textbf{GSI measurement (H$\times$V)} & \textbf{Straight incident beam} & \textbf{Added scattering} \\
-0m &4x4~mm& 3.9~mm & 3.9~mm\\
-1m &5x4~mm & 4.2~mm & 4.8~mm\\
-3m &11x9~mm& 5.2~mm & 9.0~mm\\
+0~m &4x4~mm& 3.9~mm & 3.9~mm\\
+1~m &5x4~mm & 4.2~mm & 4.8~mm\\
+3~m &11x9~mm& 5.2~mm & 9.0~mm\\
 \end{tabular} 
 \caption{\label{fig:beamFWHMtable} The beam FWHM as measured in experiment and reproduced in simulation and modified simulation.}
 \end{table}
 \end{center}
-The particle beam shape was set so that measured 0 cm distance scattering of 4mm FWHM was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1m and 3m results were not in line with those of experimental data. We assumed further scattering not accounted for in the beam must have taken place. To include the added scattering a gaussian shaped stochastical deviation was introduced in the beam's momentum vector. This error was symmetrical in $y$ and $z$ with the magnitude of $.1 \%$ of the x-component. This error was empirically chosen. The results are summarized in table~\ref{fig:beamFWHMtable}.
+The particle beam shape was set so that measured 0~cm distance scattering of 4mm FWHM was duplicated. When this scattering experiment was repeated for the two other provided measurement points of 1~m and 3~m results were not in line with those of experimental data. We assumed further scattering not accounted for in the beam must have taken place. To include the added scattering a gaussian shaped stochastical deviation was introduced in the beam's momentum vector. This error was symmetrical in $y$ and $z$ with the magnitude of $1\permil$ of the x-component. This error was empirically chosen. The results are summarized in table~\ref{fig:beamFWHMtable}.
 
 
 \subsection{Fragment yields (0$^\circ$-10$^\circ$)}
 The experimental data was provided with interpolated estimates for the yields inside a 10 degree angle. This estimate is based on numerically integrating the angular distribution through a fitted normal distribution on low angles and a exponential fit at the larger angles. This yielded relatively large error margins, especially for the larger fragments. Comparable results were produced by picking all events within a circle with the radius $r = \text{scattering distance} \times \tan(10^{\circ})$ around the zero degree position.
 
-The results and comparison are gathered in appendix~\ref{AppendixB}. The agreement is inbetween rather good for most fragments, the largest deviations from experimental data are viewable for Helium.
+The results and comparison are gathered in appendix~\ref{AppendixB}. The agreement is rather good for most fragments, however a considerable deviations from experimental data is viewable for Helium.
 
 \subsection{Energy distribution of fragments}
 \begin{figure}[h] 
@@ -532,19 +542,19 @@ The shape of the results are mostly in line with the experimental data. However,
 \subsection{Angular distribution of fragments}
 \begin{figure}[!h] 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{images/plots/angularDistributions/equlBinnedHydrogen279.png}  
-\caption{\label{fig:binnedHydrogen} Hydrogen scattering angles binned with equal bin lengths. Gaussian and exponential fit applied.}
+\includegraphics[width=0.7\textwidth]{images/plots/angularDistributions/equlBinnedHydrogen279.png}  
+\caption{\label{fig:binnedHydrogen} Scattering angles for hydrogen binned at equal bin lengths. Gaussian and exponential fits are applied.}
  \end{center}
  \end{figure}
-The angular distributions were simulated for a number of phantom-depths before and after the Bragg peak at about 27cm. Results were normalized per number of incident ions and solid angle. The results were plotted against E. Haettners data and are viewable in the appendix~\ref{AppendixA}. The simulations were run with phantom thicknesses that were subtracted of water-equivalents. Through personal correspondence with E.Haettner it was apparent that the measurements made in July were compensated with a $0.8 cm$ water equivalent for the non-water parts of the experiment
+The angular distributions were simulated for a number of phantom-depths before and after the Bragg peak at about 27~cm. Results were normalized per number of incident ions and solid angle. The results were plotted against GSI data and in appendix~\ref{AppendixA}. The simulations were run with phantom thicknesses that were subtracted of water-equivalents. Through personal correspondence with E.Haettner it was apparent that the measurements made in July were compensated with a $0.8$~cm water equivalent for the non-water parts of the experiment
 
-Results for $\phi \in [0,\arctan(\frac{\text{Detector sidelength}}{2 \times \text{Scattering distance}}) \approx 0.4^{\circ}]$ were discarded in the plots because of their ambiguous nature, which was due to the annulus read-out area approximation was misleading regarding the angular flux of particles at angles where $r_{min} = 0$.
+Results for $\phi \in [0,\arctan(\frac{\text{H1 sidelength}}{2 \times \text{scattering distance}}) \approx 0.4^{\circ}]$ were discarded in the plots due to the amount of stochastic error in this interval. These stochastic effects arose due to the annulus read-out area approximation when $r_{min} = 0$.
 
 The obvious difference to the experimental data is the clearly lower yields at low angles. This relation is apparent for almost all depths and fragments that were analyzed. The difference seems to be accentuated for the lighter fragments. As beam attenuation data matches rather well the lack of forward yield may indicate that the simulation models scattering of fragments is too isotropic.
 
-In figure~\ref{fig:binnedHydrogen} the angular distributions were recorded so that all fragments were binned in an equal angle bin histogram. This exemplifies well how the distribution is at small angles best described by a Gaussian shape while at larger angles an exponential function is a better fit. The need for a two-component model has been observed by several authors (Haettner~\cite{ehaettner}, Gunzert-Marx~\cite{gunzert-marx}, Golovkov~\cite{golovkov}). However as this approach differs from the one used by E. Haettner this graph is not comparable to her results. The results in the appendices mimic that approach by having variable size bins.
+In figure~\ref{fig:binnedHydrogen} the angular distributions were recorded so that all detected hydrogen fragments were binned in a equal bin-width histogram according to scattering angle. This exemplifies well how the distribution is at small angles best described by a Gaussian shape while at larger angles an exponential function is a better fit. The need for a two-component model has been observed by several authors (Haettner~\cite{ehaettner}, Gunzert-Marx~\cite{gunzert-marx}, Golovkov~\cite{golovkov}). However as this approach differs from the one used by E. Haettner this graph is not comparable to her results. The results in the appendices mimic that approach by having variable size bins.
 
-All in all the results seem in comparison to the experimental data fair for a hadronic Monte-Carlo model.
+All in all the results seem in comparison to the experimental data fair for a hadronic Monte Carlo model.
 
 \subsection{Angular energy distribution of fragments}
 The angular energy plots were normalized for solid angle, number of events and bin-width. Although also here it is obvious the yields are too small at small angles, the shape of the distribution seems a satisfactory match. Similar indications were obtained with other fragments and depths as well. However, this graph verifies the missing forward-yields energy is equally distributed to the rest of the detected fragments.
@@ -562,11 +572,11 @@ Data for the energy distributions can here only be compared to a copy directly f
 \label{fig:AEDistrib1}
 }
 \label{fig:AngularEnergyDistribution}
-\caption[Optional caption for list of figures]{The angular energy distributions with a 27.9cm water phantom. Although the yields at small angles seems to be clearly smaller in simulations than in experiments the distribution of energies is a fair match.}
+\caption[Optional caption for list of figures]{The angular energy distributions with a 27.9~cm water phantom. Although the yields at small angles seems to be clearly smaller in simulations than in experiments the distribution of energies is a fair match.}
 \end{figure}
 
 \subsection{Bragg curve}
-The Bragg peak was measured from the simulation data to be located at $27.16 \pm 0.05 cm$ which is a rather good match with the experimental result of 27.46cm. This difference alone was not deemed as sufficient to explain the missing forward-yield.
+The Bragg peak was measured from the simulation data to be located at $27.16 \pm 0.05$~cm which is a rather good match with the experimental result of 27.46~cm. This difference alone was not deemed as sufficient to explain the missing forward-yield.
 
 The greatest difference is the average ionization per meter in water, which is about 50 percent larger in the experimental data. %fixme, is this really so
 
@@ -575,13 +585,13 @@ The greatest difference is the average ionization per meter in water, which is a
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/plots/braggPeak/braggPeakComparisonToData.png}  
-\caption{\label{fig:braggPeakCompared} Comparison with simulation Bragg peak (blue) and experimental data (red)}
+\caption{\label{fig:braggPeakCompared} Normalized Bragg Curve, experimental data is red and Geant4 simulation blue.}
  \end{center}
  \end{figure}
 
 \clearpage
 \section{Conclusion and outlook}
-Considering the relative quality of Monte Carlo models for hadronic physics it may be concluded that results all in all were pretty well in line with the experimental data. However, it is clear that there are certain discrepancies are viewable in the results which are not within the error-margins of the experimental work.
+Considering the relative quality of prediction of Monte Carlo models for hadronic physics it may be concluded that results all in all were pretty well in line with the experimental data. However, it is clear that there are certain discrepancies are viewable in the results which are not within the error-margins of the experimental work.
 
 Further work is needed to determine the cause of these lacks in yields. As a good starting hypothesis one may choose to research the isotropicity of the evaporation model, because the missing yields at low angles is especially apparent for light fragments.
 
@@ -591,11 +601,11 @@ The experimental data pool of carbon beams is rather limited, and the paper by E
 
 The author hopes by this paper to provide a contribution to the pool of carbon treatment related simulation analysises, and ease the development of models.
 
-The author also studied others models for hadronic simulations. The original intent of this paper was to perform the simulations with INCL and ABLA code. However, the anticipated release of the INCL code supporting light-nucleus interactions has not been released at the time of writing. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical basis of INCL and ABLA is also described in appendix~\ref{appendixincltheory}.
+The author also studied others models for hadronic simulations. The original intent of this paper was to perform the simulations with INCL and ABLA code. However, the anticipated release of the INCL code supporting light-nucleus interactions has not been released at the time of writing. This work is therefore left for the future, with a good adaptable GEANT4b framework and related ROOT analysis scripts. The theoretical bases of the INCL and ABLA codes are introduced in this paper in appendix~\ref{appendixincltheory}.
 
 \clearpage
 
-\bibliographystyle{plain} \bibliography{refs.bib} 
+\bibliographystyle{unsrt} \bibliography{refs.bib} 
 
 %%%%% Liitteet 
 \appendix 
@@ -619,23 +629,23 @@ The following graphs present the angular distributions of the scattered fragment
 \subsection{Hydrogen}
 \begin{figure}[!h]
 \centering
-\subfigure[5.1cm, Clearly differing yields. However, Haettner notes there is large uncertainty for values due to carbon ion interference in data.]{
+\subfigure[5.1~cm, Bad correlation. However, experimental data has large uncertainty due to carbon interference.]{
 \includegraphics[width=0.43\textwidth]{images/plots/angularDistributions/AD_59_1_N.png}
 \label{fig:AD_5.9_1_N}
 }
-\subfigure[15.1cm]{
+\subfigure[15.1~cm]{
 \includegraphics[width=0.43\textwidth]{images/plots/angularDistributions/AD_159_1_N.png}
 \label{fig:AD_15.9_1_N}
 }
-\subfigure[27.1cm]{
+\subfigure[27.1~cm]{
 \includegraphics[width=0.43\textwidth]{images/plots/angularDistributions/AD_279_1_N.png}
 \label{fig:AD_27.9_1_N}
 }
-\subfigure[30.4cm]{
+\subfigure[30.4~cm]{
 \includegraphics[width=0.43\textwidth]{images/plots/angularDistributions/AD_312_1_N.png}
 \label{fig:D_31.2_1_N}
 }
-\subfigure[33.9cm]{
+\subfigure[33.9~cm]{
 \includegraphics[width=0.43\textwidth]{images/plots/angularDistributions/AD_347_1_N.png}
 \label{fig:D_34.7_1_N}
 }
@@ -658,11 +668,11 @@ The following graphs present the angular distributions of the scattered fragment
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_2_N.png}
 \label{fig:AD_27.9_2_N}
 }
-\subfigure[30.4cm]{
+\subfigure[30.4~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_2_N.png}
 \label{fig:D_31.2_2_N}
 }
-\subfigure[33.9cm]{
+\subfigure[33.9~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_2_N.png}
 \label{fig:D_34.7_2_N}
 }
@@ -685,16 +695,16 @@ The following graphs present the angular distributions of the scattered fragment
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_3_N.png}
 \label{fig:AD_27.9_3_N}
 }
-\subfigure[30.4cm]{
+\subfigure[30.4~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_3_N.png}
 \label{fig:D_31.2_3_N}
 }
-\subfigure[33.9cm]{
+\subfigure[33.9~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_3_N.png}
 \label{fig:D_34.7_3_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{Angular distribution of lithium fragments.}
+\caption[Optional caption for list of figures]{Angular distribution of lithium fragments. The double-peak in \subref{fig:D_31.2_3_N} is a statistical error due to small sample.}
 \end{figure}
 \clearpage
 \subsection{Beryllium}
@@ -712,11 +722,11 @@ The following graphs present the angular distributions of the scattered fragment
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_4_N.png}
 \label{fig:AD_27.9_4_N}
 }
-\subfigure[30.4cm]{
+\subfigure[30.4~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_4_N.png}
 \label{fig:D_41.2_4_N}
 }
-\subfigure[33.9cm]{
+\subfigure[33.9~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_4_N.png}
 \label{fig:D_43.7_4_N}
 }
@@ -739,11 +749,11 @@ The following graphs present the angular distributions of the scattered fragment
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_279_5_N.png}
 \label{fig:AD_27.9_5_N}
 }
-\subfigure[30.4cm]{
+\subfigure[30.4~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_312_5_N.png}
 \label{fig:D_31.2_5_N}
 }
-\subfigure[33.9cm]{
+\subfigure[33.9~cm]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularDistributions/AD_347_5_N.png}
 \label{fig:D_34.7_5_N}
 }
@@ -812,7 +822,7 @@ The following graphs present the angular distributions of the scattered fragment
 %\section{Future work with alternative simulation models \label{appendixincltheory}}
 \section{\label{appendixincltheory}: Future work with alternative simulation models}
 
-INCL4 is a Monte-Carlo type Intranuclear Cascade Model, whereas ABLA is the the complementing Monte-Carlo evaporation/fission model. In practice this means INCL is used to determine what happends just after the the projectile particle hits the target nucleus, while ABLA is used to determine what nuclear process is caused through the following excitation of the target due to the collision event. It is notable that the time-frame for evaporation and fission events are orders of magnitude greater compared to the events modelled by INCL.
+INCL4 is a Monte Carlo type Intranuclear Cascade Model, whereas ABLA is the the complementing Monte Carlo evaporation/fission model. In practice this means INCL is used to determine what happends just after the the projectile particle hits the target nucleus, while ABLA is used to determine what nuclear process is caused through the following excitation of the target due to the collision event. It is notable that the time-frame for evaporation and fission events are orders of magnitude greater compared to the events modelled by INCL.
 
 \subsection{INCL}
 
@@ -851,7 +861,7 @@ A further discussion of the theoretical basis of the Liège INC model and INCL c
 
 \subsection{ABLA}
 
-The ABLA code has been developed at the GSI facility in Darmstadt, Germany. Its principal developers being K-H.~Schmidt and A.~Kelic. It is a Monte-Carlo code based on a data-set {\tt G4ABLADATA} distributed alongside the code. ABLA takes as input nucleus parameters, excitation energy, mass number, charge number and nucleus spin. It then calculates on the basis of this data the probabilities for different fission or evaporation events taking place according to statistical distributions obtained from experiments and phenomenology.
+The ABLA code has been developed at the GSI facility in Darmstadt, Germany. Its principal developers being K-H.~Schmidt and A.~Kelic. It is a Monte Carlo code based on a data-set {\tt G4ABLADATA} distributed alongside the code. ABLA takes as input nucleus parameters, excitation energy, mass number, charge number and nucleus spin. It then calculates on the basis of this data the probabilities for different fission or evaporation events taking place according to statistical distributions obtained from experiments and phenomenology.
 
 ABLA comes with two different fission models SimFis3 and SimFis18. These models are based on the proven PROFI-model also developed at GSI Darmstadt. ABLA selects between competitive fission and evaporation processes as described in the flowchart~\ref{fig:ablatable}.
 
