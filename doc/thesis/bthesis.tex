@@ -823,7 +823,10 @@ The following graphs present the angular distributions of the scattered fragment
 \end{figure}
 
 \clearpage
-%\addcontentsline{toc}{section}{Appendix C: Future work with alternative simulation models}
+\clearpage
+
+%\addcontentsline{toc}{section}{Appendix D: Improving usability through messenger macro commands}
+
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{C\arabic{equation}}
 \setcounter{equation}{0}  
@@ -832,6 +835,62 @@ The following graphs present the angular distributions of the scattered fragment
 \renewcommand{\thetable}{C\arabic{table}}
 \setcounter{table}{0}
 \renewcommand{\thesection}{C}
+\setcounter{section}{1}
+\section{\label{AppendixD}: Improving usability through messenger macro commands}
+
+The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
+
+Macro commands are interpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
+\begin{itemize}
+ \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
+\item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to accustom the new phantom.
+\item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
+\end{itemize}
+
+
+So as aen example the user can give a command according to the following syntax.
+\scriptsize
+\begin{verbatim}
+/analysis/setFileName <user-defined name>.root
+\end{verbatim}
+\normalsize
+
+The implementation was done by creating an analysismessenger inheriting functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
+
+
+\scriptsize
+\begin{verbatim}
+class HadrontherapyAnalysisFileMessenger: public G4UImessenger
+{
+  public:
+    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
+   ~HadrontherapyAnalysisFileMessenger();
+    
+    void SetNewValue(G4UIcommand*, G4String);
+    
+  private:
+    HadrontherapyAnalysisManager* AnalysisManager;
+\end{verbatim}
+\normalsize
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
+\includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
+\caption{\label{fig:messengerUML} UML diagrams for messen ger class}
+ 
+ \end{center}
+ \end{figure}
+
+\clearpage
+%\addcontentsline{toc}{section}{Appendix C: Future work with alternative simulation models}
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+\renewcommand{\theequation}{D\arabic{equation}}
+\setcounter{equation}{0}  
+\renewcommand{\thefigure}{D\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{D\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\thesection}{D}
 \setcounter{section}{1}
 \setcounter{subsection}{0}
 %\section{Future work with alternative simulation models \label{appendixincltheory}}
@@ -908,63 +967,7 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 A further discussion of the theoretical basis of the ABLA code is available in references ~\cite{ablatalk,iia}.
 %fixme add another ABLAsource
 
-\clearpage
 
-%\addcontentsline{toc}{section}{Appendix D: Improving usability through messenger macro commands}
-
-%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
-\renewcommand{\theequation}{D\arabic{equation}}
-\setcounter{equation}{0}  
-\renewcommand{\thefigure}{D\arabic{figure}}
-\setcounter{figure}{0}
-\renewcommand{\thetable}{D\arabic{table}}
-\setcounter{table}{0}
-\renewcommand{\thesection}{D}
-\setcounter{section}{1}
-\section{\label{AppendixD}: Improving usability through messenger macro commands}
-
-The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
-
-Macro commands are interpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
-\begin{itemize}
- \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
-\item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to accustom the new phantom.
-\item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
-\end{itemize}
-
-
-So as aen example the user can give a command according to the following syntax.
-\scriptsize
-\begin{verbatim}
-/analysis/setFileName <user-defined name>.root
-\end{verbatim}
-\normalsize
-
-The implementation was done by creating an analysismessenger inheriting functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
-
-
-\scriptsize
-\begin{verbatim}
-class HadrontherapyAnalysisFileMessenger: public G4UImessenger
-{
-  public:
-    HadrontherapyAnalysisFileMessenger(HadrontherapyAnalysisManager*);
-   ~HadrontherapyAnalysisFileMessenger();
-    
-    void SetNewValue(G4UIcommand*, G4String);
-    
-  private:
-    HadrontherapyAnalysisManager* AnalysisManager;
-\end{verbatim}
-\normalsize
-\begin{figure}[h] 
-\begin{center}
-\includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
-\includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
-\caption{\label{fig:messengerUML} UML diagrams for messen ger class}
- 
- \end{center}
- \end{figure}
 
 \end{document}
 
