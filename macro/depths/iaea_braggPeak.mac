@@ -12,7 +12,7 @@
 /run/verbose 1
 /event/verbose 0
 
-/analysis/setAnalysisFile IAEA_braggPeak.root
+/analysis/setAnalysisFile IAEA_braggPeak_gamma.root
 
 ##########################
 # Set of the physic models
@@ -128,7 +128,7 @@
 /gun/particle ion
 /gun/ion 6 12 6     # Carbon-12
 
-/beam/energy/meanEnergy 4800 MeV # 400MeV/u * C12 = 4800
+/beam/energy/meanEnergy 4800 MeV
 /beam/energy/sigmaEnergy 24 MeV # dE/E = 5e-3
 /beam/position/Yposition/sigmaY 1.7 mm # 4mm * 2.35 ~ 1.7
 /beam/position/Zposition/sigmaZ 1.7 mm
