@@ -1,0 +1,58 @@
+Readme (unfinnished)
+author: Gillis Danielsen
+
+braggPeak.C
+what:
+Script that produces comparison between hadrontherapy
+mc-simulation data and E.Haettner's experimental data.
+requires:
+run that is completed with the primitive command based scorer in the 
+macro uncommented.
+
+checkBeam.C
+what:
+Macro for checking carbon beam FWHM
+requires:
+Run that is run (usually) without a water-phantom. If other lengths then three meters are required 
+code needs to be recompiled and the water-phantom moved in IAEAdetectorconstruction.
+
+fragmentAngularDistribution.C
+what:
+Root script that produces a graph of the angular distribution of
+a certain type of charged fragments itneractively.
+requires:
+works with any type of run. But to compare with data requires data-file with the same style name to be available.
+
+fragmentAngularDistributionGM.C
+what:
+Only good for comapring resutls to Gunzer-Marx.
+(could be removed)
+
+fragmentAngularDistributionHistogram.C
+what:
+produces a equally binned angular distribution, not comparable to haettner, but "the right way of doing it".
+requires:
+will work with any run
+
+fragmentEnergy.C
+what:
+produces energy distribution of charged fragments
+requires:
+exp. data only available for 27.1cm water phantom thickness.
+
+fragmentYields.C
+Tells you simply how big the yield is at 0-10 degrees for a file
+requires:
+works with any file
+
+fragmentYieldsPlot.C
+what:
+plots 0-40 cm of yields, comparable to haettner
+requires:
+simulation files at different depth IAEA_1 .. IAEA_2 etc. in macro/depth/yields to be run (all of them!)
+
+fragmentEnergyDistributionDifferentAngles.C
+what:
+plots the fragmentEnergy.C stuff for a number of angles with same color-coding as GSI data is published with in the same histogram.
+requires:
+works with any file but has no data to compare to (missing in data-set

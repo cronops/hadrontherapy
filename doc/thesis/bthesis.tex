@@ -141,7 +141,7 @@ label=listing:boundary}}
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
 
-\mysection{Acknowledgement}
+\mysection{Acknowledgements}
 
 I wrote this paper as a part of the Helsinki Institute of Physics (HIP) summer student program at the European Organization for Nuclear Research (CERN) in the summer of 2009. I would like to thank both CERN and HIP for this incredible summer in a very scientific and innovative environment. Furthermore, I would also specifically like to thank the following persons for providing me with the help and support needed to accomplish this paper.
 
@@ -158,6 +158,14 @@ I also greatly appreciate all the time Emma Haettner took to clarify through per
 \\
 \\
 - Gillis Danielsen 04.10 2009
+\\
+\\
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{images/logos.png}
+ % logos.png: 7602291x7274607 pixel, 0dpi, infxinf cm, bb=
+\end{center}
+
+
 %% Pakotetaan uusi sivu varmuuden vuoksi, jotta 
 %% mahdollinen suomenkielinen ja englanninkielinen tiivistelmä
 %% eivät tule vahingossakaan samalle sivulle
@@ -204,24 +212,30 @@ I also greatly appreciate all the time Emma Haettner took to clarify through per
 %Carbon beams are a promising new alternative to traditional radiation cancer therapy. 
 The history of radiation treatments dates back to 1895 when W.K.~Roentgen discovered the x-rays. It was not long before these photon rays were used to treat malign tissue. The first methods used were on today's standards very crude, and much work has gone into perfecting the treatments in order to minimize the effect of the rays on the surrounding healthy tissue and maximize the dose delivered to the malign tissue.
 
-However, due to the statistical nature of the photon interactions, a beam of many photons is
-exponentially attenuated yielding an exponential decrease of the dose with the depth. To
+However, because of to the statistical nature of the photon interactions, a beam of many photons is
+exponentially attenuated yielding an exponential decrease of the dose as a function of the depth. To
 obtain a higher dose in the tumor than in the surrounding normal tissue, many irradiation
 fields are used. The cost of this method is that a large volume of the normal tissue
 will suffer from a high dose. By replacing the x-rays with high energy photons, the dose
-maximum is shifted a few centimeters deeper and the exponential decrease is more shallow,
-which improves the ratio between dose in the tumors and in the normal tissue. Although very sophisticated variations of the photon treatments have been perfected over time, photon therapies still produce considerable harm to the surrounding tissue. 
+maximum is moved slightly deeper and the exponential decrease becomes more shallow,
+this improves the ratio between dose in the tumors and in the normal tissue. Although very sophisticated variations of the photon treatments have been perfected over time, photon therapies still produce considerable harm to the surrounding tissue. 
 
-Much younger and less widely used technologies are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavier ions are charged particles and therefore interact with tissue in a much different way to photons. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the Bragg-peak, and was first discovered by William Henry Bragg in 1903.
+Much younger and less widely used technologies are those of hadron- or heavy-ion based radiotherapies. Hadrons and heavier ions are charged particles and therefore interact with tissue in a much different way to photons as shown in figure~\ref{fig:DosesFromHaettner}. The dose-profile contains a much sharper peak due to the primary halting force being electromagnetic interaction. This peak is called the Bragg-peak, and was first discovered by William Henry Bragg in 1903.
 
 The field of hadron treatments was pioneered at the Lawrence Berkeley Laboratory (LBL). Based on research done at the Berkeley cyclotron J.~Wilson first recommended the use of protons as a treatment method in a 1946 paper~\cite{RW46}. Furthermore, the first de facto treatment was administered at Berkeley in 1953. Today there are a number of proton-based therapies in clinical use all around the world, for example in Harvard General Hospital (fig~\ref{fig:HarvardHadron}).
-\begin{figure}[h]
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{images/HarvardHadronTreatment.png}  
 \caption{\label{fig:HarvardHadron} Example of Geant4 proton treatment planing simulation for brain tumour shown.} 
 \end{center}
 \end{figure} 
 Heavy-ion therapies have remained considerably less common and have remained on a more experimental level. Clinical trials were conducted at LBL inbetween 1977 and 1993 with $^{20}$Ne. At the end of 2008 the Particle Therapy Co-Operative  Group (PTCOG) estimated that more than 7000 heavy-ion treatments had been conducted at treatment facilities it monitors worldwide. Treatments based on $^{12}$C beams have been offered at NISR in Japan and in Germany at GSI~\cite{PTCOGstat}. Carbon beams is currently the most active and promising area of heavy-ion therapy research. 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/DosesFromHaettner.png}  
+\caption{\label{fig:DosesFromHaettner} Relative doses deposited in tissue through ionizing carbon, proton and photon beams compared. Data and figure courtesy of Weber~\cite{weber} and Haettner~\cite{ehaettner}.} 
+\end{center}
+\end{figure} 
 
 The motivations for heavy-ion treatments as an alternative or complement to hadron treatments are considerable. Firstly carbon ions have the added advantage of higher ionization-density at the end of their range, causing greater correlated damage to the DNA-structure of a single cancerous cell and therefore induces damage in a way that makes it less likely the cell is able to repair. In a 2008 article O.~Jäkel~\cite{ojakel} approximates the beam's increase in biological efficiency by a factor between 1.5 and 3 in comparison to proton treatment depending on the application. Secondly, Heavy-ions ions are less scattered in lateral directions which yields better dosage control in many applications. However, the tradeoff is that carbon-ions will fragment into smaller particles, yielding an unwanted ``tail`` to the energy-loss profile. One of the main motivations of the work is to study this ''tail'' for the ``worst case scenario'' of 400~MeV, which is an upper limit in medical applications.
 
@@ -367,7 +381,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \item The geometry, beam and beamline had to be rewritten to correspond to the experimental setup at GSI~\cite{ehaettner}, but in such a way that the geometries may be interchanged through macro commands. Rewriting the geometry also meant having to rewrite the detection code, which defines what is recorded and where.
 \item Analysis was done in ROOT. Bypassing AIDA that was default in the hadrontherapy example.
 \item The possibility for multiple runs with different parameters per macro through messenger macro command was implemeneted. Example in appendix ~\ref{AppendixD}.
-\item The code was documented through DOXYGEN.
+\item The code was documented through DOXYGEN~\footnote{DOXYGEN is a open-source documentation system for C++ and many other languages. It produces easily readable and visualized documentation from documentation integrated inside the source code. DOXYGEN was primarily developed by D. Van Heesh and is freely available online from http://www.doxygen.org.}.
 \end{itemize}
 
 
@@ -391,7 +405,7 @@ Reference data for the measurements involved in this paper have been acquired fr
 
 \subsubsection{H1 measurements}
 
-\ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. This ''H1 measurements`` setup was recreated in the simulation environment. The major differences being:
+Figure \ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. This ''H1 measurements`` setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
 \item The pipe in the water phantom was by inspection of photograph~\ref{fig:ehaettnerSetupPhotograph} deemed impossible to recreate in such a way that it could be assumed to recreate any backscattering effects or similar induced by the pipe. Thus a simple cube-shaped phantom was used.
 \item The water phantom had the cross-section of 50x60~cm. However, the beam exit-window had only an area of 32x8~cm. It was assumed that the detector was during angular experiments moved in the horizontal plane (the broader side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of 32x32~cm in the y-z plane. 
@@ -464,7 +478,7 @@ In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the 
 
 \subsubsection{Beam attenuation}
 
-In order to calculate the Bragg curve of the beam a water phantom of 40~cm was placed in the path of the beam. The amount of water was approximated on the basis of GSI data so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 water-slices placed perpendicular to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice. Thus a histogram of a characteristic Bragg-curve is recorded.
+In order to calculate the Bragg curve of the beam a water phantom of 35~cm was placed in the path of the beam. The amount of water was approximated on the basis of GSI data so that the entire Bragg-curve and a considerable part of the fragment-tail would be visible. This water phantom was divided into 400x1x1 primitive scorer voxels. This in effect means the water phantom was presented as 400 water-slices placed perpendicular to the beam. The Bragg-peak is calculated by saving the energy-deposits in every slice. Thus a histogram of a characteristic Bragg-curve is recorded.
 
 \subsubsection{Definition of angular values\label{AngularDistributionText}}
 
@@ -587,7 +601,7 @@ Data for the energy distributions can here only be compared to a copy directly f
 \label{fig:AEDistrib1}
 }
 \label{fig:AngularEnergyDistribution}
-\caption[Optional caption for list of figures]{The angular energy distributions with a 27.9~cm water phantom. Although the yields at small angles seems to be clearly smaller in simulations than in experiments the distribution of energies is a fair match.}
+\caption[Optional caption for list of figures]{The angular energy distributions with a 27.1~cm (27.9~cm WE) water phantom. Although the yields at small angles seems to be clearly smaller in simulations than in experiments the distribution of energies is a fair match.}
 \end{figure}
 
 \subsection{Bragg curve}
@@ -606,13 +620,13 @@ The greatest difference is the average ionization per meter in water, which is a
 
 \clearpage
 \section{Conclusion and outlook}
-Considering the relative quality of prediction of Monte Carlo models for hadronic physics it may be concluded that results all in all argue well with experimental data. However, it is clear that there are certain discrepancies in the results which are not within the error-margins of the experimental data.
+Considering the relative quality of prediction by Monte Carlo models for hadronic physics it may be concluded that results all in all argue well with experimental data. However, it is clear that there are certain discrepancies in the results which are not within the error-margins of the experimental data.
 
-The most aparent one being the missing forward yield of fragments and further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
+The most aparent problem being the missing forward yield of fragments. Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
 
-For further studied the simulation may be altered so that the detection-voxels in the phantom are changed to the \textit{G4SensitiveDetector} type from \textit{G4PrimitiveDetector}. This change will allow better analysis of what happens inside the water phantom instead of just the analysis of the resulting fragment distributions that was the focus of this work.
+For further studies the simulation may be altered so that the detection-voxels in the phantom are changed to the \textit{G4SensitiveDetector} type from \textit{G4PrimitiveDetector}. This change will allow better analysis of what happens inside the water phantom beyond only the analysis of the resulting fragment distributions that was the focus of this work.
 
-Thus, I hope through this work to provide a contribution to the pool of carbon treatment related simulation analyses, and ease the development of simulation models.
+I hope through this work to provide a contribution to the pool of carbon treatment related simulation analyses, and ease the development of simulation models.
 
 The experimental data pool of carbon beams is rather limited. The GSI measurements by E.Haettner in 2006 used as reference in this paper are of good quality with relatively good possibilities for recreating the experiment for data-comparison. However, as simulation benchmarking was not the primary intent for creating this data there remains a number of things in the experimental data that were not recreatable in the simulation code.
 
@@ -819,7 +833,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:fragmentYieldsForC}
 }
 \label{fig:fragmentYieldsZeroToTenDegrees}
-\caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles. Match is fair with experimental data. Especially when considering the rather large error margins for heavyer fragments given by Haettner.}
+\caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles. Match is fair with experimental data. Especially when considering the large uncertainty reported in the experimental data for heavier fragments.}
 \end{figure}
 
 \clearpage
@@ -876,7 +890,7 @@ class HadrontherapyAnalysisFileMessenger: public G4UImessenger
 \begin{center}
 \includegraphics[width=0.3\textwidth]{images/setFileNameMessenger_1.png}  
 \includegraphics[width=0.7\textwidth]{images/setFileNameMessenger_2.png}  
-\caption{\label{fig:messengerUML} UML diagrams for messen ger class}
+\caption{\label{fig:messengerUML} UML diagrams for messenger class}
  
  \end{center}
  \end{figure}
