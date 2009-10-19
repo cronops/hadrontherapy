@@ -145,7 +145,7 @@ This thesis focuses on the simulation of carbon beams in a water phantom using G
 
 I wrote this paper as a part of the Helsinki Institute of Physics (HIP) summer student program at the European Organization for Nuclear Research (CERN) in the summer of 2009. I would like to thank both CERN and HIP for this incredible summer in a very scientific and innovative environment. Furthermore, I would also specifically like to thank the following persons for providing me with the help and support needed to accomplish this paper.
 
-Firstly, I would like to thank my supervisor Aatos Heikkinen for his tireless efforts within his tight schedule to make my stay at CERN as productive and enjoyable as possible.
+Firstly, I would like to thank my instructor Aatos Heikkinen for his tireless efforts within his tight schedule to make my stay at CERN as productive and enjoyable as possible.
 
 Secondly, Pekka Kaitaniemi of CEA Saclay was of great technical expertise and provided me with valuable answers to many of my questions.
 
@@ -380,8 +380,8 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \begin{itemize}
 \item The geometry, beam and beamline had to be rewritten to correspond to the experimental setup at GSI~\cite{ehaettner}, but in such a way that the geometries may be interchanged through macro commands. Rewriting the geometry also meant having to rewrite the detection code, which defines what is recorded and where.
 \item Analysis was done in ROOT. Bypassing AIDA that was default in the hadrontherapy example.
-\item The possibility for multiple runs with different parameters per macro through messenger macro command was implemeneted. Example in appendix ~\ref{AppendixD}.
-\item The code was documented through DOXYGEN~\footnote{DOXYGEN is a open-source documentation system for C++ and many other languages. It produces easily readable and visualized documentation from documentation integrated inside the source code. DOXYGEN was primarily developed by D. Van Heesh and is freely available online from http://www.doxygen.org.}.
+\item The possibility for multiple runs with different parameters per macro through messenger macro command was implemeneted. Example in appendix~\ref{AppendixD}.
+\item The code was documented through DOXYGEN~\footnote{DOXYGEN is a open-source documentation system for C++ and many other languages. It produces easily readable and visualized documentation from markups integrated in the source code. DOXYGEN was primarily developed by D. Van Heesh and is freely available online from http://www.doxygen.org.}.
 \end{itemize}
 
 
@@ -463,13 +463,13 @@ This means that data acquired through the simulation technique used should be co
 
 %0.2^2/(3+0.279/2)^2
 
-The beam is considered a pen-shaped beam. Haettner has performed measurements to define the beam's characteristics.
+The beam energy is 400MeV/u and is considered a pen-shaped beam. Haettner has performed measurements to further define the beam's characteristics.
 
-Firstly, Haettner evaluates the accuracy of the beam's energy to be $\Delta E/E\approx5\times10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1~MeV/u and 2~MeV/u for the 200 respectively 400~MeV Beams.
+Firstly, Haettner evaluates the accuracy of the beam's energy to be $\Delta E/E\approx5\times10^{-3}$, meaning that the energy distribution of the beam is very narrow. This error was simulated with a gaussian distribution with the standard deviation 1~MeV/u and 2~MeV/u for the 200 respectively 400~MeV/u Beams.
 
-Secondly, Haettner further characterizes the beam by measuring it in air at three distances (0~m,1~m and 3~m). The incident beam was assumed to be parallel before leaving the vacuum tube window, thus assuming recorded enlargement of the beam's FWHM is explainable simply by the scattering from the exit-window and air. However, in this paper these results could not be verified and thus a very small deviation in the beam's angular distribution was introduced (chapter ~\ref{beamShapeAnalysis}). The initial width of the beam was assumed normally distributed and thus the original 4~mm FWHM of the beam width was reproduced by picking beam $y$ and $z$ deviations from a normal distribution with $\sigma = 1.7$~mm according to the relation $$\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$$
+Secondly, Haettner further characterizes the beam by measuring it in air at three distances (0~m,1~m and 3~m). The incident beam was assumed to be parallel before leaving the vacuum tube window, thus assuming recorded enlargement of the beam's FWHM is explainable simply by the scattering from the exit-window and air. However, in this paper these results could not be verified and thus a very small deviation in the beam's angular distribution was introduced (chapter~\ref{beamShapeAnalysis}). The initial width of the beam was assumed normally distributed and thus the original 4~mm FWHM of the beam width was reproduced by picking beam $y$ and $z$ deviations from a normal distribution with $\sigma = 1.7$~mm according to the relation $$\mathrm{FWHM} =   2 \sqrt{2 \ln 2 } \; \sigma \approx 2.35482 \; \sigma$$
 
-In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure ~\ref{fig:haettner48}. However, even though the overall distribution produced in our results(Appendix~\ref{AppendixA}) was in line with experimental data the FWHM measure was not good for comparison due to the missing height of the forward peak.
+In experimental work~\cite{ehaettner} proceeds to analyze the scattering of the beam with variable water thicknesses, shown in figure~\ref{fig:haettner48}. However, even though the overall distribution produced in our results(Appendix~\ref{AppendixA}) was in line with experimental data the FWHM measure was not good for comparison due to the missing height of the forward peak.
 
 %\subsection{Water tank}
 %The water phantom had in the experiment the cross-section of 50x60cm. However, the beam exit-window had %only an area of 32x8 cm, and the physical parameters of what covered other parts was unknown. Therefore it %was assumed that the detector was during angular experiments moved in the horizontal plane (the broader %side of the window) and thus it was deemed a fair assumption to use a water phantom with a cross-section of %32x32cm in the y-z plane. This regrettably makes it impossible to study backscattering and similar effects %with high precision.
@@ -561,7 +561,7 @@ The results and comparison are gathered in appendix~\ref{AppendixB}. The agreeme
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.1~cm (slightly beyond the bragg-peak)}
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution from 400~MeV/u beam. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.1~cm (slightly beyond the bragg-peak)}
 \end{center}
 \end{figure}
 The data was normalized for bin-width (9~MeV) and the solid angle of the square H1 detector centered at $0^{\circ}$ angle from the mean direction of the beam.
@@ -614,7 +614,7 @@ The greatest difference is the average ionization per meter in water, which is a
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/plots/braggPeak/braggPeakComparisonToData.png}  
-\caption{\label{fig:braggPeakCompared} Normalized Bragg Curve, experimental data is red and Geant4 simulation blue.}
+\caption{\label{fig:braggPeakCompared} Normalized Bragg Curve for 400~MeV/u beam, experimental data is red and Geant4 simulation blue.}
  \end{center}
  \end{figure}
 
@@ -679,7 +679,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:D_34.7_1_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{Angular distribution of hydrogen fragments.}
+\caption[Optional caption for list of figures]{Angular distribution of hydrogen fragments from 400~MeV/u carbon beam.}
 \end{figure}
 \clearpage
 \subsection{Helium}
@@ -706,7 +706,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:D_34.7_2_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{Angular distribution of helium fragments.}
+\caption[Optional caption for list of figures]{Angular distribution of helium fragments from 400~MeV/u carbon beam.}
 \end{figure}
 \clearpage
 \subsection{Lithium}
@@ -733,7 +733,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:D_34.7_3_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{Angular distribution of lithium fragments. The double-peak in \subref{fig:D_31.2_3_N} is a statistical error due to small sample.}
+\caption[Optional caption for list of figures]{Angular distribution of lithium fragments from 400~MeV/u carbon beam. The double-peak in \subref{fig:D_31.2_3_N} is a statistical error due to small sample.}
 \end{figure}
 \clearpage
 \subsection{Beryllium}
@@ -760,7 +760,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:D_43.7_4_N}
 }
 \label{fig:subfigureExample}
-\caption[Optional caption for list of figures]{Angular distribution of beryllium fragments.}
+\caption[Optional caption for list of figures]{Angular distribution of beryllium fragments from 400~MeV/u carbon beam.}
 \end{figure}
 \clearpage
 \subsection{Boron}
@@ -787,7 +787,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:D_34.7_5_N}
 }
 \label{fig:BoronAD}
-\caption[Optional caption for list of figures]{Angular distribution of boron fragments.}
+\caption[Optional caption for list of figures]{Angular distribution of boron fragments from 400~MeV/u carbon beam.}
 \end{figure}
 \clearpage
 
@@ -833,7 +833,7 @@ The following graphs present the angular distributions of the scattered fragment
 \label{fig:fragmentYieldsForC}
 }
 \label{fig:fragmentYieldsZeroToTenDegrees}
-\caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles. Match is fair with experimental data. Especially when considering the large uncertainty reported in the experimental data for heavier fragments.}
+\caption[Optional caption for list of figures]{Fragment yields for 0$^{\circ}$-10$^{\circ}$ angles from 400~MeV/u carbon beam. Match is fair with experimental data. Especially when considering the large uncertainty reported in the experimental data for heavier fragments.}
 \end{figure}
 
 \clearpage
@@ -852,11 +852,11 @@ The following graphs present the angular distributions of the scattered fragment
 \setcounter{section}{1}
 \section{\label{AppendixD}: Improving usability through messenger macro commands}
 
-The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again.
+The first action task taken in this work was to implement means to speed up the use of the analysis model by means of messenger macro commands that would let the user change geometry setup inbetween runs without needing to compile the entire simulation again. The documentation of this task also describes the nature of the work involved in many other more significant changes in the project.
 
 Macro commands are interpreted by the code, and are sent to the simulation and Geant4 through a specific messenger class. The features implemented through macro commands were
 \begin{itemize}
- \item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
+\item Ability to run multiple runs in one macro file, so that output is saved in separate root-files.
 \item Ability to change the thickness of the water phantom, in such a way that all other parts of the geometry are changed as well to accustom the new phantom.
 \item Ability to control the scoring area in the phantom and what is scored through command-based scoring.
 \end{itemize}
@@ -936,7 +936,7 @@ The kinetics of the model are bound by the physical laws of conservation of bary
 
 The major free parameter of the INCL code is the stopping-time; the time before thermal equilibrium can be assumed and thus the process handed over to the evaporation and fission phase. The INCL code has chosen the stopping time as a suitable function of the target nucleus size so that $$t_{stop} = f_{stop}t_{0}(\frac{A_T}{208})^{0.16},$$ where $f_{stop} = 1.0$. The stopping-time of INCL4 is considerably longer than for many models where discrete potential barriers are defined for the nucleus.
 
-A further discussion of the theoretical basis of the Liège INC model and INCL code is available in references ~\cite{PhysRevC.66.044615,iia}.
+A further discussion of the theoretical basis of the Liège INC model and INCL code is available in references~\cite{PhysRevC.66.044615,iia}.
 
 \begin{figure}[ht]
 \begin{center}
@@ -978,7 +978,7 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
  \end{center}
  \end{figure}
 
-A further discussion of the theoretical basis of the ABLA code is available in references ~\cite{ablatalk,iia}.
+A further discussion of the theoretical basis of the ABLA code is available in references~\cite{ablatalk,iia}.
 %fixme add another ABLAsource
 
 
