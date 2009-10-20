@@ -3,11 +3,9 @@
 # 080930 generalisig the scrip with parameters (tex, pdfviewer) 
 # 080212 collected example code from Geant4
 
-d         = ah09cTalk
-#d         = ah09bCommittee
+d         = g4CarbonCRP
 tex       = pdflatex
-#tex       = latex
-pdfviewer = /home/aatos/Desktop/system/tools/acroread/opt/Adobe/Reader8/bin/./acroread
+pdfviewer = xpdf
 #pdfviewer = gv
 #pdfviewer = firefox
 #pdfviewer = evince
