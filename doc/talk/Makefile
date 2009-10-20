@@ -11,20 +11,12 @@ pdfviewer = xpdf
 #pdfviewer = evince
 dviviewer = xdvi -allowshell -geometry 700x900+750+100 
 
-
 all: 
 	@echo :::document = $(d)
 	@echo :::preparing latex ...
 	@c; rm -f *.aux *.toc
-ifdef AHSYSTEM
-	rm -f refs.bib ; cp $D/refs.bib . ;
-endif
 	@makeindex $(d).tex; $(tex) $(d); bibtex $(d); $(tex) $(d); $(tex) $(d); asy $(d); $(tex) $(d)
-ifdef AHSYSTEM
-	$(dviviewer) $(d).dvi &
-endif
 	$(pdfviewer) $(d).pdf
-
 
 talk: d =ah09cTalk
 talk: all
@@ -32,35 +24,10 @@ talk: all
 doc: d =ah09bCommittee
 doc: all
 
-ca:
-	rm -f $(d).pdf $(d).ps *.out $(d)_*.eps $(d).asy
 pdf:
 	@echo :: prepare ps and pdf from dvi
 	@dvips -R0 $(d).dvi -o $(d).ps
 	@ps2pdf $(d).ps
-ifdef AHSYSTEM
-	$(pdfviewer) $(d).pdf &
-endif
-
-
-s:
-	@echo :::launching browser... 
-	@konqueror -geometry 650x1600+950+0 $(d).dvi &
-	@echo :::done.
-
-CODE = G4NucleiModel.cc
-codetex: #prepare file to be included to latex
-	echo " \begin{verbatim} "  > code/$(CODE).tex; \
-        cat  code/$(CODE)         >> code/$(CODE).tex; \
-        echo " \end{verbatim}   " >> code/$(CODE).tex; \
-	ls -alt code
-
-FIX  = FIX080213
-codefix: #prepare file to be included to latex
-	echo " \begin{verbatim} "       > code/$(FIX)$(CODE).tex; \
-        grep -nisr $(FIX) code/$(CODE) >> code/$(FIX)$(CODE).tex; \
-        echo " \end{verbatim}   "      >> code/$(FIX)$(CODE).tex; \
-	ls -alt code
 
 #-----------------SLIDE
 slides:
@@ -93,48 +60,4 @@ filter: $(FISOURCEFILE).tex
 
 #END SLIDE -----------------------
 
-includes::
-	@for dir in HEPGeometry HEPRandom; do \
-	    (cd $$dir && $(MAKE) $@); \
-	 done   
 
-FIELD += 01 02 03 04
-# Field
-field:
-	@$(ECHO) Making Field Tests...
-	@for nn in $(FIELD); do \
-	  (cd test7$$nn && $(MAKE)); \
-	done;:
-
-SUBDIRS = N01 N02 N03 N04 N05 N06 N07
-clean:
-	@for dir in $(SUBDIRS); do (cd $$dir; $(MAKE) clean); done
-
-unique := $(shell echo $$$$)
-libmap: liblist
-	@$(ECHO) "Libmap stage. Searching for GNUmakefiles and sorting ..."
-	@find . \
-	  -name GNUmakefile -exec $(GREP) -l '^ *name *:=' {} \; \
-	  | sort \
-	  > /tmp/G4_all_lib_makefiles.$(unique);
-
-ifneq (,$(findstring Linux-g++,$(G4SYSTEM)))
-	@rm -f $(G4TMPDIR)/G4run/G4RunManagerKernel.*
-
-else
-	@cd $(G4INSTALL)/source/run; $(MAKE) G4FPE_DEBUG=1;
-	@if [ ! -d $(G4LIBDIR) ] ; then mkdir $(G4LIBDIR) ;fi
-
-name := G4hepgeometry
-
-ifndef G4INSTALL
-  G4INSTALL = ../../..
-endif
-
-glob global: banner kernel
-ifdef G4LIB_USE_G3TOG4
-	@for dir in $(SUBDIR4); do (cd $$dir && $(MAKE)); done;:
-endif
-	@$(MAKE) libmap
-	@$(ECHO) "Libraries installation completed !"; done
-endif
