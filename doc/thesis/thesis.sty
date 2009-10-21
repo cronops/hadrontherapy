@@ -25,20 +25,20 @@
 \RequirePackage{ifthen}
 \RequirePackage{calc}
 \newboolean{English}
-\newboolean{Finnish}
-\DeclareOption{english}{\setboolean{English}{true}\setboolean{Finnish}{false}}
-\DeclareOption{finnish}{\setboolean{Finnish}{true}\setboolean{English}{false}}
+\newboolean{Swedish}
+\DeclareOption{english}{\setboolean{English}{true}\setboolean{Swedish}{false}}
+\DeclareOption{swedish}{\setboolean{Swedish}{true}\setboolean{English}{false}}
 \ExecuteOptions{english}
 \ProcessOptions
 
-\ifthenelse{\boolean{Finnish}}{
-  \RequirePackage[finnish]{babel}
+\ifthenelse{\boolean{Swedish}}{
+  \RequirePackage[swedish]{babel}
   \RequirePackage[latin1]{inputenc}
   \RequirePackage{ae,aecompl}
 }{}
 
 \newcommand*{\IfEnglish}[2]{\ifthenelse{\boolean{English}}{#1}{#2}}
-\newcommand*{\IfFinnish}[2]{\ifthenelse{\boolean{Finnish}}{#1}{#2}}
+\newcommand*{\IfSwedish}[2]{\ifthenelse{\boolean{Swedish}}{#1}{#2}}
 
 %%%%%%% Float control
 \renewcommand{\floatpagefraction}{0.1}
@@ -64,7 +64,7 @@
 }
 \newcommand*{\Univ@rsity}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\univ@rsity}{%
- \ifthenelse{\equal{#1}{finnish}}{\korke@koulu}{%
+ \ifthenelse{\equal{#1}{swedish}}{\korke@koulu}{%
  \IfEnglish{\univ@rsity}{\korke@koulu}%
  }}%
 }
@@ -76,14 +76,14 @@
 }
 \newcommand*{\F@culty}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\f@culty}{%
- \ifthenelse{\equal{#1}{finnish}}{\ti@d@kunt@}{%
+ \ifthenelse{\equal{#1}{swedish}}{\ti@d@kunt@}{%
  \IfEnglish{\f@culty}{\ti@d@kunt@}%
  }}%
 }
 %
 \newcommand*{\AbstF@clty}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\f@culty}{%
- \ifthenelse{\equal{#1}{finnish}}{\ti@d@kunt@}{%
+ \ifthenelse{\equal{#1}{swedish}}{\ti@d@kunt@}{%
  }}%
 }
 %
@@ -95,7 +95,7 @@
 %
 \newcommand*{\D@gr@@Prog}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\d@gpr@g}{%
- \ifthenelse{\equal{#1}{finnish}}{\tutk@hj}{%
+ \ifthenelse{\equal{#1}{swedish}}{\tutk@hj}{%
  }}%
 }
 %
@@ -149,7 +149,7 @@
 }
 \newcommand*{\Th@sistitle}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\th@stitl@}{%
- \ifthenelse{\equal{#1}{finnish}}{\ty@nnimi}{%
+ \ifthenelse{\equal{#1}{swedish}}{\ty@nnimi}{%
  \IfEnglish{\th@stitl@}{\ty@nnimi}%
  }}%
 }
@@ -169,7 +169,7 @@
 }
 \newcommand*{\L@ng}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\l@ngu@ge}{%
- \ifthenelse{\equal{#1}{finnish}}{\ki@li}{%
+ \ifthenelse{\equal{#1}{swedish}}{\ki@li}{%
  \IfEnglish{\l@ngu@ge}{\ki@li}%
  }}%
 }
@@ -181,7 +181,7 @@
 }
 \newcommand*{\Sup@rvisor}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\sup@rvis@r}{%
- \ifthenelse{\equal{#1}{finnish}}{\v@lv@j@}{%
+ \ifthenelse{\equal{#1}{swedish}}{\v@lv@j@}{%
  \IfEnglish{\sup@rvis@r}{\v@lv@j@}%
  }}%
 }
@@ -193,7 +193,7 @@
 }
 \newcommand*{\Instruct@r}[1]{% internal macro
  \ifthenelse{\equal{#1}{english}}{\instr@ct@r}{%
- \ifthenelse{\equal{#1}{finnish}}{\ohj@@j@}{%
+ \ifthenelse{\equal{#1}{swedish}}{\ohj@@j@}{%
  \IfEnglish{\instr@ct@r}{\ohj@@j@}%
  }}%
 }
@@ -211,9 +211,9 @@
    {Thesis submitted for examination for the degree of %
     Licentiate of Science in Technology}{}%
  }%
- \newcommand*{\toclanguage}{(in Finnish)}%
+ \newcommand*{\toclanguage}{(in Swedish)}%
 }{}%
-\IfFinnish{%
+\IfSwedish{%
  \ifthenelse{\boolean{BSc}}{%
    \newcommand*{\coversupervisorname}{Ty\"on valvoja:}%
  }{%
@@ -321,24 +321,24 @@
  \ifthenelse{\boolean{MSc}}{abstract of the master's thesis}{}%
  \ifthenelse{\boolean{Lic}}{abstract of the licentiate's thesis}{}%
 }
-%% Abstract field names in finnish
-\newcommand*{\tiedekuntaname}{Tiedekunta}
-\newcommand*{\tekijaname}{Tekij\"a}
-\newcommand*{\tyoname}{Ty\"on nimi}
-\newcommand*{\avainsanatname}{Avainsanat}
-\newcommand*{\paivamaaraname}{P\"aiv\"am\"a\"ar\"a}
-\newcommand*{\kieliname}{Kieli}
-\newcommand*{\sivumaaraname}{Sivum\"a\"ar\"a}
-\newcommand*{\valvojaname}{\ifthenelse{\boolean{BSc}}{Vastuuopettaja}{Valvoja}}
-\newcommand*{\ohjaajaname}{Ohjaaja}
-\newcommand*{\tutkohjname}{Tutkinto-ohjelma}
-\newcommand*{\professuuriname}{Professuuri}
-\newcommand*{\koodiname}{Koodi}
-\newcommand*{\tiivistelmaname}{Tiivistelm\"a}
+%% Abstract field names in swedish
+\newcommand*{\tiedekuntaname}{Fakultet}
+\newcommand*{\tekijaname}{F\"orfattare}
+\newcommand*{\tyoname}{Arbetets namn}
+\newcommand*{\avainsanatname}{Nyckelord}
+\newcommand*{\paivamaaraname}{Datum}
+\newcommand*{\kieliname}{Sprak}
+\newcommand*{\sivumaaraname}{Sidm\"angd}
+\newcommand*{\valvojaname}{\ifthenelse{\boolean{BSc}}{Ansvarig l\"arare}{\"Overvakare}}
+\newcommand*{\ohjaajaname}{Handledare}
+\newcommand*{\tutkohjname}{Utbildningsprogram}
+\newcommand*{\professuuriname}{Professur}
+\newcommand*{\koodiname}{Kod}
+\newcommand*{\tiivistelmaname}{Sammandrag}
 \newcommand*{\absheadfin}{%
- \ifthenelse{\boolean{BSc}}{kandidaatinty\"on tiivistelm\"a}{}%
- \ifthenelse{\boolean{MSc}}{diplomity\"on tiivistelm\"a}{}%
- \ifthenelse{\boolean{Lic}}{lisensiaatintutkimuksen tiivistelm\"a}{}%
+ \ifthenelse{\boolean{BSc}}{Kandidatarbetets abstrakt}{}%
+ \ifthenelse{\boolean{MSc}}{Diplomarbetets abstrakt}{}%
+ \ifthenelse{\boolean{Lic}}{Licensiatarbetets abstrakt}{}%
 }
 %% Variables that will take either the english or finnsh values
 \newcommand*{\F@cltn@me}{}
@@ -385,8 +385,8 @@
   \newcommand*{\Pr@fship}{\pr@fshp}%
   \setlength{\absheadlen}{\absheadleneng}%
   \IfEnglish{\addcontentsline{toc}{section}{\abstractname}}{}%
-  \IfFinnish{\addcontentsline{toc}{section}{\tiivistelmaname{} \toclanguage}}{}%
- }{\ifthenelse{\equal{#1}{finnish}}{%
+  \IfSwedish{\addcontentsline{toc}{section}{\tiivistelmaname{} \toclanguage}}{}%
+ }{\ifthenelse{\equal{#1}{swedish}}{%
   \renewcommand*{\F@cltn@me}{\tiedekuntaname}%
   \renewcommand*{\Authn@me}{\tekijaname}%
   \renewcommand*{\Thssn@me}{\tyoname}%
@@ -403,11 +403,11 @@
   \renewcommand*{\@bsthe@der}{\absheadfin}%
   \newcommand*{\Pr@fship}{\pr@fsuuri}%
   \setlength{\absheadlen}{\absheadlenfin}%
-  \IfFinnish{\addcontentsline{toc}{section}{\tiivistelmaname{}}}{}%
+  \IfSwedish{\addcontentsline{toc}{section}{\tiivistelmaname{}}}{}%
   \IfEnglish{\addcontentsline{toc}{section}{\abstractname{} \toclanguage}}{}%
  }{\PackageError{thesis}%
-     {Only english or finnish is allowed as optional parameter.}%
-     {Use english or finnish.}%
+     {Only english or swedish is allowed as optional parameter.}%
+     {Use english or swedish.}%
  }}%
 
  \thispagestyle{empty}%
