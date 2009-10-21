@@ -93,9 +93,9 @@ label=listing:boundary}}
 %% Kaikki mikä paperille tulostuu, on tämän jälkeen
 \begin{document}
 
-\Language{English}{Englanti}
+\Language{English}{Engelska}
 
-\university{helsinki university of technology}{teknillinen korkeakoulu}
+\university{helsinki university of technology}{Tekniska högskolan}
 
 %% Korjaa seuraavat vastaamaan omaa tiedekuntaasi
 \faculty{Faculty of Information and Natural Sciences}%
@@ -103,7 +103,7 @@ label=listing:boundary}}
 %%
 
 %% Vain kandityölle: Korjaa seuraavat vastaamaan tutkinto-ohjelmaasi
-\degreeprogram{Engineering Physics and Mathematics}{}
+\degreeprogram{Engineering Physics and Mathematics}{Teknisk Fysik och Matematik}
 %%
 
 %% Vain DI- ja lisensiaatintyölle
@@ -120,16 +120,16 @@ label=listing:boundary}}
 \author{Gillis Danielsen}
 
 %% Opinnäytteen nimi tulee vain tähän
-\thesistitle{Simulating carbon beam fragmentation on water phantom with Geant4}{}
+\thesistitle{Simulating carbon beam fragmentation on water phantom with Geant4}{Simuleration av kolstråle i vattenfantom med Geant4}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
 %\date{22.11.2009}
 
 %% Kandidaattiseminaarin vastuuopettaja
-\supervisor{Prof. Harri Ehtamo, Ph.D Veikko Karimäki}{}
+\supervisor{Prof. Harri Ehtamo, Ph.D Veikko Karimäki}{Prof. Harri Ehtamo, Docent Veikko Karimäki}
 
 %% Kandidaatintyön ohjaaja
-\instructor{Ph.D Aatos Heikkinen}{}
+\instructor{Ph.D Aatos Heikkinen}{fil.dr. Aatos Heikkinen}
 
 %% Tehdään kansilehti
 \makecoverpage
@@ -140,11 +140,11 @@ label=listing:boundary}}
 \begin{abstractpage}[english]
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.~Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
-\begin{comment}
-\begin{abstractpage}[finnish]
-Detta kandidatarbete fokuserar på simulerandet av kolkärnor som skjuts in i en vattenfantom med hjälp av Geant4 simulationskoden. Denna studie utforskar möjligheten av tillämpningen av Monte Carlo koden för medicinska tungionbehandlingar. Geant4 är ett mångbrukligt fysiksimulationsprogram som är utvecklat vid europeiska organisationen för kärnforskning (CERN). Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, för detta arbete har vi valt att bruka Binary modellen som är utvecklad av flera olika vetenskapliga aktörer i samspel med CERN. Resultaten från simulationerna jämförs med experimentell data från E. Haettners examensarbete vid GSI darmstadt år 2006. Detta arbete är del av den internationella atomenergiorganisationens (IAEA) program för att samla ihop experimentell kärnfysikdata och relaterade Monte Carlo koder och simulationer för medicinska ändamål. I arbetet har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4. Med hjälp av denna kod har vi sedan kunnat modelera och estimera fördelningarna och magnituderna av de uppkomna fragmenten i i slutändan av den primära strålens räckvidd.
+
+\begin{abstractpage}[swedish]
+Detta kandidatarbete fokuserar på simulerandet av kolkärnor som skjuts in i en vattenfantom med hjälp av Geant4 simulationskoden. Denna studie utforskar möjligheten av tillämpningen av Monte Carlo kod för medicinska tungionbehandlingar. Geant4 är ett mångbrukligt fysiksimulationsprogram som är utvecklat vid europeiska organisationen för kärnforskning (CERN). Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, för detta arbete har vi valt att bruka Binary modellen som är utvecklad av flera olika vetenskapliga aktörer i samspel med CERN. Resultaten från simulationerna jämförs med experimentell data från E. Haettners examensarbete vid GSI darmstadt år 2006. Detta arbete är del av den internationella atomenergiorganisationens (IAEA) program för att samla ihop experimentell kärnfysikdata och relaterade Monte Carlo koder och simulationer för medicinska ändamål. I arbetet har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4. Med hjälp av denna kod har vi sedan kunnat modelera och estimera fördelningarna och magnituderna av de uppkomna fragmenten i i slutändan av den primära strålens räckvidd.
 \end{abstractpage}
-\end{comment}
+
 
 \mysection{Preface}
 
@@ -156,7 +156,7 @@ Secondly, Pekka Kaitaniemi of CEA Saclay was of great technical expertise and pr
 
 I also greatly appreciate all the time Emma Haettner took to clarify through personal correspondence the unclear details involved in the data sets received from GSI that were used in this paper.
 
-Furthermore, I would like to thank prof. Harri Ehtamo and docent Veikko Karimäki for supervising this thesis. I also appreciate the initiative by prof. Risto Orava to introduce me to this interesting thesis project.
+Furthermore, I would like to thank prof. Harri Ehtamo and docent Veikko Karimäki for supervising this thesis. I also appreciate the initiative taken by prof. Risto Orava to introduce me to this interesting thesis project.
 \\
 \\
 \\
@@ -370,7 +370,7 @@ From experimental data it has been found that good approximations for the functi
 
 At given mass of fragment $A_f$ the experimental data on the charge $Z_f$ was found to be well described by a Gaussian fit. The average kinetic energy is described through the empirical relation \begin{equation}<T_{kin}>=0.1178Z^2/A^\frac{1}{3} + 5.8.\end{equation}However, the kinetic energy distribution of the asymmetrically scattered fission products is known to have a greater mean than that of the symmetrically distributed ones, which also is compensated.
 
-For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite[Chapter 31]{physicsManual}.
+For further discussion of the Geant4 fission model the reader can consult the Geant4 physics reference manual~\cite{physicsManual}. %It's in chapter 31 but aatos does not like the [] notation :)
 
 \subsubsection{Fermi break-up}
 
@@ -1001,7 +1001,22 @@ ABLA comes with two different fission models SimFis3 and SimFis18. These models 
 A further discussion of the theoretical basis of the ABLA code is available in references~\cite{ablatalk,iia}.
 %fixme add another ABLAsource
 
+\clearpage
+\addcontentsline{toc}{section}{E : Conclusion in Swedish}
+%% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
+\renewcommand{\theequation}{E\arabic{equation}}
+\setcounter{equation}{0}  
+\renewcommand{\thefigure}{E\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{E\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\thesection}{E}
+\setcounter{section}{1}
+\setcounter{subsection}{0}
+%\section{Future work with alternative simulation models \label{appendixincltheory}}
+\section*{\label{sammandragpasvenska}E  : Sammandrag på svenska}
+
+Joo-o jättekiva, hit ska ja hitta på ett sammandrag ännu eftersom man tydligen ska ha de. Bra o ha, skit o va utan, som man säger.
+
+
 \end{document}
-
-
-
