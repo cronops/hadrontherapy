@@ -398,7 +398,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{images/twentyEvents.png}  
-\caption{\label{fig:twentyEvents} Profile view of the simulation with the tracks recorded from 23 incident events with a 27.9~cm phantom. This clearly visualizes the yield of fragments has a clear forward directed distribution.}
+\caption{\label{fig:twentyEvents} Profile view of the simulation with the tracks recorded from 23 incident events with a 27.9~cm phantom. This clearly visualizes the yield of fragments has a forward directed distribution.}
 \end{center}
 \end{figure}
 
@@ -430,7 +430,7 @@ The simulation code is based around the hadrontherapy simulation produced by G.A
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/haettner48.png}  
-\caption{\label{fig:haettner48} Experimental measurements of the relation between the depth in water and FWHM of the incident Carbon beam and fragmented Boron. Figure courtesy of E.~Haettner~\cite{ehaettner}}
+\caption{\label{fig:haettner48} Experimental measurements of the relation between the depth in water and FWHM of the incident carbon beam and fragmented boron. Figure courtesy of E.~Haettner~\cite{ehaettner}}
  \end{center}
  \end{figure}
 
@@ -440,7 +440,7 @@ In the following parts of this paper recreating these measurements through simul
 
 \subsection{Geometries}
 
-\subsubsection{H1 measurements}
+\subsubsection{\label{h1measurements}H1 measurements}
 
 Figure \ref{fig:haettnersetup3} shows the geometry Haettner used in angular and energy distribution measurements with the H1 detector. This H1 detector measurements setup was recreated in the simulation environment. The major differences being:
 \begin{itemize}
@@ -466,7 +466,7 @@ This means that data acquired through the simulation technique used should be co
 
 
 
-\subsection{Characterizing Carbon beam shape for simulation}
+\subsection{Characterizing carbon beam shape for simulation}
 
 %0.2^2/(3+0.279/2)^2
 
@@ -568,12 +568,12 @@ The results and comparison are gathered in appendix~\ref{AppendixB}. The agreeme
 \begin{figure}[h] 
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/plots/fragmentEnergy/fragmentEnergyDistr.png}  
-\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution from 400~MeV/u beam. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.1~cm (slightly beyond the bragg-peak)}
+\caption{\label{fig:fragmentEnergyDistr} Fragment energy distribution from 400~MeV/u beam. Triangles are experimental data, solid lines Geant4 simulation. Water phantom thickness was 27.1~cm (slightly beyond the bragg-peak). Simulation geometry according to section~\ref{h1measurements}}
 \end{center}
 \end{figure}
-The data was normalized for bin-width (9~MeV) and the solid angle of the square H1 detector centered at $0^{\circ}$ angle from the mean direction of the beam.
+The acquired data was normalized for bin-width (9~MeV) and the solid angle of the square H1 detector centered at $0^{\circ}$ angle from the mean direction of the beam.
 
-The shape of the results are mostly in line with the experimental data. However, the yield of Helium is clearly smaller than that of experimental results, also the peak for Boron is considerably lower than in experimental data. These phenomena are repeated also in other water-depths.
+The shape of the results are mostly in line with the experimental data. However, the yield of helium is clearly smaller than that of experimental results, also the peak for boron is considerably lower than in experimental data. These phenomena are repeated also in other water-depths.
 
 \subsection{Angular distribution of fragments}
 \begin{figure}[!h] 
@@ -582,7 +582,7 @@ The shape of the results are mostly in line with the experimental data. However,
 \caption{\label{fig:binnedHydrogen} Scattering angles for hydrogen binned at equal bin lengths. Gaussian and exponential fits are applied.}
  \end{center}
  \end{figure}
-The angular distributions were simulated for a number of phantom-depths before and after the Bragg peak at about 27~cm. Results were normalized per number of incident ions and solid angle. The results were plotted against GSI data and in appendix~\ref{AppendixA}. The simulations were run with phantom thicknesses that were subtracted of water-equivalents. Through personal correspondence with E.~Haettner it was apparent that the measurements made in July were compensated with a $0.8$~cm water equivalent for the non-water parts of the experiment
+The angular distributions were simulated for a number of phantom-depths before and after the Bragg peak at about 27~cm. Results were normalized per number of incident ions and solid angle. The results were plotted against GSI data and in appendix~\ref{AppendixA}. The simulations were run with phantom thicknesses that were subtracted of water-equivalents. Through personal correspondence with E.~Haettner it was apparent that the measurements made in July 2006 were compensated with a $0.8$~cm water equivalent for the non-water parts of the experiment
 
 Results for $\phi \in [0,\arctan(\frac{\text{H1 sidelength}}{2 \times \text{scattering distance}}) \approx 0.4^{\circ}]$ were discarded in the plots due to the amount of stochastic error in this interval. These stochastic effects arose due to the annulus read-out area approximation when $r_{min} = 0$.
 
@@ -603,7 +603,7 @@ Data for the energy distributions can here only be compared to a copy directly f
 \includegraphics[width=0.45\textwidth]{images/plots/angularEnergyDistributions/EHaettnerDataForAEDistrib1.png}
 \label{fig:EHaettnerDataForAEDistrib1}
 }
-\subfigure[Simulation data]{
+\subfigure[Geant4 simulation]{
 \includegraphics[width=0.45\textwidth]{images/plots/angularEnergyDistributions/AEDistrib2.png}
 \label{fig:AEDistrib1}
 }
@@ -633,7 +633,7 @@ The experimental data pool of carbon beams is rather limited. The GSI measuremen
 
 It may be concluded that results all in all argue well with experimental data. However, it is clear that there are certain discrepancies in the results which are not within the error-margins of the experimental data.
 
-The most aparent problem being the missing forward yield of fragments([$0-4~\deg$]). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
+The most aparent problem being the missing forward yield of fragments~([$0-4~^\circ$]). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
 
 For further studies the simulation may be altered so that the detection-voxels in the phantom are changed to the \textit{G4SensitiveDetector} type from \textit{G4PrimitiveDetector}. This change will allow better analysis of what happens inside the water phantom beyond only the analysis of the resulting fragment distributions that was the focus of this work.
 
