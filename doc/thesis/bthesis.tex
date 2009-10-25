@@ -140,11 +140,11 @@ label=listing:boundary}}
 \begin{abstractpage}[english]
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.~Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
-
+\begin{comment}
 \begin{abstractpage}[swedish]
 Detta kandidatarbete fokuserar på simulerandet av kolkärnor som skjuts in i en vattenfantom med hjälp av Geant4 simulationskoden. Denna studie utforskar möjligheten av tillämpningen av Monte Carlo kod för medicinska tungionbehandlingar. Geant4 är ett mångbrukligt fysiksimulationsprogram som är utvecklat vid europeiska organisationen för kärnforskning (CERN). Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, för detta arbete har vi valt att bruka Binary modellen som är utvecklad av flera olika vetenskapliga aktörer i samspel med CERN. Resultaten från simulationerna jämförs med experimentell data från E. Haettners examensarbete vid GSI darmstadt år 2006. Detta arbete är del av den internationella atomenergiorganisationens (IAEA) program för att samla ihop experimentell kärnfysikdata och relaterade Monte Carlo koder och simulationer för medicinska ändamål. I arbetet har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4. Med hjälp av denna kod har vi sedan kunnat modelera och estimera fördelningarna och magnituderna av de uppkomna fragmenten i i slutändan av den primära strålens räckvidd.
 \end{abstractpage}
-
+\end{comment}
 
 \mysection{Preface}
 
@@ -314,7 +314,7 @@ The evaporation phase is calculated by separate models that only need the excita
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{images/inclScematic.png}  
-\caption{\label{fig:inclschematic} Schematic diagram of cascade and evaporation models. Image courtesy of E.~Haettner~\cite{ehaettner}.}
+\caption{\label{fig:inclschematic} Schematic diagram of cascade and evaporation models.}
  
  \end{center}
  \end{figure}
@@ -1002,7 +1002,7 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 %fixme add another ABLAsource
 
 \clearpage
-\addcontentsline{toc}{section}{E : Conclusion in Swedish}
+\addcontentsline{toc}{section}{E : Summary in Swedish}
 %% Liitteiden kaavat, taulukot ja kuvat numeroidaan omana kokonaisuutenaan
 \renewcommand{\theequation}{E\arabic{equation}}
 \setcounter{equation}{0}  
@@ -1014,9 +1014,10 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 \setcounter{section}{1}
 \setcounter{subsection}{0}
 %\section{Future work with alternative simulation models \label{appendixincltheory}}
+\begin{comment}
 \section*{\label{sammandragpasvenska}E  : Sammandrag på svenska}
 
 Joo-o jättekiva, hit ska ja hitta på ett sammandrag ännu eftersom man tydligen ska ha de. Bra o ha, skit o va utan, som man säger.
-
+\end{comment}
 
 \end{document}
