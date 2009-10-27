@@ -13,3 +13,13 @@ fluence.txt
 *.eps
 *.prim
 *.so
+*.bbl
+*.blg
+*.ilg
+*.ind
+*.log
+*.nav
+*.out
+*.snm
+*.aux
+*.toc
