@@ -1,4 +1,3 @@
-
 \def\g4{{\sf Geant4}}
 
 \newcommand{\codeAlgorithm}[1]{
@@ -140,11 +139,9 @@ label=listing:boundary}}
 \begin{abstractpage}[english]
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.~Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
-\begin{comment}
 \begin{abstractpage}[swedish]
-Detta kandidatarbete fokuserar på simulerandet av kolkärnor som skjuts in i en vattenfantom med hjälp av Geant4 simulationskoden. Denna studie utforskar möjligheten av tillämpningen av Monte Carlo kod för medicinska tungionbehandlingar. Geant4 är ett mångbrukligt fysiksimulationsprogram som är utvecklat vid europeiska organisationen för kärnforskning (CERN). Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, för detta arbete har vi valt att bruka Binary modellen som är utvecklad av flera olika vetenskapliga aktörer i samspel med CERN. Resultaten från simulationerna jämförs med experimentell data från E. Haettners examensarbete vid GSI darmstadt år 2006. Detta arbete är del av den internationella atomenergiorganisationens (IAEA) program för att samla ihop experimentell kärnfysikdata och relaterade Monte Carlo koder och simulationer för medicinska ändamål. I arbetet har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4. Med hjälp av denna kod har vi sedan kunnat modelera och estimera fördelningarna och magnituderna av de uppkomna fragmenten i i slutändan av den primära strålens räckvidd.
+Detta kandidatarbete utforskare med hjälp av Geant4 simulationsgränssnittet simulerandet av kolkärnor som skjuts in i en vattenfantom. Motiveringen till dessa simulationer är  den medicinska tillämpningen av Monte Carlo kod för tungionbehandlingar. Geant4 är ett mångbrukligt fysiksimulationsprogram som är utvecklat vid europeiska organisationen för kärnforskning (CERN). Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, för detta arbete har vi valt att bruka Binary kaskadmodellen som är utvecklad som ett internationellt samarbete mellan CERN och ett antal internationella forskningsinstitutioner. Resultaten från simulationerna jämförs med experimentell data från E.~Haettners examensarbete. Haettner utförde mätningarna vid GSI Darmstadt år 2006. I arbetet har hadrontherapy-exempelkoden i Geant4 vidareutvecklats. Med hjälp av denna kod har vi sedan kunnat modelera och estimera fördelningarna och magnituderna av de uppkomna fragmenten i i slutändan av den primära strålens räckvidd. Denna studie är del av den internationella atomenergiorganisationens (IAEA) program för att ihopställa experimentell kärnfysikdata och därtill relaterade Monte Carlo koder och simulationer för tungionbehandlingar.
 \end{abstractpage}
-\end{comment}
 
 \mysection{Preface}
 
@@ -376,7 +373,7 @@ For further discussion of the Geant4 fission model the reader can consult the Ge
 
 For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. This model requires a nuclei with three times larger excitation energy than binding energy. Furthermore, $A < 12$ and $3(A - Z) < Z < 6$ is required. Fermi break-up can be seen as an extreme case of fissioning in the nucleus where the nucleus completely ``explodes``. %fixme: phase space should be mentioned
 \clearpage
-\section{Simulation setup} %practical aspects of simulation
+\section{Simulation setup\label{SimulationSetup}} %practical aspects of simulation
 The simulation is performed with the latest version of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
 
 The simulation code is based around the hadrontherapy simulation produced by G.A.P. Cirrone, F. Di Rosa, S. Guatelli and  G. Russo of INFN Genova and Catania. This IAEA benchmark simulation is be distributed alongside the hadrontherapy example. This required varoius major changes in the code, including:
@@ -1014,10 +1011,21 @@ A further discussion of the theoretical basis of the ABLA code is available in r
 \setcounter{section}{1}
 \setcounter{subsection}{0}
 %\section{Future work with alternative simulation models \label{appendixincltheory}}
-\begin{comment}
-\section*{\label{sammandragpasvenska}E  : Sammandrag på svenska}
 
-Joo-o jättekiva, hit ska ja hitta på ett sammandrag ännu eftersom man tydligen ska ha de. Bra o ha, skit o va utan, som man säger.
-\end{comment}
+\section*{\label{sammandragpasvenska}E  : Sammandrag på svenska}
+Ioniserande strålning har brukats i medicinskt terapisyfte i närmare hundra år. De tidiga strålterapierna var dock mycket rudimentära och var ofta skadliga för patienten. Tekniken har sedan dess förbättrats avsevärt och man känner till dosdepositionsmekanismerna väl, men fysikens lagar ställer en gräns för hur noga elektromagnetisk strålning kan deponeras i den sjuka vävnaden. Sedan 1960-talet har man försökt lösa denna problemställningen med hadronterapier. Hadroner, som är massiva partiklar uppbyggda av kvarkar, växelverkar med vävnad på ett mycket annorlunda sätt. Hadroner deponerar merparten av sin ioniserande verkan på ett mycket kortare område än den exponentiellt avtagande elektromagnetiska strålningen \ref{fig:DosesFromHaettner}. Detta arbete koncentrerar sig specifikt på simulation av kolkärnor, en ovanligare variant av hadronterapi med vissa ytterligare för- nackdelar jämfört med mera konventionell protonterapi.
+
+Mekanismerna i dessa terapier är svårare behärskade än i konventionell strålterapi. Exempelvis efekten av fragmenteringen av den primära strålen till mindre fragment måste tas i hänsyn. Därför är det speciellt viktigt att känna till tillförlitligheten på de simulationsmodeller som finns till förfogande. Syftet med detta arbete är att producera och utvärdera en Monte Carlo simulation i simulationsgränssnittet Geant4 motsvarande experimentell data samlad av E.~Haettner år 2006 vid GSI i Darmstadt, Tyskland. Haettner utförde mätningar där en kolkärnestråle skjöts in i en vattenfantom. Haettners kolkärnestråle hade en energi på 400~MeV/u som är ett övre maximum för energier som används inom medicinska behandlingar.
+
+Detta arbete är en del av IAEA/INDC projektet ''Heavy Charged-Particle Interaction Data For Radiotherapy`` och arbetet har producerat en utgångspunkt för andra liknande jämförelser inom projektets ramar. För arbetet fanns som bas till förfogande en simulation för protonbehandling av ögonbottenscancer utvecklad vid INFN Catania i Italien. Simulationen modifierades enligt beskrivningen i kapitel~\ref{SimulationSetup} för att motsvara GSIs experimentella uppsättning.
+
+För arbetets del var den intressantaste simulationsmodellerna de koder som var inblandade i de nukleära processerna och därmed fragmentationen. För de intranukleära processerna användes Binary cascade kaskadmodellen, och för de påföljande evaporation- och fissionskedena användes Geant4 evaporation- och fissionmodellerna. Intranukleära kaskadmodeller såsom binary cascade baserar sig på fenomenologi och modelerar mycket kvicka processer, medan evaporationsprocesserna bestäms till större del ur experimentella statistiska fördelningar och beskriver processer som sker under storleksordningar längre tidsintervall.
+
+I arbetet var en av utmaningarna att återskapa E.~Haettners experiment möjligast väl i en efektiv simulation. I senare delen av kapitel~\ref{SimulationSetup} beskrivs vilka förenklingar som kunde göras och hur symetri kunde brukas för att göra simulationen kvickare och efektivare men samtidigt producera ekvivalenta resultat.
+
+Då resultaten analyserades i ROOT-programmet visade sig flera anmärkningsvärda resultat. I största allmänhet var resultaten i god samklang med experimentell data, men med vissa markanta undantag. Ett av dessa undantag var sättet som de bildade fragmenten skingrats i olika vinklar. Speciellt för de lättare fragmenten fanns en markant skillnad mellan experimentella resultat och simulationen i området $[0,3^\circ]$. Däremot var fragmentens energifördelning var väl i linje med de experimentella resultaten. Även totala mängden fragment var för de flesta isotoper mycket lika de experimentellt aproximerade mängderna. Undantaget i fragmentmängderna var dock helium som bildades i klart mindre mängder än man kunnat förvänta sig utgående från experimentell data.
+
+Arbetet visade att man med hadroniska Monte Carlo modeller nog kan få meningsfulla resultat till forskning inom tungionsterapier, men att mycket arbete för att utforska modellernas svaga sidor finns att utföra. Detta arbete ger även en god bas för andra liknande analyser av simulationskoder som är kompatibla med Geant4 gränssnittet. En av dessa koder som jag förväntar mig uppnå bättre resultat är INCL kaskaden med ABLA evaporationskoderna vars teori beskrivs i \ref{appendixincltheory}.
+
 
 \end{document}
