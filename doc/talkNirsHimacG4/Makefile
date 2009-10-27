@@ -3,7 +3,7 @@
 # 080930 generalisig the scrip with parameters (tex, pdfviewer) 
 # 080212 collected example code from Geant4
 
-d         = g4CarbonCRP
+d         = talkNirsHimacG4
 tex       = pdflatex
 pdfviewer = xpdf
 #pdfviewer = gv
