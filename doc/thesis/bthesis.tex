@@ -119,7 +119,7 @@ label=listing:boundary}}
 \author{Gillis Danielsen}
 
 %% Opinnäytteen nimi tulee vain tähän
-\thesistitle{Simulating carbon beam fragmentation on water phantom with Geant4}{Simuleration av kolstråle i vattenfantom med Geant4}
+\thesistitle{Simulating carbon beam fragmentation in water phantom with Geant4}{Simulation av kolkärnestråle i vattenfantom med Geant4}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
 %\date{22.11.2009}
@@ -141,7 +141,7 @@ This thesis focuses on the simulation of carbon beams in a water phantom using G
 \end{abstractpage}
 \keywords{Geant4, Binary cascade, CERN, IAEA evaluation, Hadronterapi, Bragg peak, fragmentering}
 \begin{abstractpage}[swedish]
-Detta kandidatarbete utforskare i Geant4-simulationsgränssnittet en simulation av kolkärnor som skjuts in i en vattenfantom. Vi utvärderar hur vår Monte Carlo simulation lämpar sig för forskning inom medicinska tungjonbehandlingar av cancer. Geant4 är ett flerfunktionellt fysiksimulationsgränssnitt som är utvecklat vid europeiska organisationen för kärnforskning CERN. Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, men för detta arbete har vi valt att bruka Binary Cascade kaskadmodellen som är utvecklad som ett internationellt samarbete mellan CERN och andra forskningsinstitut. Resultaten från simulationerna jämförs med experimentell data från E.~Haettners examensarbete vid KTH. Haettner utförde mätningarna vid tyska GSI Darmstadt år 2006. I vår studie har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4 så att den motsvarar experimentella uppställningen vid GSI. Vi har fokuserat specifikt på att modelera och estimera fördelningarna och attributen av de genom fragmentation uppkomna lättare sekundärpartiklarna. Denna studie är del av den internationella atomenergiorganisationens (IAEA) program för att ihopställa experimentell partikelfysikdata och relaterade Monte Carlo koder och simulationer för tungionbehandlingar.
+Detta kandidatarbete studerar i Geant4-simulationsgränssnittet en simulation av kolkärnor som skjuts in i en vattenfantom. Vi utvärderar hur vår Monte Carlo simulation lämpar sig för forskning inom medicinska tungjonbehandlingar av cancer. Geant4 är ett flerfunktionellt fysiksimulationsgränssnitt som är utvecklat vid europeiska organisationen för kärnforskning CERN. Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, men för detta arbete har vi valt att bruka Binary Cascade kaskadmodellen som är utvecklad som ett internationellt samarbete mellan CERN och andra forskningsinstitut. Resultaten från simulationerna jämförs med experimentell data från E.~Haettners examensarbete vid KTH. Haettner utförde mätningarna vid tyska GSI Darmstadt år 2006. I vår studie har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4 så att den motsvarar experimentella uppställningen vid GSI. Vi har fokuserat specifikt på att modelera och estimera fördelningarna och attributen av de genom fragmentation uppkomna lättare sekundärpartiklarna. Denna studie är del av den internationella atomenergiorganisationens (IAEA) program för att sammanställa experimentell partikelfysikdata och relaterade Monte Carlo koder och simulationer för tungionbehandlingar.
 \end{abstractpage}
 
 \mysection{Preface}
@@ -843,9 +843,9 @@ The following graphs present the angular distributions of the scattered fragment
 
 \clearpage
 \clearpage
-n this work we implemented a speeded up analysis model
-by means of messenger macro commands. These new commands now let the
-user change geometry setup 
+%n this work we implemented a speeded up analysis model
+%by means of messenger macro commands. These new commands now let the
+%user change geometry setup 
 
 %\addcontentsline{toc}{section}{Appendix D: Improving usability through messenger macro commands}
 
@@ -1023,7 +1023,7 @@ Joniserande strålning har tillämpats för medicinska terapisyften i närmare h
 \end{center}
 \end{figure} 
 
-Mekanismerna i dessa terapier är svårare behärskade än i konventionell strålterapi. Exempelvis effekten av fragmenteringen av den primära strålen till mindre sekundärpartiklar måste tas i hänsyn. Därför är det speciellt viktigt att känna till tillförlitligheten på de simulationsmodeller som finns till förfogande. Syftet med detta arbete är att producera och utvärdera en Monte Carlo simulation i simulationsgränssnittet Geant4 motsvarande experimentell data samlad av E.~Haettner år 2006 vid GSI i Darmstadt, Tyskland. Haettner utförde mätningar där en kolkärnestråle skjöts in i en vattenfantom. Haettners kolkärnestråle hade en energi på 400~MeV/u som är ett övre maximum för energier inom medicinska behandlingar.
+Mekanismerna i dessa terapier är svårare att behärska än i konventionell strålterapi. Exempelvis effekten av fragmenteringen av den primära strålen till mindre sekundärpartiklar måste tas i hänsyn. Därför är det speciellt viktigt att känna till tillförlitligheten på de simulationsmodeller som finns till förfogande. Syftet med detta arbete är att producera och utvärdera en Monte Carlo simulation i simulationsgränssnittet Geant4 motsvarande experimentell data samlad av E.~Haettner år 2006 vid GSI i Darmstadt, Tyskland. Haettner utförde mätningar där en kolkärnestråle skjöts in i en vattenfantom. Haettners kolkärnestråle hade en energi på 400~MeV/u som är ett övre maximum för energier inom medicinska behandlingar.
 
 Detta arbete är en del av IAEA/INDC projektet ''Heavy Charged-Particle Interaction Data For Radiotherapy`` och arbetet har producerat en utgångspunkt för andra liknande jämförelser inom projektets ramar. För arbetet fanns som bas till förfogande en simulation för protonbehandling av cancer i ögonbottnet utvecklad vid INFN Catania i Italien. Simulationen modifierades enligt beskrivningen i kapitel~\ref{SimulationSetup} för att motsvara GSIs experimentella uppsättning.
 
