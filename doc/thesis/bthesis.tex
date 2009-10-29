@@ -122,7 +122,7 @@ label=listing:boundary}}
 \thesistitle{Simulating carbon beam fragmentation in water phantom with Geant4}{Simulation av kolkärnestråle i vattenfantom med Geant4}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
-%\date{22.11.2009}
+\date{november 2009}{november 2009}
 
 %% Kandidaattiseminaarin vastuuopettaja
 \supervisor{Prof. Harri Ehtamo, Docent Veikko Karimäki}{prof. Harri Ehtamo, docent Veikko Karimäki}
@@ -372,7 +372,7 @@ For further discussion of the Geant4 fission model the reader can consult the Ge
 
 \subsubsection{Fermi break-up}
 
-For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. This model requires a nucleus with three times larger excitation energy than binding energy. Furthermore, $A < 12$ and $3(A - Z) < Z < 6$ is required. Fermi break-up can be seen as an extreme case of fissioning in the nucleus where the nucleus completely ``explodes``. %fixme: phase space should be mentioned
+For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. This model requires a nucleus with three times larger excitation energy than binding energy. Furthermore, $A < 12$ and $3(A - Z) < Z < 6$ is required. Fermi break-up can be seen as an extreme case of fissioning in the nucleus where the nucleus completely explodes. %fixme: phase space should be mentioned
 \clearpage
 \section{Simulation setup\label{SimulationSetup}} %practical aspects of simulation
 The simulation is performed with the latest version of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
@@ -496,7 +496,7 @@ In order to calculate the Bragg curve of the beam a water phantom of 35~cm was p
 
 A detector distance of 298.5~cm is used as described in figure~\ref{fig:haettnersetup3}. In the original experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectiveness of the simulation circle annuluses were used as read-out areas at angles greater than zero. For the events recorded at 0 degree angle a square detection area was used. This approach is a slight approximation when it comes to small non-zero angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
 
-The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ (denoted as $\theta$ in fig. ~\ref{fig:haettnersetup3}) according to the relation \begin{equation}a(\phi) = \text{H1 sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)],\end{equation}where \begin{equation}\Delta\phi = \arctan(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 sidelength}})\end{equation} is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
+The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ (denoted as $\theta$ in fig.~\ref{fig:haettnersetup3}) according to the relation \begin{equation}a(\phi) = \text{H1 sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)],\end{equation}where \begin{equation}\Delta\phi = \arctan(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 sidelength}})\end{equation} is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
@@ -631,7 +631,7 @@ The experimental data pool of carbon beams is rather limited. The GSI measuremen
 
 It may be concluded that the results all in all argue fairly well with experimental data. However, it is clear that there are certain discrepancies in the results which are not within the error-margins of the experimental data.
 
-The most aparent problem being the missing forward yield of fragments~([$0-4~^\circ$]). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
+The most aparent problem being the missing forward yield of fragments~($0-4~^\circ$). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
 
 For further studies the simulation may be altered so that the detection-voxels in the phantom are changed to the \textit{G4SensitiveDetector} type from \textit{G4PrimitiveDetector}. This change will allow better analysis of what happens inside the water phantom beyond only the analysis of the resulting fragment distributions that was the focus of this work.
 
