@@ -119,10 +119,10 @@ label=listing:boundary}}
 \author{Gillis Danielsen}
 
 %% Opinnäytteen nimi tulee vain tähän
-\thesistitle{Simulating carbon beam fragmentation on water phantom with Geant4}{Simuleration av kolstråle i vattenfantom med Geant4}
+\thesistitle{Simulating carbon beam fragmentation in water phantom with Geant4}{Simulation av kolkärnestråle i vattenfantom med Geant4}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
-%\date{22.11.2009}
+\date{november 2009}{november 2009}
 
 %% Kandidaattiseminaarin vastuuopettaja
 \supervisor{Prof. Harri Ehtamo, Docent Veikko Karimäki}{prof. Harri Ehtamo, docent Veikko Karimäki}
@@ -134,14 +134,14 @@ label=listing:boundary}}
 \makecoverpage
 
 %% Tiivistelmän avainsanat 
-\keywords{Geant4, Binary cascade, CERN, IAEA evaluation, Hadrontherapy, Bragg peak, fragment buildup}
+\keywords{Geant4, Binary cascade, CERN, IAEA evaluation, Hadrontherapy, heavy-ion therapy, Bragg peak, fragment buildup}
 %% Tiivistelmän tekstiosa
 \begin{abstractpage}[english]
 This thesis focuses on the simulation of carbon beams in a water phantom using Geant4 code. This study inspects the feasibility of Monte Carlo simulations for medical heavy-ion therapy. Geant4 is a multi-purpose physics simulation package developed at the European Organization for Nuclear Research (CERN). Geant4 gives the choice of multiple models suitable for the experiment, however, this paper focuses on the Binary model developed as a collaboration of scientists at CERN and other research institutions worldwide. Results are compared to experimental data made available at GSI Darmstadt by E.~Haettner in 2006. Our work is part of the International Atomic Energy Agency (IAEA) coordinated programme to compile and evaluate charged-particle nuclear data and related Monte Carlo codes for therapeutic applications. We have introduced extensions to the Geant4 Hadrontherapy-example. Furthermore we have modeled and estimated especially the magnitude and distribution of fragment build-up at the end of the Bragg-curve.
 \end{abstractpage}
-\keywords{Geant4, Binary cascade, CERN, IAEA evaluation, Hadronterapi, Bragg peak, fragmentering}
+\keywords{Geant4, Binary cascade, CERN, IAEA evaluering, Hadronterapi, tungjonbehandling, Bragg peak, fragmentering}
 \begin{abstractpage}[swedish]
-Detta kandidatarbete utforskare i Geant4-simulationsgränssnittet en simulation av kolkärnor som skjuts in i en vattenfantom. Vi utvärderar hur vår Monte Carlo simulation lämpar sig för forskning inom medicinska tungjonbehandlingar av cancer. Geant4 är ett flerfunktionellt fysiksimulationsgränssnitt som är utvecklat vid europeiska organisationen för kärnforskning CERN. Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, men för detta arbete har vi valt att bruka Binary Cascade kaskadmodellen som är utvecklad som ett internationellt samarbete mellan CERN och andra forskningsinstitut. Resultaten från simulationerna jämförs med experimentell data från E.~Haettners examensarbete vid KTH. Haettner utförde mätningarna vid tyska GSI Darmstadt år 2006. I vår studie har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4 så att den motsvarar experimentella uppställningen vid GSI. Vi har fokuserat specifikt på att modelera och estimera fördelningarna och attributen av de genom fragmentation uppkomna lättare sekundärpartiklarna. Denna studie är del av den internationella atomenergiorganisationens (IAEA) program för att ihopställa experimentell partikelfysikdata och relaterade Monte Carlo koder och simulationer för tungionbehandlingar.
+Detta kandidatarbete studerar i Geant4-simulationsgränssnittet en simulation av kolkärnor som skjuts in i en vattenfantom. Vi utvärderar hur vår Monte Carlo simulation lämpar sig för forskning inom medicinska tungjonbehandlingar av cancer. Geant4 är ett flerfunktionellt fysiksimulationsgränssnitt som är utvecklat vid europeiska organisationen för kärnforskning CERN. Geant4 erbjuder flera olika kompatibla modeller för hadronisk fysik, men för detta arbete har vi valt att bruka Binary Cascade kaskadmodellen som är utvecklad som ett internationellt samarbete mellan CERN och andra forskningsinstitut. Resultaten från simulationerna jämförs med experimentell data från E.~Haettners examensarbete vid KTH. Haettner utförde mätningarna vid tyska GSI Darmstadt år 2006. I vår studie har vi vidareutvecklat hadrontherapy-exempelkoden i Geant4 så att den motsvarar experimentella uppställningen vid GSI. Vi har fokuserat specifikt på att modelera och estimera fördelningarna och attributen av de genom fragmentation uppkomna lättare sekundärpartiklarna. Denna studie är del av den internationella atomenergiorganisationens (IAEA) program för att sammanställa experimentell partikelfysikdata och relaterade Monte Carlo koder och simulationer för tungjonbehandlingar.
 \end{abstractpage}
 
 \mysection{Preface}
@@ -324,7 +324,7 @@ In this model the nucleons are described as Gaussian wave packages, a nucleus is
 
 
 \begin{equation}
-\Phi(x,q_i,p_i,t) = \frac{2}{(L\pi)^{\frac{3}{4}}}\exp{(\frac{-2}{L(x - q(t))})^2+ip_i(t)x}.
+\Phi(x,q_i,p_i,t) = \frac{2}{(L\pi)^{\frac{3}{4}}}\exp{\left(\frac{-2}{L(x - q(t))}\right)^2+ip_i(t)x}.
 \label{wavePackage}
 \end{equation}
 
@@ -372,7 +372,7 @@ For further discussion of the Geant4 fission model the reader can consult the Ge
 
 \subsubsection{Fermi break-up}
 
-For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. This model requires a nucleus with three times larger excitation energy than binding energy. Furthermore, $A < 12$ and $3(A - Z) < Z < 6$ is required. Fermi break-up can be seen as an extreme case of fissioning in the nucleus where the nucleus completely ``explodes``. %fixme: phase space should be mentioned
+For light nuclei the excitation energy is often of the magnitude of the nucleon binding energy. Therefore it is possible to construct rather simple predictive statistical models for break-up. This approach was first introduced by Enrico Fermi and is thus called the Fermi break-up model. This model requires a nucleus with three times larger excitation energy than binding energy. Furthermore, $A < 12$ and $3(A - Z) < Z < 6$ is required. Fermi break-up can be seen as an extreme case of fissioning in the nucleus where the nucleus completely explodes. %fixme: phase space should be mentioned
 \clearpage
 \section{Simulation setup\label{SimulationSetup}} %practical aspects of simulation
 The simulation is performed with the latest version of the Geant4 suite version 4.9.3b with the newest simulation models available in the distribution.
@@ -496,11 +496,11 @@ In order to calculate the Bragg curve of the beam a water phantom of 35~cm was p
 
 A detector distance of 298.5~cm is used as described in figure~\ref{fig:haettnersetup3}. In the original experiment the H1 detector was moved and yields at different angles were recorded and plotted as a function of the angle at which the detector was seen. However, in order to increase effectiveness of the simulation circle annuluses were used as read-out areas at angles greater than zero. For the events recorded at 0 degree angle a square detection area was used. This approach is a slight approximation when it comes to small non-zero angles as the flux of the detection area may not be considered exactly similar to that of a square detector at that angle.
 
-The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ (denoted as $\theta$ in fig. ~\ref{fig:haettnersetup3}) according to the relation \begin{equation}a(\phi) = \text{H1 sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)],\end{equation}where \begin{equation}\Delta\phi = \arctan(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 sidelength}})\end{equation} is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
+The annulus width $a$ was determined so that it covered all of the solid angle that the tilted detector would cover while rotated around the beam axis. Thus the width of the annulus a is a function of $\phi$ (denoted as $\theta$ in fig.~\ref{fig:haettnersetup3}) according to the relation \begin{equation}a(\phi) = \text{H1 sidelength} \times [\cos(\phi)+ \cot(\frac{\pi}{2} - \phi - \Delta\phi)\sin(\phi)],\end{equation}where \begin{equation}\Delta\phi = \arctan\left(\frac{2 \times \text{scattering distance}}{\cos(\phi) \times \text{H1 sidelength}}\right)\end{equation} is the angle subtended by $r$ to $r_{min}$ and $r_{max}$ respectively.
 %fixme, that's got to be possible to simplify a bit.
 Results were divided by the amount of events and normalized to the solid angle of the detection area.
 
-The volume the solid angle of a square detector pointed towards the source at distance $s$ fills up is a pyramid. Thus, the formula \begin{equation}\Omega_{square} = 4 \arcsin(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2})\end{equation}for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance \begin{equation}d = \frac{\text{scattering distance}}{\cos(\phi)}\end{equation}from the middle of the water phantom.
+The volume the solid angle of a square detector pointed towards the source at distance $s$ fills up is a pyramid. Thus, the formula \begin{equation}\Omega_{square} = 4 \arcsin\left(\frac{\text{(H1 sidelength)}^2}{4d^2+\text{(H1 sidelength)}^2}\right)\end{equation}for the solid angle of a pyramid describes the solid angle subtended by the detector H1 at distance \begin{equation}d = \frac{\text{scattering distance}}{\cos(\phi)}\end{equation}from the middle of the water phantom.
 
 The circle annuluses used as read-out areas subtend the solid angles \begin{equation}\Omega_{annulus} = 2 \pi [\cos(\phi - \Delta\phi) - \cos(\phi + \Delta\phi)].\end{equation}When $\phi \le \Delta\phi$ the read-out area reduces to a circle with the solid angle \begin{equation}\Omega_{circle} = 2 \pi [1 - \cos(\phi + \Delta\phi)].\end{equation}
 
@@ -582,7 +582,7 @@ The shape of the results are mostly in line with the experimental data. However,
  \end{figure}
 The angular distributions were simulated for a number of phantom-depths before and after the Bragg peak at about 27~cm. Results were normalized per number of incident ions and solid angle. The results were plotted against GSI data and in appendix~\ref{AppendixA}. The simulations were run with phantom thicknesses that were subtracted of water-equivalents. Through personal correspondence with E.~Haettner it was apparent that the measurements made in July 2006 were compensated with a $0.8$~cm water equivalent for the non-water parts of the experiment
 
-Results for $\phi \in [0,\arctan(\frac{\text{H1 sidelength}}{2 \times \text{scattering distance}}) \approx 0.4^{\circ}]$ were discarded in the plots due to the amount of stochastic error in this interval. These stochastic effects arose due to the annulus read-out area approximation when $r_{min} = 0$.
+Results for $\phi \in [0,\arctan\left(\frac{\text{H1 sidelength}}{2 \times \text{scattering distance}}\right) \approx 0.4^{\circ}]$ were discarded in the plots due to the amount of stochastic error in this interval. These stochastic effects arose due to the annulus read-out area approximation when $r_{min} = 0$.
 
 The obvious difference to the experimental data is the clearly lower yields at low angles. This relation is apparent for almost all depths and fragments that were analyzed. The difference seems to be accentuated for the lighter fragments. As beam attenuation data matches rather well the lack of forward yield may indicate that the simulation models scattering of fragments is too isotropic.
 
@@ -631,11 +631,11 @@ The experimental data pool of carbon beams is rather limited. The GSI measuremen
 
 It may be concluded that the results all in all argue fairly well with experimental data. However, it is clear that there are certain discrepancies in the results which are not within the error-margins of the experimental data.
 
-The most aparent problem being the missing forward yield of fragments~([$0-4~^\circ$]). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
+The most aparent problem being the missing forward yield of fragments~($0~^\circ-4~^\circ$). Further work is needed to determine the cause for these insufficient yields. As a good starting hypothesis one may choose to study the isotropicity of the evaporation model, as the missing yields at low angles are especially apparent for light fragments.
 
 For further studies the simulation may be altered so that the detection-voxels in the phantom are changed to the \textit{G4SensitiveDetector} type from \textit{G4PrimitiveDetector}. This change will allow better analysis of what happens inside the water phantom beyond only the analysis of the resulting fragment distributions that was the focus of this work.
 
-Others Geant4 models for hadronic simulations were studied and it was concluded that there is a reason to believe the problems encountered with the binary model could be solved with the INCL and ABLA models (the theoretical bases of the INCL and ABLA codes are introduced in this paper in appendix~\ref{appendixincltheory}). However, the anticipated release of the INCL code supporting light-nucleus interactions has not taken place at the time of writing. Therefore this work is left as the future refinement of IAEA benchmark comparison of heavy charged-particle interaction data for radiotherapy. For this purpose an adaptable Geant4 framework and related ROOT analysis scripts were produced as a part of this project. These codes may be used together with any Geant4 compatible hadronic model.
+Others Geant4 models for hadronic simulations were studied and it was concluded that there is a reason to believe the problems encountered with the binary model could be solved with the INCL and ABLA models (the theoretical bases of the INCL and ABLA codes are introduced in this paper in appendix~\ref{appendixincltheory}). However, the anticipated release of the INCL code supporting light-nucleus interactions has not taken place at the time of writing. Therefore this work is left as the future refinement of this IAEA benchmark comparison of heavy charged-particle interaction data for radiotherapy. For such purposes an adaptable Geant4 framework and related ROOT analysis scripts were produced as a part of this project. These codes may be used together with any Geant4 compatible hadronic model.
 
 \clearpage
 
@@ -843,9 +843,9 @@ The following graphs present the angular distributions of the scattered fragment
 
 \clearpage
 \clearpage
-n this work we implemented a speeded up analysis model
-by means of messenger macro commands. These new commands now let the
-user change geometry setup 
+%n this work we implemented a speeded up analysis model
+%by means of messenger macro commands. These new commands now let the
+%user change geometry setup 
 
 %\addcontentsline{toc}{section}{Appendix D: Improving usability through messenger macro commands}
 
@@ -870,21 +870,23 @@ Macro commands are interpreted by the code, and are sent to the simulation and G
 \end{itemize}
 
 
-So for example the user can give a command according to the following syntax.
+So for example the user can give commands according to the following syntax.
+
+Firstly, the user activates the IAEA benchmark geometry class.
+\scriptsize
+\begin{verbatim}
+/geometrySetup/selectGeometry IAEA
+\end{verbatim}
+\normalsize
+Then the user may proceed to set various settings, such as the name of the analysis file and thickness of the water phantom.
 \scriptsize
 \begin{verbatim}
 /analysis/setFileName <user-defined name>.root
-\end{verbatim}
-\normalsize
-While the thickness of the water phantom may be set by
-\scriptsize
-\begin{verbatim}
 /iaea/waterPhantomThickness <user defined thickness> cm
 \end{verbatim}
 \normalsize
 
-
-The implementation was done by using Geant4 analysis messenger machanism which inherits functionality from G4UImessenger class functionality from \textit{G4UImessenger}. An object of the type \textit{HadrontehrapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
+The implementation was done using Geant4 analysis and geometry messenger mechanisms which inherit functionality from the \textit{G4UImessenger} class. An object of the type \textit{HadrontherapyAnalysisMessenger} was created in the \textit{AnalysisManager}.
 
 
 \scriptsize
@@ -1023,7 +1025,7 @@ Joniserande strålning har tillämpats för medicinska terapisyften i närmare h
 \end{center}
 \end{figure} 
 
-Mekanismerna i dessa terapier är svårare behärskade än i konventionell strålterapi. Exempelvis effekten av fragmenteringen av den primära strålen till mindre sekundärpartiklar måste tas i hänsyn. Därför är det speciellt viktigt att känna till tillförlitligheten på de simulationsmodeller som finns till förfogande. Syftet med detta arbete är att producera och utvärdera en Monte Carlo simulation i simulationsgränssnittet Geant4 motsvarande experimentell data samlad av E.~Haettner år 2006 vid GSI i Darmstadt, Tyskland. Haettner utförde mätningar där en kolkärnestråle skjöts in i en vattenfantom. Haettners kolkärnestråle hade en energi på 400~MeV/u som är ett övre maximum för energier inom medicinska behandlingar.
+Mekanismerna i dessa terapier är svårare att behärska än i konventionell strålterapi. Exempelvis effekten av fragmenteringen av den primära strålen till mindre sekundärpartiklar måste tas i hänsyn. Därför är det speciellt viktigt att känna till tillförlitligheten på de simulationsmodeller som finns till förfogande. Syftet med detta arbete är att producera och utvärdera en Monte Carlo simulation i simulationsgränssnittet Geant4 motsvarande experimentell data samlad av E.~Haettner år 2006 vid GSI i Darmstadt, Tyskland. Haettner utförde mätningar där en kolkärnestråle skjöts in i en vattenfantom. Haettners kolkärnestråle hade en energi på 400~MeV/u som är ett övre maximum för energier inom medicinska behandlingar.
 
 Detta arbete är en del av IAEA/INDC projektet ''Heavy Charged-Particle Interaction Data For Radiotherapy`` och arbetet har producerat en utgångspunkt för andra liknande jämförelser inom projektets ramar. För arbetet fanns som bas till förfogande en simulation för protonbehandling av cancer i ögonbottnet utvecklad vid INFN Catania i Italien. Simulationen modifierades enligt beskrivningen i kapitel~\ref{SimulationSetup} för att motsvara GSIs experimentella uppsättning.
 
