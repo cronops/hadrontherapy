@@ -23,22 +23,40 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: Hadrontherapy.cc Main of the Hadrontherapy example; 
-// Last modified: G.A.P.Cirrone 
+// Hadrontherapy.cc 
+//
+// Main of the Hadrontherapy example; 
+// Released with the Geant4 9.3 version (December 2009)
+//
+// Last modified: G.A.P.Cirrone
 // 
-// See more at: http://workgroup.lngs.infn.it/geant4lns/
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
 //
 // ----------------------------------------------------------------------------
 //                 GEANT 4 - Hadrontherapy example
 // ----------------------------------------------------------------------------
 // Code developed by:
 //
-// G.A.P. Cirrone
+// G.A.P. Cirrone(a)°, G.Cuttone(a), F.Di Rosa(a), E.Mazzaglia(a), F.Romano(a)
 // 
+// Contributor authors:
+// P.Kaitaniemi(d), A.Heikkinen(d), Gillis Danielsen (d)
+//
+// Past authors:
+// M.G.Pia(b), S.Guatelli(c), G.Russo(a), M.Russo(a), A.Lechner(e) 
+//
 // (a) Laboratori Nazionali del Sud 
 //     of the INFN, Catania, Italy
+//
+// (b) INFN Section of Genova, Italy
 // 
-// * cirrone@lns.infn.it
+// (c) University of Wallongong, Australia
+//
+// (d) Helsinki Institute of Physics, Helsinki, Finland
+//
+// (e) CERN, (CH)
+//
+//  *Corresponding author, email to cirrone@lns.infn.it
 // ----------------------------------------------------------------------------
 
 #include "G4RunManager.hh"
@@ -60,6 +78,7 @@
 #include "HadrontherapyAnalysisManager.hh"
 #include "HadrontherapyGeometryController.hh"
 #include "HadrontherapyGeometryMessenger.hh"
+#include "HadrontherapyInteractionParameters.hh"
 #include "G4ScoringManager.hh"
 #include "IAEAScoreWriter.hh"
 
@@ -118,20 +137,19 @@ int main(int argc ,char ** argv)
   // Initialize the primary particles
   HadrontherapyPrimaryGeneratorAction *pPrimaryGenerator = new HadrontherapyPrimaryGeneratorAction();
   runManager -> SetUserAction(pPrimaryGenerator);
-
-  // Initialize matrix 
-  HadrontherapyMatrix* matrix = HadrontherapyMatrix::getInstance();
-  matrix -> Initialize();
   
   // Optional UserActions: run, event, stepping
   HadrontherapyRunAction* pRunAction = new HadrontherapyRunAction();
   runManager -> SetUserAction(pRunAction);
 
-  HadrontherapyEventAction* pEventAction = new HadrontherapyEventAction(matrix);
+  HadrontherapyEventAction* pEventAction = new HadrontherapyEventAction();
   runManager -> SetUserAction(pEventAction);
 
   HadrontherapySteppingAction* steppingAction = new HadrontherapySteppingAction(pRunAction); 
   runManager -> SetUserAction(steppingAction);    
+
+  // Interaction data: stopping powers
+  HadrontherapyInteractionParameters* pInteraction = new HadrontherapyInteractionParameters();
 
 #ifdef G4VIS_USE
   // Visualization manager
@@ -168,25 +186,27 @@ G4UImanager* UI = G4UImanager::GetUIpointer();
      
      // As final option, the simpler user interface terminal is opened
 #else
-     session = new G4UIterminal();
- UI->ApplyCommand("/control/execute defaultMacro.mac");
+    session = new G4UIterminal();
+    UI->ApplyCommand("/control/execute defaultMacro.mac");
 #endif
- session->SessionStart();
- delete session;
+    session->SessionStart();
+    delete session;
    }
- matrix -> TotalEnergyDeposit();
+    HadrontherapyMatrix* matrix = HadrontherapyMatrix::getInstance();
+    if (matrix) matrix -> TotalEnergyDeposit();
  
 #ifdef ANALYSIS_USE
  analysis -> finish();
 #endif
- 
+
  // Job termination
 #ifdef G4VIS_USE
  delete visManager;
 #endif
- 
- delete geometryMessenger;
- delete geometryController;
- delete runManager;
- return 0;
+  
+  delete geometryMessenger;
+  delete geometryController;
+  delete pInteraction; 
+  delete runManager;
+  return 0;
 }

@@ -24,22 +24,8 @@
 // ********************************************************************
 //
 // IAEADetectorConstruction.cc
-//
-// See more at: http://workgroup.lngs.infn.it/geant4lns/
-//
-// ----------------------------------------------------------------------------
-//                 GEANT 4 - Hadrontherapy example
-// ----------------------------------------------------------------------------
-// Code developed by:
-//
-// G.A.P. Cirrone(a)*, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
-// 
-// (a) Laboratori Nazionali del Sud 
-//     of the INFN, Catania, Italy
-// (b) INFN Section of Genova
-// 
-// * cirrone@lns.infn.it
-// ----------------------------------------------------------------------------
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
+
 #include "G4SDManager.hh"
 #include "G4RunManager.hh"
 #include "G4Box.hh"
@@ -314,6 +300,9 @@ void  IAEADetectorConstruction::ConstructSensitiveDetector()
       // The Read Out Geometry is instantiated
       G4String ROGeometryName = "DetectorROGeometry";
       detectorROGeometry = new HadrontherapyDetectorROGeometry(ROGeometryName,
+							     G4ThreeVector(20. *mm, // detector to world position!
+								               0. *mm, 
+								               0. *mm),
 							     phantomDepth/2,
 							     detectorSizeY,
 							     detectorSizeZ,

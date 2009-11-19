@@ -1,13 +1,26 @@
  -------------------------------------------------------------------------------
-$Id: History, 2004/02/27  G.A.P. Cirrone, 
-	                  cirrone@lns.infn.it
-			  http://workgroup.lngs.infn.it/geant4lns
+History File, 2004/02/27 G.A.P. Cirrone, Created
+cirrone@lns.infn.it
+http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
 -------------------------------------------------------------------------------
+
          ====================================================
-                          Geant4 - Hadrontherapy
+             History file of the Hadrontherapy application
          ====================================================
 
-                      Category History file
+18.11.2009 G.A.P.Cirrone; Tag: hadrontherapy-V09-02-36
+           - Correction for a missing function in the HadrontherapyPhysicsListMessenger.cc class file
+
+18.11.2009 G.A.P.Cirrone; Tag: hadrontherapy-V09-02-35
+           - Updated the README file and general code revision for the 
+             Geant4 9.3 release
+
+17.11.2009 S.E.Mazzaglia; Tag: hadrontherapy-V09-02-34
+	   - Added some functionalities in order to change, via messengers, the geometry, 
+	     the voxelization of the detector, and the disposition in the space of the detector/phantom.
+	   - Added the possibility to calculate the stopping powers for ions too.
+	   - Modified the HadrontherapyDetectorROGeometry class constructor.
+	   - Various additions and fixes to the matrix class.
 
 10.11.2009 G.A.P.Cirrone; Tag: hadrontherapy-V09-02-33
            - Added the possibility to make a graphical user interface (GUI) using the QT libraries. 

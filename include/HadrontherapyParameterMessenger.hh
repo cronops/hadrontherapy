@@ -23,12 +23,8 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-//
-// $Id: HadrontherapyParametersMessenger.hh;
-//
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
+// HadrontherapyParametersMessenger.hh;
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
 
 #ifndef HadrontherapyParameterMessenger_h
 #define HadrontherapyParameterMessenger_h 1
@@ -53,9 +49,8 @@ class HadrontherapyParameterMessenger : public G4UImessenger
 	private:
         HadrontherapyInteractionParameters* pParam;
 
-        G4UIdirectory* paramDir;
-        G4UIcmdWithAString* dedxCmd; // command to calculate stopping power
-        G4UIcmdWithoutParameter* materCmd; // command to list Nist materials 
+        G4UIdirectory           *paramDir;
+        G4UIcmdWithAString      *dedxCmd, *listCmd;  
 
 };
 #endif

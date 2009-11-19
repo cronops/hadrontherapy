@@ -23,20 +23,9 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: HadrontherapyDetectorMessenger.hh;
-// ----------------------------------------------------------------------------
-//                 GEANT 4 - Hadrontherapy example
-// ----------------------------------------------------------------------------
-// Code developed by:
-//
-// G.A.P. Cirrone(a)*, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
-// 
-// (a) Laboratori Nazionali del Sud 
-//     of the INFN, Catania, Italy
-// (b) INFN Section of Genova, Genova, Italy
-// 
-// * cirrone@lns.infn.it
-// ----------------------------------------------------------------------------
+// HadrontherapyDetectorMessenger.hh;
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy//
+
 #ifndef HadrontherapyDetectorMessenger_h
 #define HadrontherapyDetectorMessenger_h 1
 
@@ -47,6 +36,7 @@ class HadrontherapyDetectorConstruction;
 class G4UIdirectory;
 class G4UIcmdWithADoubleAndUnit;
 class G4UIcmdWithAString;
+class G4UIcmdWith3VectorAndUnit;
 
 class HadrontherapyDetectorMessenger: public G4UImessenger
 {
@@ -61,6 +51,13 @@ private:
   // Pointer to the detector component
   HadrontherapyDetectorConstruction* hadrontherapyDetector;
 
+  G4UIdirectory *changeThePhantomDir,  *changeTheDetectorDir; 
+
+  G4UIcmdWith3VectorAndUnit *changeThePhantomSizeCmd,
+							*changeThePhantomPositionCmd, 
+							*changeTheDetectorSizeCmd, 
+							*changeTheDetectorToPhantomPositionCmd,
+							*changeTheDetectorVoxelCmd;
 };
 #endif
 

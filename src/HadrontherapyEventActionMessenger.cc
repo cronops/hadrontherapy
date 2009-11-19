@@ -22,24 +22,9 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
+// $Id: HadrontherapyDetectorHit.cc; 
 //
-// $Id: HadrontherapyEventActionMessenger.cc;
-//
-// See more at: http://workgroup.lngs.infn.it/geant4lns
-//
-// ----------------------------------------------------------------------------
-//                 GEANT 4 - Hadrontherapy example
-// ----------------------------------------------------------------------------
-// Code developed by:
-//
-// G.A.P. Cirrone(a)*, G. Candiano, F. Di Rosa(a), S. Guatelli(b), G. Russo(a)
-// 
-// (a) Laboratori Nazionali del Sud 
-//     of the National Institute for Nuclear Physics, Catania, Italy
-// (b) National Institute for Nuclear Physics Section of Genova, genova, Italy
-// 
-// * cirrone@lns.infn.it
-// --------------------------------------------------------------
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
 
 #include "HadrontherapyEventActionMessenger.hh"
 
@@ -57,10 +42,10 @@ HadrontherapyEventActionMessenger::HadrontherapyEventActionMessenger(Hadronthera
  
   DrawCmd = new G4UIcmdWithAString("/event/drawTracks",this);
   DrawCmd->SetGuidance("Draw the tracks in the event");
-  DrawCmd->SetGuidance("  Choice : none,charged, all");
+  DrawCmd->SetGuidance("  Choice : none,charged, all, neutral");
   DrawCmd->SetParameterName("choice",true);
   DrawCmd->SetDefaultValue("all");
-  DrawCmd->SetCandidates("none charged all");
+  DrawCmd->SetCandidates("none charged all neutral");
   DrawCmd->AvailableForStates(G4State_Idle);
   
   PrintCmd = new G4UIcmdWithAnInteger("/event/printEventNumber",this);
