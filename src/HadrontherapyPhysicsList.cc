@@ -24,20 +24,7 @@
 // ********************************************************************
 //
 // HadrontherapyPhysicsList.cc
-// ----------------------------------------------------------------------------
-//                 GEANT 4 - Hadrontherapy example
-// ----------------------------------------------------------------------------
-// Code developed by:
-//
-// G.A.P. Cirrone(a)*, F.Romano(a)
-//
-// (a) Laboratori Nazionali del Sud
-//     of the INFN, Catania, Italy
-//
-// * cirrone@lns.infn.it
-//
-// See more at: http://workgroup.lngs.infn.it/geant4lns/
-// ----------------------------------------------------------------------------
+// See more at: http://g4advancedexamples.lngs.infn.it/Examples/hadrontherapy
 
 // This class provides all the physic models that can be activated inside Hadrontherapy;
 // Each model can be setted via macro commands;
@@ -95,7 +82,6 @@
 #include "G4VPhysicsConstructor.hh"
 
 // Local physic directly implemented in the Hadronthrapy directory
-#include "LocalStandardICRU73EmPhysic.hh"            // This permits the use of the ICRU73 tables for stopping powers of ions
 #include "LocalIonIonInelasticPhysic.hh"             // Physic dedicated to the ion-ion inelastic processes
 #include "LocalINCLIonIonInelasticPhysic.hh"             // Physic dedicated to the ion-ion inelastic processes using INCL/ABLA
 
@@ -223,16 +209,6 @@ void HadrontherapyPhysicsList::AddPhysicsList(const G4String& name)
     delete emPhysicsList;
     emPhysicsList = new G4EmStandardPhysics_option3();
     G4cout << "THE FOLLOWING ELECTROMAGNETIC PHYSICS LIST HAS BEEN ACTIVATED: G4EmStandardPhysics_option3" << G4endl;
-
-  } else if (name == "local_standardICRU73") {
-    emName = name;
-    delete emPhysicsList;
-    emPhysicsList = new LocalStandardICRU73EmPhysic(name);
-    em_config.SetExtraEmModel("GenericIon","ionIoni",
-			      new G4IonParametrisedLossModel(),
-			      "",0.0, 100.0*TeV,
-			      new G4IonFluctuations());
-    G4cout << "standardICRU73" << G4endl;
 
  } else if (name == "LowE_Livermore") {
     emName = name;
